@@ -1,4 +1,22 @@
 @font-face {
-    // font-family: circular;
-    // src: url(../../fonts/Caveat/Caveat-Regular.ttf);
+  font-family: Circular-Light;
+  src: url(../../fonts/Circular/Circular-Light.ttf);
+}
+@font-face {
+  font-family: Circular-Medium;
+  src: url(../../fonts/Circular/Circular-Medium.ttf);
+}
+
+@font-face {
+  font-family: Circular-Regular;
+  src: url(../../fonts/Circular/Circular-Regular.ttf);
+}
+
+@font-face {
+  font-family: Circular-Bold;
+  src: url(../../fonts/Circular/Circulars-Bold.ttf);
+}
+
+html {
+  font-family: Circular-Regular;
 }
