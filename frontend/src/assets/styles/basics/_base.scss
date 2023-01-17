@@ -3,14 +3,14 @@
 }
 
 ::selection {
-    background-color: $clr1;
-    color: $clr6;
+    background-color: $clr-brand;
+    color: $clr-text-black;
 }
 
 html {
-    font-family: montserrat;
+    font-family: Circular-Regular;
     line-height: 1.6;
-    color: $clr2;
+    color: $clr-text-black;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: caveat;
+    font-family: Circular-Regular;
     margin: 0 0 0.6em;
     line-height: 1;
 }
