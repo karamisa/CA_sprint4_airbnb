@@ -19,7 +19,7 @@ export function NavMenu() {
                 <img src="https://a0.muscache.com/defaults/user_pic-50x50.png?v=3" alt="" />
             </div>
         </div>
-       {navbarOpen && <div className="menu-links closed">
+       {navbarOpen && <div className="menu-links">
             {/* <div className={navbarOpen ? "menu-links-open" : "menu-links-closed"}> */}
                 <a href="#">Trips</a>
                 <a href="#">Messages</a>
