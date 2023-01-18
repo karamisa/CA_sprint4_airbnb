@@ -9,7 +9,8 @@ export function StayPreview({ stay }) {
   const {
     loc: { address: location },
   } = stay;
-  const rate = stay.reviews[0].rate;
+
+  const rate = 4.8 //get avg. rate
 
   const info = { price, rate, location };
 
