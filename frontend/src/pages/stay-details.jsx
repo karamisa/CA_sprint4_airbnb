@@ -11,11 +11,25 @@ export function StayDetails() {
     // const {stayId} = useParams()
     const stayId = '622f337a75c7d36e498aaaf8'
     const navigate = useNavigate()
+    const [filteredAmenities, setFilteredAmenities] = useState([])
 
 
     useEffect(() => {
         loadStay()
     }, [])
+
+
+    // useEffect(() => {
+    //     if (stay && Array.isArray(stay.amenities)) {
+    //       let amenitiesList = stay.amenities.slice(0, 10)
+
+    //       setFilteredAmenities(amenitiesList)
+    //     }
+    //   }, [stay, amenities])
+    
+    //   return filteredAmenities
+    // }
+
 
 const imgsToDisplay = stay?.imgUrls?.slice(0, 5)
 
@@ -57,6 +71,12 @@ function onToggleReviews(){
 
 }
 
+function openAllReviewsModal(){
+
+}
+
+
+if (!stay) return <div>Loading...</div>
     return (
         <section className="main-layout secondary-layout">
              <h1>Stay Details</h1>
@@ -64,8 +84,7 @@ function onToggleReviews(){
                  <h1 className="title">{stay.name}</h1>
                  <div class="flex justify-between">
                      <div class="name-subtitle flex">
-                         <RatingReview review={stay.reviews} />
-                         <span>•</span>
+                         <RatingReview reviews={stay.reviews} />
                          <div className="stay-rating" onClick={openReviewModal}>{stay.reviews.length} reviews</div>
                          <span>•</span>
                          <div className="stay-location" onClick={openReviewMap}>{stay.loc.address}</div>
@@ -114,7 +133,7 @@ function onToggleReviews(){
                  </section>
 
                  <div className="reviews border-buttom">
-                     {/* <h2 className="stay-mid-reviews"><RatingReview review={stay.reviews} /></h2> */}
+                     <h2 className="stay-mid-reviews"><RatingReview reviews={stay.reviews} /></h2>
                      <div className="stay-mid-reviews-container">
                          {/* <ReviewsCmp reviews={stay.reviews} limit={6} onOpenAllReviewsModal={openAllReviewsModal} /> */}
                      </div>
