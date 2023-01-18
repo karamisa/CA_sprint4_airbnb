@@ -1,4 +1,4 @@
-import { stayService } from '../../services/stay.service.js';
+import { stayService } from '../../services/stay.service.local.js';
 import { store } from '../store.js';
 import {
   REMOVE_STAYS,
@@ -7,7 +7,7 @@ import {
   UPDATE_STAYS,
   SET_LABELS,
   SET_IS_LOADING,
-} from './stayReducer';
+} from './stay.reducer';
 
 //  Load stays
 export function loadStays(filterBy, sortBy) {
@@ -15,10 +15,10 @@ export function loadStays(filterBy, sortBy) {
   return stayService
     .query(filterBy, sortBy)
     .then((stays) => {
-      // console.log('got from server', stays);
+      console.log('in stay action got from server', stays);
       // we get object with total pages and stay array
-      store.dispatch({ type: SET_STAYS, stays: stays.stays });
-      store.dispatch({ type: SET_LABELS, labels: stays.labels });
+      store.dispatch({ type: SET_STAYS, stays: stays });
+      // store.dispatch({ type: SET_LABELS, labels: stays.labels });
     })
     .catch((err) => {
       console.log('Had issues loading stays: ', err);

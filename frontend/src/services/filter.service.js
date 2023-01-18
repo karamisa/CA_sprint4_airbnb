@@ -1,248 +1,253 @@
 export const filterService = {
   getCategories,
+  getDefaultFilter,
 };
+
+function getDefaultFilter() {
+  return { destination: '' };
+}
 
 function getCategories() {
   const categories = [
     {
       name: 'OMG!',
-      url: '../assets/img/categories/omg.png',
+      url: 'omg',
     },
     {
       name: 'Amazing views',
-      url: '../assets/img/categories/amazing-view.png.png',
+      url: 'amazing-view',
     },
     {
       name: 'Trending',
-      url: '../assets/img/categories/trending.png',
+      url: 'trending',
     },
     {
       name: 'Bed & breakfasts',
-      url: '../assets/img/categories/bed-and-breakfast.png',
+      url: 'bed-and-breakfast',
     },
     {
       name: "Chief's kitchens",
-      url: '../assets/img/categories/chiefs-kitchen.png',
+      url: 'chiefs-kitchen',
     },
     {
       name: 'Luxe',
-      url: '../assets/img/categories/luxe.png',
+      url: 'luxe',
     },
     {
       name: 'Mansions',
-      url: '../assets/img/categories/mansions.png',
+      url: 'mansions',
     },
     {
       name: 'Ski-in/out',
-      url: '../assets/img/categories/ski.png',
+      url: 'ski',
     },
     {
       name: 'Private rooms',
-      url: '../assets/img/categories/private-rooms.png',
+      url: 'private-rooms',
     },
     {
       name: 'Boats',
-      url: '../assets/img/categories/boats.png',
+      url: 'boats',
     },
     {
       name: 'Castles',
-      url: '../assets/img/categories/castles.png',
+      url: 'castles',
     },
     {
       name: 'Cabins',
-      url: '../assets/img/categories/cabins.png',
+      url: 'cabins',
     },
     {
       name: 'Amazing pools',
-      url: '../assets/img/categories/amazing-pools.png',
+      url: 'amazing-pools',
     },
     {
       name: 'Design',
-      url: '../assets/img/categories/design.png',
+      url: 'design',
     },
     {
       name: 'Countryside',
-      url: '../assets/img/categories/countryside.png',
+      url: 'countryside',
     },
     {
       name: 'Farms',
-      url: '../assets/img/categories/farms.png',
+      url: 'farms',
     },
     {
       name: 'Lakefront',
-      url: '../assets/img/categories/lakefront.png',
+      url: 'lakefront',
     },
     {
       name: 'Tiny homes',
-      url: '../assets/img/categories/tiny-homes.png',
+      url: 'tiny-homes',
     },
     {
       name: 'Off-the-grid',
-      url: '../assets/img/categories/off-the-grid.png',
+      url: 'off-the-grid',
     },
     {
       name: 'Beach',
-      url: '../assets/img/categories/beach.png',
+      url: 'beach',
     },
     {
       name: 'Beachfront',
-      url: '../assets/img/categories/beach-front.png',
+      url: 'beach-front',
     },
     {
       name: 'Tropical',
-      url: '../assets/img/categories/tropical.png',
+      url: 'tropical',
     },
     {
       name: 'Lake',
-      url: '../assets/img/categories/lake.png',
+      url: 'lake',
     },
     {
       name: 'Iconic cities',
-      url: '../assets/img/categories/iconic-cities.png',
+      url: 'iconic-cities',
     },
     {
       name: 'Historical homes',
-      url: '../assets/img/categories/historical-homes.png',
+      url: 'historical-homes',
     },
     {
       name: 'National parks',
-      url: '../assets/img/categories/national-parks.png',
+      url: 'national-parks',
     },
     {
       name: 'Play',
-      url: '../assets/img/categories/play.png',
+      url: 'play',
     },
     {
       name: 'Creative spaces',
-      url: '../assets/img/categories/creative-spaces.png',
+      url: 'creative-spaces',
     },
     {
       name: 'Desert',
-      url: '../assets/img/categories/desert.png',
+      url: 'desert',
     },
     {
       name: 'Yurts',
-      url: '../assets/img/categories/yurts.png',
+      url: 'yurts',
     },
     {
       name: 'Arctic',
-      url: '../assets/img/categories/arctic.png',
+      url: 'arctic',
     },
     {
       name: 'New',
-      url: '../assets/img/categories/new.png',
+      url: 'new',
     },
     {
       name: 'Vineyards',
-      url: '../assets/img/categories/vineyards.png',
+      url: 'vineyards',
     },
     {
       name: 'Caves',
-      url: '../assets/img/categories/caves.png',
+      url: 'caves',
     },
     {
       name: 'Earth homes',
-      url: '../assets/img/categories/earth-homes.png',
+      url: 'earth-homes',
     },
     {
       name: 'Treehouses',
-      url: '../assets/img/categories/tree-houses.png',
+      url: 'tree-houses',
     },
     {
       name: 'Houseboats',
-      url: '../assets/img/categories/house-boats.png',
+      url: 'house-boats',
     },
     {
       name: 'Camping',
-      url: '../assets/img/categories/campings.png',
+      url: 'campings',
     },
     {
       name: 'Top of the world',
-      url: '../assets/img/categories/top-of-the-world.png',
+      url: 'top-of-the-world',
     },
     {
       name: 'Grand pianos',
-      url: '../assets/img/categories/grand-pianos.png',
+      url: 'grand-pianos',
     },
     {
       name: 'A-frames',
-      url: '../assets/img/categories/a-frame.png',
+      url: 'a-frame',
     },
     {
       name: 'Cycladic homes',
-      url: '../assets/img/categories/cycladic-homes.png',
+      url: 'cycladic-homes',
     },
     {
       name: 'Surfing',
-      url: '../assets/img/categories/surfing.png',
+      url: 'surfing',
     },
     {
       name: 'Containers',
-      url: '../assets/img/categories/containers.png',
+      url: 'containers',
     },
     {
       name: 'Domes',
-      url: '../assets/img/categories/domes.png',
+      url: 'domes',
     },
     {
       name: 'Windmills',
-      url: '../assets/img/categories/windmills.png',
+      url: 'windmills',
     },
     {
       name: 'Trulli',
-      url: '../assets/img/categories/trulli.png',
+      url: 'trulli',
     },
     {
       name: 'Golfing',
-      url: '../assets/img/categories/golfing.png',
+      url: 'golfing',
     },
     {
       name: 'Barns',
-      url: '../assets/img/categories/barns.png',
+      url: 'barns',
     },
     {
       name: 'Towers',
-      url: '../assets/img/categories/towers.png',
+      url: 'towers',
     },
     {
       name: 'Ryokans',
-      url: '../assets/img/categories/ryokans.png',
+      url: 'ryokans',
     },
     {
       name: 'Adapted',
-      url: '../assets/img/categories/adapted.png',
+      url: 'adapted',
     },
     {
       name: 'Riads',
-      url: '../assets/img/categories/riads.png',
+      url: 'riads',
     },
     {
       name: "Shepherd's hut",
-      url: '../assets/img/categories/shepherds-huts.png',
+      url: 'shepherds-huts',
     },
     {
       name: 'Hanoks',
-      url: '../assets/img/categories/hanoks.png',
+      url: 'hanoks',
     },
     {
       name: 'Dammusi',
-      url: '../assets/img/categories/dammusi.png',
+      url: 'dammusi',
     },
     {
       name: 'Casas particulares',
-      url: '../assets/img/categories/casas.png',
+      url: 'casas',
     },
     {
       name: 'Minsus',
-      url: '../assets/img/categories/minsus.png',
+      url: 'minsus',
     },
     {
       name: 'Campers',
-      url: '../assets/img/categories/campers.png',
+      url: 'campers',
     },
     {
       name: 'Skiing',
-      url: '../assets/img/categories/skiing.png',
+      url: 'skiing',
     },
   ];
 
