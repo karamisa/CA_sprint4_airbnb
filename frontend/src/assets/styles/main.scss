@@ -1,32 +1,30 @@
 // Setup
-@import "setup/variables";
-@import "setup/functions";
-@import "setup/mixins";
-@import "setup/typography";
+@import 'setup/variables';
+@import 'setup/functions';
+@import 'setup/mixins';
+@import 'setup/typography';
+@import 'setup/ui';
 
 // Basics
-@import "basics/helpers";
-@import "basics/layout";
-@import "basics/base";
-@import "basics/links";
-@import "basics/forms";
-
+@import 'basics/helpers';
+@import 'basics/layout';
+@import 'basics/base';
+@import 'basics/links';
+@import 'basics/forms';
 
 // Views
-@import "views/about-us";
-@import "views/home-page";
-@import "views/stay-index";
-@import "views/stay-details";
-@import "views/review-app";
-@import "views/user-details";
+@import 'views/about-us';
+@import 'views/home-page';
+@import 'views/stay-index';
+@import 'views/stay-details';
+@import 'views/review-app';
+@import 'views/user-details';
 
 // Components
-@import "cmps/app-header";
-@import "cmps/app-footer";
-@import "cmps/user-msg";
+@import 'cmps/app-header';
+@import 'cmps/app-footer';
+@import 'cmps/user-msg';
 
-
-
-
-
-
+// Components- stay index
+@import 'cmps/stay-index/filter-bar.scss';
+@import 'cmps/stay-index/stay-list.scss';

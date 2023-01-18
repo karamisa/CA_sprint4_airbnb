@@ -11,7 +11,7 @@ export function RootCmp() {
   return (
     <div>
       <AppHeader />
-      <main>
+      <main className='main-layout'>
         <Routes>
           {routes.map((route) => (
             <Route

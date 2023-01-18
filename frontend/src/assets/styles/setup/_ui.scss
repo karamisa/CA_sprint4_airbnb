@@ -1,0 +1,12 @@
+// rounded button
+.btn-rounded {
+  height: 48.5px;
+  border-radius: 21px;
+  border: 1px solid $clr-border;
+
+  transition: box-shadow 0.2s ease 0s;
+
+  &:hover {
+    box-shadow: 0px 2px 3px 2px #dddddd;
+  }
+}
