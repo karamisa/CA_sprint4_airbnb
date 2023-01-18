@@ -1,23 +1,20 @@
 .review-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    li {
-        background-color:  $clr-brand;
-        color:  $clr-text-black;
-        padding: 5px;
-        margin: 5px;
-    }
-    a {
-        color:  $clr-text-black;
-        padding: 10px;
-    }    
-    h3 {
-        background-color: #ddd;
-        padding: 10px 5px;
-        margin: 5px;
-    }    
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  li {
+    background-color: $clr-brand;
+    color: $clr-text-primary;
+    padding: 5px;
+    margin: 5px;
+  }
+  a {
+    color: $clr-text-primary;
+    padding: 10px;
+  }
+  h3 {
+    background-color: #ddd;
+    padding: 10px 5px;
+    margin: 5px;
+  }
 }
-
-
-
