@@ -1,3 +1,9 @@
+
+
+
+
+
+
 export function StayDetails() {
     return ( 
         <section className="main-layout secondary-layout">

@@ -1,8 +1,8 @@
-import { storageService } from './async-storage.service.js';
-import { utilService } from './util.service.js';
-// import { userService } from './user.service.js';
+import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
+// import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'stayDB';
+const STORAGE_KEY = 'stayDB'
 
 
 export const stayService = {
@@ -11,37 +11,37 @@ export const stayService = {
   save,
   remove,
   getEmptyStay,
-};
+}
 
 _createStays()
 
 async function query() {
-  const stays = await storageService.query(STORAGE_KEY);
-  return stays;
+  const stays = await storageService.query(STORAGE_KEY)
+  return stays
 }
 
 async function getById(stayId) {
-  const stay = await storageService.get(STORAGE_KEY, stayId);
-  return stay;
+  const stay = await storageService.get(STORAGE_KEY, stayId)
+  return stay
 }
 
 async function save(stay) {
   if (stay._id) {
-    return storageService.put(STORAGE_KEY, stay);
+    return storageService.put(STORAGE_KEY, stay)
   } else {
-    return storageService.post(STORAGE_KEY, stay);
+    return storageService.post(STORAGE_KEY, stay)
   }
 }
 
 async function remove(stayId) {
-  return storageService.remove(STORAGE_KEY, stayId);
+  return storageService.remove(STORAGE_KEY, stayId)
 }
 
 function getEmptyStay() {
   return {
     _id: utilService.makeId(),
     name: '',
-  };
+  }
 }
 
 //PVT
