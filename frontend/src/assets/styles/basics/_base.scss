@@ -36,6 +36,19 @@ button {
   font-size: inherit;
   background-color: inherit;
   font-family: inherit;
+  cursor: pointer;
+
+  &.show-more {
+    margin-top: 10px;
+    background-color: transparent;
+    text-decoration: underline;
+    font-weight: 700;
+    font-size: inherit;
+    padding: 0;
+    border: 0;
+    width: max-content;
+
+  }
 }
 
 p {
@@ -45,6 +58,7 @@ p {
 a {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }

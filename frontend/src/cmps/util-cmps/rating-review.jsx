@@ -20,7 +20,7 @@ export function RatingReview({reviews}) {
                 <FaStar />
                 {avgRating}
             </span>
-            <span>•</span>
+ 
 
         </Fragment>
     )

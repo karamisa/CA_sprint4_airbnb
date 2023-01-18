@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
 import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
+import { ImgGrid } from '../cmps/util-cmps/img-grid.jsx'
+import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
+import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
 
 
 
@@ -11,28 +14,14 @@ export function StayDetails() {
     // const {stayId} = useParams()
     const stayId = '622f337a75c7d36e498aaaf8'
     const navigate = useNavigate()
-    const [filteredAmenities, setFilteredAmenities] = useState([])
-
 
     useEffect(() => {
         loadStay()
     }, [])
 
-
-    // useEffect(() => {
-    //     if (stay && Array.isArray(stay.amenities)) {
-    //       let amenitiesList = stay.amenities.slice(0, 10)
-
-    //       setFilteredAmenities(amenitiesList)
-    //     }
-    //   }, [stay, amenities])
-
-    //   return filteredAmenities
-    // }
-
-
     const imgsToDisplay = stay?.imgUrls?.slice(0, 5)
-
+    const amenitiesToDisplay = stay?.amenities?.slice(0, 10)
+    const reviewsToDisplay = stay?.reviews?.slice(0,6)
 
     async function loadStay() {
         try {
@@ -82,9 +71,10 @@ export function StayDetails() {
             <h1>Stay Details</h1>
             <section className="stay-details">
                 <h1 className="title">{stay.name}</h1>
-                <div class="flex justify-between">
-                    <div class="name-subtitle flex">
+                <div className="flex justify-between">
+                    <div className="name-subtitle flex">
                         <RatingReview reviews={stay.reviews} />
+                        <span>•</span>
                         <div className="stay-rating" onClick={openReviewModal}>{stay.reviews.length} reviews</div>
                         <span>•</span>
                         <div className="stay-location" onClick={openReviewMap}>{stay.loc.address}</div>
@@ -92,11 +82,7 @@ export function StayDetails() {
                     <button className="save-stay active" onClick={onSaveStay}>❤ Save</button>
                 </div>
 
-                <div className="images-container stay-imgs grid" onClick={onOpenStayGallery}>
-                    {imgsToDisplay.map((img, index) => (
-                        <img key={index} src={img} alt="stay-img" />
-                    ))}
-                </div>
+                <ImgGrid imgsToDisplay={imgsToDisplay} onOpenStayGallery={onOpenStayGallery} />
 
                 <section className="stay-review-mid grid border-buttom">
                     <div className="stay-review-details">
@@ -111,13 +97,7 @@ export function StayDetails() {
                         </div>
                         <div className="stay-amenities border-buttom">
                             <h4 className="subheading">What this place offers</h4>
-                            {/* <ul className="amenities-container grid"> */}
-                            {/* {filteredAmenities.map((amenity, index) => ( */}
-                            {/* <li key={index}> */}
-                            {/* <StayAmenity amenity={amenity} limit={10} /> */}
-                            {/* </li> */}
-                            {/* ))} */}
-                            {/* </ul> */}
+                            {amenitiesToDisplay && <AmenitiesList amenitiesToDisplay={amenitiesToDisplay} />}
                             {(stay.amenities.length > 10) && <button className="rev-btn show-all-amenities" onClick={onToggleAmenities}>show all {stay.amenities.length} amenities </button>}
                         </div>
                         <div className="stay-calendar">
@@ -133,9 +113,10 @@ export function StayDetails() {
                 </section>
 
                 <div className="reviews border-buttom">
-                    <h2 className="stay-mid-reviews"><RatingReview reviews={stay.reviews} /></h2>
+                    <h2 className="stay-mid-reviews"><RatingReview reviews={stay.reviews} /> • {stay.reviews.length} reviews</h2>
                     <div className="stay-mid-reviews-container">
-                        {/* <ReviewsCmp reviews={stay.reviews} limit={6} onOpenAllReviewsModal={openAllReviewsModal} /> */}
+                        
+                        <ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id}/>
                     </div>
                     {(stay.reviews.length > 6) && <button className="rev-btn show-all-reviews" onClick={onToggleReviews}>show all {stay.reviews.length} reviews </button>}
                 </div>
