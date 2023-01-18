@@ -1,8 +1,9 @@
 import { HomePage } from './pages/home-page.jsx';
 import { AboutUs } from './pages/about-us.jsx';
-import { ReviewIndex } from './pages/review-index.jsx';
 import { ChatApp } from './pages/chat-app.jsx';
 import { StayIndex } from './pages/stay-index.jsx';
+import { StayDetails } from './pages/stay-details.jsx';
+import { HostDashboard } from './pages/host-dashboard.jsx';
 
 // Routes accesible from the main navigation (in AppHeader)
 const routes = [
@@ -17,20 +18,32 @@ const routes = [
     label: 'Stay',
   },
   {
-    path: 'review',
-    component: <ReviewIndex />,
-    label: 'Reviews',
+    path: 'stay/:stayId',
+    component: <StayDetails />,
+    label: 'Stay Details',
   },
   {
-    path: 'chat',
+    path: 'stay/',
+    component: <StayDetails />,
+    label: 'Stay Details',
+  },
+
+  {
+    path: 'dashboard',
+    component: <HostDashboard />,
+    label: 'Dashboard',
+  },
+  {
+    path: 'user/inbox',
     component: <ChatApp />,
-    label: 'Chat',
+    label: 'Messages',
   },
   {
     path: 'about',
     component: <AboutUs />,
     label: 'About us',
   },
+
 ];
 
 export default routes;

@@ -24,6 +24,12 @@
     }
 }
 
+@mixin for-large-layout {
+    @media (min-width: calc($wide-breakpoint + 40px)) {
+        @content;
+    }
+}
+
 /* Media  Mixins */
 @mixin aspect-ratio($width, $height) {
     position: relative;
