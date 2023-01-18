@@ -1,48 +1,49 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 ::selection {
-    background-color: $clr-brand;
-    color: $clr-text-black;
+  background-color: $clr-brand;
+  color: $clr-text-black;
 }
 
 html {
-    font-family: Circular-Regular;
-    line-height: 1.6;
-    color: $clr-text-black;
+  font-family: Circular-Regular;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: $clr-text-black;
 }
 
-body {
-    font-size: rem(18px);
-    margin: 0;
-    max-width: 1024px;
-    margin: auto;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: Circular-Regular;
-    margin: 0 0 0.6em;
-    line-height: 1;
-}
-
-
-section, main, footer {
-    padding: 5px;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: Circular-Regular;
+  margin: 0 0 0.6em;
+  line-height: 1;
 }
 
 img {
-    width: 100%;
+  width: 100%;
+}
+
+button {
+  font-size: inherit;
+  background-color: inherit;
+  font-family: inherit;
 }
 
 p {
-    margin: 0 0 1em;
+  margin: 0 0 1em;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
-
