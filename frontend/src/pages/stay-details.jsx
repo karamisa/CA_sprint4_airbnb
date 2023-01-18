@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
-import { RatingReview } from '../cmps/stay-details/rating-review.jsx'
+import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
 
 
 
