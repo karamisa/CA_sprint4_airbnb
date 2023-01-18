@@ -1,7 +1,7 @@
 import { Logo } from './logo';
 import { NavMenu } from './nav-menu';
 import { SearchBar } from './search-bar';
-import { SearchForm } from './search-form';
+import { SearchForm as StaySearchForm } from './search-form';
 
 export function AppHeader() {
   return (
@@ -12,7 +12,7 @@ export function AppHeader() {
         </div>
         <div className='header-search-bar-container'>
           <SearchBar />
-          {/* <SearchForm /> */}
+          <StaySearchForm />
         </div>
         <div className='header-menu-container'>
          <NavMenu />
