@@ -1,3 +1,3 @@
-export function PreviewInfo() {
-  return <p>Stay info</p>;
+export function PreviewInfo({ price }) {
+  return <p>{price.toLocaleString()}</p>;
 }
