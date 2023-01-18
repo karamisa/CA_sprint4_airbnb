@@ -11,7 +11,7 @@ export function AppHeader() {
           <Logo />
         </div>
         <div className='header-search-bar-container'>
-          <SearchBar />
+          {/* <SearchBar /> */}
           <StaySearchForm />
         </div>
         <div className='header-menu-container'>

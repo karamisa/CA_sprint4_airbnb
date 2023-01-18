@@ -1,4 +1,4 @@
-form > * {
+form>* {
   display: block;
   width: 200px;
   margin: 10px 0px;
@@ -10,7 +10,30 @@ form > * {
   text-decoration: underline;
   transition: 0.5s;
 }
+
 .btn-link:hover {
   background-color: $clr-text-primary;
   transform: scale(1.1);
+}
+
+.search-btn {
+  color: $clr-white;
+  background-color: $clr-brand;
+  border-radius: 50%;
+  padding: 10px;
+  margin: 7px 7px 7px 0;
+  height: 32px;
+  min-width: 32px;
+  border: transparent;
+
+  svg {
+    display: block;
+    fill: none;
+    height: 12px;
+    width: 12px;
+    stroke: currentcolor;
+    stroke-width: 5.33333;
+    overflow: visible;
+  }
+
 }

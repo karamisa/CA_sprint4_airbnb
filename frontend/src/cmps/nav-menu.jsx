@@ -5,10 +5,11 @@ export function NavMenu() {
 
     const handleToggle = () => {
         setNavbarOpen(prev => !prev)
+        if (navbarOpen) {
+            
+        }
     }
-    const handleBlur = () => {
-        setNavbarOpen(false)
-    }
+
 
     return <nav className="nav-menu" onClick={handleToggle}>
         <div className="menu-btn">
@@ -19,13 +20,11 @@ export function NavMenu() {
                 <img src="https://a0.muscache.com/defaults/user_pic-50x50.png?v=3" alt="" />
             </div>
         </div>
-       {navbarOpen && <div className="menu-links">
-            {/* <div className={navbarOpen ? "menu-links-open" : "menu-links-closed"}> */}
-                <a href="#">Trips</a>
-                <a href="#">Messages</a>
-                <a href="#">Sign up</a>
-                <a href="#">Log in</a>
-            {/* </div> */}
+        {navbarOpen && <div className="menu-links">
+            <a href="#">Trips</a>
+            <a href="#">Messages</a>
+            <a href="#">Sign up</a>
+            <a href="#">Log in</a>
         </div>}
     </nav>
 }

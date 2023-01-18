@@ -17,7 +17,7 @@
     }
 
     &:hover {
-        box-shadow:0 2px 4px rgba(0,0,0,0.18);
+        box-shadow:0 2px 4px #0000002e;
     }
     .splitter {
         flex: 0 0 1px;
@@ -45,26 +45,6 @@
 
     .search-add-guests {
         color: $clr-text-secondary;
-    }
-
-    .search-btn {
-        color: $clr-white;
-        background-color: $clr-brand;
-        border-radius: 50%;
-        padding: 10px;
-        margin: 7px 7px 7px 0;
-        height: 32px;
-        min-width: 32px;
-        svg {
-            display: block; 
-            fill: none; 
-            height: 12px; 
-            width: 12px; 
-            stroke: currentcolor; 
-            stroke-width: 5.33333;
-            overflow: visible;
-        }
-
     }
     
 }
