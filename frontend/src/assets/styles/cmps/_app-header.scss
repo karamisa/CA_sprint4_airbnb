@@ -1,22 +1,33 @@
+.app-header-container {
+  width: 100%;
+  height: 80px;
+}
+
+
 .app-header {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  
 
-  height: 80px;
+  height: 100%;
 
-  .header-logo {
-    flex-grow: 1;
+  .header-logo-container {
+    display: flex;
+    flex: 1 0 140px;
 
     .logo {
       cursor: pointer;
     }
   }
 
-  .header-filter {
+  .header-filter-container {
+    min-width: 348px;
+    padding: 0 24px;
+
   }
 
-  .header-user {
+  .header-user-container {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
