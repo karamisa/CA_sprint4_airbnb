@@ -21,9 +21,9 @@
     }
     .splitter {
         flex: 0 0 1px;
-        height: 32px;
+        height: 24px;
         width: 1px;
-        background-color: $clr-text-secondary;
+        background-color: $clr-border;
     }
     button {
         background: transparent;
@@ -36,10 +36,11 @@
         min-width: 80px;
         padding: 0 16px;
         font-size: 14px;
+        color: $clr-text-primary;
     }
 
     .search-anywhere, .search-any-week {
-        font-family: cereal-Medium;
+        font-family: cereal-medium;
     }
 
     .search-add-guests {

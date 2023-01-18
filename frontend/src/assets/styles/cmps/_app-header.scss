@@ -8,13 +8,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
 
   height: 100%;
 
   .header-logo-container {
     display: flex;
-    flex: 1 0 140px;
+    flex: 1 0 75px;
 
     .logo {
       cursor: pointer;
@@ -22,14 +22,15 @@
   }
 
   .header-filter-container {
+    flex-grow: 1;
     min-width: 348px;
     padding: 0 24px;
-
   }
 
-  .header-user-container {
+  .header-menu-container {
     flex-grow: 1;
     display: flex;
     justify-content: flex-end;
   }
+
 }

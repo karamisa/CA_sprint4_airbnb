@@ -1,5 +1,7 @@
 import { Logo } from './logo';
+import { NavMenu } from './nav-menu';
 import { SearchBar } from './search-bar';
+import { SearchForm } from './search-form';
 
 export function AppHeader() {
   return (
@@ -10,9 +12,10 @@ export function AppHeader() {
         </div>
         <div className='header-search-bar-container'>
           <SearchBar />
+          {/* <SearchForm /> */}
         </div>
-        <div className='header-user-container'>
-          <button className='btn-rounded'>User</button>
+        <div className='header-menu-container'>
+         <NavMenu />
         </div>
       </div>
     </header>

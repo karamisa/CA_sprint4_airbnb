@@ -1,7 +1,8 @@
-export function SearchBar() {
+export function SearchForm() {
     return (
-            <div className="search-preview">
-                <button className="search-anywhere">Anywhere</button>
+        <section className="search-form">
+            <div className="search-form-inputs">
+                <button className="search-destinaitons">Where</button>
                 <span className="splitter"></span>
                 <button className="search-any-week">Any week</button>
                 <span className="splitter"></span>
@@ -12,5 +13,6 @@ export function SearchBar() {
                     </section>
                 </button>
             </div>
+        </section>
     );
 }
