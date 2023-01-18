@@ -8,9 +8,14 @@ $clr-border: hsl(0, 0%, 87%);
 
 
 //PADDING
-$layout-padding: 40px;
+$wide-layout-padding: 80px;
+$normal-layout-padding: 40px;
 $mobile-layout-padding: 24px;
-$secondary-layout: 1280px;
+
+//MAX-WIDTH
+$secondary-max-width: 1280px;
+$primary-max-width: 2360px;
+
 
 
 // Breakpoints

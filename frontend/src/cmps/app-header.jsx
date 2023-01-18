@@ -2,7 +2,7 @@ import { Logo } from './logo';
 
 export function AppHeader() {
   return (
-    <header className='app-header'>
+    <header className='app-header main-layout'>
       <div className='header-logo'>
         <Logo />
       </div>
