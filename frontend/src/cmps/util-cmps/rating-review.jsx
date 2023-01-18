@@ -3,13 +3,19 @@ import { FaStar } from 'react-icons/fa'
 import { Fragment } from 'react'
 
 
-export function RatingReview({reviews}) {
+export function RatingReview({ reviews }) {
 
-    function calcAvgReview(reviews){
+    function calcAvgReview(reviews) {
+        let total = 0
+        let count = 0
+
+        reviews.forEach(review => {
+            total += Object.values(review.rate).reduce((a, b) => a + b)
+            count += Object.keys(review.rate).length
+        })
         return (
-            +(reviews.reduce((acc, currRev) => acc + currRev.rate, 0) / reviews.length).toFixed(2)
+            +(total / count).toFixed(2)
         )
-
     }
 
     let avgRating = calcAvgReview(reviews)
@@ -20,13 +26,9 @@ export function RatingReview({reviews}) {
                 <FaStar />
                 {avgRating}
             </span>
- 
+
 
         </Fragment>
     )
-
-
-
-
 
 }
