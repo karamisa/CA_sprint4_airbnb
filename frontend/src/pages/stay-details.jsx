@@ -1,5 +1,5 @@
 export function StayDetails() {
-    return (
+    return ( 
         <section className="main-layout secondary-layout">
             <h1>Stay Details</h1>
             <section className="stay-details">
