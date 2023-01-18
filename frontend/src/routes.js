@@ -1,5 +1,4 @@
 import { HomePage } from './pages/home-page.jsx';
-import { AboutUs } from './pages/about-us.jsx';
 import { ChatApp } from './pages/chat-app.jsx';
 import { StayIndex } from './pages/stay-index.jsx';
 import { StayDetails } from './pages/stay-details.jsx';
@@ -32,12 +31,7 @@ const routes = [
     path: 'user/inbox',
     component: <ChatApp />,
     label: 'Messages',
-  },
-  {
-    path: 'about',
-    component: <AboutUs />,
-    label: 'About us',
-  },
+  }
 ];
 
 export default routes;

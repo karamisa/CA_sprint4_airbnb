@@ -4,7 +4,7 @@ import { filterReducer } from './filter.reducer.js';
 import { userReducer } from './user.reducer.js';
 import { reviewReducer } from './review.reducer';
 import { systemReducer } from './system.reducer';
-import { stayReducer } from './stay/stayReducer.js';
+import { stayReducer } from './stay/stay.reducer.js';
 
 const rootReducer = combineReducers({
   filterModule: filterReducer,

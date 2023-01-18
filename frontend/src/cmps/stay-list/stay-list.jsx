@@ -20,7 +20,7 @@ export function StayList() {
     return <section className='stay-list-container card-grid'>loading</section>;
 
   return (
-    <ul className=' card-grid stay-list clean-list'>
+    <ul className=' card-grid stay-list clean-list main-layout'>
       {stays.map((stay) => (
         <li key={stay._id} className='stay-list-item'>
           <StayPreview stay={stay} />
