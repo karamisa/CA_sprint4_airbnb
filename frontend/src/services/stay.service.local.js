@@ -3013,8 +3013,8 @@ function _createDemoStays() {
 }
 
 function _createStays() {
-  let staysDB = utilService.loadFromStorage(STORAGE_KEY)
+  let staysDB = utilService.loadFromStorage(STORAGE_KEY);
   if (!staysDB || !staysDB.length) {
-      _createDemoStays()
+    _createDemoStays();
   }
 }
