@@ -12,7 +12,7 @@ export function PreviewImageSlider({ imgUrl }) {
   // };
 
   return (
-    <div className='image-slider'>
+    <div className='image-slider square-ratio'>
       {/* <button onClick={handlePrevClick}>Prev</button> */}
       {/* <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} /> */}
       <img src={imgUrl} alt='stay' />

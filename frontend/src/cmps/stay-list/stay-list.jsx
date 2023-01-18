@@ -20,14 +20,12 @@ export function StayList() {
     return <section className='stay-list-container card-grid'>loading</section>;
 
   return (
-    <section className='stay-list-container card-grid'>
-      <ul className='stay-list clean-list'>
-        {stays.map((stay) => (
-          <li key={stay._id} className='stay-list-item'>
-            <StayPreview stay={stay} />
-          </li>
-        ))}
-      </ul>
-    </section>
+    <ul className=' card-grid stay-list clean-list'>
+      {stays.map((stay) => (
+        <li key={stay._id} className='stay-list-item'>
+          <StayPreview stay={stay} />
+        </li>
+      ))}
+    </ul>
   );
 }
