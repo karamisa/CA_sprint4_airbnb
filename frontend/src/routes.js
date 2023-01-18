@@ -22,11 +22,6 @@ const routes = [
     component: <StayDetails />,
     label: 'Stay Details',
   },
-  {
-    path: 'stay/',
-    component: <StayDetails />,
-    label: 'Stay Details',
-  },
 
   {
     path: 'dashboard',
@@ -43,7 +38,6 @@ const routes = [
     component: <AboutUs />,
     label: 'About us',
   },
-
 ];
 
 export default routes;
