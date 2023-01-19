@@ -3,4 +3,8 @@
   width: 100%;
 
   list-style-type: none;
+
+  &-item {
+    cursor: pointer;
+  }
 }
