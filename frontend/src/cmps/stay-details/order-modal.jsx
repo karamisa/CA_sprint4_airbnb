@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { orderService } from '../../services/order.service.js'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
 
 export function OrderModal({ stay, reviews }) {
@@ -15,23 +16,37 @@ export function OrderModal({ stay, reviews }) {
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [showGuestPicker, setShowGuestPicker] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
-    
+
     const formattedPrice = "$" + stay.price
     const formattedStartDate = new Date(dates.startDate).toLocaleString()
     const formattedEndDate = new Date(dates.endDate).toLocaleString()
     const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
     const totalServiceFee = "$" + (serviceFee * totalStay).toFixed(2)
     const numOfReviews = reviews.length
+    const isLogged = false
+    const totalPrice = ((stay.price * totalStay) + (serviceFee * totalStay))
 
-    const totalPrice = ((stay.price * totalStay)  +  (serviceFee * totalStay))
+const userId = 'E101'
 
-        function onOrderSubmit(ev) {
-            ev.preventDefault()
 
-            setModalIsOpen(!modalIsOpen)
 
-            console.log('reservation set!')
-        }
+    function onOrderSubmit(ev) {
+        ev.preventDefault()
+
+        const newOrder = orderService.getEmptyOrder()
+        if (!isLogged) return
+        newOrder.buyer._id = userId
+
+
+
+            console.log('newOrder', newOrder)
+
+
+
+        setModalIsOpen(!modalIsOpen)
+
+        console.log('reservation set!')
+    }
 
     function openReviewModal() {
         console.log('review modal to add')
@@ -129,18 +144,18 @@ export function OrderModal({ stay, reviews }) {
 
             </form>
 
-{modalIsOpen && (
-    <div className="order-confirmation-modal">
-        <p>Your reservation was accepted!</p>
-        <div>number of guests: <span>{guestsCount}</span></div>
-        <div>dates: <span>{formattedStartDate}</span>-<span>{formattedStartDate}</span></div>
-         <div>total Price: <span>{totalPrice}</span></div>   
-        
-    
-    </div>
-)}
+            {modalIsOpen && (
+                <div className="order-confirmation-modal">
+                    <p>Your reservation was accepted!</p>
+                    <div>number of guests: <span>{guestsCount}</span></div>
+                    <div>dates: <span>{formattedStartDate}</span>-<span>{formattedStartDate}</span></div>
+                    <div>total Price: <span>{totalPrice}</span></div>
 
-            
+
+                </div>
+            )}
+
+
         </section>
     )
 

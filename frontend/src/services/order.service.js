@@ -97,7 +97,7 @@ function _createdDemoOrders() {
 
 
 function _createOrders() {
-    let orders = storageService.load(STORAGE_KEY)
+    let orders = utilService.loadFromStorage(STORAGE_KEY)
     if (!orders || !orders.length) {
         _createdDemoOrders()
     }
