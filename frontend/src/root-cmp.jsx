@@ -1,15 +1,16 @@
-import React from 'react'
-import { Routes, Route } from 'react-router'
+import React from 'react';
+import { Routes, Route } from 'react-router';
 
-import { AppHeader } from './cmps/app-header'
-import { AppFooter } from './cmps/app-footer'
-import { UserDetails } from './pages/user-details'
-import { HomePage } from './pages/home-page.jsx'
-import { ChatApp } from './pages/chat-app.jsx'
-import { StayIndex } from './pages/stay-index.jsx'
-import { StayDetails } from './pages/stay-details.jsx'
-import { HostDashboard } from './pages/host-dashboard.jsx'
-
+import { AppHeader } from './cmps/app-header';
+import { AppFooter } from './cmps/app-footer';
+import { UserDetails } from './pages/user-details';
+import { HomePage } from './pages/home-page.jsx';
+import { ChatApp } from './pages/chat-app.jsx';
+import { StayIndex } from './pages/stay-index.jsx';
+import { StayDetails } from './pages/stay-details.jsx';
+import { HostDashboard, Hosting } from './pages/hosting.jsx';
+import { Order } from './cmps/hosting/order';
+import { Dashboard } from './cmps/hosting/dashboard';
 
 export function RootCmp() {
   return (
@@ -17,15 +18,19 @@ export function RootCmp() {
       <AppHeader />
       <main>
         <Routes>
-          <Route element={<HomePage />} path="/" />
-          <Route element={<StayIndex />} path="/stay" />
-          <Route element={<StayDetails />} path="/stay/:stayId" />
-          <Route element={<HostDashboard />} path="/dashboard" />
-          <Route element={<ChatApp />} path="/user/inbox" />
+          <Route element={<HomePage />} path='/' />
+          <Route element={<StayIndex />} path='/stay' />
+          <Route element={<StayDetails />} path='/stay/:stayId' />
+          <Route element={<HostDashboard />} path='/dashboard' />
+          <Route element={<Hosting />} path='/hosting'>
+            <Route element={<Order />} path='/hosting/order' />
+            <Route element={<Dashboard />} path='/hosting/dashboard' />
+          </Route>
+          <Route element={<ChatApp />} path='/user/inbox' />
           <Route path='user/:id' element={<UserDetails />} />
         </Routes>
       </main>
       <AppFooter />
     </div>
-  )
+  );
 }
