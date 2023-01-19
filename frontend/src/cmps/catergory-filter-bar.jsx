@@ -1,23 +1,34 @@
-import { useFilter } from '../hooks/useFilter';
+// import { useFilter } from '../customHooks/useFilter'; 
 import { filterService } from '../services/filter.service';
+import { BiChevronLeftCircle } from 'react-icons/bi';
+import { useQueryParams } from '../customHooks/useQueryParams';
 
 const categories = filterService.getCategories();
 
-export function CategoryFilterBar() {
-  const updateFilter = useFilter(filterService.getDefaultFilter());
+export function CategoryFilterBar({handleChange}) {
+  // const updateFilter = useFilter(filterService.getDefaultFilter());
+  const [currcategory, updateCurrCategory] = useQueryParams('category')
+  
 
-  function onSelectCategory(currentCategory) {
-    updateFilter({ category: currentCategory });
+
+  function onSelectCategory(newCategory) {
+    updateCurrCategory(newCategory)
+    handleChange({field: 'category', value: newCategory})
   }
 
   return (
-    <div className='carousel' role='radiogroup'>
+    <div className='main-layout carousel'>
+      <div className='shevron-left'>
+        <div className='chevron'>
+          <BiChevronLeftCircle />
+        </div>
+      </div>
+
       {categories.map((category) => {
         return (
           <div
-            className='category'
+            className={category.name === currcategory ? 'category active' : 'category'}
             key={category.url}
-            role='radio'
             onClick={() => {
               onSelectCategory(category.url);
             }}>
@@ -31,7 +42,6 @@ export function CategoryFilterBar() {
           </div>
         );
       })}
-
       {/* <button onClick={prevCategories}>Prev</button>
       <button onClick={displayCategories}>Next</button> */}
     </div>

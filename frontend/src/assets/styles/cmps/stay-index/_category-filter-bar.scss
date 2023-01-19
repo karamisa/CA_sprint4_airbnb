@@ -2,6 +2,8 @@
   display: flex;
   gap: 2.2rem;
 
+  position: relative;
+
   padding-top: 20px;
 
   .category {
@@ -26,6 +28,10 @@
       color: black;
     }
   }
+  .active {
+    background-color: rgb(255, 0, 0);
+  }
+
 }
 
 // .clr-secondary {

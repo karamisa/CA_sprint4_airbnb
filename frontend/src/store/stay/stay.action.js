@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import { stayService } from '../../services/stay.service.local.js';
 import { store } from '../store.js';
 import {
@@ -10,12 +11,12 @@ import {
 } from './stay.reducer';
 
 //  Load stays
-export function loadStays(filterBy, sortBy) {
+export function loadStays(filterBy={},sortBy={}) {
   store.dispatch({ type: SET_IS_LOADING, isLoading: true });
   return stayService
     .query(filterBy, sortBy)
     .then((stays) => {
-      console.log('in stay action got from server', stays);
+      // console.log('in stay action got from server', stays);
       // we get object with total pages and stay array
       store.dispatch({ type: SET_STAYS, stays: stays });
       // store.dispatch({ type: SET_LABELS, labels: stays.labels });

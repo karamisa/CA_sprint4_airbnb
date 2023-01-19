@@ -59,7 +59,22 @@
   @include aspect-ratio(9, 16);
 }
 
+// icon
 .icon24 {
   height: 24px;
   width: 24px;
+}
+
+// text
+.text-bold {
+  font-family: cereal-Medium;
+}
+
+.ellipsis {
+  text-overflow: ellipsis;
+  /* enables ellipsis */
+  white-space: nowrap;
+  /* keeps the text in a single line */
+  overflow: hidden;
+  /* keeps the element from overflowing its parent */
 }
