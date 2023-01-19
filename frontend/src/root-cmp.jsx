@@ -8,7 +8,7 @@ import { HomePage } from './pages/home-page.jsx';
 import { ChatApp } from './pages/chat-app.jsx';
 import { StayIndex } from './pages/stay-index.jsx';
 import { StayDetails } from './pages/stay-details.jsx';
-import { HostDashboard, Hosting } from './pages/hosting.jsx';
+import { Hosting } from './pages/hosting.jsx';
 import { Order } from './cmps/hosting/order';
 import { Dashboard } from './cmps/hosting/dashboard';
 
@@ -21,7 +21,7 @@ export function RootCmp() {
           <Route element={<HomePage />} path='/' />
           <Route element={<StayIndex />} path='/stay' />
           <Route element={<StayDetails />} path='/stay/:stayId' />
-          <Route element={<HostDashboard />} path='/dashboard' />
+
           <Route element={<Hosting />} path='/hosting'>
             <Route element={<Order />} path='/hosting/order' />
             <Route element={<Dashboard />} path='/hosting/dashboard' />
