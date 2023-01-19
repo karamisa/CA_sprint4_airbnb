@@ -1,0 +1,33 @@
+.reviews-bar {
+    grid-template: repeat(3, 1fr)/repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 30px;
+    align-items: center;
+
+    p {
+        margin: 0;
+    }
+
+    .progress-bar {
+        overflow: hidden;
+        font-size: .75em;
+        height: min-content;
+        align-items: center;
+        font-weight: 600;
+
+
+        progress {
+            font-size: 1em;
+            height: 4px;
+            border-radius: 40px;
+            margin-inline-end: 6px;
+
+            &::-webkit-progress-value {
+                background-color: $clr-text-primary;
+            }
+        }
+
+    }
+
+
+}

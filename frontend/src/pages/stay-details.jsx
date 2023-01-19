@@ -6,6 +6,7 @@ import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
 import { ImgGrid } from '../cmps/util-cmps/img-grid.jsx'
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
+import { ReviewBar } from '../cmps/stay-details/review-bar.jsx'
 
 
 
@@ -115,7 +116,7 @@ export function StayDetails() {
                 <div className="reviews border-buttom">
                     <h2 className="stay-mid-reviews"><RatingReview reviews={stay.reviews} /> • {stay.reviews.length} reviews</h2>
                     <div className="stay-mid-reviews-container">
-                        
+                        <ReviewBar reviews={stay.reviews}/>
                         <ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id}/>
                     </div>
                     {(stay.reviews.length > 6) && <button className="rev-btn show-all-reviews" onClick={onToggleReviews}>show all {stay.reviews.length} reviews </button>}

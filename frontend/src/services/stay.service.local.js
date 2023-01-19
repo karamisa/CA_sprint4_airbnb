@@ -344,10 +344,10 @@ function _createDemoStays() {
                 "id": "kErRhY",
                 "txt": "The place was great, as was the host! I would recommend staying here.",
                 "rate":
-                    {"cleanliness": 4.8,
+                    {"cleanliness": 4,
                     "communication": 4.4,
                     "check-in": 4.8,
-                    "accuracy": 2.7,
+                    "accuracy": 3.7,
                     "location": 5,
                     "value": 4
                      },
@@ -362,11 +362,11 @@ function _createDemoStays() {
                 "txt": "J'ai adoré rester là. Très acceuillant.",
                 "rate":
                     {"cleanliness": 4.8,
-                    "communication": 4.4,
+                    "communication": 5,
                     "check-in": 4.8,
-                    "accuracy": 2.7,
+                    "accuracy": 4,
                     "location": 5,
-                    "value": 4
+                    "value": 5
                      },
                 "by": {
                     "_id": "622f3403e36c59e6164fb274",
@@ -381,7 +381,7 @@ function _createDemoStays() {
                     {"cleanliness": 4.8,
                     "communication": 4.4,
                     "check-in": 4.8,
-                    "accuracy": 2.7,
+                    "accuracy": 5,
                     "location": 5,
                     "value": 4
                      },
@@ -395,12 +395,12 @@ function _createDemoStays() {
                 "id": "exheNp",
                 "txt": "Angel was warm and welcoming and has a beautiful apartment. I'd recommend his place to anyone visiting downtown Montreal!",
                 "rate":
-                    {"cleanliness": 4.8,
+                    {"cleanliness": 3.8,
                     "communication": 4.4,
                     "check-in": 4.8,
-                    "accuracy": 2.7,
+                    "accuracy": 3.7,
                     "location": 5,
-                    "value": 4
+                    "value": 4.1
                      },
                 "by": {
                     "_id": "622f3408e36c59e6164fc082",
