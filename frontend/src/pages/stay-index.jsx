@@ -14,7 +14,7 @@ export function StayIndex() {
 
 
   useEffect(()=>{
-    if (!stays) loadStays()
+    if (!stays || !stays.length) loadStays()
   }, [stays])
 
 
