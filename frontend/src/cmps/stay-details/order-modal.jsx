@@ -27,7 +27,7 @@ export function OrderModal({ stay, reviews }) {
 
         function onOrderSubmit(ev) {
             ev.preventDefault()
-            
+
             setModalIsOpen(!modalIsOpen)
 
             console.log('reservation set!')
