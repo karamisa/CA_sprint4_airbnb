@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
 import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
@@ -12,8 +12,8 @@ import { ReviewBar } from '../cmps/stay-details/review-bar.jsx'
 
 export function StayDetails() {
     const [stay, setStay] = useState(null)
-    // const {stayId} = useParams()
-    const stayId = '622f337a75c7d36e498aaaf8'
+    const {stayId} = useParams()
+    // const stayId = '622f337a75c7d36e498aaaf8'
     const navigate = useNavigate()
 
     useEffect(() => {

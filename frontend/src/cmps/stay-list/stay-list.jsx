@@ -9,7 +9,7 @@ export function StayList({ stays }) {
   return (
     <ul className='card-grid stay-list clean-list main-layout'>
       {stays.map((stay) => {
-        console.log('stay:', stay);
+        // console.log('stay:', stay);
         return (
           <li
             key={stay._id}
