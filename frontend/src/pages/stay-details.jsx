@@ -108,7 +108,7 @@ export function StayDetails() {
                         <div className="stay-summery border-buttom">
                             {stay.summary}
                         </div>
-                        <div className="stay-amenities border-buttom">
+                        <div className="stay-amenities">
                             <h4 className="subheading">What this place offers</h4>
                             {amenitiesToDisplay && <AmenitiesList amenitiesToDisplay={amenitiesToDisplay} />}
                             {(stay.amenities.length > 10) && <button className="rev-btn show-all-amenities" onClick={onToggleAmenities}>show all {stay.amenities.length} amenities </button>}
@@ -135,13 +135,13 @@ export function StayDetails() {
                 </div>
 
                 <div className="stay-map border-buttom">
-
+                Where you'll be
                 </div>
 
                 <div className="stay-about-host border-buttom">
 
 
-                    <button className="rev-btn contact host"></button>
+                    <button className="rev-btn contact host">contact host</button>
                 </div>
 
 

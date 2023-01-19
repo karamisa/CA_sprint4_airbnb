@@ -48,6 +48,10 @@
 
         .stay-review-details {
             width: 58.3333%;
+
+            &>*{
+                padding-block: 32px;
+            }
         }
 
         .stay-review-order {
