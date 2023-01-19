@@ -7,7 +7,7 @@ import { ImgGrid } from '../cmps/util-cmps/img-grid.jsx'
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
 import { ReviewBar } from '../cmps/stay-details/review-bar.jsx'
-import { ReservationModal } from '../cmps/stay-details/reservation-modal.jsx'
+import { OrderModal } from '../cmps/stay-details/order-modal.jsx'
 
 
 
@@ -120,7 +120,7 @@ export function StayDetails() {
                     </div>
 
                     <div className="stay-review-order">
-                        <ReservationModal stay={stay} reviews={stay.reviews} />
+                        <OrderModal stay={stay} reviews={stay.reviews} />
                     </div>
 
                 </section>

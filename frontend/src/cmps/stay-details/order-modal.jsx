@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
 
-export function ReservationModal({ stay, reviews }) {
+export function OrderModal({ stay, reviews }) {
 
     console.log('stay', stay)
 
@@ -25,7 +25,7 @@ export function ReservationModal({ stay, reviews }) {
 
     const totalPrice = ((stay.price * totalStay)  +  (serviceFee * totalStay))
 
-        function onOrderReservation(ev) {
+        function onOrderSubmit(ev) {
             ev.preventDefault()
             
             setModalIsOpen(!modalIsOpen)
@@ -41,10 +41,10 @@ export function ReservationModal({ stay, reviews }) {
 
     return (
         <section className="order-modal">
-            <form className="order-modal-form flex" onSubmit={onOrderReservation}>
-                <header className="reservation-form-header">
+            <form className="order-modal-form flex" onSubmit={onOrderSubmit}>
+                <header className="order-form-header">
                     <h4><span>{formattedPrice}</span> night</h4>
-                    <div className="reservation-rating-review flex">
+                    <div className="order-rating-review flex">
                         <RatingReview reviews={stay.reviews} />
                         <span>•</span>
                         <div className="stay-rating" onClick={openReviewModal}>{numOfReviews} reviews</div>
@@ -104,7 +104,7 @@ export function ReservationModal({ stay, reviews }) {
                     Reserve
                 </button>
 
-                <section className="reservation-details flex">
+                <section className="order-details flex">
 
                     {dates.startDate && dates.endDate && (
                         <>
