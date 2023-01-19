@@ -3,14 +3,13 @@ $clr-brand: hsl(349, 100%, 61%);
 $clr-text-secondary: hsl(0, 0%, 44%);
 $clr-text-primary: hwb(0 13% 87%);
 
-
 $clr-border: hsl(0, 0%, 87%);
-$clr-bg: #EBEBEB;
+$clr-bg: #ebebeb;
 $clr-white: #fff;
-$clr-hover-bg: #F7F7F7;
-$clr-hover-bg-dark: #DDDDDD;
+$clr-hover-bg: #f7f7f7;
+$clr-hover-bg-dark: #dddddd;
 
-
+$border-radius: 12px;
 
 //PADDING
 $wide-layout-padding: 80px;
@@ -20,8 +19,6 @@ $mobile-layout-padding: 24px;
 //MAX-WIDTH
 $primary-max-width: 2360px;
 $secondary-max-width: 1280px;
-
-
 
 // Breakpoints
 $mobile-breakpoint: 460px;
