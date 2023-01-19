@@ -71,7 +71,7 @@
       "Waterfront",
       "Beachfront"
     ],
-    "labels": ["national-parks"],
+    "labels": ["national-parks", "trending"],
     "host": {
       "_id": "622f3403e36c59e6164faf93",
       "fullname": "Patty And Beckett",
@@ -273,7 +273,7 @@
       "Iron",
       "translation missing: en.hosting_amenity_50"
     ],
-    "labels": ["Campers"],
+    "labels": ["campers"],
     "host": {
       "_id": "622f3401e36c59e6164fabab",
       "fullname": "Angel",
@@ -428,7 +428,7 @@
       "Paid parking on premises",
       "Fixed grab bars for shower"
     ],
-    "labels": ["Campers"],
+    "labels": ["campers", "trending"],
     "host": {
       "_id": "622f3403e36c59e6164fb266",
       "fullname": "Maria",
@@ -1657,7 +1657,7 @@
       "Stove",
       "Host greets you"
     ],
-    "labels": ["Beach"],
+    "labels": ["beach"],
     "host": {
       "_id": "622f3405e36c59e6164fb914",
       "fullname": "Kevin",
@@ -2061,7 +2061,7 @@
       "Host greets you",
       "Handheld shower head"
     ],
-    "labels": ["Castles"],
+    "labels": ["ski"],
     "host": {
       "_id": "622f3401e36c59e6164fab5c",
       "fullname": "Apartments2Enjoy",
@@ -2453,7 +2453,7 @@
       "translation missing: en.hosting_amenity_49",
       "translation missing: en.hosting_amenity_50"
     ],
-    "labels": ["Campers"],
+    "labels": ["campers"],
     "host": {
       "_id": "622f3404e36c59e6164fb54f",
       "fullname": "Patrícia Sousa Casimiro",
@@ -2582,7 +2582,7 @@
       "Essentials",
       "Shampoo"
     ],
-    "labels": ["Islands"],
+    "labels": ["islands"],
     "host": {
       "_id": "622f3402e36c59e6164fae4d",
       "fullname": "Nihat",
@@ -3014,7 +3014,7 @@
       "Beachfront",
       "Pool with pool hoist"
     ],
-    "labels": ["Caves"],
+    "labels": ["caves"],
     "host": {
       "_id": "622f3405e36c59e6164fb6ba",
       "fullname": "Cynthia",
@@ -3747,7 +3747,7 @@
       "Hot water",
       "Host greets you"
     ],
-    "labels": ["Lakefront"],
+    "labels": ["lakefront", "trending"],
     "host": {
       "_id": "622f3406e36c59e6164fbbf5",
       "fullname": "Alexandra Y Juan",
@@ -4172,7 +4172,7 @@
       "Wide entryway",
       "Host greets you"
     ],
-    "labels": ["Islands"],
+    "labels": ["islands"],
     "host": {
       "_id": "622f3403e36c59e6164fb08c",
       "fullname": "Cristina",
@@ -4569,7 +4569,7 @@
       "Iron",
       "Laptop friendly workspace"
     ],
-    "labels": ["Beachfront"],
+    "labels": ["beachfront"],
     "host": {
       "_id": "622f3405e36c59e6164fb9ad",
       "fullname": "Sal",
@@ -5382,7 +5382,7 @@
       "Waterfront",
       "Beachfront"
     ],
-    "labels": ["Beachfront"],
+    "labels": ["beachfront"],
     "host": {
       "_id": "622f3402e36c59e6164faf2c",
       "fullname": "Kathy",
@@ -5645,7 +5645,7 @@
       "Host greets you",
       "Handheld shower head"
     ],
-    "labels": ["Islands"],
+    "labels": ["design"],
     "host": {
       "_id": "622f3404e36c59e6164fb4b4",
       "fullname": "Luis",
@@ -5823,7 +5823,7 @@
       "Oven",
       "Host greets you"
     ],
-    "labels": ["Islands"],
+    "labels": ["islands"],
     "host": {
       "_id": "622f3402e36c59e6164facbf",
       "fullname": "Pelin",
@@ -6112,7 +6112,7 @@
       "Long term stays allowed",
       "Host greets you"
     ],
-    "labels": ["omg"],
+    "labels": ["farms"],
     "host": {
       "_id": "622f3407e36c59e6164fbdc0",
       "fullname": "Eser",
@@ -6510,7 +6510,7 @@
       "Stove",
       "Long term stays allowed"
     ],
-    "labels": ["Beachfront"],
+    "labels": ["beachfront"],
     "host": {
       "_id": "622f3407e36c59e6164fbfc1",
       "fullname": "Sonder",
@@ -6900,7 +6900,7 @@
       "Iron",
       "Laptop friendly workspace"
     ],
-    "labels": ["Beach"],
+    "labels": ["beach"],
     "host": {
       "_id": "622f3405e36c59e6164fb718",
       "fullname": "Chelsea",
@@ -7109,7 +7109,7 @@
       "Luggage dropoff allowed",
       "Host greets you"
     ],
-    "labels": ["Islands"],
+    "labels": ["tiny-homes"],
     "host": {
       "_id": "622f3404e36c59e6164fb38c",
       "fullname": "Orestes",
@@ -7904,7 +7904,7 @@
       "Cooking basics",
       "Stove"
     ],
-    "labels": ["Beachfront"],
+    "labels": ["bed-and-breakfast"],
     "host": {
       "_id": "622f3402e36c59e6164facd5",
       "fullname": "Montserrat",
@@ -8395,7 +8395,7 @@
       "translation missing: en.hosting_amenity_50",
       "Host greets you"
     ],
-    "labels": ["surfing"],
+    "labels": ["bed-and-breakfast"],
     "host": {
       "_id": "622f3404e36c59e6164fb5d8",
       "fullname": "Jen",
@@ -9207,7 +9207,7 @@
       "Luggage dropoff allowed",
       "Host greets you"
     ],
-    "labels": ["Beachfront"],
+    "labels": ["private-rooms"],
     "host": {
       "_id": "622f3404e36c59e6164fb627",
       "fullname": "Sonia",
@@ -9533,7 +9533,7 @@
       "Lockbox",
       "Hot water"
     ],
-    "labels": ["surfing"],
+    "labels": ["ski"],
     "host": {
       "_id": "622f3406e36c59e6164fbcdf",
       "fullname": "Simple Stay",
@@ -9932,7 +9932,7 @@
       "Long term stays allowed",
       "Host greets you"
     ],
-    "labels": ["Campers"],
+    "labels": ["luxe"],
     "host": {
       "_id": "622f3401e36c59e6164fab56",
       "fullname": "Barbara",
@@ -10759,7 +10759,7 @@
       "Long term stays allowed",
       "Other"
     ],
-    "labels": ["national-parks"],
+    "labels": ["private-rooms"],
     "host": {
       "_id": "622f3402e36c59e6164fae51",
       "fullname": "Molly",
@@ -11131,7 +11131,7 @@
       "Iron",
       "Laptop friendly workspace"
     ],
-    "labels": ["national-parks"],
+    "labels": ["boats"],
     "host": {
       "_id": "622f3407e36c59e6164fbded",
       "fullname": "Maria Alice",
@@ -11196,7 +11196,7 @@
       "Hot water",
       "Other"
     ],
-    "labels": ["national-parks"],
+    "labels": ["private-rooms"],
     "host": {
       "_id": "622f3402e36c59e6164faeba",
       "fullname": "Daniel",
@@ -11475,7 +11475,7 @@
       "Handheld shower head",
       "Fixed grab bars for toilet"
     ],
-    "labels": ["Castles"],
+    "labels": ["towers"],
     "host": {
       "_id": "622f3402e36c59e6164fad59",
       "fullname": "Erdem",
@@ -11538,7 +11538,7 @@
       "Iron",
       "Laptop friendly workspace"
     ],
-    "labels": ["Castles"],
+    "labels": ["towers"],
     "host": {
       "_id": "622f3404e36c59e6164fb603",
       "fullname": "Melanie",
