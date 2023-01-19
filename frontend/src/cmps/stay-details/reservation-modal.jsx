@@ -130,9 +130,14 @@ export function ReservationModal({ stay, reviews }) {
             </form>
 
 {modalIsOpen && (
-    <Modal>
-        {/* Modal content */}
-    </Modal>
+    <div className="reservation-confirmation-modal">
+        <p>Your reservation was accepted!</p>
+        <div>number of guests: <span>{guestsCount}</span></div>
+        <div>dates: <span>{formattedStartDate}</span>-<span>{formattedStartDate}</span></div>
+         <div>total Price: <span>{totalPrice}</span></div>   
+        
+    
+    </div>
 )}
 
             
