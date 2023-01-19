@@ -99,9 +99,9 @@ function loadFromStorage(key) {
 }
 
 function formatCurrency(num) {
-  const numFormat = Intl.NumberFormat('he-IL', {
+  const numFormat = Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'ILS',
+    currency: 'USD',
   });
   return numFormat.format(num);
 }
