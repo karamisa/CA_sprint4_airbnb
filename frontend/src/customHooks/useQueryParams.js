@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import {  useLocation } from 'react-router-dom'
 
-function useQueryParams(paramName) {
+export function useQueryParams(paramName) {
   const location = useLocation()
   const [paramValue, setParamValue] = useState(
     new URLSearchParams(location.search).get(paramName) || ''
@@ -20,4 +20,3 @@ function useQueryParams(paramName) {
   return [paramValue, setParamValue]
 }
 
-export default useQueryParams
