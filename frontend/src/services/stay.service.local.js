@@ -15,14 +15,14 @@ export const stayService = {
 _createStays();
 
 async function query(filterBy) {
-  let stays = await storageService.query(STORAGE_KEY);
+  let stays = await storageService.query(STORAGE_KEY)
  
   if (filterBy.category) {
     stays = stays.filter((stay) => {
-        return stay.labels.includes(filterBy.category);
+        return stay.labels.includes(filterBy.category)
         })
   }
-  return stays;
+  return stays
 }
 
 async function getById(stayId) {
@@ -32,21 +32,21 @@ async function getById(stayId) {
 
 async function save(stay) {
   if (stay._id) {
-    return storageService.put(STORAGE_KEY, stay);
+    return storageService.put(STORAGE_KEY, stay)
   } else {
-    return storageService.post(STORAGE_KEY, stay);
+    return storageService.post(STORAGE_KEY, stay)
   }
 }
 
 async function remove(stayId) {
-  return storageService.remove(STORAGE_KEY, stayId);
+  return storageService.remove(STORAGE_KEY, stayId)
 }
 
 function getEmptyStay() {
   return {
     _id: utilService.makeId(),
     name: '',
-  };
+  }
 }
 
 //PVT
@@ -3152,10 +3152,7 @@ function _createDemoStays() {
       likedByUsers: {},
     },
   ];
-  utilService.saveToStorage(
-    STORAGE_KEY,
-    JSON.parse(JSON.stringify(DEMO_STAYS))
-  );
+  utilService.saveToStorage(STORAGE_KEY,JSON.parse(JSON.stringify(DEMO_STAYS)));
 }
 
 function _createStays() {

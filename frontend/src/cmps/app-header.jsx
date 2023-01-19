@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Logo } from './logo';
 import { NavMenu } from './nav-menu';
 import { SearchBar } from './search-bar';
@@ -6,14 +7,15 @@ import { SearchForm as StaySearchForm } from './search-form';
 
 export function AppHeader() {
   const [searchFormOpen, setSearchFormOpen] = useState(false)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const filterBy = {location: searchParams.get('location')}
+
 
   const handleToggle = () => {
-      setSearchFormOpen(prev => !prev)
-      console.log('click')
-
+    setSearchFormOpen(prev => !prev)
   }
 
-  
+
   return (
     <header className='app-header-container main-layout'>
       <div className='app-header'>
@@ -21,17 +23,17 @@ export function AppHeader() {
           <Logo />
         </div>
         {!searchFormOpen && <div className='header-search-bar-container flex column align-center' onClick={handleToggle}>
-           <SearchBar />
-           </div>}
-          {searchFormOpen && <div className='header-search-bar-container flex'>
-           <StaySearchForm/>
-           <button onClick={handleToggle}>toggleForm</button>
-           </div>}
- 
+          <SearchBar />
+        </div>}
+        {searchFormOpen && <div className='header-search-bar-container flex'>
+          <StaySearchForm filterBy={filterBy} />
+          <button onClick={handleToggle}>close</button>
+        </div>}
+
         <div className='header-menu-container'>
-         <NavMenu />
+          <NavMenu />
         </div>
       </div>
     </header>
-  );
+  )
 }

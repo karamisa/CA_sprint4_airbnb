@@ -1,4 +1,11 @@
-export function RegionSelect() {
+export function RegionSelect({ setFields }) {
+  
+  function onRegionSelect(region) {
+    if (region === 'I\'m flexible') region = ''
+    setFields((prevFields) => ({ ...prevFields, location: region }))
+  }
+
+
   const regions = [
     { name: 'I\'m flexible', imgUrl: 'https://a0.muscache.com/pictures/f9ec8a23-ed44-420b-83e5-10ff1f071a13.jpg?im_w=320' },
     { name: 'Middle East', imgUrl: "https://a0.muscache.com/im/pictures/66355b01-4695-4db9-b292-c149c46fb1ca.jpg?im_w=320" },
@@ -15,7 +22,7 @@ export function RegionSelect() {
         {regions.map(region => {
           return (
             <div className="region" key={region.name}>
-              <div className="region-btn">
+              <div className="region-btn" onClick={()=> onRegionSelect(region.name)}>
                 <img src={region.imgUrl} alt={region.name} />
               </div>
               <div className="region-name">{region.name}</div>

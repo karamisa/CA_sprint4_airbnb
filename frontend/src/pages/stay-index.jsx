@@ -10,10 +10,8 @@ import { loadStays } from '../store/stay/stay.action';
 export function StayIndex() {
 
   const [searchParams, setSearchParams] = useSearchParams()
-  const stays = useSelector((storeState) => {
-    // console.log('storeState:', storeState);
-    return storeState.stayModule.stays;
-  });
+  const stays = useSelector((storeState) => storeState.stayModule.stays)
+
   const filterBy = {category: searchParams.get('category')}
 
   useEffect(() => {
@@ -30,5 +28,5 @@ export function StayIndex() {
       <CategoryFilterBar handleChange={handleChange} currcategory={filterBy.category} />
       <StayList stays={stays} />
     </section>
-  );
+  )
 }
