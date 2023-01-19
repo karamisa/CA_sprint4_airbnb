@@ -3,16 +3,25 @@ import { SearchBtn } from "./search-btn";
 import { RegionSelect } from "./region-select";
 import { DateSelect } from "./date-select.jsx";
 import { GuestSelect } from "./guest-select.jsx";
+
 export function SearchForm() {
-    const [selectedCategory, setSelectedCategory] = useState('location');
+    const [selectedTab, setSelectedTab] = useState('location');
+
+    
+
+    //FIELDS: checkin, checkout, guests, location
+
     function onCategoryClick(category) {
-        setSelectedCategory(category);
+        setSelectedTab(category);
     }
 
-    const locationOpt = (selectedCategory === 'location') ? ' active' : '';
-    const checkinOpt = (selectedCategory === 'checkin') ? ' active' : '';
-    const checkoutOpt = (selectedCategory === 'checkout') ? ' active' : '';
-    const guestOpt = (selectedCategory === 'guests') ? ' active' : '';
+
+    
+
+    const locationOpt = (selectedTab === 'location') ? ' active' : '';
+    const checkinOpt = (selectedTab === 'checkin') ? ' active' : '';
+    const checkoutOpt = (selectedTab === 'checkout') ? ' active' : '';
+    const guestOpt = (selectedTab === 'guests') ? ' active' : '';
 
     return (
         <section className="search-form">
@@ -24,7 +33,7 @@ export function SearchForm() {
                         <div className="search-form-label">Where</div>
                         <input type="text" className="search-form-desc" placeholder="Search destinations" />
                     </div>
-                        {selectedCategory === 'location' &&
+                        {selectedTab === 'location' &&
                             <div className="region-select-container">
                                 <RegionSelect />
                             </div>}
@@ -42,7 +51,7 @@ export function SearchForm() {
                         <div className="search-form-label">Check out</div>
                         <div className="search-form-desc">Add dates</div>
                     </div>
-                    {(selectedCategory === 'checkin' || selectedCategory === 'checkout') &&
+                    {(selectedTab === 'checkin' || selectedTab === 'checkout') &&
                             <div className="date-select-container">
                                 <DateSelect />
                             </div>}
@@ -55,7 +64,7 @@ export function SearchForm() {
                         <div className="search-form-desc">Add guests</div>
                     </div>
                     <SearchBtn />
-                    {selectedCategory === 'guests' &&
+                    {selectedTab === 'guests' &&
                             <div className="guest-select-container">
                                 <GuestSelect />
                             </div>}

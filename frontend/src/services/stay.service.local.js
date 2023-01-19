@@ -18,10 +18,9 @@ async function query(filterBy) {
   let stays = await storageService.query(STORAGE_KEY);
  
   if (filterBy.category) {
-    console.log('filterBy.category:', filterBy.category)
-    // stays = stays.filter((stay) => {
-    //     return stay.labels.includes(filterBy.category);
-    //     });
+    stays = stays.filter((stay) => {
+        return stay.labels.includes(filterBy.category);
+        })
   }
   return stays;
 }

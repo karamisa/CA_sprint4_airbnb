@@ -9,7 +9,6 @@ export function useQueryParams(paramName) {
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search)
-    console.log('here', searchParams)
     if (paramValue) searchParams.set(paramName, paramValue)
     else searchParams.delete(paramName)
     const newSearch = searchParams.toString()
