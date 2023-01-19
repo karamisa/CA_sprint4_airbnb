@@ -25,7 +25,11 @@
     &:hover {
       color: black;
     }
+    &.active {
+      color: rgb(255, 0, 0);
+    }
   }
+
 }
 
 // .clr-secondary {

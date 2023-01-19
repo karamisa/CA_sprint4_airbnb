@@ -1,13 +1,18 @@
 import { useFilter } from '../hooks/useFilter';
 import { filterService } from '../services/filter.service';
+import useQueryParams from '../customHooks/useQueryParams';
 
 const categories = filterService.getCategories();
 
 export function CategoryFilterBar() {
-  const updateFilter = useFilter(filterService.getDefaultFilter());
+  // const updateFilter = useFilter(filterService.getDefaultFilter());
+  const [currcategory, updateCurrCategory] = useQueryParams('category')
 
-  function onSelectCategory(currentCategory) {
-    updateFilter({ category: currentCategory });
+
+  function onSelectCategory(newCategory) {
+    // updateFilter(newCategory);
+    updateCurrCategory(newCategory);
+
   }
 
   return (
@@ -15,11 +20,11 @@ export function CategoryFilterBar() {
       {categories.map((category) => {
         return (
           <div
-            className='category'
+            className = {(category.name === currcategory) ? `${category.name} active`: category.name}
             key={category.url}
-            role='radio'
+            // role='radio'
             onClick={() => {
-              onSelectCategory(category.url);
+              onSelectCategory(category.name);
             }}>
             <img
               style={{}}
