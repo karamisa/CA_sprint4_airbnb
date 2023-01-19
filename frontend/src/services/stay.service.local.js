@@ -21,7 +21,7 @@ async function query() {
 }
 
 async function getById(stayId) {
-  const stay = await storageService.get(STORAGE_KEY, stayId)
+    const stay = await storageService.get(STORAGE_KEY, stayId)
   return stay
 }
 

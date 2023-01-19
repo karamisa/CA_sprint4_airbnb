@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
 import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
@@ -7,13 +7,14 @@ import { ImgGrid } from '../cmps/util-cmps/img-grid.jsx'
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
 import { ReviewBar } from '../cmps/stay-details/review-bar.jsx'
+import { ReservationModal } from '../cmps/stay-details/reservation-modal.jsx'
 
 
 
 export function StayDetails() {
     const [stay, setStay] = useState(null)
-    // const {stayId} = useParams()
-    const stayId = '622f337a75c7d36e498aaaf8'
+    const { stayId } = useParams()
+    // const stayId = '622f337a75c7d36e498aaaf8'
     const navigate = useNavigate()
 
     useEffect(() => {
@@ -22,7 +23,7 @@ export function StayDetails() {
 
     const imgsToDisplay = stay?.imgUrls?.slice(0, 5)
     const amenitiesToDisplay = stay?.amenities?.slice(0, 10)
-    const reviewsToDisplay = stay?.reviews?.slice(0,6)
+    const reviewsToDisplay = stay?.reviews?.slice(0, 6)
 
     async function loadStay() {
         try {
@@ -108,7 +109,7 @@ export function StayDetails() {
                     </div>
 
                     <div className="stay-review-reservation">
-
+                        <ReservationModal stay={stay} reviews={stay.reviews}/>
                     </div>
 
                 </section>
@@ -116,14 +117,13 @@ export function StayDetails() {
                 <div className="reviews border-buttom">
                     <h2 className="stay-mid-reviews"><RatingReview reviews={stay.reviews} /> • {stay.reviews.length} reviews</h2>
                     <div className="stay-mid-reviews-container">
-                        <ReviewBar reviews={stay.reviews}/>
-                        <ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id}/>
+                        <ReviewBar reviews={stay.reviews} />
+                        <ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id} />
                     </div>
                     {(stay.reviews.length > 6) && <button className="rev-btn show-all-reviews" onClick={onToggleReviews}>show all {stay.reviews.length} reviews </button>}
                 </div>
 
                 <div className="stay-map border-buttom">
-
 
                 </div>
 
