@@ -10,7 +10,16 @@
 }
 
 .preview {
-  .inline-block {
-    margin-inline-end: auto;
+  .image-slider {
+    margin-bottom: 12px;
+  }
+  p {
+    font-size: 15px;
+    line-height: 19px;
+  }
+
+  p:last-of-type {
+    margin-top: 6px;
+    color: $clr-text-primary;
   }
 }

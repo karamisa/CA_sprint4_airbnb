@@ -1,3 +1,4 @@
+import { utilService } from '../../services/util.service';
 import { RatingReview } from '../util-cmps/rating-review';
 
 export function PreviewInfo({ info }) {
@@ -9,7 +10,9 @@ export function PreviewInfo({ info }) {
       </p>
       <p className='text-grey'>Distance</p>
       <p className='text-grey'>Dates</p>
-      <p>{info.price.toLocaleString()}</p>
+      <p className='text-bold'>
+        {utilService.formatCurrency(info.price)} night
+      </p>
     </>
   );
 }
