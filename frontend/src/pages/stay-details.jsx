@@ -94,6 +94,17 @@ export function StayDetails() {
                         <div className="stay-highlights border-buttom">
                             can be hardcoaded
                         </div>
+                        <div className="air-cover border-buttom">
+                            <h3>
+                                <span>air</span>cover
+                            </h3>
+                            <p>
+                                Every booking includes free protection from Host
+                                cancellations, listing inaccuracies, and other issues
+                                like trouble checking in.
+                            </p>
+
+                        </div>
                         <div className="stay-summery border-buttom">
                             {stay.summary}
                         </div>
@@ -108,8 +119,8 @@ export function StayDetails() {
 
                     </div>
 
-                    <div className="stay-review-reservation">
-                        <ReservationModal stay={stay} reviews={stay.reviews}/>
+                    <div className="stay-review-order">
+                        <ReservationModal stay={stay} reviews={stay.reviews} />
                     </div>
 
                 </section>

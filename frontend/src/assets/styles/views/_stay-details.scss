@@ -1,8 +1,13 @@
 .stay-details {
 
+    letter-spacing: 0.007em;
+
+    &>* {
+        margin-top: 18px;
+    }
 
     .images-container {
-        margin-top:  10px;
+        margin-top: 10px;
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: 50% 50%;
         gap: 8px;
@@ -10,18 +15,51 @@
         border-radius: 12px;
         overflow: hidden;
 
-        :first-child{
+        :first-child {
             grid-row: 1/3;
             grid-column: 1/3;
         }
 
 
-        img{
+        img {
             object-fit: cover;
             width: 100%;
             height: 100%;
         }
     }
+
+    .air-cover{
+
+        padding-block: 32px;
+
+        h3{
+            margin: 0 0 15px;
+            font-size: 2em;
+            font-weight: 700;
+        }
+
+        span{
+           color: $clr-brand;
+        }
+    }
+
+    .stay-review-mid {
+        grid-template-columns: 1.45fr 1fr;
+
+        .stay-review-details {
+            width: 58.3333%;
+        }
+
+        .stay-review-order {
+            margin-top: 32px;
+            margin-bottom: 32px;
+
+        }
+
+
+
+    }
+
 
 
 }

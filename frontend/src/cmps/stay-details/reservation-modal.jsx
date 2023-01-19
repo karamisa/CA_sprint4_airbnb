@@ -40,8 +40,8 @@ export function ReservationModal({ stay, reviews }) {
 
 
     return (
-        <section>Reservation
-            <form onSubmit={onOrderReservation}>
+        <section className="order-modal">
+            <form className="order-modal-form flex" onSubmit={onOrderReservation}>
                 <header className="reservation-form-header">
                     <h4><span>{formattedPrice}</span> night</h4>
                     <div className="reservation-rating-review flex">
@@ -130,7 +130,7 @@ export function ReservationModal({ stay, reviews }) {
             </form>
 
 {modalIsOpen && (
-    <div className="reservation-confirmation-modal">
+    <div className="order-confirmation-modal">
         <p>Your reservation was accepted!</p>
         <div>number of guests: <span>{guestsCount}</span></div>
         <div>dates: <span>{formattedStartDate}</span>-<span>{formattedStartDate}</span></div>
