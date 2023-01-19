@@ -1,7 +1,6 @@
-import { useFilter } from '../customHooks/useFilter';
+// import { useFilter } from '../customHooks/useFilter'; 
 import { filterService } from '../services/filter.service';
 import { BiChevronLeftCircle } from 'react-icons/bi';
-import { loadStays } from '../store/stay/stay.action';
 import { useQueryParams } from '../customHooks/useQueryParams';
 
 const categories = filterService.getCategories();
@@ -28,7 +27,7 @@ export function CategoryFilterBar({handleChange}) {
       {categories.map((category) => {
         return (
           <div
-            className='category'
+            className={category.name === currcategory ? 'category active' : 'category'}
             key={category.url}
             onClick={() => {
               onSelectCategory(category.url);
