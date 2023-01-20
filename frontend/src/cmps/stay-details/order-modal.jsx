@@ -3,7 +3,8 @@ import { orderService } from '../../services/order.service.js'
 import { utilService } from '../../services/util.service.js'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
 import { OrderDetails } from './order-details.jsx'
-import { DateSelect } from "./../date-select.jsx";
+import { DateSelect } from "./../date-select.jsx"
+import { GuestSelect } from "./../guest-select.jsx"
 
 import arrowDownImg from '../../assets/img/arrow-down.svg'
 import arrowUpImg from '../../assets/img/arrow-up.svg'
@@ -123,35 +124,41 @@ export function OrderModal({ stay, reviews }) {
                 </header>
 
                 <section className="picker-container">
-                    <div onClick={() => setShowDatePicker(true)} className="check-in picker">
-                        <label htmlFor="check-in">CHECK-IN</label>
-                        <input
-                            type="text"
-                            placeholder="MM/DD/YYYY"
-                            value={formattedStartDate}
-                        />
-                    </div>
-                    <section className="date-picker-container">
-                    <DateSelect />
+                    <section className="date-picker-modal">
+                        {showDatePicker && <DateSelect
+                            chekcInDate={dates.startDate}
+                            checkOutDate={dates.endDate}
+                            className="date-picker"
+                        />}
                         {/* <DatePicker
-                            onChange={setDates}
-                            value={dates}
-                            className="date-picker-reserve"
-                            startPlaceholder="Start date"
-                            endPlaceholder="End date"
-                        /> */}
+                           onChange={setDates}
+                           value={dates}
+                          /> */}
                     </section>
-                    <div onClick={() => setShowDatePicker(true)} className="check-out picker">
-                        <label htmlFor="check-out">CHECK-OUT</label>
-                        <input
-                            type="text"
-                            placeholder="MM/DD/YYYY"
-                            value={formattedEndDate}
-                        />
-                    </div>
+                    <section className="dates-selection flex">
+
+                        <div onClick={() => setShowDatePicker(true)} className="check-in picker">
+                            <label htmlFor="check-in">CHECK-IN</label>
+                            <input
+                                type="text"
+                                placeholder="MM/DD/YYYY"
+                                value={formattedStartDate}
+                            />
+                        </div>
+
+                        <div onClick={() => setShowDatePicker(true)} className="check-out picker">
+                            <label htmlFor="check-out">CHECK-OUT</label>
+                            <input
+                                type="text"
+                                placeholder="MM/DD/YYYY"
+                                value={formattedEndDate}
+                            />
+                        </div>
+                    </section>
+
                     <div
                         onClick={() => setShowGuestPicker(!showGuestPicker)}
-                        className="guests picker"
+                        className="guest-picker"
                     >
                         <label htmlFor="guests">GUESTS</label>
                         <input
@@ -165,10 +172,7 @@ export function OrderModal({ stay, reviews }) {
                         ) : (
                             <img src={arrowUpImg} className="arrow-img" alt="arrowUpImg" />
                         )}
-                        {/* <GuestsModal
-                            onSetGuests={setGuests}
-                            className={`${showGuestPicker ? 'open' : ''}`}
-                        /> */}
+                        {showGuestPicker && <GuestSelect />}
                     </div>
                 </section>
 

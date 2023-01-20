@@ -30,18 +30,103 @@
             gap: 0.1875em;
 
 
-
-
         }
 
     }
 
 
-    .arrow-img {
-        width: 22px;
-        height: 22px;
+    .picker-container {
+        margin-bottom: 15px;
+        border-radius: 1em;
+        border: 1px solid $clr-text-primary;
 
+
+        .dates-selection {
+            justify-content: space-between;
+            position: relative;
+
+
+            .picker {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+                padding: 7px 12px;
+                width: 50%;
+                font-size: 0.625em;
+
+                input {
+                    border: none;
+                    padding: 0;
+                    outline: none;
+                    font-size: 0.875em;
+                }
+            }
+
+        }
+
+        .guest-picker {
+            display: grid;
+            flex-direction: column;
+            position: relative;
+            gap: 5px;
+            border-top: 1px solid $clr-text-primary;
+            padding: 7px 12px;
+
+            label {
+                font-size: 0.625em;
+                font-weight: 800;
+
+            }
+
+            input{
+                font-size: 0.875em;   
+                border: 0;
+                width: 100%;
+            }
+
+            .arrow-img {
+                justify-self: center;
+                align-self: center;
+                width: 22px;
+                height: 22px;
+                grid-row: 1/-1;
+                grid-column: 2;
+            }
+
+        }
     }
+
+    .order-details{
+        gap: 25px;
+        flex-direction: column;
+
+        .no-charge-msg{
+            text-align: center;
+        }
+
+        .prices{
+            grid-template-columns: 1fr 1fr;
+            padding-bottom: 15px;
+            border-bottom: 1px solid $clr-text-primary;
+            gap: 10px;
+            font-size: 0.9rem;
+
+            &>*:nth-child(odd){
+                text-decoration: underline;
+            }
+            &>*:nth-child(even){
+                justify-self: end;
+            }
+        }
+
+        .total{
+            font-weight: 700;
+        }
+    }
+
+
+
+
 }
 
 
