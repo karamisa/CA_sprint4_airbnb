@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { orderService } from '../../services/order.service.js'
+import { utilService } from '../../services/util.service.js'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
 
 export function OrderModal({ stay, reviews }) {
@@ -10,7 +11,15 @@ export function OrderModal({ stay, reviews }) {
         startDate: 1672686753725,
         endDate: 1673286756438
     }
-    const guestsCount = 2 //temp data
+
+    const guests = {  //temp data
+        adults: 2,
+        kids: 0,
+        infants: 0,
+        pets: 0,
+    }
+
+    
     const serviceFee = 11.2
 
     const [showDatePicker, setShowDatePicker] = useState(false)
@@ -25,13 +34,8 @@ export function OrderModal({ stay, reviews }) {
     const numOfReviews = reviews.length
     const isLogged = true
     const totalPrice = ((stay.price * totalStay) + (serviceFee * totalStay))
+    const guestsCount = guests.adults + guests.kids
 
-    //from session storage
-    const loggedinUser= {
-        _id:  'E101', //logged in user id,
-        fullname:  'puki ja', //logged in user full name,
-        imgUrl: '' //logged in user img
-      }
 
 
       function handleAddOrder() {
@@ -67,7 +71,7 @@ export function OrderModal({ stay, reviews }) {
 
 
         setModalIsOpen(!modalIsOpen)
-        addOrder(newOrder)
+        // addOrder(newOrder)
       } 
 
 
