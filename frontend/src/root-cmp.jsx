@@ -9,8 +9,8 @@ import { ChatApp } from './pages/chat-app.jsx';
 import { StayIndex } from './pages/stay-index.jsx';
 import { StayDetails } from './pages/stay-details.jsx';
 import { Hosting } from './pages/hosting.jsx';
-import { Order } from './cmps/hosting/order-page';
-import { Dashboard } from './cmps/hosting/dashboard-page';
+import { OrderPage } from './cmps/hosting/order-page';
+import { DashboardPage } from './cmps/hosting/dashboard-page';
 
 export function RootCmp() {
   return (
@@ -23,8 +23,8 @@ export function RootCmp() {
           <Route element={<StayDetails />} path='/stay/:stayId' />
 
           <Route element={<Hosting />} path='/hosting'>
-            <Route element={<Order />} path='/hosting/order' />
-            <Route element={<Dashboard />} path='/hosting/dashboard' />
+            <Route element={<OrderPage />} path='/hosting/order' />
+            <Route element={<DashboardPage />} path='/hosting/dashboard' />
           </Route>
           <Route element={<ChatApp />} path='/user/inbox' />
           <Route path='user/:id' element={<UserDetails />} />
