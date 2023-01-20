@@ -23,25 +23,61 @@ export function OrderModal({ stay, reviews }) {
     const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
     const totalServiceFee = "$" + (serviceFee * totalStay).toFixed(2)
     const numOfReviews = reviews.length
-    const isLogged = false
+    const isLogged = true
     const totalPrice = ((stay.price * totalStay) + (serviceFee * totalStay))
 
-const userId = 'E101'
+    //from session storage
+    const loggedinUser= {
+        _id:  'E101', //logged in user id,
+        fullname:  'puki ja', //logged in user full name,
+        imgUrl: '' //logged in user img
+      }
+
+
+      function handleAddOrder() {
+       const order = orderService.getEmptyOrder()
+        const newOrder = {
+          ...order,
+          buyer: {
+            _id:  'E101',
+            fullname:  'puki ja',
+            imgUrl: ''
+          },
+        //   buyer: {
+        //     _id: loggedinUser._id,
+        //     fullname: loggedinUser.fullname,
+        //     imgUrl: loggedinUser.imgUrl,
+        //   },
+          stay: {
+            _id: stay._id,
+            name: stay.name,
+            price: stay.price,
+            imgUrls: stay.imgUrls.slice(0, 3),
+            loc: {
+              address: stay.loc.address,
+            },
+          },
+          hostId: stay.host._id,
+        }
+
+        newOrder.totalPrice = totalPrice
+        newOrder.startDate = dates.startDate
+        newOrder.endDate = dates.endDate
+
+
+
+        setModalIsOpen(!modalIsOpen)
+        addOrder(newOrder)
+      } 
 
 
 
     function onOrderSubmit(ev) {
         ev.preventDefault()
-
-        const newOrder = orderService.getEmptyOrder()
+     
         if (!isLogged) return
-        newOrder.buyer._id = userId
 
-
-
-            console.log('newOrder', newOrder)
-
-
+        
 
         setModalIsOpen(!modalIsOpen)
 

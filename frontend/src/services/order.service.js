@@ -50,14 +50,17 @@ function getEmptyOrder(){
             // _id: userService.getLoggedinUser()._id,
             // fullname: userService.getLoggedinUser().fullname
             _id: '',
-            fullname:''
+            fullname:'',
+            imgUrl: ''
         },
         totalPrice: 0,
         startDate: null,
         endDate: null,
         guests: {
             adults: 0,
-            kids: 0
+            kids: 0,
+            infants: 0,
+            pets: 0,
         },
         stay: null,
         msgs: [],
@@ -72,19 +75,23 @@ function _createdDemoOrders() {
               "hostId": "u102",
               "buyer": {
                 "_id": "u101",
-                "fullname": "User 1"
+                "fullname": "User 1",
+                "imgURL": ""
               },
               "totalPrice": 160,
               "startDate": "2025/10/15",
               "endDate": "2025/10/17",
               "guests": {
                 "adults": 2,
-                "kids": 1
+                "kids": 1,
+                "infants": 0,
+                "pets": 0,
               },
               "stay": {
                 "_id": "h102",
                 "name": "House Of Uncle My",
-                "price": 80.00
+                "price": 80.00,
+                "loc": { }
               },
               "msgs": [],
               "status": "pending" // pending, approved
