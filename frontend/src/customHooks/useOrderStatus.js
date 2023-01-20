@@ -1,54 +1,63 @@
 import { useState } from 'react';
+import { orderService } from '../services/order.service';
 
-export const useOrderStatus = () => {
-  const [order, setOrder] = useState({});
+export const useOrderStatus = (order) => {
+  const [orderForPrecessing, setOrderForPrecessing] = useState(order);
 
-  function placeOrder(order) {
-    setOrder(order);
-  }
-
+  // host approves
   function approveOrder() {
-    setOrder((prevState) => ({
+    setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'approved',
     }));
+
+    _save(orderForPrecessing);
   }
 
+  // host rejects
+  function rejectOrder() {
+    setOrderForPrecessing((prevState) => ({
+      ...prevState,
+      status: 'rejected',
+    }));
+
+    _save(orderForPrecessing);
+  }
+
+  // user can cancel order till it turns to processing status
   function cancelOrder() {
-    setOrder((prevState) => ({
+    setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'cancelled',
     }));
   }
 
-  function confirmOrder() {
-    setOrder((prevState) => ({
-      ...prevState,
-      status: 'confirmed',
-    }));
-  }
-
-  function startProcessing() {
-    setOrder((prevState) => ({
+  // TODO do logic
+  // when  start date comes, status will updated to precessing state
+  function _startProcessing() {
+    setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'processing',
     }));
   }
 
-  function finishOrder() {
-    setOrder((prevState) => ({
+  // TODO do logic
+  // when  end date  comes, status will updated to finished state
+  function _finishOrder() {
+    setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'finished',
     }));
   }
 
+  function _save(orderToSave) {
+    orderService.save(orderToSave);
+  }
+
   return {
-    order,
-    placeOrder,
+    orderForPrecessing, // updated order, use it in parent component
+    rejectOrder,
     approveOrder,
     cancelOrder,
-    confirmOrder,
-    startProcessing,
-    finishOrder,
   };
 };
