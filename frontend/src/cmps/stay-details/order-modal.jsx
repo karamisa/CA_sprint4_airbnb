@@ -2,10 +2,15 @@ import { useState } from 'react'
 import { orderService } from '../../services/order.service.js'
 import { utilService } from '../../services/util.service.js'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
+import { OrderDetails } from './order-details.jsx'
+import { DateSelect } from "./../date-select.jsx";
+
+import arrowDownImg from '../../assets/img/arrow-down.svg'
+import arrowUpImg from '../../assets/img/arrow-up.svg'
 
 export function OrderModal({ stay, reviews }) {
 
-    console.log('stay', stay)
+    // console.log('stay', stay)
 
     const dates = {  //temp data
         startDate: 1672686753725,
@@ -19,76 +24,71 @@ export function OrderModal({ stay, reviews }) {
         pets: 0,
     }
 
-    
+
     const serviceFee = 11.2
 
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [showGuestPicker, setShowGuestPicker] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    const formattedPrice = "$" + Math.round(stay.price)
-    // const formattedStartDate = new Date(dates.startDate).toLocaleString()
-    // const formattedEndDate = new Date(dates.endDate).toLocaleString()
+    const stayPrice = Math.round(stay.price)
     const formattedStartDate = utilService.formattedDate(dates.startDate)
     const formattedEndDate = utilService.formattedDate(dates.endDate)
-    // const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
     const totalStay = utilService.totalDays(dates.startDate, dates.endDate)
-    const totalServiceFee = "$" + (serviceFee * totalStay).toFixed(2)
+    const totalStayPrice = Math.round(stay.price * totalStay)
+    const totalServiceFee = Math.round((serviceFee * totalStay))
     const numOfReviews = reviews.length
     const isLogged = true
-    const totalPrice = ((stay.price * totalStay) + (serviceFee * totalStay))
+    const totalPrice = Math.round(totalStayPrice + totalServiceFee)
     const guestsCount = guests.adults + guests.kids
 
+    const orderPrices = { stayPrice, totalStay, totalStayPrice, totalServiceFee, totalPrice }
 
 
-      function handleAddOrder() {
-       const order = orderService.getEmptyOrder()
+    function setOrder() {
+        const order = orderService.getEmptyOrder()
         const newOrder = {
-          ...order,
-          buyer: {
-            _id:  'E101',
-            fullname:  'puki ja',
-            imgUrl: ''
-          },
-        //   buyer: {
-        //     _id: loggedinUser._id,
-        //     fullname: loggedinUser.fullname,
-        //     imgUrl: loggedinUser.imgUrl,
-        //   },
-          stay: {
-            _id: stay._id,
-            name: stay.name,
-            price: stay.price,
-            imgUrls: stay.imgUrls.slice(0, 3),
-            loc: {
-              address: stay.loc.address,
+            ...order,
+            buyer: {
+                _id: 'E101',
+                fullname: 'puki ja',
+                imgUrl: ''
             },
-          },
-          hostId: stay.host._id,
+            //   buyer: {
+            //     _id: loggedinUser._id,
+            //     fullname: loggedinUser.fullname,
+            //     imgUrl: loggedinUser.imgUrl,
+            //   },
+            stay: {
+                _id: stay._id,
+                name: stay.name,
+                price: stay.price,
+                imgUrls: stay.imgUrls.slice(0, 3),
+                loc: {
+                    address: stay.loc.address,
+                },
+            },
+            hostId: stay.host._id,
         }
 
-        newOrder.totalPrice = totalPrice
+        newOrder.totalPrice = (stay.price * totalStay) + (serviceFee * totalStay)
         newOrder.startDate = dates.startDate
         newOrder.endDate = dates.endDate
 
-
-
-        setModalIsOpen(!modalIsOpen)
+        console.log('newOrder', newOrder)
         // addOrder(newOrder)
-      } 
+    }
 
 
 
     function onOrderSubmit(ev) {
         ev.preventDefault()
-     
+        if (!modalIsOpen) setOrder()
+        //go to form page
         if (!isLogged) return
 
-        
-
         setModalIsOpen(!modalIsOpen)
-
-        console.log('reservation set!')
+        if (modalIsOpen) console.log('reservation set!')
     }
 
     function openReviewModal() {
@@ -96,12 +96,25 @@ export function OrderModal({ stay, reviews }) {
     }
 
 
+    // const onOrderSubmit = async (values) => {
+    //     try{
+    //        values.labels = [values.type]
+    //       await saveOrder(values, goBack)
+    //     } catch(err){
+    //       console.log('Cannot save order: ', err)
+    //     }
+    //   }
+
+    //   const goBack = () => {
+    //     navigate('/stay/:id')
+    //   }
+
 
     return (
         <section className="order-modal">
             <form className="order-modal-form flex" onSubmit={onOrderSubmit}>
-                <header className="order-form-header">
-                    <h4><span>{formattedPrice}</span> night</h4>
+                <header className="order-form-header flex">
+                    <h4><span>${stayPrice}</span> night</h4>
                     <div className="order-rating-review flex">
                         <RatingReview reviews={stay.reviews} />
                         <span>•</span>
@@ -119,6 +132,7 @@ export function OrderModal({ stay, reviews }) {
                         />
                     </div>
                     <section className="date-picker-container">
+                    <DateSelect />
                         {/* <DatePicker
                             onChange={setDates}
                             value={dates}
@@ -147,9 +161,9 @@ export function OrderModal({ stay, reviews }) {
                             disabled
                         />
                         {!showGuestPicker ? (
-                            <img src="../../assets/img/arrow-down.svg" className="arrow-img" />
+                            <img src={arrowDownImg} className="arrow-img" alt="arrowDownImg" />
                         ) : (
-                            <img src="../../assets/img/arrow-up.svg" className="arrow-img" />
+                            <img src={arrowUpImg} className="arrow-img" alt="arrowUpImg" />
                         )}
                         {/* <GuestsModal
                             onSetGuests={setGuests}
@@ -159,40 +173,22 @@ export function OrderModal({ stay, reviews }) {
                 </section>
 
                 <button className="btn-reserve">
-                    Reserve
+                    {!totalStay ? (<>Check availability</>) : (<>Reserve</>)}
                 </button>
 
                 <section className="order-details flex">
-
                     {dates.startDate && dates.endDate && (
-                        <>
-                            <p style={{ textAlign: 'center' }}>You won't be charged yet</p>
-                            <div className="prices">
-                                <p>{formattedPrice} x {totalStay} nights</p>
-                                <p>{stay.price * totalStay}</p>
-                                <p>Service fee</p>
-                                <p>{totalServiceFee}</p>
-                            </div>
-                            <div className="total">
-                                <p>Total</p>
-                                <p>{totalPrice}</p>
-                            </div>
-                        </>
+                        <OrderDetails orderPrices={orderPrices} />
                     )}
-
                 </section>
-
-
-
-
             </form>
 
             {modalIsOpen && (
                 <div className="order-confirmation-modal">
                     <p>Your reservation was accepted!</p>
                     <div>number of guests: <span>{guestsCount}</span></div>
-                    <div>dates: <span>{formattedStartDate}</span>-<span>{formattedStartDate}</span></div>
-                    <div>total Price: <span>{totalPrice}</span></div>
+                    <div>dates: <span>{formattedStartDate}</span>-<span>{formattedEndDate}</span></div>
+                    <div>total Price: <span>${totalPrice}</span></div>
 
 
                 </div>

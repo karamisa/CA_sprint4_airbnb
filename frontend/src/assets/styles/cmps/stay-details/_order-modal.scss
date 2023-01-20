@@ -1,7 +1,6 @@
 .order-modal-form {
     flex-direction: column;
     justify-content: space-between;
-    margin-top: 32px;
     gap: 24px;
     margin-top: 32px;
     margin-left: 8.333333333333332%;
@@ -13,6 +12,36 @@
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     max-width: 400px;
 
+    .order-form-header {
+        justify-content: space-between;
+
+        h4 {
+            span {
+                font-weight: 600;
+                font-size: 1.375em;
+            }
+        }
+
+
+        .order-rating-review {
+            font-size: 13px;
+            font-weight: 600;
+            align-items: center;
+            gap: 0.1875em;
+
+
+
+
+        }
+
+    }
+
+
+    .arrow-img {
+        width: 22px;
+        height: 22px;
+
+    }
 }
 
 
