@@ -14,6 +14,7 @@
 
     button:first-child{
         padding-left:16px;
+        text-align: center;
     }
 
     &:hover {
@@ -33,10 +34,12 @@
         border: 1px solid transparent;
         border-radius: 4px;
         margin: -1px;
+        line-break: strict;
         min-width: 80px;
         padding: 0 16px;
         font-size: 14px;
         color: $clr-text-primary;
+        flex-grow: 1;
     }
 
     .search-anywhere, .search-any-week {
@@ -45,13 +48,14 @@
 
     .search-add-guests {
         color: $clr-text-secondary;
+        margin-right: -8px; 
     }
     .search-btn{
         color: $clr-white;
         background-color: $clr-brand;
         border-radius: 50%;
         padding: 10px;
-        margin: 7px 7px 7px 0;
+        margin: 7px 7px 7px 7px;
         height: 32px;
         min-width: 32px;
         border: transparent;

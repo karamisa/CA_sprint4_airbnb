@@ -9,6 +9,7 @@ export const utilService = {
   formatCurrency,
   totalDays,
   formattedDate,
+  objectToSearchParams,
 }
 
 function makeId(length = 6) {
@@ -119,3 +120,22 @@ function formattedDate(timeStamp) {
   const date = new Date(timeStamp)
   return String(date.getDate()).padStart(2, '0') + "/" + String((date.getMonth() + 1)).padStart(2,'0') + "/" + date.getFullYear()
 }
+
+
+function objectToSearchParams(obj) {
+  let searchParams = new URLSearchParams()
+  function flattenObject(obj, parentKey) {
+    Object.keys(obj).forEach(key => {
+      const value = obj[key]
+      const newKey = parentKey ? `${parentKey}[${key}]` : key
+      if (typeof value === 'object' && value !== null) {
+        flattenObject(value, newKey)
+      } else {
+        searchParams.set(newKey, value)
+      }
+    })
+  }
+  flattenObject(obj)
+  return searchParams.toString()
+}
+

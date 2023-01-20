@@ -1,92 +1,57 @@
-export function GuestSelect() {
+import { Counter } from './counter.jsx'
+
+export function GuestSelect({ onSetField, guests }) {
+
+    function handleChange(field, value) {
+        if (field === 'adults') {
+            onSetField('guests', { ...guests, adults: value })
+        }
+        if (field === 'children') {
+            onSetField('guests', { ...guests, children: value })
+        }
+        if (field === 'infants') {
+            onSetField('guests', { ...guests, infants: value })
+        }
+        if (field === 'pets') {
+            onSetField('guests', { ...guests, pets: value })
+        }
+    }
+
+    const guestSelectOpts = [
+        {
+        label: 'Adults',
+        subLabel: 'Ages 13 or above',
+        field: 'adults'
+    },
+    {
+        label: 'Children',
+        subLabel: 'Ages 2-12',
+        field: 'children'
+    },
+    {
+        label: 'Infants',
+        subLabel: 'Under 2',
+        field: 'infants'
+    },
+    {
+        label: 'Pets',
+        subLabel: <a href="">Bringing a Service Animal?</a>,
+        field: 'pets'
+    }
+]
+
     return (
-        <div className="guest-select">
-            <div className="guest-select-adult flex justify-between">
-                <div className="guest-select-label">
-                    <div className="guest-select-adults">
-                        Adults
+        <div className='guest-select-list'>
+        {guestSelectOpts.map((opt, idx) => {
+            return (
+                <div className="guest-select-row" key={idx}>
+                    <div className="guest-select-label">
+                        <div className="guest-select-label-header">{opt.label}</div>
+                        <div className="guest-select-label-sub-header">{opt.subLabel}</div>
                     </div>
-                    <div className="adults-subheader">
-                        Ages 13 or above
-                    </div>
+                        <Counter field={opt.field} value={guests[opt.field]} onChange={handleChange} />
                 </div>
-                    <div className="guest-select-stepper-btn flex">
-                        <button className="stepper-btn">
-                            +
-                        </button>
-                        <div className="stepper-value">
-                            1
-                        </div>
-                        <button className="stepper-btn">
-                          - 
-                        </button>
-                    </div>
-            </div>
-            <div className="guest-select-children flex justify-between">
-                <div className="guest-select-label">
-                    <div className="guest-select-adults">
-                        Children
-                    </div>
-                    <div className="adults-subheader">
-                        Ages 2-12
-                    </div>
-                </div>
-
-                    <div className="guest-select-stepper-btn flex">
-                        <button className="stepper-btn">
-                            +
-                        </button>
-                        <div className="stepper-value">
-                            1
-                        </div>
-                        <button className="stepper-btn">
-                          -
-                        </button>
-                    </div>
-            </div>
-            <div className="guest-select-infants flex justify-between">
-                <div className="guest-select-label">
-                    <div className="guest-select-adults">
-                        Infants
-                    </div>
-                    <div className="adults-subheader">
-                        Under 2
-                    </div>
-                </div>
-
-                    <div className="guest-select-stepper-btn flex">
-                        <button className="stepper-btn" type="button" aria-label="Decrease number of adults">
-                            +
-                        </button>
-                        <div className="stepper-value">
-                            1
-                        </div>
-                        <button className="stepper-btn" type="button" aria-label="Increase number of adults">
-                          -
-                        </button>
-                    </div>
-            </div>
-            <div className="guest-select-pets flex justify-between" data-testid="search-block-filter-stepper-row-stepper-adults">
-                <div className="guest-select-label">
-                    <div className="guest-select-adults">
-                        Pets
-                    </div>
-                    <div className="adults-subheader">
-                        <a href="">Bringing a Service Animal?</a>
-                    </div>
-                </div>
-
-                    <div className="guest-select-stepper-btn flex">
-                        <button className="stepper-btn" type="button" aria-label="Decrease number of adults">
-                            +
-                        </button>
-                        <div className="stepper-value">
-                            1
-                        </div>
-                        <button className="stepper-btn" type="button" aria-label="Increase number of adults">
-                          -
-                        </button>
-                    </div>
-            </div>
-            </div>)
+            )
+        })}
+        </div>)
 }

@@ -1,8 +1,8 @@
 .search-form {
-    max-width: 850px;
     margin: 0 auto;
     z-index: 1;
     position: relative;
+    min-width: 850px;
 }
 
 .search-form-menu {
@@ -16,9 +16,11 @@
     background-color: $clr-bg;
     cursor: pointer;
 
+    // Location Tab
     .input-query {
         display: flex;
         flex: 1.25 0 0%;
+        min-width: 0;
         position: relative;
 
 
@@ -27,15 +29,17 @@
             border-radius: 32px;
             line-height: rem(16px);
             letter-spacing: 0.04em;
+            width: 100%;
         }
 
         .search-category:hover:not(.active) {
             background-color: $clr-hover-bg-dark
         }
+
         .region-select-container {
             cursor: default;
             position: absolute;
-            top:62px;
+            top: 62px;
             left: 0;
             background: $clr-white;
             border-radius: 32px;
@@ -44,14 +48,17 @@
             padding: 16px 32px;
             z-index: 3;
         }
-        
+
     }
 
+    // Check-In & Check-Out Tab
     .input-split-date {
         display: flex;
-        flex: 1.25 0 0%;
+        flex: 1 0 0%;
+        min-width: 0;
         justify-content: space-between;
         align-items: center;
+        width: 100%;
 
         &>* {
             border-radius: 32px;
@@ -65,30 +72,33 @@
             background-color: $clr-hover-bg-dark
         }
 
-        .date-select-container{
+        .date-select-container {
             cursor: default;
-            position:absolute;
+            position: absolute;
             left: 0;
             top: 62px;
             background: $clr-white;
             border-radius: 32px;
             box-shadow: 0 0 0 1px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 15%);
-            margin-top: 12px;
-            min-width: 100%;
-            padding: 16px 32px;
+            margin: 12px 0px auto;
+            width: 100%;
+            text-align: center;
             z-index: 3;
         }
     }
 
+    // Guests & Search-btn Tab
     .input-with-search {
         display: flex;
         flex: 1 0 0%;
+        min-width: 0;
         justify-content: space-between;
         align-items: center;
         border-radius: 32px;
+        
 
 
-        &>* {
+        .search-category {
             letter-spacing: 0.04em;
             padding: 14px 24px;
             line-height: rem(16px);
@@ -98,9 +108,9 @@
             background-color: $clr-hover-bg-dark
         }
 
-        .guest-select-container{
+        .guest-select-container {
             cursor: default;
-            position:absolute;
+            position: absolute;
             right: 0;
             top: 62px;
             background: $clr-white;
@@ -114,6 +124,9 @@
     }
 
     .search-category {
+            overflow: hidden;
+            max-width: 100%;
+            text-overflow: ellipsis;
         .search-form-label {
             font-size: rem(12px);
             font-family: cereal-medium;
@@ -123,11 +136,13 @@
         .search-form-desc {
             display: inline-block;
             font-size: rem(14px);
-            overflow: hidden;
             white-space: nowrap;
             color: $clr-text-secondary;
             letter-spacing: 0.04em;
+            width: 100%;
         }
+
+
 
         .search-form-desc::placeholder {
             color: $clr-text-secondary;
@@ -149,8 +164,9 @@
 
     .search-btn {
         height: 48px;
-        width: 48px;
+        min-width: 48px;
         padding: 16px;
+        margin: 7px 7px 7px 7px;
         position: relative;
         transition: 0.2s background-color cubic-bezier(0.35, 0, 0.65, 1);
     }

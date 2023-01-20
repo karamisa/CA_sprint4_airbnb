@@ -1,8 +1,8 @@
-export function RegionSelect({ setFields }) {
+export function RegionSelect({ onSetField }) {
   
   function onRegionSelect(region) {
     if (region === 'I\'m flexible') region = ''
-    setFields((prevFields) => ({ ...prevFields, location: region }))
+    onSetField('location', region)
   }
 
 
