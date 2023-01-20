@@ -8,6 +8,7 @@ export const utilService = {
   loadFromStorage,
   formatCurrency,
   totalDays,
+  formattedDate,
 }
 
 function makeId(length = 6) {
@@ -107,8 +108,14 @@ function formatCurrency(num) {
   return numFormat.format(num)
 }
 
-function totalDays(startDate, endDate){
+function totalDays(startDate, endDate) {
   const diffTime = Math.abs(endDate - startDate)
   return Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-  
+
+}
+
+
+function formattedDate(timeStamp) {
+  const date = new Date(timeStamp)
+  return String(date.getDate()).padStart(2, '0') + "/" + String((date.getMonth() + 1)).padStart(2,'0') + "/" + date.getFullYear()
 }

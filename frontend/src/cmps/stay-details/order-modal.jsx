@@ -26,9 +26,11 @@ export function OrderModal({ stay, reviews }) {
     const [showGuestPicker, setShowGuestPicker] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
 
-    const formattedPrice = "$" + stay.price
-    const formattedStartDate = new Date(dates.startDate).toLocaleString()
-    const formattedEndDate = new Date(dates.endDate).toLocaleString()
+    const formattedPrice = "$" + Math.round(stay.price)
+    // const formattedStartDate = new Date(dates.startDate).toLocaleString()
+    // const formattedEndDate = new Date(dates.endDate).toLocaleString()
+    const formattedStartDate = utilService.formattedDate(dates.startDate)
+    const formattedEndDate = utilService.formattedDate(dates.endDate)
     // const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
     const totalStay = utilService.totalDays(dates.startDate, dates.endDate)
     const totalServiceFee = "$" + (serviceFee * totalStay).toFixed(2)
