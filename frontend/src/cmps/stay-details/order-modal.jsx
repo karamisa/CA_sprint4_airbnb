@@ -29,7 +29,8 @@ export function OrderModal({ stay, reviews }) {
     const formattedPrice = "$" + stay.price
     const formattedStartDate = new Date(dates.startDate).toLocaleString()
     const formattedEndDate = new Date(dates.endDate).toLocaleString()
-    const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
+    // const totalStay = Math.round(((new Date(dates.endDate)) - (new Date(dates.startDate))) / (1000 * 60 * 60 * 24))
+    const totalStay = utilService.totalDays(dates.startDate, dates.endDate)
     const totalServiceFee = "$" + (serviceFee * totalStay).toFixed(2)
     const numOfReviews = reviews.length
     const isLogged = true
