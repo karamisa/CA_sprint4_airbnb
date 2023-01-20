@@ -25,6 +25,7 @@
 @import 'cmps/app-header';
 @import 'cmps/app-footer';
 @import 'cmps/user-msg';
+@import 'cmps/dashboard';
 
 // Components- stay index
 @import 'cmps/stay-index/stay-list.scss';
@@ -35,7 +36,7 @@
 @import 'cmps/stay-details/reviews-bar';
 @import 'cmps/stay-details/order-modal';
 
-// Components - Seach/Filter
+// Components - search/filter
 @import 'cmps/search-bar';
 @import 'cmps/region-select';
 @import 'cmps/search-form';

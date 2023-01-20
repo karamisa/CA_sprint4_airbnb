@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { OrderList } from '../cmps/util-cmps/order-list/order-list';
+import { TripList } from '../cmps/trip-list/trip-list';
 import { orderService } from '../services/order.service';
 
-export function Trip() {
+export function TripPage() {
   const [orders, setOrders] = useState(null);
 
   useEffect(() => {
@@ -19,9 +19,9 @@ export function Trip() {
     }
   }
   return (
-    <div>
+    <div className='main-layout'>
       <h1>Trips</h1>
-      <OrderList orders={orders} setOrders={setOrders} />
+      <TripList orders={orders} setOrders={setOrders} />
     </div>
   );
 }

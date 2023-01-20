@@ -30,6 +30,8 @@ export const useOrderStatus = (order) => {
       ...prevState,
       status: 'cancelled',
     }));
+
+    _save(orderForPrecessing);
   }
 
   // TODO do logic

@@ -1,3 +1,9 @@
+import { SearchBtn } from '../search-btn';
+
 export function DashboardPage() {
-  return <div>Dashboard</div>;
+  return (
+    <div>
+      <SearchBtn />
+    </div>
+  );
 }

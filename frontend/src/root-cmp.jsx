@@ -11,7 +11,7 @@ import { StayDetails } from './pages/stay-details.jsx';
 import { Hosting } from './pages/hosting.jsx';
 import { OrderPage } from './cmps/hosting/order-page';
 import { DashboardPage } from './cmps/hosting/dashboard-page';
-import { Trip } from './pages/trip';
+import { TripPage } from './pages/trip-page';
 
 export function RootCmp() {
   return (
@@ -22,7 +22,7 @@ export function RootCmp() {
           <Route element={<HomePage />} path='/' />
           <Route element={<StayIndex />} path='/stay' />
           <Route element={<StayDetails />} path='/stay/:stayId' />
-          <Route element={<Trip />} path='/trip' />
+          <Route element={<TripPage />} path='/trip' />
           <Route element={<Hosting />} path='/hosting'>
             <Route element={<OrderPage />} path='/hosting/order' />
             <Route element={<DashboardPage />} path='/hosting/dashboard' />

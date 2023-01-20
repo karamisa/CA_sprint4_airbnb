@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { orderService } from '../../services/order.service';
-import { OrderList } from '../util-cmps/order-list/order-list';
+import { OrderList } from './order-list/order-list';
 
 export function OrderPage() {
   const [orders, setOrders] = useState(null);
