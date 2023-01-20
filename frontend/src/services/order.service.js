@@ -8,7 +8,8 @@ export const orderService = {
     getById,
     remove,
     save,
-    getEmptyOrder
+    getEmptyOrder,
+    
 }
 const STORAGE_KEY = 'orders';
 
