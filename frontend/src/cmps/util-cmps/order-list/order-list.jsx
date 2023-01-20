@@ -1,18 +1,6 @@
-import { useEffect } from 'react';
-import { useOrderStatus } from '../../customHooks/useOrderStatus';
 import { Order } from './order';
 
 export function OrderList({ orders }) {
-  // const { order, placeOrder } = useOrderStatus();
-
-  // console.log('order:', order);
-
-  // useEffect(() => {
-  //   placeOrder(order);
-  // }, []);
-
-  // useEffect(() => {}, [order]);
-
   if (!orders) return <div></div>;
   return (
     <div>
