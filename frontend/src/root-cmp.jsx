@@ -9,8 +9,8 @@ import { ChatApp } from './pages/chat-app.jsx';
 import { StayIndex } from './pages/stay-index.jsx';
 import { StayDetails } from './pages/stay-details.jsx';
 import { Hosting } from './pages/hosting.jsx';
-import { Order } from './cmps/hosting/order';
-import { Dashboard } from './cmps/hosting/dashboard';
+import { Order } from './cmps/hosting/order-page';
+import { Dashboard } from './cmps/hosting/dashboard-page';
 
 export function RootCmp() {
   return (
