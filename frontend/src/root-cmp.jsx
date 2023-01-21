@@ -26,7 +26,7 @@ export function RootCmp() {
           <Route element={<UI />} path='/ui' />
           <Route element={<StayIndex />} path='/stay' />
           <Route element={<StayDetails />} path='/stay/:stayId' />
-          <Route element={<Book />} path='/book' />
+          <Route element={<Book />} path='/book/stay/:stayId' />
           <Route element={<TripPage />} path='/trip' />
           <Route element={<Hosting />} path='/hosting'>
             <Route element={<OrderPage />} path='/hosting/order' />

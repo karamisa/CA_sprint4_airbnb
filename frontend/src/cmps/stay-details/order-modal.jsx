@@ -45,8 +45,8 @@ export function OrderModal({ stay }) {
 
     function onClickReserve() {
         const paramsToSet = utilService.objectToSearchParams({ ...orderParams, guests: { ...orderParams.guests } })
-        console.log(paramsToSet)
-        // navigate(`/book/stays/${stay._id}?${paramsToSet}`)
+        // console.log(paramsToSet)
+        navigate(`/book/stay/${stay._id}?${paramsToSet}`)
     }
 
     const checkInSubHeading = (orderParams.checkIn) ? `${utilService.formattedDate(+orderParams.checkIn)}` : 'Add Date'
@@ -111,8 +111,10 @@ export function OrderModal({ stay }) {
 
                 {/* Reserve/CheckAvailability Button */}
 
+                
+
                 {(orderParams.checkIn && orderParams.checkOut) && <BtnSquareColor onClick={onClickReserve} children={'Reserve'}/>}
-                {(!orderParams.checkIn || !orderParams.checkOut) && <button className="akebnb-btn btn-reserve" onClick={()=>setOpenTab('checkIn')}>Check availability</button>}
+                {(!orderParams.checkIn || !orderParams.checkOut) && <BtnSquareColor onClick={()=> {setOpenTab('checkIn')}} children={'Check Availability'}/>}
 
 
                 <section className="order-details flex">

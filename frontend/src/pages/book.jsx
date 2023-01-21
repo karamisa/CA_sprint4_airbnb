@@ -17,8 +17,8 @@ import { LoginSignup } from '../cmps/login-signup'
 
 export function Book() {
     const navigate = useNavigate()
-    // const { stayId } = useParams()
-    const stayId = '622f337a75c7d36e498aaaf8'
+    const { stayId } = useParams()
+    // const stayId = '622f337a75c7d36e498aaaf8'
     const [stay, setStay] = useState(null)
     const location = useLocation()
     const params = new URLSearchParams(location.search)

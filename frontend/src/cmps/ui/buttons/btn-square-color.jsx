@@ -24,9 +24,10 @@ export function BtnSquareColor({ children, ...props }) {
       buttonRef.current.style.setProperty('--mouse-y', y);
     };
     buttonRef.current.addEventListener('mousemove', handleMouseMove);
+    const btn = buttonRef.current;
 
     return () => {
-      buttonRef.current.removeEventListener('mousemove', handleMouseMove);
+      btn.removeEventListener('mousemove', handleMouseMove);
     };
   }, [buttonRef]);
 
