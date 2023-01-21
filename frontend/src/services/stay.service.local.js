@@ -127,10 +127,10 @@ function _createDemoStays() {
       ],
       labels: ['national-parks'],
       host: {
-        _id: '622f3403e36c59e6164faf93',
-        fullname: 'Patty And Beckett',
+        _id: 'u101',
+        fullname: 'Muki Host',
         imgUrl:
-          'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/42.jpg',
+          "https://robohash.org/mukihost",
       },
       loc: {
         country: 'Portugal',
@@ -340,11 +340,11 @@ function _createDemoStays() {
       ],
       labels: ['campers', 'trending'],
       host: {
-        _id: '622f3401e36c59e6164fabab',
-        fullname: 'Angel',
+        _id: 'u101',
+        fullname: 'Muki Host',
         imgUrl:
-          'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/male/44.jpg',
-      },
+        "https://robohash.org/mukihost"
+            },
       loc: {
         country: 'Canada',
         countryCode: 'CA',
@@ -501,11 +501,11 @@ function _createDemoStays() {
       ],
       labels: ['ski'],
       host: {
-        _id: '622f3403e36c59e6164fb266',
-        fullname: 'Maria',
+        _id: 'u101',
+        fullname: 'Muki Host',
         imgUrl:
-          'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/68.jpg',
-      },
+        "https://robohash.org/mukihost"
+            },
       loc: {
         country: 'Portugal',
         countryCode: 'PT',

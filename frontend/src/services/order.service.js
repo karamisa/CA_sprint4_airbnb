@@ -69,11 +69,11 @@ function _createdDemoOrders() {
     let DEMO_ORDERS = [
             {
               "_id": "o1225",
-              "hostId": "u102",
+              "hostId": "u101",
               "buyer": {
-                "_id": "u101",
-                "fullname": "User 1",
-                "imgURL": ""
+                "_id": "u102",
+                "fullname": "Puki guest",
+                "imgURL": "https://robohash.org/pukiguest"
               },
               "totalPrice": 160,
               "startDate": "2025/10/15",
