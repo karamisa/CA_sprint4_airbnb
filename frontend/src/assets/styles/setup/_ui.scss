@@ -41,3 +41,9 @@
     );
   }
 }
+
+.container {
+  border: 1px solid $clr-border;
+  border-radius: $border-radius;
+  padding: 1rem;
+}

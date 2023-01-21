@@ -1,0 +1,22 @@
+// styles.scss
+@import '../setup/ui';
+
+.dashboard {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(630px, 1fr));
+  grid-gap: 20px;
+}
+.chart {
+  &-rectangle {
+    @extend .container;
+    aspect-ratio: 2/1;
+    max-width: 630px;
+    height: 100%;
+  }
+
+  &-square {
+    display: inline-block;
+    max-width: 250px;
+  }
+}
