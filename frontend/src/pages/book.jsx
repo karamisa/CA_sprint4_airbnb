@@ -1,13 +1,87 @@
+import { useEffect, useState } from 'react'
+import { useLocation, useParams, useNavigate } from 'react-router-dom'
+import { useForm } from '../customHooks/useForm.js'
+
+import { stayService } from '../services/stay.service.local.js'
+import { utilService } from '../services/util.service.js'
+
 import arrowLeftImg from '../assets/img/arrow-left.svg'
 import rareDiamond from '../assets/img/rare-diamond.svg'
 import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
 
-export function Book() {
 
+
+
+
+
+export function Book() {
+    const navigate = useNavigate()
+    // const { stayId } = useParams()
+    const stayId = '622f337a75c7d36e498aaaf8'
+    const [stay, setStay] = useState(null)
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+
+    // const [fields] = useForm(getOrderFields())
 
     const loggedinUser = true
     const isBooked = false  //after reservation success
+
+    console.log('stayId', stayId)
+    console.log('stay', stay)
+    const serviceFees = 11.2
+    const fields = getOrderFields()
+    console.log('fields', fields)
+    // const startDate = +params.get('checkIn') || Date.now()
+    // console.log('startDate', startDate)
+
+     useEffect(() => {
+        loadStay()
+    }, [])
+
+    async function loadStay() {
+        try {
+            const stay = await stayService.getById(stayId)
+            setStay(stay)
+        } catch (err) {
+            console.log('Had issues in stay details', err)
+            // showErrorMsg('Cannot load toy')
+            navigate('/')
+        }
+    }
+
+    function getOrderFields() {
+        // const buyer = {
+        //     _id: 'E101',
+        //     fullname: 'puki ja',
+        //     imgUrl: ''
+        // }
+        const startDate = +params.get('checkIn') || Date.now()
+        const endDate = +params.get('checkOut') || Date.now() + (1000 * 60 * 60 * 24)
+        const totalDays = +utilService.totalDays(startDate, endDate)
+        const guests = {
+            adults: +params.get('adults') || 1,
+            kids: +params.get('children') || 0,
+            infants: +params.get('infants') || 0,
+            pets: +params.get('pets') || 0,
+        }
+        // const stayToSet = {
+        //     _id: stay._id,
+        //     name: stay.name,
+        //     price: stay.price,
+        // }
+        // const hostId = stay.host._id
+        let totalFees
+        let totalStayPrice
+        let totalWithFees
+        if (stay) {
+            totalStayPrice = +(stay.price * utilService.totalDays(startDate, endDate)).toFixed(2)
+            totalFees = +(serviceFees * utilService.totalDays(startDate, endDate)).toFixed(2)
+            totalWithFees = +(totalStayPrice + (serviceFees * utilService.totalDays(startDate, endDate))).toFixed(2)
+        }
+        return { startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
+    }
 
 
     function onAddOrder() {
@@ -24,6 +98,7 @@ export function Book() {
         console.log('use nav to go one step back')
     }
 
+    if (!stay) return <div>Loading...</div>
     return (
         <section className="main-layout secondary-layout">
 
@@ -52,7 +127,7 @@ export function Book() {
                         <div className="rare-find flex justify-between">
                             <div>
                                 <h4>This is a rare find</h4>
-                                <h5 className="rare-host">STAY.HOST.NAME's place is usually booked.</h5>
+                                <h5 className="rare-host">{stay.host.fullname}'s place is usually booked.</h5>
                             </div>
                             <img src={rareDiamond} className="diamond-img" alt="arrowLeftImg" />
                         </div>
@@ -63,7 +138,7 @@ export function Book() {
                                 <h4 className="trip-subheader">Dates</h4>
                                 <h5 className="trip-details-data">datefrom - dateto</h5>
                             </div>
-                            <div class="flex justify-between">
+                            <div className="flex justify-between">
                                 <h4 className="trip-subheader">Guests</h4>
                                 <h5 className="trip-details-data">getFormattedGuests</h5>
                             </div>
@@ -105,11 +180,11 @@ export function Book() {
                 <section className="summary-card">
 
                     <div className="stay-details flex border-buttom">
-                        <img className="stay-img" src="stay.imgUrls[0]" alt="stay image" />
+                        <img className="stay-img" src={stay.imgUrls[0]} alt="stay image" />
                         <div className="stay-desc flex justify-between">
                             <div>
-                                <h4 className="stay-type">stay.type</h4>
-                                <h4 className="stay-name">stay.name </h4>
+                                <h4 className="stay-type">{stay.type}</h4>
+                                <h4 className="stay-name">{stay.name}</h4>
                             </div>
 
                             <div className="rating-review flex">
@@ -125,24 +200,20 @@ export function Book() {
                             <div className="cost-details flex border-buttom">
                                 <div className="base-cost flex justify-between">
                                     <span className="cost-calc">
-                                        stay.price x nights
+                                        ${stay.price} x {fields.totalDays} nights
                                     </span>
-                                    <span>
-                                        total.stay.price
-                                    </span>
+                                    <span>$ {fields.totalStayPrice}</span>
                                 </div>
                                 <div className="base-cost service flex justify-between">
                                     <span className="cost-calc">Service fee</span>
-                                    <span>
-                                        total.service.Fee
-                                    </span>
+                                    <span>${fields.totalFees}</span>
                                 </div>
                             </div>
 
                             <div className="total-container">
                                 <div className="cost-total flex justify-between">
                                     <span>Total</span>
-                                    <span>totalPrice</span>
+                                    <span>${fields.totalWithFees}</span>
                                 </div>
                             </div>
                         </div>

@@ -32,7 +32,7 @@ export function StayDetails() {
         } catch (err) {
             console.log('Had issues in stay details', err)
             // showErrorMsg('Cannot load toy')
-            navigate('/')
+            navigate('/stay')
         }
     }
 
