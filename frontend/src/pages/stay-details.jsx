@@ -135,7 +135,7 @@ export function StayDetails() {
                 </div>
 
                 <div className="stay-map border-buttom">
-                Where you'll be
+                    Where you'll be
                 </div>
 
                 <div className="stay-about-host border-buttom">

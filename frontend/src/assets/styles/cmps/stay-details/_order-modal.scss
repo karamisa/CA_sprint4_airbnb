@@ -12,6 +12,10 @@
     box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
     max-width: 400px;
 
+    &>*{
+        width: unset;
+    }
+
     .order-form-header {
         justify-content: space-between;
 
@@ -45,6 +49,10 @@
             justify-content: space-between;
             position: relative;
 
+
+            .check-out{
+                border-left: 1px solid $clr-text-primary;
+            }
 
             .picker {
                 display: flex;

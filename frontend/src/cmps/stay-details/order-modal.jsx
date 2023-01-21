@@ -1,3 +1,6 @@
+
+import { useLocation } from 'react-router-dom'
+
 import { useState } from 'react'
 import { orderService } from '../../services/order.service.js'
 import { utilService } from '../../services/util.service.js'
@@ -12,17 +15,19 @@ import arrowUpImg from '../../assets/img/arrow-up.svg'
 export function OrderModal({ stay, reviews }) {
 
     // console.log('stay', stay)
-
-    const dates = {  //temp data
-        startDate: 1672686753725,
-        endDate: 1673286756438
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+   
+    const dates = {
+        startDate: +params.get('checkIn') || null,
+        endDate: +params.get('checkOut') || null
     }
 
-    const guests = {  //temp data
-        adults: 2,
-        kids: 0,
-        infants: 0,
-        pets: 0,
+    const guests = {}
+    for (const [key, value] of params.entries()) {
+      if (key.startsWith('guests[')) {
+        guests[key.split('[')[1].split(']')[0] === 'children' ? 'kids' : key.split('[')[1].split(']')[0]] = parseInt(value, 10)
+      }
     }
 
 
