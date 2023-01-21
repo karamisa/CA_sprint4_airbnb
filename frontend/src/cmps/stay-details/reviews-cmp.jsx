@@ -3,8 +3,15 @@ import { useState } from 'react'
 
 export function ReviewsCmp({ reviewsToDisplay }) {
 
-    const [isExpanded, setIsExpanded] = useState(false)
+    const [expanded, setExpanded] = useState(Array(reviewsToDisplay.length).fill(false))
     const MAX_LENGTH = 100
+
+
+    const handleExpand = (index) => {
+        const newExpanded = [...expanded]
+        newExpanded[index] = !newExpanded[index]
+        setExpanded(newExpanded)
+    }
 
     if (!reviewsToDisplay || !Array.isArray(reviewsToDisplay)) return <div>Loading...</div>
 
@@ -18,10 +25,11 @@ export function ReviewsCmp({ reviewsToDisplay }) {
                         <span>Jan 2023</span>
                         {/* <span className="review-createdAt">{reviewsToDisplay.createdAt}</span> */}
                     </div>
-                    <p>{isExpanded ? review.txt : review.txt.substring(0, MAX_LENGTH)}</p>
-                    <button className="show-more" onClick={() => setIsExpanded(!isExpanded)}>
-                        {isExpanded ? 'Show less' : 'Show more'}
-                    </button>
+                    <p>{expanded[index] ? review.txt : review.txt.substring(0, MAX_LENGTH)}</p>
+                    {review.txt.length > MAX_LENGTH &&
+                    <button className="show-more" onClick={() => handleExpand(index)}>
+                        {expanded[index] ? 'Show less' : 'Show more'}
+                    </button>}
                 </div>
             ))
             }
