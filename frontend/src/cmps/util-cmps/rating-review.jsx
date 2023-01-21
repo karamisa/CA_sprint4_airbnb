@@ -22,7 +22,7 @@ export function RatingReview({ reviews }) {
 
     return (
         <Fragment>
-            <span>
+            <span className="avg-rating">
                 <FaStar />
                 {avgRating}
             </span>
