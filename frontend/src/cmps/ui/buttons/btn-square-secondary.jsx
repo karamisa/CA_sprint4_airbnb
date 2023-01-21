@@ -1,5 +1,9 @@
 import classes from './btn-square-secondary.module.css';
 
-export function BtnSquareSecondary(props) {
-  return <button className={classes.btnSquareSecond}>{props.children}</button>;
+export function BtnSquareSecondary({ children, ...props }) {
+  return (
+    <button {...props} className={classes.btnSquareSecond}>
+      {children}
+    </button>
+  );
 }
