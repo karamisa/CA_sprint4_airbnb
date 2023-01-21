@@ -1,7 +1,14 @@
-.btnSquareSecond {
+.btnSquareColor {
     padding: 13px 23px;
+    width: 100%;
+    min-width: 200px;
 
-    background-color: #FFFFFF;
+    background-position: calc((100 - var(--mouse-x, 0)) * 1%) calc((100 - var(--mouse-y, 0)) * 1%);
+    --mouse-x: 92;
+    --mouse-y: 73;
+
+    background-image: radial-gradient(circle, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
+    background-size: 200% 200%;
 
     border-color: #222222;
     border-radius: 8px;
@@ -10,7 +17,7 @@
 
     text-align: center;
 
-    color: #222222;
+    color: rgb(255, 255, 255);
     font-family: cereal-Medium;
     font-size: 1rem;
     line-height: 20px;
@@ -18,13 +25,7 @@
     transition: box-shadow 0.2s ease, transform 0.1s ease;
 }
 
-.btnSquareSecond:hover {
-    background-color: #F7F7F7;
-    border-color: #000000;
-
-}
-
-.btnSquareSecond:active {
+.btnSquareColor:active {
     animation: press 1s forwards;
     transition: .3s;
 }
