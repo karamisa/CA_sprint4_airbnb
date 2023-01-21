@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "../customHooks/useForm";
 
 import { SearchBtn } from "./search-btn";
@@ -9,11 +9,17 @@ import { GuestSelect } from "./guest-select.jsx";
 
 import { utilService } from "../services/util.service";
 
-export function SearchForm({ staySearchParams, handleToggle }) {
+export function SearchForm({ staySearchParams, handleToggle, tabToOpen }) {
     const navigate = useNavigate()
-    const [selectedTab, setSelectedTab] = useState('location')
+    const [selectedTab, setSelectedTab] = useState(tabToOpen)
     const { location, checkIn, checkOut, guests } = staySearchParams
     const [fields, setFields, handleChange] = useForm({ location, checkIn, checkOut, guests })
+    const inputRef = useRef(null)
+
+    useEffect(() => {
+    if (selectedTab === 'location') inputRef.current.focus() 
+    },[selectedTab])
+
 
     function onCategoryClick(category) {
         setSelectedTab(category)
@@ -39,8 +45,8 @@ export function SearchForm({ staySearchParams, handleToggle }) {
     }
 
 
-    const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(+checkIn)}` : 'Any Dates'
-    const checkOutSubHeading = (fields.checkOut) ? `${utilService.formattedDate(+checkOut)}` : 'Add Dates'
+    const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(fields.checkIn)}` : 'Add Dates'
+    const checkOutSubHeading = (fields.checkOut) ? `${utilService.formattedDate(fields.checkOut)}` : 'Add Dates'
 
     function getGuestsSubHeading() {
         var guestSubheading = ''
@@ -65,7 +71,7 @@ export function SearchForm({ staySearchParams, handleToggle }) {
                 <div className="input-query">
                     <div className={"search-category location" + checkForActiveClass('location')} onClick={() => onCategoryClick('location')}>
                         <div className="search-form-label">Where</div>
-                        <input type="text" name='location' className="search-form-desc" placeholder="Search destinations" value={fields.location} onChange={handleChange} />
+                        <input  ref={inputRef} type="text" name='location' className="search-form-desc" placeholder="Search destinations" value={fields.location} onChange={handleChange} />
                     </div>
                     {selectedTab === 'location' &&
                         <div className="region-select-container">

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchForm as StaySearchForm } from './search-form';
 import { SearchPreview } from './search-preview';
@@ -7,6 +7,7 @@ import { SearchPreview } from './search-preview';
 export function SearchBars() {
     const [searchFormOpen, setSearchFormOpen] = useState(false)
     const [searchParams] = useSearchParams()
+    const tabToOpen = useRef('location')
 
     const staySearchParams = {
         location: searchParams.get('location') || '',
@@ -24,12 +25,14 @@ export function SearchBars() {
         setSearchFormOpen(prev => !prev)
     }
     
-
-
+    function handlePreviewClick(tabToSet) {
+        tabToOpen.current = tabToSet
+        handleToggle()
+    }
 
     if (searchFormOpen) {
-        return (<StaySearchForm staySearchParams={staySearchParams} handleToggle={handleToggle}/>)
+        return (<StaySearchForm staySearchParams={staySearchParams} handleToggle={handleToggle} tabToOpen={tabToOpen.current} />)
     } else {
-        return (<SearchPreview staySearchParams={staySearchParams} handleToggle={handleToggle}/>)
+        return (<SearchPreview staySearchParams={staySearchParams} handlePreviewClick={handlePreviewClick} />)
     }
 }

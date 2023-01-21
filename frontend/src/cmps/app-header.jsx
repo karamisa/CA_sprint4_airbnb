@@ -9,7 +9,7 @@ export function AppHeader() {
         <div className='header-logo-container'>
           <Logo />
         </div>
-        <div className='header-search-bar-container flex'>
+        <div className='header-search-bar-container'>
           <StaySearchBars />
         </div>
         <div className='header-menu-container'>
