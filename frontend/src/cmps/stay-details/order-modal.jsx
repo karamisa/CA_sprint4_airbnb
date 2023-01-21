@@ -1,7 +1,7 @@
 
 import { useLocation } from 'react-router-dom'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { orderService } from '../../services/order.service.js'
 import { utilService } from '../../services/util.service.js'
 import { RatingReview } from '../util-cmps/rating-review.jsx'
@@ -11,183 +11,151 @@ import { GuestSelect } from "./../guest-select.jsx"
 
 import arrowDownImg from '../../assets/img/arrow-down.svg'
 import arrowUpImg from '../../assets/img/arrow-up.svg'
+import { useForm } from '../../customHooks/useForm.js'
 
 export function OrderModal({ stay, reviews }) {
-
-    // console.log('stay', stay)
-    const location = useLocation()
-    const params = new URLSearchParams(location.search)
-   
-    const dates = {
-        startDate: +params.get('checkIn') || null,
-        endDate: +params.get('checkOut') || null
-    }
-
-    const guests = {}
-    for (const [key, value] of params.entries()) {
-      if (key.startsWith('guests[')) {
-        guests[key.split('[')[1].split(']')[0] === 'children' ? 'kids' : key.split('[')[1].split(']')[0]] = parseInt(value, 10)
-      }
-    }
-
-
-    const serviceFee = 11.2
-
     const [showDatePicker, setShowDatePicker] = useState(false)
     const [showGuestPicker, setShowGuestPicker] = useState(false)
     const [modalIsOpen, setModalIsOpen] = useState(false)
-
-    const stayPrice = Math.round(stay.price)
-    const formattedStartDate = utilService.formattedDate(dates.startDate)
-    const formattedEndDate = utilService.formattedDate(dates.endDate)
-    const totalStay = utilService.totalDays(dates.startDate, dates.endDate)
-    const totalStayPrice = Math.round(stay.price * totalStay)
-    const totalServiceFee = Math.round((serviceFee * totalStay))
-    const numOfReviews = reviews.length
-    const isLogged = true
-    const totalPrice = Math.round(totalStayPrice + totalServiceFee)
-    const guestsCount = guests.adults + guests.kids
-
-    const orderPrices = { stayPrice, totalStay, totalStayPrice, totalServiceFee, totalPrice }
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const [fields, setFields, handleChange] = useForm(getOrderFields())
 
 
-    function setOrder() {
-        const order = orderService.getEmptyOrder()
-        const newOrder = {
-            ...order,
-            buyer: {
-                _id: 'E101',
-                fullname: 'puki ja',
-                imgUrl: ''
-            },
-            //   buyer: {
-            //     _id: loggedinUser._id,
-            //     fullname: loggedinUser.fullname,
-            //     imgUrl: loggedinUser.imgUrl,
-            //   },
-            stay: {
-                _id: stay._id,
-                name: stay.name,
-                price: stay.price,
-                imgUrls: stay.imgUrls.slice(0, 3),
-                loc: {
-                    address: stay.loc.address,
-                },
-            },
-            hostId: stay.host._id,
+    function onSetField(field, value) {
+        console.log('field', field)
+        if (field === 'checkIn') setFields((prevFields) => ({ ...prevFields, startDate: value }))
+        if (field === 'checkOut') setFields((prevFields) => ({ ...prevFields, endDate: value }))
+        if (field === 'guests') setFields((prevFields) => ({ ...prevFields, guests: { ...value, kids: prevFields.guests.children } }))
+        else setFields((prevFields) => ({ ...prevFields, [field]: value }))
+    }
+
+    function getOrderFields() {
+        const buyer = {
+            _id: 'E101',
+            fullname: 'puki ja',
+            imgUrl: ''
         }
-
-        newOrder.totalPrice = (stay.price * totalStay) + (serviceFee * totalStay)
-        newOrder.startDate = dates.startDate
-        newOrder.endDate = dates.endDate
-
-        console.log('newOrder', newOrder)
-        // addOrder(newOrder)
+        const startDate = +params.get('checkIn') || null
+        const endDate = +params.get('checkOut') || null
+        const guests = {
+            adults: +params.get('adults') || 1,
+            kids: +params.get('children') || 0,
+            infants: +params.get('infants') || 0,
+            pets: +params.get('pets') || 0,
+        }
+        const stayToSet = {
+            _id: stay._id,
+            name: stay.name,
+            price: stay.price,
+        }
+        const hostId = stay.host._id
+        const totalPrice = Math.round(stayToSet.price * utilService.totalDays(startDate, endDate))
+        return { buyer, startDate, endDate, guests, stay: stayToSet, hostId, totalPrice }
     }
 
 
+    const formatteDetails = {
+        startDate: utilService.formattedDate(fields.startDate),
+        endDate: utilService.formattedDate(fields.endDate),
+        totalStay: utilService.totalDays(fields.startDate, fields.endDate),
+        totalStayPrice: fields.totalPrice,
+        totalServiceFee: Math.round(((11.2) * utilService.totalDays(fields.startDate, fields.endDate))),
+        stayPrice: Math.round(stay.price),
+        numOfReviews: reviews.length,
+        //  totalPrice: Math.round(fields.totalStayPrice + fields.totalServiceFee),
+        guestsCount: fields.guests.adults + fields.guests.kids,
+    }
 
     function onOrderSubmit(ev) {
         ev.preventDefault()
-        if (!modalIsOpen) setOrder()
+        // if (!modalIsOpen) setOrder()
         //go to form page
-        if (!isLogged) return
-
+        // if (!isLogged) return
         setModalIsOpen(!modalIsOpen)
+        //Temp until order page is ready
+        orderService.save(fields)
         if (modalIsOpen) console.log('reservation set!')
     }
 
     function openReviewModal() {
         console.log('review modal to add')
     }
-
-
-    // const onOrderSubmit = async (values) => {
-    //     try{
-    //        values.labels = [values.type]
-    //       await saveOrder(values, goBack)
-    //     } catch(err){
-    //       console.log('Cannot save order: ', err)
-    //     }
-    //   }
-
-    //   const goBack = () => {
-    //     navigate('/stay/:id')
-    //   }
-
-
     return (
         <section className="order-modal">
             <form className="order-modal-form flex" onSubmit={onOrderSubmit}>
+
                 <header className="order-form-header flex">
-                    <h4><span>${stayPrice}</span> night</h4>
+                    <h4><span>${formatteDetails.totalStayPrice}</span> night</h4>
                     <div className="order-rating-review flex">
                         <RatingReview reviews={stay.reviews} />
                         <span>•</span>
-                        <div className="stay-rating" onClick={openReviewModal}>{numOfReviews} reviews</div>
+                        <div className="stay-rating" onClick={openReviewModal}>
+                            {formatteDetails.numOfReviews} reviews
+                        </div>
                     </div>
                 </header>
 
                 <section className="picker-container">
                     <section className="date-picker-modal">
                         {showDatePicker && <DateSelect
-                            checkIn={dates.startDate}
-                            checkOut={dates.endDate}
+                            checkIn={fields.startDate}
+                            checkOut={fields.endDate}
+                            onSetField={onSetField}
                             className="date-picker"
                         />}
-                        {/* <DatePicker
-                           onChange={setDates}
-                           value={dates}
-                          /> */}
                     </section>
                     <section className="dates-selection flex">
 
                         <div onClick={() => setShowDatePicker(true)} className="check-in picker">
-                            <label htmlFor="check-in">CHECK-IN</label>
+                            <div className='checkin-heading' >Check-In</div>
+                            <div className='checkin-sub-heading'>{(fields.startDate) ? formatteDetails.startDate : 'Add Date'}</div>
+                            {/* <label htmlFor="check-in">CHECK-IN</label>
                             <input
                                 type="text"
                                 placeholder="MM/DD/YYYY"
-                                value={formattedStartDate}
-                            />
+                                value={formatteDetails.startDate}
+                            /> */}
                         </div>
 
                         <div onClick={() => setShowDatePicker(true)} className="check-out picker">
-                            <label htmlFor="check-out">CHECK-OUT</label>
+                            <div className='checkout-heading'>Check-Out</div>
+                            <div className='checkout-sub-heading'>{(fields.endDate) ? formatteDetails.endDate : 'Add Date'}</div>
+                            {/* <label htmlFor="check-out">CHECK-OUT</label>
                             <input
                                 type="text"
                                 placeholder="MM/DD/YYYY"
-                                value={formattedEndDate}
-                            />
+                                value={formatteDetails.endDate}
+                            /> */}
                         </div>
                     </section>
 
-                    <div
-                        onClick={() => setShowGuestPicker(!showGuestPicker)}
-                        className="guest-picker"
-                    >
-                        <label htmlFor="guests">GUESTS</label>
+                    <div className="guest-picker">
+                        <div className="guests-heading">Guests</div>
+                        <div className="guests-sub-heading">{formatteDetails.guestsCount}</div>
+                        {/* <label htmlFor="guests" onClick={() => setShowGuestPicker(!showGuestPicker)}>GUESTS</label>
                         <input
                             type="text"
-                            value={guestsCount}
+                            value={formatteDetails.guestsCount}
                             style={{ color: 'black', backgroundColor: 'white' }}
                             disabled
-                        />
+                        /> */}
                         {!showGuestPicker ? (
                             <img src={arrowDownImg} className="arrow-img" alt="arrowDownImg" />
                         ) : (
                             <img src={arrowUpImg} className="arrow-img" alt="arrowUpImg" />
                         )}
-                        {showGuestPicker && <GuestSelect guests={guests} />}
+                        {showGuestPicker && <GuestSelect guests={{ ...fields.guests, children: fields.guests.kids }} onSetField={onSetField} />}
                     </div>
                 </section>
 
                 <button className="akebnb-btn btn-reserve">
-                    {!totalStay ? (<>Check availability</>) : (<>Reserve</>)}
+                    {!formatteDetails.totalStay ? (<>Check availability</>) : (<>Reserve</>)}
                 </button>
 
                 <section className="order-details flex">
-                    {dates.startDate && dates.endDate && (
-                        <OrderDetails orderPrices={orderPrices} />
+                    {fields.startDate && fields.endDate && (
+                        <OrderDetails orderPrices={formatteDetails} />
                     )}
                 </section>
             </form>
@@ -195,15 +163,11 @@ export function OrderModal({ stay, reviews }) {
             {modalIsOpen && (
                 <div className="order-confirmation-modal">
                     <p>Your reservation was accepted!</p>
-                    <div>number of guests: <span>{guestsCount}</span></div>
-                    <div>dates: <span>{formattedStartDate}</span>-<span>{formattedEndDate}</span></div>
-                    <div>total Price: <span>${totalPrice}</span></div>
-
-
+                    <div>number of guests: <span>{formatteDetails.guestsCount}</span></div>
+                    <div>dates: <span>{formatteDetails.startDate}</span>-<span>{formatteDetails.endDate}</span></div>
+                    <div>total Price: <span>${formatteDetails.totalPrice}</span></div>
                 </div>
             )}
-
-
         </section>
     )
 

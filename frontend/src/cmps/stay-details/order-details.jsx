@@ -1,7 +1,6 @@
 
 
 export function OrderDetails({ orderPrices }) {
-
     return(
         <>
         <p className="no-charge-msg" style={{ textAlign: 'center' }}>You won't be charged yet</p>

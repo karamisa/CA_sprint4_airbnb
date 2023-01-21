@@ -37,7 +37,10 @@ export function SearchForm({ staySearchParams, handleToggle, tabToOpen }) {
             location: fields.location,
             checkIn: (fields.checkIn) ? fields.checkIn.getTime() : '',
             checkOut: (fields.checkOut) ? fields.checkOut.getTime() : '',
-            guests: fields.guests
+            adults: fields.guests.adults,
+            children: fields.guests.children,
+            infants: fields.guests.infants,
+            pets: fields.guests.pets,
         }
         const searchParams = utilService.objectToSearchParams(searchObject)
         navigate(`/stay?${searchParams}`)

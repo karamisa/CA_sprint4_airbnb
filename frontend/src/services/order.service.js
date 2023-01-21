@@ -36,6 +36,7 @@ async function remove(orderId) {
 }
 
 async function save(order) {
+    console.log('order', order);
     if (order._id) {
         return storageService.put(STORAGE_KEY, order)
     } else {
@@ -43,7 +44,7 @@ async function save(order) {
     }
 }
 
-function getEmptyOrder(){
+function getEmptyOrder(startDate=null, endDate=null, guests={adults:0, kids:0, infants:0, pets:0}, stay={_id:null, name:null}){
     return {
         _id:null,
         hostId: null,
@@ -55,15 +56,10 @@ function getEmptyOrder(){
             imgUrl: ''
         },
         totalPrice: 0,
-        startDate: null,
-        endDate: null,
-        guests: {
-            adults: 0,
-            kids: 0,
-            infants: 0,
-            pets: 0,
-        },
-        stay: null,
+        startDate,
+        endDate,
+        guests,
+        stay,
         msgs: [],
         status: 'pending' 
     }

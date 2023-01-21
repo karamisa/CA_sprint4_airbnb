@@ -14,10 +14,10 @@ export function SearchBars() {
         checkIn: searchParams.get('checkIn') ? new Date(+searchParams.get('checkIn')) : '',
         checkOut: searchParams.get('checkOut') ? new Date(+searchParams.get('checkOut')) : '',
         guests: {
-            adults: +searchParams.get('guests[adults]') || 0,
-            children: +searchParams.get('guests[children]') || 0,
-            infants: +searchParams.get('guests[infants]') || 0,
-            pets: +searchParams.get('guests[pets]') || 0,
+            adults: +searchParams.get('adults') || 0,
+            children: +searchParams.get('children') || 0,
+            infants: +searchParams.get('infants') || 0,
+            pets: +searchParams.get('pets') || 0,
         }
     }
 
