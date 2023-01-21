@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service'
+import { userService } from '../services/user.service.local'
 import { ImgUploader } from '../cmps/img-uploader'
 
 export function LoginSignup(props) {
