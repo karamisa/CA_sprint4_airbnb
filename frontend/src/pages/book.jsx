@@ -1,11 +1,12 @@
 import arrowLeftImg from '../assets/img/arrow-left.svg'
 import rareDiamond from '../assets/img/rare-diamond.svg'
+import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
 
 export function Book() {
 
 
-    const loggedinUser = false
+    const loggedinUser = true
     const isBooked = false  //after reservation success
 
 
@@ -19,15 +20,26 @@ export function Book() {
     }
 
 
+    function onGoBack() {
+        console.log('use nav to go one step back')
+    }
+
     return (
         <section className="main-layout secondary-layout">
 
             <header className="booking-title flex">
                 <div className="icon-svg">
-                    <img src={arrowLeftImg} className="arrow-img" alt="arrowLeftImg" />
+                    <img src={arrowLeftImg} className="arrow-img" alt="arrowLeftImg" onClick={onGoBack} />
                 </div>
                 <div>
-                    <h2>Request to book</h2>
+                    {!isBooked &&
+                        <h2>Request to book</h2>
+                    }
+                    {isBooked &&
+                        <div className="success-title flex">
+                            <img src={greenCheck} className="icon-svg greenCheck-img" alt="greenCheckImg" />
+                            <h2>Reservation success!</h2>
+                        </div>}
                 </div>
             </header>
 
@@ -65,8 +77,7 @@ export function Book() {
                                     : (<div>
                                         <h3 className="login-msg">Please login to book</h3>
                                         <span>login component</span>
-                                        <LoginSignup/>
-                                        {/* <LoginSignup isLoginPage={true} redirectOnSuccess={false} /> */}
+                                        <LoginSignup />
                                     </div>)}
                             </>
                         }
@@ -75,7 +86,9 @@ export function Book() {
                                 <h3 className="success-msg">We look forward to hosting you!</h3>
                                 {loggedinUser && <button onClick={onGoToTrips}>Review Trips</button>}
                                 <div className="success-txt flex">
-                                    {/* <IconCmp iconType="greenCheck" /> */}
+                                    <div className="icon-svg">
+                                        <img src={greenCheck} className="greenCheck-img" alt="greenCheckImg" />
+                                    </div>
                                     <h4 className="res-success-txt">Reservation success!</h4>
                                 </div>
                             </>
