@@ -176,7 +176,7 @@ export function OrderModal({ stay, reviews }) {
                     </div>
                 </section>
 
-                <button className="btn-reserve">
+                <button className="akebnb-btn btn-reserve">
                     {!totalStay ? (<>Check availability</>) : (<>Reserve</>)}
                 </button>
 

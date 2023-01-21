@@ -1,8 +1,10 @@
 import { StayPreview } from './stay-preview';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export function StayList({ stays }) {
   const navigate = useNavigate();
+  const currSearch = useLocation()
+
 
   if (!stays)
     <ul className='card-grid stay-list clean-list main-layout'>Loading..</ul>;
@@ -13,7 +15,7 @@ export function StayList({ stays }) {
         return (
           <li
             key={stay._id}
-            onClick={() => navigate(`/stay/${stay._id}`)}
+            onClick={() => navigate(`/stay/${stay._id}${currSearch.search}`)}
             className='stay-list-item'>
             <StayPreview stay={stay} />
           </li>
