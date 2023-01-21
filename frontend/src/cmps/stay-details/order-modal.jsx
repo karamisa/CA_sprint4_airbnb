@@ -131,8 +131,8 @@ export function OrderModal({ stay, reviews }) {
                 <section className="picker-container">
                     <section className="date-picker-modal">
                         {showDatePicker && <DateSelect
-                            chekcInDate={dates.startDate}
-                            checkOutDate={dates.endDate}
+                            checkIn={dates.startDate}
+                            checkOut={dates.endDate}
                             className="date-picker"
                         />}
                         {/* <DatePicker
@@ -177,7 +177,7 @@ export function OrderModal({ stay, reviews }) {
                         ) : (
                             <img src={arrowUpImg} className="arrow-img" alt="arrowUpImg" />
                         )}
-                        {showGuestPicker && <GuestSelect />}
+                        {showGuestPicker && <GuestSelect guests={guests} />}
                     </div>
                 </section>
 
