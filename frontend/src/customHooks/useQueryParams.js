@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import {  useLocation } from 'react-router-dom'
+import {  useNavigate, useLocation } from 'react-router-dom'
 
 export function useQueryParams(paramName) {
   const location = useLocation()
+  const navigate = useNavigate()
   const [paramValue, setParamValue] = useState(
     new URLSearchParams(location.search).get(paramName) || ''
   )
@@ -13,8 +14,8 @@ export function useQueryParams(paramName) {
     else searchParams.delete(paramName)
     const newSearch = searchParams.toString()
     const newLocation = `${location.pathname}?${newSearch}`
-    window.history.pushState({}, '', newLocation)
-  }, [paramValue, location.search, location.pathname, paramName])
+    navigate(newLocation)
+  }, [paramValue, location.search, location.pathname, paramName, navigate])
 
   return [paramValue, setParamValue]
 }

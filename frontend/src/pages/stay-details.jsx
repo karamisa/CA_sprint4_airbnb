@@ -120,7 +120,7 @@ export function StayDetails() {
                     </div>
 
                     <div className="stay-review-order">
-                        <OrderModal stay={stay} reviews={stay.reviews} />
+                        <OrderModal stay={stay} />
                     </div>
 
                 </section>
