@@ -12,7 +12,7 @@ export function OrderDetails({ orderPrices }) {
         </div>
         <div className="total flex justify-between">
             <p>Total</p>
-            <p>${orderPrices.totalPrice}</p>
+            <p>${orderPrices.totalStayPrice + orderPrices.totalServiceFee}</p>
         </div>
     </>
     )

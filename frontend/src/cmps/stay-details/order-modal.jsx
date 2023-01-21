@@ -50,11 +50,11 @@ export function OrderModal({ stay, reviews }) {
             price: stay.price,
         }
         const hostId = stay.host._id
-        const totalPrice = Math.round(stayToSet.price * utilService.totalDays(startDate, endDate))
+        const totalPrice = Math.round(stay.price * utilService.totalDays(startDate, endDate))
         return { buyer, startDate, endDate, guests, stay: stayToSet, hostId, totalPrice }
     }
 
-
+console.log(fields)
     const formatteDetails = {
         startDate: utilService.formattedDate(fields.startDate),
         endDate: utilService.formattedDate(fields.endDate),
@@ -63,7 +63,6 @@ export function OrderModal({ stay, reviews }) {
         totalServiceFee: Math.round(((11.2) * utilService.totalDays(fields.startDate, fields.endDate))),
         stayPrice: Math.round(stay.price),
         numOfReviews: reviews.length,
-        //  totalPrice: Math.round(fields.totalStayPrice + fields.totalServiceFee),
         guestsCount: fields.guests.adults + fields.guests.kids,
     }
 
@@ -130,7 +129,7 @@ export function OrderModal({ stay, reviews }) {
                         </div>
                     </section>
 
-                    <div className="guest-picker">
+                    <div className="guest-picker" onClick={() => setShowGuestPicker(!showGuestPicker)}>
                         <div className="guests-heading">Guests</div>
                         <div className="guests-sub-heading">{formatteDetails.guestsCount}</div>
                         {/* <label htmlFor="guests" onClick={() => setShowGuestPicker(!showGuestPicker)}>GUESTS</label>
@@ -145,7 +144,7 @@ export function OrderModal({ stay, reviews }) {
                         ) : (
                             <img src={arrowUpImg} className="arrow-img" alt="arrowUpImg" />
                         )}
-                        {showGuestPicker && <GuestSelect guests={{ ...fields.guests, children: fields.guests.kids }} onSetField={onSetField} />}
+                        {showGuestPicker && <GuestSelect guests={fields.guests} onSetField={onSetField} />}
                     </div>
                 </section>
 
@@ -165,7 +164,7 @@ export function OrderModal({ stay, reviews }) {
                     <p>Your reservation was accepted!</p>
                     <div>number of guests: <span>{formatteDetails.guestsCount}</span></div>
                     <div>dates: <span>{formatteDetails.startDate}</span>-<span>{formatteDetails.endDate}</span></div>
-                    <div>total Price: <span>${formatteDetails.totalPrice}</span></div>
+                    <div>total Price: <span>${formatteDetails.totalStayPrice + formatteDetails.totalServiceFee}</span></div>
                 </div>
             )}
         </section>
