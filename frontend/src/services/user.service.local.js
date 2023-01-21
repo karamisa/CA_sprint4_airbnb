@@ -10,6 +10,7 @@ export const userService = {
     signup,
     login,
     logout,
+    updateUser,
     getUsers,
     getEmptyCredentials,
     getLoggedinUser,
@@ -41,6 +42,10 @@ async function login(credentials) {
 
 function getUsers() {
     return storageService.query(USER_KEY)
+}
+
+function updateUser(user){
+    return storageService.put(USER_KEY, user)
 }
 
 function getEmptyCredentials(fullname = '', username = '', password = 'secret') {

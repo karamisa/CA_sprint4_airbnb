@@ -44,8 +44,48 @@ async function remove(stayId) {
 
 function getEmptyStay() {
   return {
-    _id: utilService.makeId(),
+    _id:'',
     name: '',
+    type: '',
+    imgUrls: ['http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436390/om97cgufeacwlric2r5w.jpg'],
+    price: 100000000000,
+    summary: 'An imaginary place far far away',
+    capacity: 100,
+    amenities: ['learn to fly'],
+    labels: [''],
+    host:{
+      _id:'',
+      fullname:'',
+      imgUrl:'',
+    },
+    loc: {
+      country: 'Canada',
+      countryCode: 'CA',
+      city: 'Montreal',
+      address: 'Montréal, QC, Canada',
+      lat: -73.54985,
+      lng: 45.52797,
+    },
+    reviews: [
+      {
+        id: 'kErRhY',
+        txt: 'The place was great, as was the host! I would recommend staying here.',
+        rate: {
+          cleanliness: 4.8,
+          communication: 4.4,
+          'check-in': 4.8,
+          accuracy: 2.7,
+          location: 5,
+          value: 4,
+        },
+        by: {
+          _id: '622f3407e36c59e6164fc058',
+          fullname: 'Rowan',
+          imgUrl:
+            'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/58.jpg',
+        },
+      }
+    ]
   }
 }
 

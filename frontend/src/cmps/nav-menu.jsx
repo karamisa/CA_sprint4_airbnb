@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 
-export function NavMenu({user, onLogout}) {
+export function NavMenu({user, onLogout, onAddStay}) {
     const [navbarOpen, setNavbarOpen] = useState(false)
 
     const handleToggle = () => {
@@ -28,6 +28,8 @@ export function NavMenu({user, onLogout}) {
             {user.isOwner && <Link to="/hosting/order">View Orders (host)</Link>}
             {/* <a href="#">Sign up</a> */}
             {/* <a href="#">Log out</a> */}
+
+            <button onClick={onAddStay}>{user.isOwner? 'Add Another Stay' : 'Become a host (Add stay)' }</button>
             <button onClick={onLogout}>Log out</button>
         </div>}
     </nav>
