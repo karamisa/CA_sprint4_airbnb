@@ -2,7 +2,7 @@ import { utilService } from "../services/util.service";
 import { SearchBtn } from "./search-btn";
 
 
-export function SearchPreview({handleToggle, staySearchParams}) {
+export function SearchPreview({handlePreviewClick, staySearchParams}) {
     const {location, checkIn, checkOut, guests} = staySearchParams
 
     const locationContent = location || 'Anywhere'
@@ -10,13 +10,13 @@ export function SearchPreview({handleToggle, staySearchParams}) {
     const guestsContent = guests.adults ? `${guests.adults} guests` : 'Add guests'
     
     return (
-            <div className="search-preview" onClick={handleToggle}>
-                <button className="search-anywhere">{locationContent}</button>
-                <span className="splitter"></span>
-                <button className="search-any-week">{dateContent}</button>
-                <span className="splitter"></span>
-                <button className="search-add-guests">{guestsContent}</button>
-                <SearchBtn />
-            </div>
-    );
+        <div className="search-preview" >
+            <button className="search-anywhere" onClick={()=> handlePreviewClick('location')}>{locationContent}</button>
+            <span className="splitter"></span>
+            <button className="search-any-week" onClick={()=> handlePreviewClick('checkIn')}>{dateContent}</button>
+            <span className="splitter"></span>
+            <button className="search-add-guests" onClick={()=> handlePreviewClick('guests')}>{guestsContent}</button>
+            <SearchBtn />
+        </div>
+)
 }
