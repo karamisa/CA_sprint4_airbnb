@@ -25,7 +25,7 @@ export function StayIndex() {
     setSearchParams((prevFilter) => ({ ...prevFilter, [field]: value }));
   }
 
-  if (!stays)
+  if (!stays?.length)
     return <section className='stay-list-container card-grid'>loading</section>;
   return (
     <section style={{ position: 'relative' }}>
@@ -35,7 +35,7 @@ export function StayIndex() {
         currCategory={filterBy.category}
       />
       {<StayList stays={stays} />}
-      {!stays.length && <h1>No stays found</h1>}
+      {stays && !stays.length && <h1 style={{textAlign: 'center', marginTop: '20px'}}>No stays found</h1>}
       <AppFooter className='main-layout fixed' />
     </section>
   );
