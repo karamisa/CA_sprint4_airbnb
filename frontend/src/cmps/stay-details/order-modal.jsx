@@ -55,10 +55,6 @@ export function OrderModal({ stay }) {
       infants: orderParams.guests.infants,
       pets: orderParams.guests.pets,
     });
-<<<<<<< HEAD
-    console.log(paramsToSet)
-=======
->>>>>>> 0e5769930e465ee5c6e9bb39dd9b279d28824899
     navigate(`/book/stay/${stay._id}?${paramsToSet}`);
   }
 
