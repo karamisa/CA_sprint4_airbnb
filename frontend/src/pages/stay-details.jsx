@@ -11,6 +11,7 @@ import { AppFooter } from '../cmps/header-footer/app-footer.jsx';
 import { AppHeader } from '../cmps/header-footer/app-header.jsx';
 import { RatingReview } from '../cmps/ui/rating-review.jsx';
 import { ImgGrid } from '../cmps/ui/img-grid.jsx';
+import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx';
 
 export function StayDetails() {
   const [stay, setStay] = useState(null);
@@ -74,7 +75,7 @@ export function StayDetails() {
                 {stay.loc.address}
               </div>
             </div>
-            <button className='save-stay active' onClick={onSaveStay}>
+            <button style={{border: "none"}} className='save-stay active' onClick={onSaveStay}>
               ❤ Save
             </button>
           </div>
@@ -107,11 +108,11 @@ export function StayDetails() {
                   <AmenitiesList amenitiesToDisplay={amenitiesToDisplay} />
                 )}
                 {stay.amenities.length > 10 && (
-                  <button
+                  <BtnSquare
                     className='rev-btn show-all-amenities'
                     onClick={onToggleAmenities}>
                     show all {stay.amenities.length} amenities{' '}
-                  </button>
+                  </BtnSquare>
                 )}
               </div>
               <div className='stay-calendar'></div>
@@ -146,7 +147,7 @@ export function StayDetails() {
           <div className='stay-map border-buttom'>Where you'll be</div>
 
           <div className='stay-about-host border-buttom'>
-            <button className='rev-btn contact host'>contact host</button>
+            <BtnSquare className='rev-btn contact host'>contact host</BtnSquare>
           </div>
         </section>
       </section>
