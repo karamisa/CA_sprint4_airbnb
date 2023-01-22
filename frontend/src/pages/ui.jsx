@@ -3,6 +3,7 @@ import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color';
 import { BtnSquare } from '../cmps/ui/buttons/btn-square';
 import { BtnNavRounded } from '../cmps/ui/buttons/btn-nav-rounded';
 import { BtnNavRoundedBlack } from '../cmps/ui/buttons/btn-nav-rounded-black';
+import { Heart } from '../cmps/ui/heart';
 
 export function UI() {
   return (
@@ -14,6 +15,7 @@ export function UI() {
       <p>Nav buttons has active state like NavLink </p>
       <BtnNavRounded>BtnNavRounded</BtnNavRounded>
       <BtnNavRoundedBlack>BtnNavRoundedBlack</BtnNavRoundedBlack>
+      <Heart />
     </div>
   );
 }

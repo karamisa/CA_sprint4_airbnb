@@ -13,6 +13,13 @@
   .image-slider {
     margin-bottom: 12px;
     border-radius: $border-radius;
+
+    .heart {
+      position: absolute;
+      top: 30px;
+      left: 80%;
+      z-index: 5;
+    }
   }
   p {
     font-size: 15px;
