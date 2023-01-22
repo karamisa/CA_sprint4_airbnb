@@ -1,7 +1,14 @@
 .stay-details {
   letter-spacing: 0.007em;
 
-  & > * {
+  .title {
+    font-family: cereal-regular;
+    font-size: 1.625rem;
+    line-height: 1.875rem;
+  }
+
+
+  &>* {
     margin-top: 18px;
   }
 
@@ -46,7 +53,7 @@
     .stay-review-details {
       width: 58.3333%;
 
-      & > * {
+      &>* {
         padding-block: 32px;
       }
     }

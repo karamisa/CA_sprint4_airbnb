@@ -14,6 +14,7 @@ import { LoginSignup } from '../cmps/login-signup'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { RatingReview } from '../cmps/ui/rating-review.jsx'
 import { useSelector } from 'react-redux'
+import { Logo } from '../cmps/logo.jsx'
 
 
 
@@ -105,10 +106,10 @@ export function BookPage() {
         if (infants) guestSubheading += `, ${infants} infants`
         if (pets) guestSubheading += `, ${pets} pets`
         if (guestSubheading === '1 adults')
-          guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+            guestSubheading = guestSubheading.replace('1 adults', '1 adult')
         if (!guestSubheading) guestSubheading = 'Add Guests'
         return guestSubheading
-      }
+    }
 
 
     function onAddOrder() {
@@ -162,7 +163,12 @@ export function BookPage() {
 
 
     if (!stay) return <div>Loading...</div>
-    return (
+    return (<>
+        <header className="app-header main-layout booking-header">
+            <div className='header-logo-container'>
+                <Logo />
+            </div>
+        </header>
         <section className="main-layout secondary-layout">
 
             <header className="booking-title flex">
@@ -296,5 +302,5 @@ export function BookPage() {
 
 
         </section>
-    )
+    </>)
 }

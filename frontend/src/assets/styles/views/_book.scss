@@ -1,9 +1,15 @@
+
+.app-header.booking-header{
+    position: unset;
+}
+
 .booking-title {
     padding-top: 64px;
     padding-bottom: 48px;
     gap: 32px;
     align-items: center;
     border: none;
+    line-height: 1.25rem;
 
     .icon-svg {
         width: 35px;

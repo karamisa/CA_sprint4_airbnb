@@ -60,7 +60,7 @@ export function StayDetails() {
         <AppHeader className='secondary-layout' />
       </header>
       <section className='secondary-layout'>
-        <h1>Stay Details</h1>
+
         <section className='stay-details'>
           <h1 className='title'>{stay.name}</h1>
           <div className='flex justify-between'>
