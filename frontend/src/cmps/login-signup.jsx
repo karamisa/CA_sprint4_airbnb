@@ -3,8 +3,12 @@ import { userService } from '../services/user.service.local';
 import { ImgUploader } from '../cmps/img-uploader';
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service';
 import { login, signup } from '../store/user.actions';
+import { BtnSquareColor } from './ui/buttons/btn-square-color';
+import { BtnSquare } from './ui/buttons/btn-square';
+import { BtnSquareBlack } from './ui/buttons/btn-square-black';
+import {BtnNavRounded} from './ui/buttons/btn-nav-rounded'
 
-export function LoginSignup() {
+export function LoginSignup({ closeModal }) {
   const [credentials, setCredentials] = useState({
     username: '',
     password: '',
@@ -34,12 +38,14 @@ export function LoginSignup() {
   }
 
   async function onLogin(ev = null) {
+    console.log('onLogin');
     if (ev) ev.preventDefault();
     if (!credentials.username) return;
 
     try {
       const user = await login(credentials);
       showSuccessMsg(`Welcome: ${user.fullname}`);
+      closeModal()
     } catch (err) {
       showErrorMsg('Cannot login');
     }
@@ -64,14 +70,12 @@ export function LoginSignup() {
 
   return (
     <div className='login-page'>
-      <div>
-        <button className='btn-link' onClick={toggleSignup}>
-          {!isSignup ? 'Signup' : 'Login'}
-        </button>
-      </div>
+      <header className='login-signup-header'>
+        <h1>Login in or sign up</h1>
+      </header>
       {!isSignup && (
         <form className='login-form' onSubmit={onLogin}>
-          <select
+          {/* <select
             name='username'
             value={credentials.username}
             onChange={handleChange}>
@@ -81,11 +85,11 @@ export function LoginSignup() {
                 {user.fullname}
               </option>
             ))}
-          </select>
-          {/* <input
+          </select> */}
+          <input
                         type="text"
                         name="username"
-                        value={username}
+                        value={credentials.username}
                         placeholder="Username"
                         onChange={handleChange}
                         required
@@ -94,14 +98,31 @@ export function LoginSignup() {
                     <input
                         type="password"
                         name="password"
-                        value={password}
+                        value={credentials.password}
                         placeholder="Password"
                         onChange={handleChange}
                         required
-                    /> */}
-          <button>Login!</button>
+                    />
+          <BtnSquareColor>
+            Login
+          </BtnSquareColor>
         </form>
+
       )}
+      <div className='demo-login-btns'>
+        <BtnSquare onClick={() => {
+          credentials.username = 'host';
+          onLogin();
+        }}>
+          DEMO: login as Muki Host
+        </BtnSquare>
+        <BtnSquareBlack onClick={() => {
+          credentials.username = 'guest';
+          onLogin();
+        }}>
+          DEMO: login as Puki Guest
+        </BtnSquareBlack>
+      </div>
       <div className='signup-section'>
         {isSignup && (
           <form className='signup-form' onSubmit={onSignup}>
@@ -133,6 +154,11 @@ export function LoginSignup() {
             <button>Signup!</button>
           </form>
         )}
+      </div>
+      <div className='sign-up-btn-container'>
+        <BtnNavRounded className='btn-link' onClick={toggleSignup}>
+          {!isSignup ? 'Signup' : 'Login'}
+        </BtnNavRounded>
       </div>
     </div>
   );

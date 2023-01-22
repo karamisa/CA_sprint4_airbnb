@@ -11,6 +11,7 @@ import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { RatingReview } from '../cmps/ui/rating-review.jsx'
+import { useSelector } from 'react-redux'
 
 
 
