@@ -58,6 +58,12 @@ export function SearchForm({ staySearchParams, handleToggle, tabToOpen }) {
         if (fields.guests.infants) guestSubheading += `, ${fields.guests.infants} infants`
         if (fields.guests.pets) guestSubheading += `, ${fields.guests.pets} pets`
         if (!guestSubheading) guestSubheading = 'Add Guests'
+        if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')){
+            guestSubheading = guestSubheading.replace('1 adults', '1 adult');
+            guestSubheading = guestSubheading.replace('1 children', '1 child');
+            guestSubheading = guestSubheading.replace('1 infants', '1 infant');
+            guestSubheading = guestSubheading.replace('1 pets', '1 pet');
+          }
         return guestSubheading
     }
 

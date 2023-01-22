@@ -3,6 +3,7 @@ import { Counter } from '../counter.jsx'
 export function GuestSelect({ onSetField, guests }) {
 
     function handleChange(field, value) {
+        if (value <= 0) value = 0
         if (field === 'adults') {
             onSetField('guests', { ...guests, adults: value })
         }

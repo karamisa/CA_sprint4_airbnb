@@ -2,14 +2,14 @@ import { useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 
 import { utilService } from '../../services/util.service.js';
-import arrowDownImg from '../../assets/img/arrow-down.svg';
-import arrowUpImg from '../../assets/img/arrow-up.svg';
+import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 
 import { OrderDetails } from './order-details.jsx';
 import { DateSelect } from './../search-cmps/date-select.jsx';
 import { GuestSelect } from './../search-cmps/guest-select.jsx';
 import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx';
 import { RatingReview } from '../ui/rating-review.jsx';
+
 
 export function OrderModal({ stay }) {
   const [openTab, setOpenTab] = useState();
@@ -72,8 +72,12 @@ export function OrderModal({ stay }) {
     if (children) guestSubheading += `, ${children} children`;
     if (infants) guestSubheading += `, ${infants} infants`;
     if (pets) guestSubheading += `, ${pets} pets`;
-    if (guestSubheading.startsWith('1'))
-      guestSubheading = guestSubheading.replace('1', '1 guest');
+    if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')){
+      guestSubheading = guestSubheading.replace('1 adults', '1 adult');
+      guestSubheading = guestSubheading.replace('1 children', '1 child');
+      guestSubheading = guestSubheading.replace('1 infants', '1 infant');
+      guestSubheading = guestSubheading.replace('1 pets', '1 pet');
+    }
     if (!guestSubheading) guestSubheading = 'Add Guests';
     return guestSubheading;
   }
@@ -131,6 +135,7 @@ export function OrderModal({ stay }) {
             <button className='clean-button' onClick={() => (openTab === 'guests' ? setOpenTab(null) : setOpenTab('guests'))}>
             <div className='order-heading'>Guests</div>
             <div className='order-sub-heading'>{getGuestsSubHeading()}</div>
+            <div className="drawer-arrow-icon">{(openTab === 'guests' ? <IoIosArrowUp/> : <IoIosArrowDown/>)}</div>
             </button>
             {openTab === 'guests' && (
               <div className='guest-select-container'>
