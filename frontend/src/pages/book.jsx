@@ -54,10 +54,13 @@ export function Book() {
     }
 
     function getOrderFields() {
-        const buyer = {
-            _id: user._id,
-            fullname: user.fullname,
-            imgUrl: user.imgUrl,
+        let buyer = {}
+        if (user) {
+            buyer = {
+                _id: user._id,
+                fullname: user.fullname,
+                imgUrl: user.imgUrl,
+            }
         }
         const startDate = +params.get('checkIn') || Date.now()
         const endDate = +params.get('checkOut') || Date.now() + (1000 * 60 * 60 * 24)
