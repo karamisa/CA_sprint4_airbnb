@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AppFooter } from '../cmps/header-footer/app-footer';
 import { AppHeader } from '../cmps/header-footer/app-header';
 import { TripList } from '../cmps/trip-list/trip-list';
@@ -6,6 +7,8 @@ import { orderService } from '../services/order.service';
 
 export function TripPage() {
   const [orders, setOrders] = useState(null);
+  const loggedinUser = useSelector((storeState) => storeState.userModule.user);
+  // console.log('loggedinUser:', loggedinUser);
 
   useEffect(() => {
     loadOrders();
@@ -13,7 +16,7 @@ export function TripPage() {
 
   async function loadOrders() {
     try {
-      const orders = await orderService.query();
+      const orders = await orderService.query({ buyerId: loggedinUser._id });
       console.log('orders:', orders);
       setOrders(orders);
     } catch (err) {

@@ -6,7 +6,7 @@ export function Order({ order }) {
     useOrderStatus(order);
 
   if (!orderForPrecessing) return <></>;
-  console.log('order:', orderForPrecessing);
+  // console.log('order:', orderForPrecessing);
   return (
     <>
       <td>{orderForPrecessing.buyer.fullname}</td>

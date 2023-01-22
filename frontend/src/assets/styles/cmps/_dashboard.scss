@@ -4,19 +4,19 @@
 .dashboard {
   display: grid;
 
-  grid-template-columns: repeat(auto-fill, minmax(630px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(490px, 1fr));
   grid-gap: 20px;
 }
 .chart {
   &-rectangle {
     @extend .container;
     aspect-ratio: 2/1;
-    max-width: 630px;
+    max-width: 490px;
     height: 100%;
   }
 
   &-square {
     display: inline-block;
-    max-width: 250px;
+    max-width: 160px;
   }
 }
