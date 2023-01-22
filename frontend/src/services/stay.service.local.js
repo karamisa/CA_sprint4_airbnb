@@ -22,6 +22,11 @@ async function query(filterBy) {
         return stay.labels.includes(filterBy.category)
         })
   }
+  if (filterBy.location) {
+    stays = stays.filter((stay) => {
+      return stay.loc.country.toLowerCase().includes(filterBy.location.toLowerCase())
+    })
+  }
   return stays
 }
 

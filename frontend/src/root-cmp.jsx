@@ -11,7 +11,7 @@ import { OrderPage } from './cmps/hosting/order-page';
 import { DashboardPage } from './cmps/hosting/dashboard-page';
 import { TripPage } from './pages/trip-page';
 import { UI } from './pages/ui';
-import { Book } from './pages/book';
+import { BookPage } from './pages/book-page';
 
 export function RootCmp() {
   return (
@@ -22,7 +22,7 @@ export function RootCmp() {
         <Route element={<UI />} path='/ui' />
         <Route element={<StayIndex />} path='/stay' />
         <Route element={<StayDetails />} path='/stay/:stayId' />
-        <Route element={<Book />} path='/book/stay/:stayId' />
+        <Route element={<BookPage />} path='/book/stay/:stayId' />
         <Route element={<TripPage />} path='/trip' />
         <Route element={<Hosting />} path='/hosting'>
           <Route element={<OrderPage />} path='/hosting/order' />

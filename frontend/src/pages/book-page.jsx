@@ -20,7 +20,7 @@ import { useSelector } from 'react-redux'
 
 
 
-export function Book() {
+export function BookPage() {
     const navigate = useNavigate()
     const { stayId } = useParams()
     // const stayId = '622f337a75c7d36e498aaaf8'

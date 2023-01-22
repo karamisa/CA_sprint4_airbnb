@@ -11,7 +11,11 @@ export function StayIndex() {
   const [searchParams, setSearchParams] = useSearchParams();
   const stays = useSelector((storeState) => storeState.stayModule.stays);
 
-  const filterBy = { category: searchParams.get('category') };
+  //TODO: add more filters for params 
+  const filterBy = { 
+    category: searchParams.get('category'),
+    location: searchParams.get('location') };
+
 
   useEffect(() => {
     loadStays(filterBy);
@@ -30,7 +34,8 @@ export function StayIndex() {
         handleChange={handleChange}
         currCategory={filterBy.category}
       />
-      <StayList stays={stays} />
+      {<StayList stays={stays} />}
+      {!stays.length && <h1>No stays found</h1>}
       <AppFooter className='main-layout fixed' />
     </section>
   );
