@@ -6,7 +6,7 @@ import { logout, updateUser } from '../../store/user.actions.js';
 
 import { Logo } from '../logo';
 import { NavMenu } from '../nav-menu';
-import { SearchBars as StaySearchBars } from '../search-bars';
+import { SearchBars as StaySearchBars } from '../search-cmps/search-bars';
 import { saveStay } from '../../store/stay/stay.action';
 
 export function AppHeader({ className, ...props }) {

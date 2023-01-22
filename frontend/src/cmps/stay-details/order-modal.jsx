@@ -6,8 +6,8 @@ import arrowDownImg from '../../assets/img/arrow-down.svg';
 import arrowUpImg from '../../assets/img/arrow-up.svg';
 
 import { OrderDetails } from './order-details.jsx';
-import { DateSelect } from './../date-select.jsx';
-import { GuestSelect } from './../guest-select.jsx';
+import { DateSelect } from './../search-cmps/date-select.jsx';
+import { GuestSelect } from './../search-cmps/guest-select.jsx';
 import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx';
 import { RatingReview } from '../ui/rating-review.jsx';
 
@@ -72,8 +72,8 @@ export function OrderModal({ stay }) {
     if (children) guestSubheading += `, ${children} children`;
     if (infants) guestSubheading += `, ${infants} infants`;
     if (pets) guestSubheading += `, ${pets} pets`;
-    if (guestSubheading === '1 adults')
-      guestSubheading = guestSubheading.replace('1 adults', '1 adult');
+    if (guestSubheading.startsWith('1'))
+      guestSubheading = guestSubheading.replace('1', '1 guest');
     if (!guestSubheading) guestSubheading = 'Add Guests';
     return guestSubheading;
   }
@@ -111,35 +111,34 @@ export function OrderModal({ stay }) {
             )}
           </section>
           <section className='dates-selection flex'>
-            <div
+            <button
               onClick={() => setOpenTab('checkIn')}
-              className='check-in picker'>
-              <div className='checkin-heading'>Check-In</div>
-              <div className='checkin-sub-heading'>{checkInSubHeading}</div>
-            </div>
+              className='clean-button check-in picker'>
+              <div className='order-heading'>Check-In</div>
+              <div className='order-sub-heading'>{checkInSubHeading}</div>
+            </button>
 
-            <div
+            <button
               onClick={() => setOpenTab('checkOut')}
-              className='check-out picker'>
-              <div className='checkout-heading'>Check-Out</div>
-              <div className='checkin-sub-heading'>{checkOutSubHeading}</div>
-            </div>
+              className='clean-button check-out picker'>
+              <div className='order-heading'>Check-Out</div>
+              <div className='order-sub-heading'>{checkOutSubHeading}</div>
+            </button>
           </section>
 
           {/* Guests */}
-          <div className='guest-picker' onClick={() => setOpenTab('guests')}>
-            <div className='guests-heading'>Guests</div>
-            <div className='guests-sub-heading'>{getGuestsSubHeading()}</div>
-            <img
-              src={openTab === 'guests' ? arrowUpImg : arrowDownImg}
-              className='arrow-img'
-              alt={openTab === 'guests' ? 'arrowUpImg' : 'arrowDownImg'}
-            />
+          <div className='guest-picker'>
+            <button className='clean-button' onClick={() => (openTab === 'guests' ? setOpenTab(null) : setOpenTab('guests'))}>
+            <div className='order-heading'>Guests</div>
+            <div className='order-sub-heading'>{getGuestsSubHeading()}</div>
+            </button>
             {openTab === 'guests' && (
-              <GuestSelect
-                guests={orderParams.guests}
-                onSetField={onSetField}
-              />
+              <div className='guest-select-container'>
+                <GuestSelect
+                  guests={orderParams.guests}
+                  onSetField={onSetField}
+                />
+              </div>
             )}
           </div>
         </section>
