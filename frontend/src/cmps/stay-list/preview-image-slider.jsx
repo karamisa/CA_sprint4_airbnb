@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Heart } from '../ui/heart';
 
 export function PreviewImageSlider({ imgUrl }) {
   // const [currentIndex, setCurrentIndex] = useState(0);
@@ -13,6 +14,9 @@ export function PreviewImageSlider({ imgUrl }) {
 
   return (
     <div className='image-slider square-ratio'>
+      <span className='heart'>
+        <Heart />
+      </span>
       {/* <button onClick={handlePrevClick}>Prev</button> */}
       {/* <img src={images[currentIndex]} alt={`Image ${currentIndex + 1}`} /> */}
       <img src={imgUrl} alt='stay' />
