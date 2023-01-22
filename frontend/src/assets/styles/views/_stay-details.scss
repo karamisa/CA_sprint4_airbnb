@@ -8,6 +8,23 @@
   }
 
 
+  .name-subtitle {
+    gap: 0.5rem;
+  }
+
+  .save-stay {
+    border: none;
+    padding: 0.5rem;
+
+    .heart {
+      display: flex;
+
+      .details-heart {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
   &>* {
     margin-top: 18px;
   }

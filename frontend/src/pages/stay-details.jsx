@@ -1,39 +1,41 @@
-import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 
-import { stayService } from '../services/stay.service.local.js';
+import { stayService } from '../services/stay.service.local.js'
 
-import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx';
-import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx';
-import { ReviewBar } from '../cmps/stay-details/review-bar.jsx';
-import { OrderModal } from '../cmps/stay-details/order-modal.jsx';
-import { AppFooter } from '../cmps/header-footer/app-footer.jsx';
-import { AppHeader } from '../cmps/header-footer/app-header.jsx';
-import { RatingReview } from '../cmps/ui/rating-review.jsx';
-import { ImgGrid } from '../cmps/ui/img-grid.jsx';
-import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx';
+import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
+import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
+import { ReviewBar } from '../cmps/stay-details/review-bar.jsx'
+import { OrderModal } from '../cmps/stay-details/order-modal.jsx'
+import { AppFooter } from '../cmps/header-footer/app-footer.jsx'
+import { AppHeader } from '../cmps/header-footer/app-header.jsx'
+import { RatingReview } from '../cmps/ui/rating-review.jsx'
+import { ImgGrid } from '../cmps/ui/img-grid.jsx'
+import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx'
+import { DetailsHeart } from '../cmps/ui/details-heart.jsx'
 
 export function StayDetails() {
-  const [stay, setStay] = useState(null);
-  const { stayId } = useParams();
-  const navigate = useNavigate();
+  const [stay, setStay] = useState(null)
+  const { stayId } = useParams()
+  const navigate = useNavigate()
+  const [like, setLike] = useState(false)
 
   useEffect(() => {
-    loadStay();
-  }, []);
+    loadStay()
+  }, [])
 
-  const imgsToDisplay = stay?.imgUrls?.slice(0, 5);
-  const amenitiesToDisplay = stay?.amenities?.slice(0, 10);
-  const reviewsToDisplay = stay?.reviews?.slice(0, 6);
+  const imgsToDisplay = stay?.imgUrls?.slice(0, 5)
+  const amenitiesToDisplay = stay?.amenities?.slice(0, 10)
+  const reviewsToDisplay = stay?.reviews?.slice(0, 6)
 
   async function loadStay() {
     try {
-      const stay = await stayService.getById(stayId);
-      setStay(stay);
+      const stay = await stayService.getById(stayId)
+      setStay(stay)
     } catch (err) {
-      console.log('Had issues in stay details', err);
+      console.log('Had issues in stay details', err)
       // showErrorMsg('Cannot load toy')
-      navigate('/stay');
+      navigate('/stay')
     }
   }
 
@@ -41,7 +43,11 @@ export function StayDetails() {
 
   function openReviewMap() {}
 
-  function onSaveStay() {}
+  function onSaveStay() {
+    setLike(!like)
+    console.log('save stay')
+    console.log('like', like)
+  }
 
   function onOpenStayGallery() {
     console.log('open gallery');
@@ -75,8 +81,9 @@ export function StayDetails() {
                 {stay.loc.address}
               </div>
             </div>
-            <button style={{border: "none"}} className='save-stay active' onClick={onSaveStay}>
-              ❤ Save
+            <button className='save-stay active' onClick={onSaveStay}>
+              <div className="heart">
+                <DetailsHeart cb={(like) => setLike(like) }/></div>
             </button>
           </div>
 
