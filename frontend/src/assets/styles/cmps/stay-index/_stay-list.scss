@@ -10,17 +10,22 @@
 }
 
 .preview {
+  text-align: left;
+
   .image-slider {
     margin-bottom: 12px;
     border-radius: $border-radius;
 
     .heart {
       position: absolute;
-      top: 30px;
-      left: 80%;
-      z-index: 5;
+      display: flex;
+      flex-flow: row-reverse;
+      padding-inline-start: -11px;
+      padding-right: 43px;
+      padding-top: 15px;
     }
   }
+
   p {
     font-size: 15px;
     line-height: 19px;

@@ -1,13 +1,13 @@
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useRef, useState } from "react";
-import { useForm } from "../customHooks/useForm";
+import { useForm } from "../../customHooks/useForm";
 
 import { SearchBtn } from "./search-btn";
 import { RegionSelect } from "./region-select";
 import { DateSelect } from "./date-select.jsx";
 import { GuestSelect } from "./guest-select.jsx";
 
-import { utilService } from "../services/util.service";
+import { utilService } from "../../services/util.service";
 
 export function SearchForm({ staySearchParams, handleToggle, tabToOpen }) {
     const navigate = useNavigate()
