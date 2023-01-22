@@ -4,6 +4,8 @@ import { useForm } from '../customHooks/useForm.js'
 
 import { stayService } from '../services/stay.service.local.js'
 import { utilService } from '../services/util.service.js'
+import { orderService } from '../services/order.service.js'
+
 
 import arrowLeftImg from '../assets/img/arrow-left.svg'
 import rareDiamond from '../assets/img/rare-diamond.svg'
@@ -11,9 +13,7 @@ import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { RatingReview } from '../cmps/ui/rating-review.jsx'
-
-
-
+import { useSelector } from 'react-redux'
 
 
 
@@ -24,23 +24,20 @@ export function Book() {
     const [stay, setStay] = useState(null)
     const location = useLocation()
     const params = new URLSearchParams(location.search)
+    const user = useSelector(state => state.userModule.user)
 
-    // const [fields] = useForm(getOrderFields())
-
-    const loggedinUser = false
+    const loggedinUser = (!user) ? false : true
     let isBooked = false  //after reservation success
 
-    console.log('stayId', stayId)
-    console.log('stay', stay)
     const serviceFees = 11.2
     const fields = getOrderFields()
     console.log('fields', fields)
-    // const startDate = +params.get('checkIn') || Date.now()
-    // console.log('startDate', startDate)
 
-     useEffect(() => {
+    useEffect(() => {
         loadStay()
     }, [])
+
+
 
     async function loadStay() {
         try {
@@ -48,17 +45,17 @@ export function Book() {
             setStay(stay)
         } catch (err) {
             console.log('Had issues in stay details', err)
-            // showErrorMsg('Cannot load toy')
-            navigate('/')
+            // showErrorMsg('Cannot load stay')
+            navigate('/stay')
         }
     }
 
     function getOrderFields() {
-        // const buyer = {
-        //     _id: 'E101',
-        //     fullname: 'puki ja',
-        //     imgUrl: ''
-        // }
+        const buyer = {
+            _id: user._id,
+            fullname: user.fullname,
+            imgUrl: user.imgUrl,
+        }
         const startDate = +params.get('checkIn') || Date.now()
         const endDate = +params.get('checkOut') || Date.now() + (1000 * 60 * 60 * 24)
         const totalDays = +utilService.totalDays(startDate, endDate)
@@ -68,12 +65,8 @@ export function Book() {
             infants: +params.get('infants') || 0,
             pets: +params.get('pets') || 0,
         }
-        // const stayToSet = {
-        //     _id: stay._id,
-        //     name: stay.name,
-        //     price: stay.price,
-        // }
-        // const hostId = stay.host._id
+        let stayToSet = {}
+        let hostId
         let totalFees
         let totalStayPrice
         let totalWithFees
@@ -81,13 +74,24 @@ export function Book() {
             totalStayPrice = +(stay.price * utilService.totalDays(startDate, endDate)).toFixed(2)
             totalFees = +(serviceFees * utilService.totalDays(startDate, endDate)).toFixed(2)
             totalWithFees = +(totalStayPrice + (serviceFees * utilService.totalDays(startDate, endDate))).toFixed(2)
+            stayToSet = {
+                _id: stay._id,
+                name: stay.name,
+                price: stay.price,
+                loc: stay.loc,
+            }
+            hostId = stay.host._id
+
+
         }
-        return { startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
+        return { buyer, stayToSet, hostId, startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
     }
 
 
     function onAddOrder() {
         console.log('add order')
+        // const newOrder = setOrder()
+        orderService.save(setOrder())
 
     }
 
@@ -99,8 +103,40 @@ export function Book() {
 
     function onGoBack() {
         navigate(-1)
-        // console.log('use nav to go one step back')
     }
+
+
+    function setOrder() {
+        return (
+            {
+                hostId: fields.hostId,
+                buyer: {
+                    _id: fields.buyer._id,
+                    fullname: fields.buyer.fullname,
+                    imgURL: fields.buyer.imgURL
+                },
+                totalPrice: fields.totalWithFees,
+                startDate: fields.startDate,
+                endDate: fields.endDate,
+                guests: {
+                    adults: fields.guests.adults,
+                    kids: fields.guests.kids,
+                    infants: fields.guests.infants,
+                    pets: fields.guests.pets,
+                },
+                stay: {
+                    _id: fields.stayToSet._id,
+                    name: fields.stayToSet.name,
+                    price: fields.stayToSet.price,
+                    loc: fields.stayToSet.loc,
+                },
+                msgs: [],
+                status: 'pending' // pending, approved
+            }
+        )
+
+    }
+
 
     if (!stay) return <div>Loading...</div>
     return (
@@ -193,8 +229,8 @@ export function Book() {
 
                             <div className="rating-review flex">
                                 <span className="avg-rating">
-                                <RatingReview reviews={stay.reviews} />
-                                    </span><span>•</span><span className="reviews">({stay.reviews.length} reviews)</span>
+                                    <RatingReview reviews={stay.reviews} />
+                                </span><span>•</span><span className="reviews">({stay.reviews.length} reviews)</span>
                                 {/* <RatingReview reviews={stay.reviews} /> */}
                             </div>
                         </div>
