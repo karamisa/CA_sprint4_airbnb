@@ -8,6 +8,7 @@ export function Trip({ order }) {
   return (
     <>
       <td>{orderForPrecessing.stay.name}</td>
+      <td>{orderForPrecessing.hostId}</td>
       <td>
         {orderForPrecessing.endDate} - {orderForPrecessing.startDate}
       </td>

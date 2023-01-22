@@ -19,8 +19,14 @@ export function NavMenu({ user, onLogout, onAddStay }) {
       <div>
         {isOpen && (
           <div className='modal'>
-            {component}
-            <button onClick={closeModal}>Close Modal</button>
+            <div className='content-container'>
+              <div className='close-modal-btn-container'>
+                <button className='close-modal-btn' onClick={closeModal}>
+                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false"><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
+                </button>
+              </div>
+              {component}
+            </div>
           </div>
         )}
       </div>
@@ -52,7 +58,7 @@ export function NavMenu({ user, onLogout, onAddStay }) {
         {navbarOpen &&
           (!user ? (
             <div className='menu-links'>
-              <Link onClick={() => openModal(<LoginSignup />)}>Log in</Link>
+              <Link onClick={() => openModal(<LoginSignup closeModal={closeModal} />)}>Log in</Link>
             </div>
           ) : (
             <div className='menu-links'>

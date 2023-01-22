@@ -8,6 +8,7 @@ export function TripList({ orders }) {
         <thead>
           <tr>
             <th>Stay</th>
+            <th>Host</th>
             <th>Dates</th>
             <th>Cost</th>
             <th>Status</th>

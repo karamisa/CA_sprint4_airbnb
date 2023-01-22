@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service';
 import { stayService } from '../../services/stay.service.local';
-import { login, logout, signup, updateUser } from '../../store/user.actions.js';
-import { LoginSignup } from '../login-signup';
+import { logout, updateUser } from '../../store/user.actions.js';
+
 import { Logo } from '../logo';
 import { NavMenu } from '../nav-menu';
 import { SearchBars as StaySearchBars } from '../search-bars';

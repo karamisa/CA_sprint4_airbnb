@@ -1,25 +1,4 @@
-.host-menu {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu-link {
-  font-size: 14px;
-  padding: 10px 16px;
-  line-height: 18px;
-
-  font-family: cereal-Bold;
-  color: $clr-text-secondary;
-
-  text-decoration: none;
-
-  &.active {
-    color: $clr-text-primary;
-  }
-}
-
-.order-page {
+.trip-page {
   h2 {
     padding-top: 64px;
     font-size: 32px;
@@ -64,17 +43,5 @@
     button {
       margin-inline: 0.2em;
     }
-  }
-}
-
-.dashboard-page {
-  h2 {
-    padding-top: 64px;
-    font-size: 32px;
-  }
-  h3 {
-    padding-top: 64px;
-    font-size: 26px;
-    font-family: cereal-Medium;
   }
 }
