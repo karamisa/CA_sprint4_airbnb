@@ -46,7 +46,7 @@ export function StayDetails() {
   function onSaveStay() {
     setLike(!like)
     console.log('save stay')
-    console.log('like', like)
+console.log('stay', stay)
   }
 
   function onOpenStayGallery() {
@@ -94,7 +94,14 @@ export function StayDetails() {
 
           <section className='stay-review-mid grid border-buttom'>
             <div className='stay-review-details'>
-              <div className='about-host border-buttom'></div>
+              <div className='about-host border-buttom'>
+
+              <h2 className='title secondary-title'><span>{stay.type} </span><span>hosted by </span> {stay.host.fullname}</h2>
+              <span>2 guests • 1 bedroom • 2 beds • 1 bath</span>
+              <div className="host-img">
+                {/* <img className="mini-user-img" src={stay.host.imgUrls} alt="" /> */}
+              </div>
+              </div>
               <div className='stay-highlights border-buttom'>
                 can be hardcoaded
               </div>
