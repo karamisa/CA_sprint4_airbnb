@@ -9,6 +9,8 @@ import arrowLeftImg from '../assets/img/arrow-left.svg'
 import rareDiamond from '../assets/img/rare-diamond.svg'
 import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
+import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
+import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
 
 
 
@@ -26,7 +28,7 @@ export function Book() {
     // const [fields] = useForm(getOrderFields())
 
     const loggedinUser = true
-    const isBooked = false  //after reservation success
+    let isBooked = false  //after reservation success
 
     console.log('stayId', stayId)
     console.log('stay', stay)
@@ -86,6 +88,7 @@ export function Book() {
 
     function onAddOrder() {
         console.log('add order')
+
     }
 
 
@@ -148,7 +151,7 @@ export function Book() {
                     <div className="order-user">
                         {!isBooked &&
                             <>
-                                {loggedinUser ? (<button onClick={onAddOrder}>Confirm</button>)
+                                {loggedinUser ? (<BtnSquareColor onClick={onAddOrder}>Confirm</BtnSquareColor>)
                                     : (<div>
                                         <h3 className="login-msg">Please login to book</h3>
                                         <span>login component</span>
@@ -159,7 +162,7 @@ export function Book() {
                         {isBooked &&
                             <>
                                 <h3 className="success-msg">We look forward to hosting you!</h3>
-                                {loggedinUser && <button onClick={onGoToTrips}>Review Trips</button>}
+                                {loggedinUser && <BtnSquareColor onClick={onGoToTrips}>Review Trips</BtnSquareColor>}
                                 <div className="success-txt flex">
                                     <div className="icon-svg">
                                         <img src={greenCheck} className="greenCheck-img" alt="greenCheckImg" />
@@ -188,7 +191,9 @@ export function Book() {
                             </div>
 
                             <div className="rating-review flex">
-                                <span className="avg-rating">⭐rating</span><span>•</span><span className="reviews"># reviews</span>
+                                <span className="avg-rating">
+                                <RatingReview reviews={stay.reviews} />
+                                    </span><span>•</span><span className="reviews">({stay.reviews.length} reviews)</span>
                                 {/* <RatingReview reviews={stay.reviews} /> */}
                             </div>
                         </div>
