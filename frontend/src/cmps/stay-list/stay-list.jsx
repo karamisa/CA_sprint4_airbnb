@@ -4,9 +4,10 @@ import { StayPreview } from './stay-preview';
 export function StayList({ stays }) {
   const navigate = useNavigate();
   const currSearch = useLocation();
+  console.log(stays)
 
   if (!stays)
-    <ul className='card-grid stay-list clean-list main-layout'>Loading..</ul>;
+    <ul className='card-grid stay-list clean-list main-layout'>Loading...</ul>;
   return (
     <ul className='card-grid stay-list clean-list main-layout'>
       {stays.map((stay) => {

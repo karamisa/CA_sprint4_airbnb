@@ -67,8 +67,6 @@ export function SearchForm({ staySearchParams, handleToggle, tabToOpen }) {
         return guestSubheading
     }
 
-
-
     function checkForActiveClass(category) {
         return (selectedTab === category) ? ' active' : '';
     }

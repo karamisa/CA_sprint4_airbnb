@@ -25,7 +25,7 @@ export function StayIndex() {
     setSearchParams((prevFilter) => ({ ...prevFilter, [field]: value }));
   }
 
-  if (!stays?.length)
+  if (!stays && (!stays.length))
     return <section className='stay-list-container card-grid'>loading</section>;
   return (
     <section style={{ position: 'relative' }}>
