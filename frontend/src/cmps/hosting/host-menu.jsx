@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 
 export function HostMenu() {
   return (
-    <div className='host-menu'>
+    <div className='host-menu  main-layout'>
       <NavLink className='menu-link' to='order'>
         Order
       </NavLink>

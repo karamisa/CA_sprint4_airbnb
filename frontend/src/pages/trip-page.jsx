@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { AppFooter } from '../cmps/header-footer/app-footer';
+import { AppHeader } from '../cmps/header-footer/app-header';
 import { TripList } from '../cmps/trip-list/trip-list';
 import { orderService } from '../services/order.service';
 
@@ -19,9 +21,16 @@ export function TripPage() {
     }
   }
   return (
-    <div className='main-layout'>
-      <h1>Trips</h1>
-      <TripList orders={orders} setOrders={setOrders} />
-    </div>
+    <section className='main-layout trip-page'>
+      <AppHeader className='main-layout' />
+      <div className='secondary-layout'>
+        <div className='hero'>
+          <h2>Welcome</h2>
+        </div>
+        <h3>Your trips</h3>
+        <TripList orders={orders} setOrders={setOrders} />
+      </div>
+      <AppFooter className='main-layout fixed' />
+    </section>
   );
 }

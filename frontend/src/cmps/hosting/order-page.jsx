@@ -19,8 +19,11 @@ export function OrderPage() {
     }
   }
   return (
-    <div>
-      <h1>Orders</h1>
+    <div className='secondary-layout order-page'>
+      <div className='hero'>
+        <h2>Welcome back</h2>
+      </div>
+      <h3>Orders</h3>
       <OrderList orders={orders} setOrders={setOrders} />
     </div>
   );

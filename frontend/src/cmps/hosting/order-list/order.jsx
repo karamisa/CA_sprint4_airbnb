@@ -1,4 +1,5 @@
 import { useOrderStatus } from '../../../customHooks/useOrderStatus';
+import { BtnSquare } from '../../ui/buttons/btn-square';
 
 export function Order({ order }) {
   const { orderForPrecessing, approveOrder, rejectOrder } =
@@ -16,8 +17,8 @@ export function Order({ order }) {
       <td>{orderForPrecessing.stay.price}</td>
       <td>{orderForPrecessing.status}</td>
       <td>
-        <button onClick={() => approveOrder()}>Accept</button>
-        <button onClick={() => rejectOrder()}>Reject</button>
+        <BtnSquare onClick={() => approveOrder()}>Accept</BtnSquare>
+        <BtnSquare onClick={() => rejectOrder()}>Reject</BtnSquare>
       </td>
     </>
   );

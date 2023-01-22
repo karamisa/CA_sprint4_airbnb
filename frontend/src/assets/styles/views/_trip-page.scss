@@ -1,0 +1,47 @@
+.trip-page {
+  h2 {
+    padding-top: 64px;
+    font-size: 32px;
+  }
+  h3 {
+    padding-top: 64px;
+    font-size: 26px;
+    font-family: cereal-Medium;
+  }
+
+  table {
+    width: 100%;
+    table-layout: fixed;
+    text-align: start;
+
+    th {
+      text-align: start;
+      font-size: 12px;
+      text-transform: uppercase;
+      font-family: cereal-Bold;
+      color: $clr-text-secondary;
+    }
+
+    td {
+      padding-inline: 0.3em;
+      padding-block: 0.2em;
+    }
+
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 140px;
+    }
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 90px;
+    }
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 140px;
+    }
+
+    button {
+      margin-inline: 0.2em;
+    }
+  }
+}
