@@ -1,0 +1,25 @@
+.modal {
+  background-color: #fefefe;
+
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80vw;
+  max-width: 650px;
+
+  box-shadow: 3px 3px 10px rgba(0 0 0 / 0.5);
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -70%);
+}
+
+.modal::backdrop {
+  background: hsla(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.1);
+}

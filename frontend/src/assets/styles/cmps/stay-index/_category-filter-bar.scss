@@ -1,11 +1,19 @@
+.category-filter-bar {
+  margin-top: 10px;
+  height: 100px;
+  background-color: $clr-white;
+  position: sticky;
+  top: 80px;
+  width: 100%;
+  z-index: 9;
+}
+
 .carousel {
   display: flex;
   gap: 2.2rem;
-
-  position: relative;
-
   padding-top: 20px;
   overflow: scroll;
+  background-color: $clr-white;
 
   .category {
     display: inline-block;
@@ -30,9 +38,7 @@
     }
   }
   .active {
-    border: 3px solid rgb(255, 0, 0);
   }
-
 }
 
 // .clr-secondary {

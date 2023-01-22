@@ -5,6 +5,7 @@ export function useModal() {
   const [component, setComponent] = useState(null);
 
   function openModal(componentToOpen) {
+    console.log('isOpen:', isOpen);
     setIsOpen(true);
     setComponent(componentToOpen);
   }

@@ -1,5 +1,4 @@
 import { utilService } from '../../services/util.service';
-import { RatingReview } from '../util-cmps/rating-review';
 
 export function PreviewInfo({ info }) {
   return (

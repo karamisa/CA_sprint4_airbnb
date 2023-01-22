@@ -1,0 +1,9 @@
+header {
+  border-bottom: 1px solid $clr-border;
+}
+
+main {
+  > *:nth-last-child(1) {
+    padding-bottom: 80px;
+  }
+}

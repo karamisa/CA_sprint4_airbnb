@@ -1,4 +1,15 @@
 .app-footer {
+  padding-block: 14px;
+  border-top: 1px solid $clr-border;
+  background-color: $clr-white;
+  font-family: cereal-Book;
   color: $clr-text-primary;
-  text-align: center;
+  text-align: start;
+
+  &.fixed {
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+    width: 100%;
+  }
 }

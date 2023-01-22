@@ -2,30 +2,27 @@
   padding-left: 24px;
   padding-right: 24px;
   margin: auto;
-  border: 1px solid $clr-border;
+
   @include for-narrow-layout {
-    padding:0 $mobile-layout-padding;
+    padding: 0 $mobile-layout-padding;
   }
   @include for-wide-layout {
-    padding:0 $normal-layout-padding;
+    padding: 0 $normal-layout-padding;
   }
   @include for-large-layout {
-    padding:0 $wide-layout-padding;
+    padding: 0 $wide-layout-padding;
     max-width: $primary-max-width;
-  }
-  &.narrow-max-width{
-    max-width: $secondary-max-width;
   }
 }
 
-
-
+.secondary-layout {
+  max-width: $secondary-max-width;
+  margin: auto;
+  padding-inline: 80px;
+}
 
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-gap: 20px;
 }
-
-
-
