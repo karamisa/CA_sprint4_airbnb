@@ -35,6 +35,9 @@ export function BookPage() {
     const serviceFees = 11.2
     const fields = getOrderFields()
     console.log('fields', fields)
+    const formattedStartDate = utilService.formattedDate(fields.startDate)
+    const formattedEndDate = utilService.formattedDate(fields.endDate)
+
 
     useEffect(() => {
         loadStay()
@@ -92,6 +95,20 @@ export function BookPage() {
         }
         return { buyer, stayToSet, hostId, startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
     }
+
+
+    function getGuestsSubHeading() {
+        var guestSubheading = ''
+        const { adults, children, infants, pets } = fields.guests
+        if (adults) guestSubheading += `${adults} adults`
+        if (children) guestSubheading += `, ${children} children`
+        if (infants) guestSubheading += `, ${infants} infants`
+        if (pets) guestSubheading += `, ${pets} pets`
+        if (guestSubheading === '1 adults')
+          guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+        if (!guestSubheading) guestSubheading = 'Add Guests'
+        return guestSubheading
+      }
 
 
     function onAddOrder() {
@@ -182,11 +199,11 @@ export function BookPage() {
                             <h3 className="your-trip">Your trip</h3>
                             <div className="flex justify-between">
                                 <h4 className="trip-subheader">Dates</h4>
-                                <h5 className="trip-details-data">datefrom - dateto</h5>
+                                <h5 className="trip-details-data">{formattedStartDate} - {formattedEndDate}</h5>
                             </div>
                             <div className="flex justify-between">
                                 <h4 className="trip-subheader">Guests</h4>
-                                <h5 className="trip-details-data">getFormattedGuests</h5>
+                                <h5 className="trip-details-data">{getGuestsSubHeading()}</h5>
                             </div>
                         </div>
                     </div>
