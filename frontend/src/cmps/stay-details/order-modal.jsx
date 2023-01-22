@@ -51,7 +51,7 @@ export function OrderModal({ stay }) {
       ...orderParams,
       guests: { ...orderParams.guests },
     });
-    // console.log(paramsToSet)
+    console.log(paramsToSet)
     navigate(`/book/stay/${stay._id}?${paramsToSet}`);
   }
 

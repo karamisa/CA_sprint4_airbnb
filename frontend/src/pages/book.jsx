@@ -10,10 +10,7 @@ import rareDiamond from '../assets/img/rare-diamond.svg'
 import greenCheck from '../assets/img/greenCheck.svg'
 import { LoginSignup } from '../cmps/login-signup'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
-import { RatingReview } from '../cmps/util-cmps/rating-review.jsx'
-
-
-
+import { RatingReview } from '../cmps/ui/rating-review.jsx'
 
 
 
@@ -27,7 +24,7 @@ export function Book() {
 
     // const [fields] = useForm(getOrderFields())
 
-    const loggedinUser = true
+    const loggedinUser = false
     let isBooked = false  //after reservation success
 
     console.log('stayId', stayId)
@@ -98,7 +95,8 @@ export function Book() {
 
 
     function onGoBack() {
-        console.log('use nav to go one step back')
+        navigate(-1)
+        // console.log('use nav to go one step back')
     }
 
     if (!stay) return <div>Loading...</div>
