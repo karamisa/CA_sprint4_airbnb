@@ -10,19 +10,14 @@
     background-image: radial-gradient(circle, rgb(255, 56, 92) 0%, rgb(230, 30, 77) 27.5%, rgb(227, 28, 95) 40%, rgb(215, 4, 102) 57.5%, rgb(189, 30, 89) 75%, rgb(189, 30, 89) 100%);
     background-size: 200% 200%;
 
-    border-color: #222222;
     border-radius: 8px;
-    border-width: 1px;
-    border-style: solid;
-
+    border: none;
     text-align: center;
 
     color: rgb(255, 255, 255);
     font-family: cereal-Medium;
     font-size: 1rem;
     line-height: 20px;
-
-    transition: box-shadow 0.2s ease, transform 0.1s ease;
 }
 
 .btnSquareColor:active {
