@@ -1,13 +1,12 @@
-import { StayPreview } from './stay-preview'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom';
+import { StayPreview } from './stay-preview';
 
 export function StayList({ stays }) {
-  const navigate = useNavigate()
-  const currSearch = useLocation()
-
+  const navigate = useNavigate();
+  const currSearch = useLocation();
 
   if (!stays)
-    <ul className='card-grid stay-list clean-list main-layout'>Loading..</ul>
+    <ul className='card-grid stay-list clean-list main-layout'>Loading..</ul>;
   return (
     <ul className='card-grid stay-list clean-list main-layout'>
       {stays.map((stay) => {
@@ -18,8 +17,8 @@ export function StayList({ stays }) {
             className='stay-list-item'>
             <StayPreview stay={stay} />
           </li>
-        )
+        );
       })}
     </ul>
-  )
+  );
 }
