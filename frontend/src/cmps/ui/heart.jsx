@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-export function Heart({ cb = (like) => console.log(like) }) {
+export function Heart({ cb = (like) => console.log(like), props }) {
   const [like, setLike] = useState(false);
   function handleClick(ev) {
     ev.stopPropagation();
