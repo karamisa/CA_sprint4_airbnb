@@ -68,7 +68,7 @@
     grid-template-columns: 1.45fr 1fr;
 
     .stay-review-details {
-      width: 58.3333%;
+      min-width: 58.3333%;
 
       &>* {
         padding-block: 32px;

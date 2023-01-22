@@ -116,6 +116,7 @@ export function BookPage() {
         console.log('add order')
         // const newOrder = setOrder()
         orderService.save(setOrder())
+        navigate('/stay')
 
     }
 
