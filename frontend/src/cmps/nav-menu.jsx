@@ -56,14 +56,11 @@ export function NavMenu({ user, onLogout, onAddStay }) {
             </div>
           ) : (
             <div className='menu-links'>
-              <a href='#'>Trips</a>
-              <a href='#'>Messages</a>
+              <Link to='/trip'>Trips</Link>
+              <Link to='/stay'>Messages (coming soon)</Link>
               {user.isOwner && (
                 <Link to='/hosting/order'>View Orders (host)</Link>
               )}
-              {/* <a href="#">Sign up</a> */}
-              {/* <a href="#">Log out</a> */}
-
               <button onClick={onAddStay}>
                 {user.isOwner ? 'Add Another Stay' : 'Become a host (Add stay)'}
               </button>

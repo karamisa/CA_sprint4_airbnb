@@ -64,11 +64,11 @@ export function LoginSignup() {
 
   return (
     <div className='login-page'>
-      <p>
+      <div>
         <button className='btn-link' onClick={toggleSignup}>
           {!isSignup ? 'Signup' : 'Login'}
         </button>
-      </p>
+      </div>
       {!isSignup && (
         <form className='login-form' onSubmit={onLogin}>
           <select

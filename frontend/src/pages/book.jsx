@@ -14,6 +14,9 @@ import { RatingReview } from '../cmps/ui/rating-review.jsx'
 
 
 
+
+
+
 export function Book() {
     const navigate = useNavigate()
     const { stayId } = useParams()

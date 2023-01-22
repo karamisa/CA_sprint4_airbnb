@@ -48,10 +48,17 @@ export function OrderModal({ stay }) {
 
   function onClickReserve() {
     const paramsToSet = utilService.objectToSearchParams({
-      ...orderParams,
-      guests: { ...orderParams.guests },
+      checkIn: orderParams.checkIn.getTime(),
+      checkOut: orderParams.checkOut.getTime(),
+      adults: orderParams.guests.adults,
+      children: orderParams.guests.children,
+      infants: orderParams.guests.infants,
+      pets: orderParams.guests.pets,
     });
+<<<<<<< HEAD
     console.log(paramsToSet)
+=======
+>>>>>>> 0e5769930e465ee5c6e9bb39dd9b279d28824899
     navigate(`/book/stay/${stay._id}?${paramsToSet}`);
   }
 
