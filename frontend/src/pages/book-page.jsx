@@ -29,9 +29,9 @@ export function BookPage() {
     const location = useLocation()
     const params = new URLSearchParams(location.search)
     const user = useSelector(state => state.userModule.user)
-
+    const [isBooked, setIsBooked] = useState(false)
     const loggedinUser = (!user) ? false : true
-    let isBooked = false  //after reservation success
+    // let isBooked = false  //after reservation success
 
     const serviceFees = 11.2
     const fields = getOrderFields()
@@ -116,10 +116,10 @@ export function BookPage() {
         console.log('add order')
         // const newOrder = setOrder()
         orderService.save(setOrder())
-        navigate('/stay')
-
+        // navigate('/stay')
+        setIsBooked(true)
+        console.log('isBooked', isBooked)
     }
-
 
     function onGoToTrips() {
         console.log('go to trips')
@@ -272,20 +272,20 @@ export function BookPage() {
                             <div className="cost-details flex border-buttom">
                                 <div className="base-cost flex justify-between">
                                     <span className="cost-calc">
-                                        ${stay.price} x {fields.totalDays} nights
+                                        ${(stay.price).toLocaleString()} x {fields.totalDays} nights
                                     </span>
-                                    <span>$ {fields.totalStayPrice}</span>
+                                    <span>$ {(fields.totalStayPrice).toLocaleString()}</span>
                                 </div>
                                 <div className="base-cost service flex justify-between">
                                     <span className="cost-calc">Service fee</span>
-                                    <span>${fields.totalFees}</span>
+                                    <span>${(fields.totalFees).toLocaleString()}</span>
                                 </div>
                             </div>
 
                             <div className="total-container">
                                 <div className="cost-total flex justify-between">
                                     <span>Total</span>
-                                    <span>${fields.totalWithFees}</span>
+                                    <span>${(fields.totalWithFees).toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>
