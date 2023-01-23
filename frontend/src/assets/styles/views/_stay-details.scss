@@ -74,18 +74,63 @@
         padding-block: 32px;
       }
 
+      .stay-calendar{
+        padding-block: unset;
+      }
 
-
-      .secondary-title{
+      .secondary-title {
         font-size: 1.25rem;
         line-height: 1.75rem;
       }
-       
+
+
+      .stay-amenities {
+
+
+        .amenities-container {
+
+            margin-left: -8px;
+            margin-right: -8px;
+            width: calc(100% + 16px);
+            -webkit-box-pack: start;
+            -webkit-box-align: stretch;
+            justify-content: flex-start;
+            align-items: stretch;
+            flex-wrap: wrap;
+            line-height: 1.25rem;
+            margin-bottom: 24px;
+
+            li{
+              display: flex;
+              align-items: center;
+              width: 50%;
+              padding-left: 8px;
+              padding-right: 8px;
+              padding-bottom: 16px;
+            }
+
+          .amenity-img {
+            display: block;
+            height: 24px;
+            width: 24px;
+            color:$clr-svg-imgs;
+            fill: currentColor;
+          }
+
+          .amenity-name{
+            letter-spacing: 0.007em;
+            padding-left: 1rem;
+          }
+
+
+        }
+      }
+
+
     }
 
     .stay-review-order {
       position: relative;
-      margin-top: 32px;
       margin-bottom: 32px;
     }
   }
