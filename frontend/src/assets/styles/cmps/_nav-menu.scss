@@ -2,45 +2,6 @@
     position: relative;
     z-index: 1;
 
-    //Login/Signup Modal
-    .modal {
-        background-color: #fefefe;
-      
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80vw;
-        max-width: 650px;
-      
-        box-shadow: 3px 3px 10px rgba(0 0 0 / 0.5);
-      
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -70%);
-      }
-      
-      .modal::backdrop {
-        background: hsla(0, 0, 0, 0.5);
-        position: fixed;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        background: rgba(0, 0, 0, 0.1);
-      }
-      
-      .modal .content-container {
-        position: relative;
-      
-        .close-modal-btn-container {
-            position: absolute;
-            display: flex;
-            top: 16px;
-            left: 24px;
-            z-index: 1;
-        }
-      }
-      
     .menu-btn {
         padding: 5px 5px 5px 12px;
         display: inline-flex;

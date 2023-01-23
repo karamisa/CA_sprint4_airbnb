@@ -1,24 +1,28 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import guest from '../assets/img/guest.svg';
+import useClickOutside from '../customHooks/useClickOutside';
 import { useModal } from '../customHooks/useModal';
 import { LoginSignup } from './login-signup';
 import { NavHamburger } from './ui/nav-hamburger';
 
 export function NavMenu({ user, onLogout, onAddStay }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const { openModal, Modal } = useModal();
+  const { closeModal, openModal, Modal } = useModal();
+  const elNav= useRef();
 
   const handleToggle = () => {
     setNavbarOpen((prev) => !prev);
-    if (navbarOpen) {
-    }
   };
+
+  useClickOutside(elNav, () => {
+    if (navbarOpen) setNavbarOpen(false)
+  })
 
   return (
     <>
       <Modal />
-      <nav className='nav-menu' onClick={handleToggle}>
+      <nav className='nav-menu' onClick={handleToggle} ref={elNav}>
         <div className='menu-btn'>
           <NavHamburger />
           <div className='menu-avatar'>
@@ -32,7 +36,7 @@ export function NavMenu({ user, onLogout, onAddStay }) {
         {navbarOpen &&
           (!user ? (
             <div className='menu-links'>
-              <Link onClick={() => openModal(<LoginSignup />)}>Log in</Link>
+              <Link onClick={() => openModal(<LoginSignup closeModal={closeModal} />)}>Log in</Link>
             </div>
           ) : (
             <div className='menu-links'>

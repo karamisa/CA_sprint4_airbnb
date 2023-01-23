@@ -139,7 +139,7 @@ export function OrderModal({ stay }) {
             <div className="drawer-arrow-icon">{(openTab === 'guests' ? <IoIosArrowUp/> : <IoIosArrowDown/>)}</div>
             </button>
             {openTab === 'guests' && (
-              <div className='guest-select-container'>
+              <div className='guest-select-container-small'>
                 <GuestSelect
                   guests={orderParams.guests}
                   onSetField={onSetField}

@@ -1,9 +1,5 @@
-.guest-select-list {
-    width: 342px;
-    padding: 0 6px;
 
-    .guest-select-row {
-        min-width: 330px;
+.guest-select-row {
         color: $clr-text-primary;
         display: flex;
         align-items: center;
@@ -18,11 +14,11 @@
         }
     }
 
-    .guest-select-label-header {
-        font-size: rem(16px);
-        line-height: 20px;
-        font-family: cereal-medium;
-        padding-bottom: em(6px);
+    .guest-select-label-header{
+            font-size: rem(16px) ;
+            line-height: 20px;
+            font-family: cereal-medium;
+            padding-bottom: em(6px);
     }
 
     .guest-select-label-sub-header {
@@ -52,4 +48,3 @@
         text-align: inherit;
         outline: none;
     }
-}
