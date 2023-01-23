@@ -8,10 +8,10 @@ export function PreviewInfo({ info }) {
         <span className='text-bold ellipsis'>{info.location}</span>{' '}
         <RatingReview reviews={info.reviews} />
       </p>
-      <p className='text-grey'>Distance</p>
+      <p className='text-grey'>{info.type}</p>
       <p className='text-grey'>Dates</p>
       <p className='text-bold'>
-        {utilService.formatCurrency(info.price)} night
+        {utilService.formatCurrency(info.price)} <span style={{fontFamily: 'cereal-Book'}}> night</span>
       </p>
     </>
   );

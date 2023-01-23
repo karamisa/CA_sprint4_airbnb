@@ -7,7 +7,6 @@
     line-height: 1.875rem;
   }
 
-
   .name-subtitle {
     gap: 0.5rem;
   }
@@ -75,7 +74,7 @@
         padding-block: 32px;
       }
 
-      .stay-calendar{
+      .stay-calendar {
         padding-block: unset;
       }
 
@@ -84,23 +83,22 @@
         line-height: 1.75rem;
       }
 
-
       .about-host {
-   
+
         padding-bottom: 1.5rem;
 
-        .header{
+        .header {
 
-          h2{
+          h2 {
             margin-bottom: 0.3em;
             font-size: 1.375rem;
             font-family: cereal-Bold;
-          } 
+          }
 
-          .host-img{
+          .host-img {
             height: 56px;
             width: 56px;
-            border-radius: 50%;            
+            border-radius: 50%;
           }
         }
       }
@@ -108,44 +106,40 @@
       .stay-amenities {
         .amenities-container {
 
-            margin-left: -8px;
-            margin-right: -8px;
-            width: calc(100% + 16px);
-            -webkit-box-pack: start;
-            -webkit-box-align: stretch;
-            justify-content: flex-start;
-            align-items: stretch;
-            flex-wrap: wrap;
-            line-height: 1.25rem;
-            margin-bottom: 24px;
+          margin-left: -8px;
+          margin-right: -8px;
+          width: calc(100% + 16px);
+          -webkit-box-pack: start;
+          -webkit-box-align: stretch;
+          justify-content: flex-start;
+          align-items: stretch;
+          flex-wrap: wrap;
+          line-height: 1.25rem;
+          margin-bottom: 24px;
 
-            li{
-              display: flex;
-              align-items: center;
-              width: 50%;
-              padding-left: 8px;
-              padding-right: 8px;
-              padding-bottom: 16px;
-            }
+          li {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-bottom: 16px;
+          }
 
           .amenity-img {
             display: block;
             height: 24px;
             width: 24px;
-            color:$clr-svg-imgs;
+            color: $clr-svg-imgs;
             fill: currentColor;
           }
 
-          .amenity-name{
+          .amenity-name {
             letter-spacing: 0.007em;
             padding-left: 1rem;
           }
-
-
         }
       }
-
-
     }
 
     .stay-review-order {
