@@ -1,13 +1,14 @@
-import { useRef, useState } from 'react';
+import { useState } from 'react';
+import { useRef} from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { SearchForm as StaySearchForm } from './search-form';
 import { SearchPreview } from './search-preview';
 
 
 export function SearchBars() {
-    const [searchFormOpen, setSearchFormOpen] = useState(false)
     const [searchParams] = useSearchParams()
-    const tabToOpen = useRef('location')
+    const [selectedTab, setSelectedTab] = useState('location')
+    const seachBarsRef = useRef()
 
     const staySearchParams = {
         location: searchParams.get('location') || '',
@@ -22,17 +23,21 @@ export function SearchBars() {
     }
 
     const handleToggle = () => {
-        setSearchFormOpen(prev => !prev)
+        seachBarsRef.current.classList.toggle('search-bars-open') 
     }
-    
+
     function handlePreviewClick(tabToSet) {
-        tabToOpen.current = tabToSet
+        setSelectedTab(tabToSet)
         handleToggle()
     }
 
-    if (searchFormOpen) {
-        return (<StaySearchForm staySearchParams={staySearchParams} handleToggle={handleToggle} tabToOpen={tabToOpen.current} />)
-    } else {
-        return (<SearchPreview staySearchParams={staySearchParams} handlePreviewClick={handlePreviewClick} />)
-    }
+
+        return (
+            <div ref={seachBarsRef} className='search-bars'>
+                <SearchPreview staySearchParams={staySearchParams} handlePreviewClick={handlePreviewClick} />
+                <StaySearchForm staySearchParams={staySearchParams} handleToggle={handleToggle} selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+                <div className='screen-blur' onClick={handleToggle}></div>
+            </div>
+        )
+
 }

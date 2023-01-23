@@ -1,33 +1,58 @@
 .app-header {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
   background-color: $clr-white;
+  position: relative;
 
   position: sticky;
   top: 0px;
   width: 100%;
-  height: 80px;
-  z-index: 10;
+  min-height: 80px;
+  z-index: 100;
+
+  &::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(255, 255, 255);
+    z-index: -1;
+    transition: transform 250ms ease;
+    transform: initial;
+  }
+
+  &:has(.search-bars-open)::after{
+    transform: scaleY(3.25);
+    transition: transform 250ms ease;
+  }
 
   .header-logo-container {
     display: flex;
     flex: 1 0 75px;
+    align-items: center;
+    height: 80px;
 
     .logo {
       cursor: pointer;
     }
   }
 
-  .header-filter-container {
-    flex-grow: 1;
-    min-width: 348px;
-    padding: 0 24px;
+  .header-search-bar-container{
+    min-height: 80px;
+    padding-top: 16px;
+    min-width: 850px;
+    text-align: center;
+    position: relative;
   }
 
   .header-menu-container {
     flex-grow: 1;
     display: flex;
+    height: 80px;
     justify-content: flex-end;
+    align-items: center;
   }
 }

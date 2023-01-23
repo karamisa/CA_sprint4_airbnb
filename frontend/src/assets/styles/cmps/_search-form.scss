@@ -1,9 +1,41 @@
+//Animation
+.search-bars-open{
+    .search-form{
+    transform: initial;
+    opacity: 1;
+    visibility: visible;
+    transition: transform 250ms ease, opacity 200ms ease 100ms,visibility 0ms 200ms;
+    }
+    .screen-blur{
+        right:0;
+        left:0;
+        background-color: rgb(0 0 0 / 25%);
+    }
+}
+
+.search-bars .screen-blur{
+    bottom: 0;
+    position: fixed;
+    top: 0;
+    z-index: -1;
+    height: 100vh;
+    background-color: hsla(0, 0%, 0%, 0.25);
+}
+
+
 .search-form {
     margin: 0 auto;
-    z-index: 1;
-    position: relative;
-    min-width: 850px;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    transform: scale(0.35,0.7272727272727273) translateY(-58px);
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: 50% 0%;
+    will-change: transform, opacity,visibility;
+    transition: transform 250ms ease, opacity 200ms ease 100ms,visibility 0ms 200ms;
 }
+
 
 .search-form-menu {
     display: flex;
@@ -15,6 +47,9 @@
     border-radius: 40px;
     background-color: $clr-bg;
     cursor: pointer;
+    position: relative;
+    text-align: left;
+
 
     // Location Tab
     .input-query {
@@ -95,7 +130,7 @@
         justify-content: space-between;
         align-items: center;
         border-radius: 32px;
-        
+
 
 
         .search-category {
@@ -124,9 +159,10 @@
     }
 
     .search-category {
-            overflow: hidden;
-            max-width: 100%;
-            text-overflow: ellipsis;
+        overflow: hidden;
+        max-width: 100%;
+        text-overflow: ellipsis;
+
         .search-form-label {
             font-size: rem(12px);
             font-family: cereal-medium;

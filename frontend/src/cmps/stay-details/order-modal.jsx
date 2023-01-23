@@ -132,7 +132,7 @@ export function OrderModal({ stay }) {
 
           {/* Guests */}
           <div className='guest-picker'>
-            <button className='clean-button' onClick={() => (openTab === 'guests' ? setOpenTab(null) : setOpenTab('guests'))}>
+            <button className='clean-button guest-btn' onClick={() => (openTab === 'guests' ? setOpenTab(null) : setOpenTab('guests'))}>
             <div className='order-heading'>Guests</div>
             <div className='order-sub-heading'>{getGuestsSubHeading()}</div>
             <div className="drawer-arrow-icon">{(openTab === 'guests' ? <IoIosArrowUp/> : <IoIosArrowDown/>)}</div>

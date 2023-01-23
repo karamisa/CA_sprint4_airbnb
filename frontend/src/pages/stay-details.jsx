@@ -62,9 +62,7 @@ console.log('stay', stay)
   if (!stay) return <section className='secondary-layout'>Loading...</section>;
   return (
     <>
-      <header>
         <AppHeader className='secondary-layout' />
-      </header>
       <section className='secondary-layout'>
 
         <section className='stay-details'>
