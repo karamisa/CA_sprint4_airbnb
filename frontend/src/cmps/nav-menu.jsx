@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import guest from '../assets/img/guest.svg';
 import { useModal } from '../customHooks/useModal';
 import { LoginSignup } from './login-signup';
+import { NavHamburger } from './ui/nav-hamburger';
 
 export function NavMenu({ user, onLogout, onAddStay }) {
   const [navbarOpen, setNavbarOpen] = useState(false);
-  const { isOpen, component, openModal, closeModal } = useModal();
+  const { openModal, Modal } = useModal();
 
   const handleToggle = () => {
     setNavbarOpen((prev) => !prev);
@@ -16,37 +17,10 @@ export function NavMenu({ user, onLogout, onAddStay }) {
 
   return (
     <>
-      <div>
-        {isOpen && (
-          <div className='modal'>
-            <div className='content-container'>
-              <div className='close-modal-btn-container'>
-                <button className='close-modal-btn' onClick={closeModal}>
-                  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation" focusable="false"><path d="m6 6 20 20"></path><path d="m26 6-20 20"></path></svg>
-                </button>
-              </div>
-              {component}
-            </div>
-          </div>
-        )}
-      </div>
-
+      <Modal />
       <nav className='nav-menu' onClick={handleToggle}>
         <div className='menu-btn'>
-          <div className='menu-hamburger'>
-            <svg
-              viewBox='0 0 32 32'
-              xmlns='http://www.w3.org/2000/svg'
-              aria-hidden='true'
-              role='presentation'
-              focusable='false'>
-              <g fill='none' fillRule='nonzero'>
-                <path d='m2 16h28'></path>
-                <path d='m2 24h28'></path>
-                <path d='m2 8h28'></path>
-              </g>
-            </svg>
-          </div>
+          <NavHamburger />
           <div className='menu-avatar'>
             {user?.imgUrl ? (
               <img src={user.imgUrl} alt={user.fullname} />
@@ -58,7 +32,7 @@ export function NavMenu({ user, onLogout, onAddStay }) {
         {navbarOpen &&
           (!user ? (
             <div className='menu-links'>
-              <Link onClick={() => openModal(<LoginSignup closeModal={closeModal} />)}>Log in</Link>
+              <Link onClick={() => openModal(<LoginSignup />)}>Log in</Link>
             </div>
           ) : (
             <div className='menu-links'>

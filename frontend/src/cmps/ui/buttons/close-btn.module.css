@@ -1,0 +1,17 @@
+.closeBtn {
+    border-radius: 50%;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    border: none;
+    background: transparent;
+    transition: transform 0.25s ease;
+}
+
+.closeBtn:hover{
+        transform: scale(0.92);
+        color: black;
+    }
+
+
