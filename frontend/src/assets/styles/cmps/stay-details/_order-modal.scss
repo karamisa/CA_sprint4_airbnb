@@ -2,7 +2,7 @@
 
 .order-modal {
   position: sticky;
-  top: 80px;
+  top: 130px;
 
 
   .lower-rate-container {
@@ -13,20 +13,20 @@
     margin-top: 1.5rem;
     max-width: 400px;
 
-    .lower-rate{
+    .lower-rate {
       line-height: 1.25rem;
 
 
-      .lower-rate-txt{
+      .lower-rate-txt {
         padding-right: 1rem;
 
-        .lower-price-txt{
+        .lower-price-txt {
           margin-right: 0.5rem;
           font-family: cereal-Bold;
         }
       }
 
-      .rate-tag-img{
+      .rate-tag-img {
         display: block;
         height: 2rem;
         width: 2rem;
@@ -142,27 +142,37 @@
       }
 
 
-      .guest-select-container {
+      .guest-select-container-small {
         border-radius: 4px;
         background: $clr-white;
         box-shadow: rgb(0 0 0 / 15%) 0px 2px 6px, rgb(0 0 0 / 7%) 0px 0px 0px 1px;
         box-sizing: border-box;
         margin-bottom: 16px;
-        min-width: 342px;
         padding: 16px;
         position: absolute;
         text-align: left;
-        right: -26px;
-        top: 60px;
+        top: 55px;
         z-index: 999;
-        left: -26px;
+        left: 0px;
+        width: 100%;
+
+        .guest-select-list {
+          max-width: 100%;
+        }
+
+        .guest-select-row {
+          margin: 24px 0;
+        }
+
+        .guest-select-row:first-child {
+          margin-top: 8px;
+          margin-bottom: 24px;
+        }
+
       }
-
-
-
-
-
     }
+
+
   }
 
   .order-details {

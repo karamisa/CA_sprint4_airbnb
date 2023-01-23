@@ -38,16 +38,16 @@ export function AppHeader({ className, ...props }) {
   }
 
   return (
-    <header {...props} className={`app-header ${className}`}>
-      <div className='header-logo-container'>
-        <Logo />
-      </div>
-      <div className='header-search-bar-container'>
-        <StaySearchBars />
-      </div>
-      <div className='header-menu-container'>
-        <NavMenu user={user} onLogout={onLogout} onAddStay={onAddStay} />
-      </div>
-    </header>
+      <header {...props} className={`app-header ${className}`}>
+        <div className='header-logo-container'>
+          <Logo />
+        </div>
+        <div className='header-search-bar-container'>
+          <StaySearchBars />
+        </div>
+        <div className='header-menu-container'>
+          <NavMenu user={user} onLogout={onLogout} onAddStay={onAddStay} />
+        </div>
+      </header>
   );
 }

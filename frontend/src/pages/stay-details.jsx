@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
@@ -14,10 +14,11 @@ import { RatingReview } from '../cmps/ui/rating-review.jsx'
 import { ImgGrid } from '../cmps/ui/img-grid.jsx'
 import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx'
 import { DetailsHeart } from '../cmps/ui/details-heart.jsx'
-import { LoginSignup } from '../cmps/login-signup.jsx'
 import { AllAmenities } from '../cmps/stay-details/all-amenities.jsx'
 import { AllReviews } from '../cmps/stay-details/all-reviews.jsx'
 import { AboutHost } from '../cmps/stay-details/about-host.jsx'
+import useOnScreen from '../customHooks/useOnScreen.js'
+import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 
 export function StayDetails() {
   const [stay, setStay] = useState(null)
@@ -25,7 +26,15 @@ export function StayDetails() {
   const navigate = useNavigate()
   const [like, setLike] = useState(false)
   const { openModal, Modal } = useModal()
+  const imgGridRef = useRef()
+  const reserveBtnRef= useRef()
+  const imgGridVisible = useOnScreen(imgGridRef, '0px')
+  const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
 
+
+
+
+  console.log(imgGridVisible)
   useEffect(() => {
     loadStay()
   }, [])
@@ -45,14 +54,14 @@ export function StayDetails() {
     }
   }
 
-  function openReviewModal() {}
+  function openReviewModal() { }
 
-  function openReviewMap() {}
+  function openReviewMap() { }
 
   function onSaveStay() {
     setLike(!like)
     console.log('save stay')
-console.log('stay', stay)
+    console.log('stay', stay)
   }
 
   function onOpenStayGallery() {
@@ -70,8 +79,33 @@ console.log('stay', stay)
   if (!stay) return <section className='secondary-layout'>Loading...</section>;
   return (
     <>
-        <AppHeader className='secondary-layout' />
+      <AppHeader className='secondary-layout' />
        <div className="details-modal"> <Modal /></div>
+      <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
+        <div className='anchor-links'>
+          <a className='anchor-link' href='imgs' >Photos</a>
+          <a className='anchor-link' href='imgs' >Amenities</a>
+          <a className='anchor-link' href='imgs' >Reviews</a>
+          <a className='anchor-link' href='imgs' >Location</a>
+        </div>
+        <div className='book-it-details' style={{ display: reserveBtnVisible ? 'none' : 'flex' }}>
+          <header className='order-form-header'>
+            <h4>
+              <span>${(Math.round(stay.price)).toLocaleString()}</span> night
+            </h4>
+            <div className='order-rating-review flex'>
+              <RatingReview reviews={stay.reviews} />
+              <span>•</span>
+              <div
+                className='stay-rating'>
+                {stay.reviews.length} reviews
+              </div>
+            </div>
+          </header>
+
+          <BtnSquareColor children={'Reserve'} />
+        </div>
+      </div>
       <section className='secondary-layout'>
 
         <section className='stay-details'>
@@ -90,14 +124,16 @@ console.log('stay', stay)
             </div>
             <button className='save-stay active' onClick={onSaveStay}>
               <div className="heart">
-                <DetailsHeart cb={(like) => setLike(like) }/></div>
+                <DetailsHeart cb={(like) => setLike(like)} /></div>
             </button>
           </div>
 
-          <ImgGrid
-            imgsToDisplay={imgsToDisplay}
-            onOpenStayGallery={onOpenStayGallery}
-          />
+          <div ref={imgGridRef}>
+            <ImgGrid
+              imgsToDisplay={imgsToDisplay}
+              onOpenStayGallery={onOpenStayGallery}
+            />
+          </div>
 
           <section className='stay-review-mid grid border-buttom'>
             <div className='stay-review-details'>
@@ -134,7 +170,7 @@ console.log('stay', stay)
               <div className='stay-calendar'></div>
             </div>
 
-            <div className='stay-review-order'>
+            <div ref={reserveBtnRef} className='stay-review-order'>
               <OrderModal stay={stay} />
             </div>
           </section>

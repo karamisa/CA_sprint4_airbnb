@@ -34,7 +34,7 @@
 
         svg {
             display: block;
-            color: $clr-text-secondary;
+            color: inherit;
             fill: none;
             height: 12px;
             width: 12px;
@@ -42,5 +42,11 @@
             stroke-width: 5.33333;
             overflow: visible;
         }
+        &:disabled {
+            cursor: not-allowed !important;
+            color: $clr-border;
+            border-color: $clr-border ;
+        }
     }
+
 }

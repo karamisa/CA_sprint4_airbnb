@@ -40,11 +40,6 @@ export function useModal() {
       };
       }
       
-    
-      
-      
-  
-
 
 // You can then use this hook in your component like so:
 /* 
