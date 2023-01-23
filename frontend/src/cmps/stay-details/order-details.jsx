@@ -10,14 +10,14 @@ export function OrderDetails({ checkIn, checkOut, stay }) {
         <>
         <p className="no-charge-msg" style={{ textAlign: 'center' }}>You won't be charged yet</p>
         <div className="prices grid">
-            <p>${stay.price} x {totalStay} nights</p>
-            <p>${totalPriceBefore}</p>
+            <p>${(stay.price).toLocaleString()} x {totalStay} nights</p>
+            <p>${totalPriceBefore.toLocaleString()}</p>
             <p>Service fee</p>
-            <p>${Math.round(11.2 * totalStay)}</p>
+            <p>${(Math.round(11.2 * totalStay)).toLocaleString()}</p>
         </div>
         <div className="total flex justify-between">
             <p>Total</p>
-            <p>${totalPriceAfter}</p>
+            <p>${totalPriceAfter.toLocaleString()}</p>
         </div>
     </>
     )
