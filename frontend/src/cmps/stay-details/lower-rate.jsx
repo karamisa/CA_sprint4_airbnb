@@ -9,7 +9,7 @@ export function LowerRate() {
                         Lower price.
                     </span>
                     <span>
-                        Your dates are ₪930 less than the avg. nightly rate of the last 60 days.
+                        Your dates are $30 less than the avg. nightly rate of the last 60 days.
                     </span>
                 </div>
                 <div className="rate-img-container">
