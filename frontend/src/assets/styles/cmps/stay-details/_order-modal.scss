@@ -140,7 +140,7 @@
   .prices {
     grid-template-columns: 1fr 1fr;
     padding-bottom: 15px;
-    border-bottom: 1px solid $clr-text-primary;
+    border-bottom: 1px solid $clr-border-dark;
     gap: 10px;
     font-size: 0.9rem;
 
@@ -154,7 +154,9 @@
   }
 
   .total {
-    font-weight: 700;
+    font-weight: 600;
+    color: $clr-svg-imgs;
+    font-family: cereal-Bold;
   }
 }
 }

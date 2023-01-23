@@ -1,9 +1,11 @@
 import { utilService } from "../../services/util.service"
 
 export function OrderDetails({ checkIn, checkOut, stay }) {
+
+    const SERVICE_FEE = 11.2
     const  totalStay = utilService.totalDays(checkIn, checkOut)
     const totalPriceBefore = stay.price * totalStay
-    const serviceFee = Math.round(11.2 * totalStay)
+    const serviceFee = Math.round(SERVICE_FEE * totalStay)
     const totalPriceAfter = totalPriceBefore + serviceFee
 
     return(
@@ -13,7 +15,7 @@ export function OrderDetails({ checkIn, checkOut, stay }) {
             <p>${(stay.price).toLocaleString()} x {totalStay} nights</p>
             <p>${totalPriceBefore.toLocaleString()}</p>
             <p>Service fee</p>
-            <p>${(Math.round(11.2 * totalStay)).toLocaleString()}</p>
+            <p>${(Math.round(SERVICE_FEE * totalStay)).toLocaleString()}</p>
         </div>
         <div className="total flex justify-between">
             <p>Total</p>

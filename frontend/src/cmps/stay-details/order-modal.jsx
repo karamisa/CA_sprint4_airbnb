@@ -1,20 +1,20 @@
-import { useState } from 'react';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useState } from 'react'
+import { useSearchParams, useNavigate } from 'react-router-dom'
 
-import { utilService } from '../../services/util.service.js';
+import { utilService } from '../../services/util.service.js'
 import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
 
-import { OrderDetails } from './order-details.jsx';
-import { DateSelect } from './../search-cmps/date-select.jsx';
-import { GuestSelect } from './../search-cmps/guest-select.jsx';
-import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx';
-import { RatingReview } from '../ui/rating-review.jsx';
+import { OrderDetails } from './order-details.jsx'
+import { DateSelect } from './../search-cmps/date-select.jsx'
+import { GuestSelect } from './../search-cmps/guest-select.jsx'
+import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx'
+import { RatingReview } from '../ui/rating-review.jsx'
 
 
 export function OrderModal({ stay }) {
-  const [openTab, setOpenTab] = useState();
-  const [searchParams, setSearchParams] = useSearchParams();
-  const navigate = useNavigate();
+  const [openTab, setOpenTab] = useState()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
 
   const orderParams = {
     checkIn: searchParams.get('checkIn')
@@ -29,21 +29,21 @@ export function OrderModal({ stay }) {
       infants: +searchParams.get('infants') || 0,
       pets: +searchParams.get('pets') || 0,
     },
-  };
+  }
 
   function onSetField(field, value) {
-    console.log(searchParams);
+    console.log(searchParams)
     if (field === 'guests') {
-      searchParams.set('adults', value.adults);
-      searchParams.set('children', value.children);
-      searchParams.set('infants', value.infants);
-      searchParams.set('pets', value.pets);
+      searchParams.set('adults', value.adults)
+      searchParams.set('children', value.children)
+      searchParams.set('infants', value.infants)
+      searchParams.set('pets', value.pets)
     }
     if (field === 'checkIn' || field === 'checkOut') {
-      value = value.getTime();
-      searchParams.set(field, value);
+      value = value.getTime()
+      searchParams.set(field, value)
     }
-    setSearchParams(searchParams);
+    setSearchParams(searchParams)
   }
 
   function onClickReserve() {
@@ -54,32 +54,32 @@ export function OrderModal({ stay }) {
       children: orderParams.guests.children,
       infants: orderParams.guests.infants,
       pets: orderParams.guests.pets,
-    });
-    navigate(`/book/stay/${stay._id}?${paramsToSet}`);
+    })
+    navigate(`/book/stay/${stay._id}?${paramsToSet}`)
   }
 
   const checkInSubHeading = orderParams.checkIn
     ? `${utilService.formattedDate(+orderParams.checkIn)}`
-    : 'Add Date';
+    : 'Add Date'
   const checkOutSubHeading = orderParams.checkOut
     ? `${utilService.formattedDate(+orderParams.checkOut)}`
-    : 'Add Date';
+    : 'Add Date'
 
   function getGuestsSubHeading() {
-    var guestSubheading = '';
-    const { adults, children, infants, pets } = orderParams.guests;
-    if (adults) guestSubheading += `${adults} adults`;
-    if (children) guestSubheading += `, ${children} children`;
-    if (infants) guestSubheading += `, ${infants} infants`;
-    if (pets) guestSubheading += `, ${pets} pets`;
+    var guestSubheading = ''
+    const { adults, children, infants, pets } = orderParams.guests
+    if (adults) guestSubheading += `${adults} adults`
+    if (children) guestSubheading += `, ${children} children`
+    if (infants) guestSubheading += `, ${infants} infants`
+    if (pets) guestSubheading += `, ${pets} pets`
     if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')){
-      guestSubheading = guestSubheading.replace('1 adults', '1 adult');
-      guestSubheading = guestSubheading.replace('1 children', '1 child');
-      guestSubheading = guestSubheading.replace('1 infants', '1 infant');
-      guestSubheading = guestSubheading.replace('1 pets', '1 pet');
+      guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+      guestSubheading = guestSubheading.replace('1 children', '1 child')
+      guestSubheading = guestSubheading.replace('1 infants', '1 infant')
+      guestSubheading = guestSubheading.replace('1 pets', '1 pet')
     }
-    if (!guestSubheading) guestSubheading = 'Add Guests';
-    return guestSubheading;
+    if (!guestSubheading) guestSubheading = 'Add Guests'
+    return guestSubheading
   }
 
   return (
@@ -156,7 +156,7 @@ export function OrderModal({ stay }) {
         {(!orderParams.checkIn || !orderParams.checkOut) && (
           <BtnSquareColor
             onClick={() => {
-              setOpenTab('checkIn');
+              setOpenTab('checkIn')
             }}
             children={'Check Availability'}
           />
@@ -173,5 +173,5 @@ export function OrderModal({ stay }) {
         </section>
       </div>
     </section>
-  );
+  )
 }

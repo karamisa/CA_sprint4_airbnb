@@ -33,7 +33,7 @@ export function BookPage() {
     const loggedinUser = (!user) ? false : true
     // let isBooked = false  //after reservation success
 
-    const serviceFees = 11.2
+    const SERVICE_FEE = 11.2
     const fields = getOrderFields()
     console.log('fields', fields)
     const formattedStartDate = utilService.formattedDate(fields.startDate)
@@ -82,8 +82,8 @@ export function BookPage() {
         let totalWithFees
         if (stay) {
             totalStayPrice = +(stay.price * utilService.totalDays(startDate, endDate)).toFixed(2)
-            totalFees = +(serviceFees * utilService.totalDays(startDate, endDate)).toFixed(2)
-            totalWithFees = +(totalStayPrice + (serviceFees * utilService.totalDays(startDate, endDate))).toFixed(2)
+            totalFees = +(SERVICE_FEE * utilService.totalDays(startDate, endDate)).toFixed(2)
+            totalWithFees = +(totalStayPrice + (SERVICE_FEE * utilService.totalDays(startDate, endDate))).toFixed(2)
             stayToSet = {
                 _id: stay._id,
                 name: stay.name,
