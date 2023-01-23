@@ -1,0 +1,61 @@
+.details-modal {
+    .modal {
+        transform: translate(-50%, -50%);
+        padding: 40px;
+        max-height: 93%;
+    }
+}
+
+.all-amenities {
+    padding-top: 3.75rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    max-height: 80vh;
+    overflow-x: auto;
+
+    .amenities-header {
+
+
+        h3 {
+            font-weight: unset;
+            font-size: 1.5rem;
+            font-family: cereal-Bold;
+            line-height: 1.625rem;
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    .amenities-container {
+
+        display: flex;
+        flex-direction: column;
+        // overflow: scroll;
+        overflow: auto;
+
+        li {
+            list-style: none;
+            display: flex;
+            // width: 2.5rem;
+            // height: 2.5rem;
+
+            .amenity-name{
+                font-size: 1rem;
+                // font-family: cereal-Book;
+                line-height: 1.25rem;
+                margin-bottom: 1.5rem;
+                padding-top:0.25rem;
+            }
+        }
+
+        .amenity-img {
+            width: 1.625rem;
+            height: 1.625rem;
+            margin-right: 1rem;
+
+        }
+
+
+    }
+
+}

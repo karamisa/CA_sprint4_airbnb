@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
+import { useModal } from '../customHooks/useModal'
 
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
@@ -13,12 +14,17 @@ import { RatingReview } from '../cmps/ui/rating-review.jsx'
 import { ImgGrid } from '../cmps/ui/img-grid.jsx'
 import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx'
 import { DetailsHeart } from '../cmps/ui/details-heart.jsx'
+import { LoginSignup } from '../cmps/login-signup.jsx'
+import { AllAmenities } from '../cmps/stay-details/all-amenities.jsx'
+import { AllReviews } from '../cmps/stay-details/all-reviews.jsx'
+import { AboutHost } from '../cmps/stay-details/about-host.jsx'
 
 export function StayDetails() {
   const [stay, setStay] = useState(null)
   const { stayId } = useParams()
   const navigate = useNavigate()
   const [like, setLike] = useState(false)
+  const { openModal, Modal } = useModal()
 
   useEffect(() => {
     loadStay()
@@ -53,16 +59,19 @@ console.log('stay', stay)
     console.log('open gallery');
   }
 
-  function onToggleAmenities() {}
 
-  function onToggleReviews() {}
+  function onToggleReviews() {
 
-  function openAllReviewsModal() {}
+
+  }
+
+
 
   if (!stay) return <section className='secondary-layout'>Loading...</section>;
   return (
     <>
         <AppHeader className='secondary-layout' />
+       <div className="details-modal"> <Modal /></div>
       <section className='secondary-layout'>
 
         <section className='stay-details'>
@@ -93,12 +102,7 @@ console.log('stay', stay)
           <section className='stay-review-mid grid border-buttom'>
             <div className='stay-review-details'>
               <div className='about-host border-buttom'>
-
-              <h2 className='title secondary-title'><span>{stay.type} </span><span>hosted by </span> {stay.host.fullname}</h2>
-              <span>2 guests • 1 bedroom • 2 beds • 1 bath</span>
-              <div className="host-img">
-                {/* <img className="mini-user-img" src={stay.host.imgUrls} alt="" /> */}
-              </div>
+              <AboutHost stay={stay} />
               </div>
               <div className='stay-highlights border-buttom'>
                 can be hardcoaded
@@ -122,7 +126,7 @@ console.log('stay', stay)
                 {stay.amenities.length > 10 && (
                   <BtnSquare
                     className='rev-btn show-all-amenities'
-                    onClick={onToggleAmenities}>
+                    onClick={() => openModal(<AllAmenities amenities={stay.amenities}/>)}>
                     show all {stay.amenities.length} amenities{' '}
                   </BtnSquare>
                 )}
@@ -148,14 +152,13 @@ console.log('stay', stay)
               />
             </div>
             {stay.reviews.length > 6 && (
-              <button
+              <BtnSquare
                 className='rev-btn show-all-reviews'
-                onClick={onToggleReviews}>
+                onClick={() => openModal(<AllReviews reviews={stay.reviews}/>)}>
                 show all {stay.reviews.length} reviews{' '}
-              </button>
+              </BtnSquare>
             )}
           </div>
-
           <div className='stay-map border-buttom'>Where you'll be</div>
 
           <div className='stay-about-host border-buttom'>
