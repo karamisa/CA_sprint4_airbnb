@@ -1,19 +1,23 @@
-.sudo-header{
+.sudo-header {
   position: sticky;
   background-color: $clr-white;
   width: 100vw;
   z-index: 100;
   border-bottom: 1px solid $clr-border;
-  top:0;
-  height:80px;
+  top: 0;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
 
-  .anchor-links{
+  .anchor-links {
     display: flex;
     align-items: center;
 
+
   }
-  .anchor-link{
-    height:100%;
+
+  .anchor-link {
+    height: 100%;
     color: $clr-text-primary;
     display: flex;
     align-items: center;
@@ -22,7 +26,8 @@
     font-family: cereal-medium;
     position: relative;
     text-decoration: none;
-    &::after{
+
+    &::after {
       background-color: $clr-text-primary;
       content: "";
       display: block;
@@ -32,10 +37,11 @@
       position: absolute;
       transition: opacity 0.15s ease 0s;
       width: 100%;
-  }
-  &:hover::after{
-    opacity: 1;
-  }
+    }
+
+    &:hover::after {
+      opacity: 1;
+    }
   }
 }
 
@@ -117,7 +123,7 @@
         padding-block: 32px;
       }
 
-      .stay-calendar{
+      .stay-calendar {
         padding-block: unset;
       }
 
@@ -128,21 +134,21 @@
 
 
       .about-host {
-   
+
         padding-bottom: 1.5rem;
 
-        .header{
+        .header {
 
-          h2{
+          h2 {
             margin-bottom: 0.3em;
             font-size: 1.375rem;
             font-family: cereal-Bold;
-          } 
+          }
 
-          .host-img{
+          .host-img {
             height: 56px;
             width: 56px;
-            border-radius: 50%;            
+            border-radius: 50%;
           }
         }
       }
@@ -150,35 +156,35 @@
       .stay-amenities {
         .amenities-container {
 
-            margin-left: -8px;
-            margin-right: -8px;
-            width: calc(100% + 16px);
-            -webkit-box-pack: start;
-            -webkit-box-align: stretch;
-            justify-content: flex-start;
-            align-items: stretch;
-            flex-wrap: wrap;
-            line-height: 1.25rem;
-            margin-bottom: 24px;
+          margin-left: -8px;
+          margin-right: -8px;
+          width: calc(100% + 16px);
+          -webkit-box-pack: start;
+          -webkit-box-align: stretch;
+          justify-content: flex-start;
+          align-items: stretch;
+          flex-wrap: wrap;
+          line-height: 1.25rem;
+          margin-bottom: 24px;
 
-            li{
-              display: flex;
-              align-items: center;
-              width: 50%;
-              padding-left: 8px;
-              padding-right: 8px;
-              padding-bottom: 16px;
-            }
+          li {
+            display: flex;
+            align-items: center;
+            width: 50%;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-bottom: 16px;
+          }
 
           .amenity-img {
             display: block;
             height: 24px;
             width: 24px;
-            color:$clr-svg-imgs;
+            color: $clr-svg-imgs;
             fill: currentColor;
           }
 
-          .amenity-name{
+          .amenity-name {
             letter-spacing: 0.007em;
             padding-left: 1rem;
           }

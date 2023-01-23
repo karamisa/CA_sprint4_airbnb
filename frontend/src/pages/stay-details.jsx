@@ -14,7 +14,6 @@ import { RatingReview } from '../cmps/ui/rating-review.jsx'
 import { ImgGrid } from '../cmps/ui/img-grid.jsx'
 import { BtnSquare } from '../cmps/ui/buttons/btn-square.jsx'
 import { DetailsHeart } from '../cmps/ui/details-heart.jsx'
-import { LoginSignup } from '../cmps/login-signup.jsx'
 import { AllAmenities } from '../cmps/stay-details/all-amenities.jsx'
 import { AllReviews } from '../cmps/stay-details/all-reviews.jsx'
 import { AboutHost } from '../cmps/stay-details/about-host.jsx'
@@ -82,7 +81,7 @@ export function StayDetails() {
     <>
       <AppHeader className='secondary-layout' />
        <div className="details-modal"> <Modal /></div>
-      <div className={'sudo-header flex justify-between secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
+      <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
         <div className='anchor-links'>
           <a className='anchor-link' href='imgs' >Photos</a>
           <a className='anchor-link' href='imgs' >Amenities</a>
