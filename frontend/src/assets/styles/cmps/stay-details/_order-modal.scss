@@ -3,6 +3,41 @@
 .order-modal {
   position: sticky;
   top: 80px;
+
+
+  .lower-rate-container {
+    padding: 1.5rem;
+    border: 1px solid $clr-border;
+    border-radius: 12px;
+    margin-left: 8.333333333333332%;
+    margin-top: 1.5rem;
+
+    .lower-rate{
+      line-height: 1.25rem;
+
+
+      .lower-rate-txt{
+        padding-right: 1rem;
+
+        .lower-price-txt{
+          margin-right: 0.5rem;
+          font-family: cereal-Bold;
+        }
+      }
+
+      .rate-tag-img{
+        display: block;
+        height: 2rem;
+        width: 2rem;
+        fill: $clr-brand;
+        stroke: currentColor;
+      }
+
+
+    }
+  }
+
+
 }
 
 .order-modal-form {
@@ -95,7 +130,7 @@
       border-top: 1px solid $clr-border-dark;
       position: relative;
 
-      .drawer-arrow-icon{
+      .drawer-arrow-icon {
         position: absolute;
         top: 30%;
         right: 13px;
@@ -121,44 +156,47 @@
         z-index: 999;
         left: -26px;
       }
-    
 
 
-    
 
-  }
-}
 
-.order-details {
-  gap: 25px;
-  flex-direction: column;
 
-  .no-charge-msg {
-    text-align: center;
-  }
-
-  .prices {
-    grid-template-columns: 1fr 1fr;
-    padding-bottom: 15px;
-    border-bottom: 1px solid $clr-border-dark;
-    gap: 10px;
-    font-size: 0.9rem;
-
-    &>*:nth-child(odd) {
-      text-decoration: underline;
-    }
-
-    &>*:nth-child(even) {
-      justify-self: end;
     }
   }
 
-  .total {
-    font-weight: 600;
-    color: $clr-svg-imgs;
-    font-family: cereal-Bold;
+  .order-details {
+    gap: 25px;
+    flex-direction: column;
+
+    .no-charge-msg {
+      text-align: center;
+    }
+
+    .prices {
+      grid-template-columns: 1fr 1fr;
+      padding-bottom: 15px;
+      border-bottom: 1px solid $clr-border-dark;
+      gap: 10px;
+      font-size: 0.9rem;
+
+      &>*:nth-child(odd) {
+        text-decoration: underline;
+      }
+
+      &>*:nth-child(even) {
+        justify-self: end;
+      }
+    }
+
+    .total {
+      font-weight: 600;
+      color: $clr-svg-imgs;
+      font-family: cereal-Bold;
+    }
   }
-}
+
+
+
 }
 
 .order-confirmation-modal {

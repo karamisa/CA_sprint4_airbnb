@@ -1,6 +1,7 @@
 
 export function PrgoressBar({ progress }) {
-    const percentage = progress / 5 * 100
+    const FULL_BAR = 5
+    const percentage = progress / FULL_BAR * 100
 
     return (
         <div 

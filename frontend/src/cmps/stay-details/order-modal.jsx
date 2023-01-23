@@ -9,6 +9,7 @@ import { DateSelect } from './../search-cmps/date-select.jsx'
 import { GuestSelect } from './../search-cmps/guest-select.jsx'
 import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx'
 import { RatingReview } from '../ui/rating-review.jsx'
+import { LowerRate } from './lower-rate.jsx'
 
 
 export function OrderModal({ stay }) {
@@ -172,6 +173,7 @@ export function OrderModal({ stay }) {
           )}
         </section>
       </div>
+        <LowerRate/>
     </section>
   )
 }
