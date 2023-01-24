@@ -63,7 +63,7 @@ export function Carousel({ children }) {
     setContainerWidth(containerEl.current.scrollWidth);
 
     if (offset <= -1 * (containerWidth - winWidth)) {
-      // nextItems();
+      nextItems();
     }
   }, [
     containerEl.current?.scrollWidth,

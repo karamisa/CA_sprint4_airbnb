@@ -10,6 +10,8 @@
 .carouselContainer {
     display: flex;
     gap: 35px;
+
+    transition: transform 600ms ease-out;
 }
 
 .chevron {
