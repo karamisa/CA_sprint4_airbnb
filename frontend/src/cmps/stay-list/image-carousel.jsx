@@ -16,16 +16,15 @@ export function ImageCarousel({ imgs }) {
         slidesToShow: 1,
         arrows: true,
         slidesToScroll: 1,
-        lazyLoad: true
+        lazyLoad: true,
+        // prevArrow: <CustomPrevButton />,
+        // nextArrow: <CustomNextButton />
     }
+
     console.log(imgs)
     return (
         <div>
-            {/* <button onClick={() => carousel.current.slickGoTo(0)}>Go to start</button>
-            <button onClick={() => carousel.current.slickGoTo(imgs.length - 1)}>
-                Go to last
-            </button> */}
-            <Slider {...settings}>
+            <Slider ref={carousel} {...settings}>
                 {imgs.map((item) => (
                     <div key={item.id}>
                         <img className="carousel-img" src={item.src} alt={item.alt} />
@@ -35,3 +34,13 @@ export function ImageCarousel({ imgs }) {
         </div>
     )
 }
+
+
+// function CustomPrevButton(props) {
+    
+//     return <button onClick={props.onClick}>Previous</button>
+// }
+
+// function CustomNextButton(props) {
+//     return <button onClick={props.onClick}>Next</button>
+// }

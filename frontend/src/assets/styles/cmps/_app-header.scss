@@ -39,9 +39,14 @@
     flex: 1 0 75px;
     align-items: center;
     height: 80px;
+    color: $clr-brand;
 
     .logo {
       cursor: pointer;
+    }
+
+    .akebnb{
+      margin: 0;
     }
   }
 
