@@ -41,7 +41,6 @@ export function StayDetails() {
     if (!refVisible) {
       return
     }
-    // detected rendering  
   }, [refVisible])
 
   useEffect(() => {
@@ -96,11 +95,14 @@ export function StayDetails() {
 
 
 
-  if (!stay) return <section className='secondary-layout'>Loading...</section>
+
   return (
     <>
       <AppHeader className='secondary-layout' />
-      <div className="details-modal"> <Modal /></div>
+       <div className="details-modal"> <Modal /></div>
+       {(!stay) && <h1 style={{textAlign: 'center', marginTop: '20px', fontSize: '1rem'}}>Loading...</h1>}
+       {(!!stay) &&
+       <>
       <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
         <div className='anchor-links'>
           <a className='anchor-link' href='imgs' >Photos</a>
@@ -222,6 +224,7 @@ export function StayDetails() {
           </div>
         </section>
       </section>
+      </>}
       <AppFooter className='secondary-layout' />
     </>
   )
