@@ -37,7 +37,7 @@ const [range, setRange] = useState([
   rangeColors={['black']}
   showDateDisplay={false}
   showMonthAndYearPickers={false}
-//   disabledDates=[]
+  // disabledDates=[]
 
 />
   )

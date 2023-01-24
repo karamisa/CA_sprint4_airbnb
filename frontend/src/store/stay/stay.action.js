@@ -67,7 +67,6 @@ export async function likeStay(stayId){
     const likedByUser = stay.likedByUsers.filter(miniUser => miniUser._id === user._id)
     stay.likedByUsers = likedByUser.length ? stay.likedByUsers.filter(miniUser => miniUser._id !== user._id) : [...stay.likedByUsers, user]
     saveStay(stay)
-
     return stay
 } catch (err) {
     console.log('CarActions: err in toggling likeStay', err)
