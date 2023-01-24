@@ -82,6 +82,8 @@ export function StayEdit() {
     })
 
     return <section className="stay-edit">
+
+        <h1>Edit Stay</h1>
         <Formik
             initialValues={{
                 name: 'Demo Place',
@@ -92,6 +94,7 @@ export function StayEdit() {
             {({ errors, touched }) => (
                 <Form className='edit-form'
                     onSubmit={onAddStay}>
+                    <h3>Stay name:</h3>
                     <Field
                         name="name"
                         id="name"
@@ -102,7 +105,17 @@ export function StayEdit() {
                     {errors.name && touched.name ? (
                         <span>{errors.name}</span>
                     ) : null}
-
+                    <Field
+                        name="summary"
+                        id="summary"
+                        value={stayToEdit.summary}
+                        onChange={handleChange}
+                        placeholder="Stay summary"
+                    />
+                    {errors.summary && touched.summary ? (
+                        <span>{errors.summary}</span>
+                    ) : null}
+                    <h3>Stay price:</h3>
                     <Field
                         name="price"
                         id="price"
@@ -113,9 +126,9 @@ export function StayEdit() {
                     {errors.price && touched.price ? <div>{errors.price}</div> : null}
 
                     <div className="select-container">
-                        <div>
+                        <h3>
                             What you have to offer?
-                        </div>
+                        </h3>
                         <Select
                             // options={stayService.getStayAmenities().map((label) => ({ value: label, label }))}
                             options={getStayAmenities().map((label) => ({ value: label, label }))}
