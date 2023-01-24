@@ -176,7 +176,7 @@ export function StayDetails() {
           </section>
 
           <div className='reviews border-buttom'>
-            <h2 className='stay-mid-reviews'>
+            <h2 className='stay-mid-reviews flex'>
               <RatingReview reviews={stay.reviews} /> • {stay.reviews.length}{' '}
               reviews
             </h2>

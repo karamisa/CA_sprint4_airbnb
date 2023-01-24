@@ -22,9 +22,9 @@ export function RatingReview({ reviews }) {
 
     return (
         <Fragment>
-            <span className="avg-rating">
-                <FaStar />
-                {avgRating}
+            <span className="avg-rating flex" style={{flexWrap: 'nowrap'}}>
+                <span className="total-avg-star"> <FaStar /></span>
+                <span className="total-avg-rating" style={{paddingLeft: '4px'}}>{avgRating}</span>
             </span>
 
 

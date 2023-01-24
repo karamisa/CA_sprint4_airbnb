@@ -28,7 +28,8 @@ export function ReviewsCmp({ reviewsToDisplay }) {
                     <p>{expanded[index] ? review.txt : review.txt.substring(0, MAX_LENGTH)}</p>
                     {review.txt.length > MAX_LENGTH &&
                     <button className="show-more" onClick={() => handleExpand(index)}>
-                        {expanded[index] ? 'Show less' : 'Show more'}
+                        {expanded[index] ? '< Show less' : 'Show more'}
+                        {/* {expanded[index] ? '< Show less' : <> Show more <span className="no-decoration">{'>'}</span></>} */}
                     </button>}
                 </div>
             ))

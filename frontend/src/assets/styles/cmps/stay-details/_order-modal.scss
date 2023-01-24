@@ -9,7 +9,7 @@
     padding: 1.5rem;
     border: 1px solid $clr-border;
     border-radius: 12px;
-    margin-left: 8.333333333333332%;
+    margin-left: 18.333333333333332%;
     margin-top: 1.5rem;
     max-width: 400px;
 
@@ -46,7 +46,7 @@
   justify-content: space-between;
   gap: 24px;
   margin-top: 32px;
-  margin-left: 8.333333333333332%;
+  margin-left: 18.333333333333332%;
   border: 1px solid $clr-border;
   border-radius: 12px;
   padding: 24px;
@@ -61,18 +61,39 @@
   .order-form-header {
     justify-content: space-between;
 
-    h4 {
-      span {
-        font-weight: 600;
-        font-size: 1.375em;
-      }
+    .order-price {
+      font-weight: 600;
+      line-height: 1.25rem;
+      font-size: 1.25rem;
+      font-family: cereal-Bold;
+    }
+
+    .order-night {
+      font-size: 1rem;
+      font-weight: 400;
+      font-family: cereal-Book;
     }
 
     .order-rating-review {
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 600;
       align-items: center;
-      gap: 0.1875em;
+      // gap: 0.1875em;
+
+      span {
+        padding-left: 4px;
+      }
+      
+      .stay-rating {
+        // font-size: 1rem;
+        color: $clr-text-lighter;
+        text-decoration: underline;
+        line-height: 1.125rem;
+        font-weight: 400;
+        font-family: cereal-Book;
+        padding-left: 4px;
+
+      }
     }
   }
 

@@ -44,6 +44,10 @@ button {
     padding: 0;
     border: 0;
     width: max-content;
+
+    .no-decoration{
+      text-decoration: none;
+    }
   }
 }
 

@@ -56,12 +56,29 @@
   }
 
   .name-subtitle {
-    gap: 0.5rem;
+    gap: 0.25rem;
+    align-self: center;
+    font-family: cereal-Medium;
+    font-size: 0.875rem;
+
+    .total-avg-star {
+      margin-top: 0.125rem;
+    }
+
+    .stay-rating {
+      text-decoration: underline;
+    }
+
+    .stay-location {
+      text-decoration: underline;
+    }
   }
 
   .save-stay {
     border: none;
     padding: 0.5rem;
+    font-size: 0.875rem;
+    font-family: cereal-Medium;
 
     .heart {
       display: flex;
@@ -195,4 +212,19 @@
       margin-bottom: 32px;
     }
   }
+
+  .stay-mid-reviews {
+
+    font-weight: unset;
+    gap: 4px;
+    font-size: 1.5rem;
+
+    .total-avg-star{
+      margin-top: 0.25rem;
+      padding-right: 4px;
+      font-size: 1rem;
+    }
+  }
+
+
 }

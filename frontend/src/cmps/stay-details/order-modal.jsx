@@ -89,7 +89,8 @@ export function OrderModal({ stay }) {
         {/* HEADER - Price + Reviews */}
         <header className='order-form-header flex'>
           <h4>
-            <span>${(Math.round(stay.price)).toLocaleString()}</span> night
+            <span className="order-price">${(Math.round(stay.price)).toLocaleString()}</span>
+            <span className="order-night" style={{fontFamily: 'cereal-Book'}}> night</span>
           </h4>
           <div className='order-rating-review flex'>
             <RatingReview reviews={stay.reviews} />
