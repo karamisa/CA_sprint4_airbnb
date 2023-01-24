@@ -48,8 +48,8 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
     }
 
 
-    const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(fields.checkIn)}` : 'Add Dates'
-    const checkOutSubHeading = (fields.checkOut) ? `${utilService.formattedDate(fields.checkOut)}` : 'Add Dates'
+    const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(fields.checkIn)}` : 'Add dates'
+    const checkOutSubHeading = (fields.checkOut) ? `${utilService.formattedDate(fields.checkOut)}` : 'Add dates'
 
     function getGuestsSubHeading() {
         var guestSubheading = ''
@@ -57,7 +57,7 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
         if (fields.guests.children) guestSubheading += `, ${fields.guests.children} children`
         if (fields.guests.infants) guestSubheading += `, ${fields.guests.infants} infants`
         if (fields.guests.pets) guestSubheading += `, ${fields.guests.pets} pets`
-        if (!guestSubheading) guestSubheading = 'Add Guests'
+        if (!guestSubheading) guestSubheading = 'Add guests'
         if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
             guestSubheading = guestSubheading.replace('1 adults', '1 adult');
             guestSubheading = guestSubheading.replace('1 children', '1 child');
@@ -102,7 +102,12 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
                         </div>
                         {(selectedTab === 'checkIn' || selectedTab === 'checkOut') &&
                             <div className="date-select-container">
+                                <div className='date-tabs'>
+                                    <button className='clean-button active'>Choose dates</button>
+                                    <button className='clean-button'>Flexible dates</button>
+                                </div>
                                 <DateSelect checkIn={fields.checkIn} checkOut={fields.checkOut} onSetField={onSetField} />
+                                
                             </div>}
                     </div>
 
