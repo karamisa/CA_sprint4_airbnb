@@ -2,13 +2,9 @@ import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function Logo() {
-  const navigate = useNavigate();
   return (
     <Fragment>
       <svg
-        onClick={() => {
-          navigate('/stay');
-        }}
         className='logo'
         width='38'
         height='32'

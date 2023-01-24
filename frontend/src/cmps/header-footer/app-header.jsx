@@ -39,7 +39,7 @@ export function AppHeader({ className, ...props }) {
 
   return (
       <header {...props} className={`app-header ${className}`}>
-        <div className='header-logo-container'>
+        <div className='header-logo-container'  onClick={() => {navigate('/stay')}}>
           <Logo />
         </div>
         <div className='header-search-bar-container'>

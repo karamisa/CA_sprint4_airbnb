@@ -45,7 +45,7 @@ function getUsers() {
     return storageService.query(USER_KEY)
 }
 
-function updateUser(user){
+function updateUser(user) {
     return storageService.put(USER_KEY, user)
 }
 
@@ -62,6 +62,17 @@ function logout() {
     return Promise.resolve()
 }
 
+// function toggleLikeStay(stayId,user) {
+//     for (let i = 0; i < user.likedStays.length; i++) {
+//         if (user.likedStays[i]._id === stayId) {
+//             user.likedStays.splice(i, 1)
+//             return
+//         }
+//     }
+//     user.likedStays.push({ _id: stayId })
+//     updateUser(user)
+// }
+
 
 
 function _saveLoggedinUser(user) {
@@ -74,24 +85,24 @@ function _createUsers() {
     if (!users || !users.length) {
         const users = [
             {
-              "_id": "u101",
-              "fullname": "Muki Host",
-              "imgUrl": "https://robohash.org/mukihost",
-              "username": "host",
-              "password": "secret",
-              "isOwner": true, // OPTIONAL
-              "likedStays": [{_id:'622f337a75c7d36e498aaaf8'}]
+                "_id": "u101",
+                "fullname": "Muki Host",
+                "imgUrl": "https://robohash.org/mukihost",
+                "username": "host",
+                "password": "secret",
+                "isOwner": true, // OPTIONAL
+                "likedStays": [{ _id: '622f337a75c7d36e498aaaf8' }]
 
             },
             {
-              "_id": "u102",
-              "fullname": "Puki guest",
-              "imgUrl": "https://robohash.org/pukiguest",
-              "username": "guest",
-              "password": "secret",
-              "likedStays": [{_id:'622f337a75c7d36e498aaaf8'}]
+                "_id": "u102",
+                "fullname": "Puki guest",
+                "imgUrl": "https://robohash.org/pukiguest",
+                "username": "guest",
+                "password": "secret",
+                "likedStays": [{ _id: '622f337a75c7d36e498aaaf8' }]
             }
-          ]
+        ]
 
         utilService.saveToStorage(USER_KEY, JSON.parse(JSON.stringify(users)))
     }
