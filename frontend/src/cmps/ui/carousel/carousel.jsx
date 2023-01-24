@@ -62,8 +62,9 @@ export function Carousel({ children }) {
     setWinWidth(containerEl.current.parentNode.offsetWidth);
     setContainerWidth(containerEl.current.scrollWidth);
 
-    if (offset <= -1 * (containerWidth - winWidth)) {
+    if (offset <= -1 * (containerWidth - winWidth) && offset) {
       nextItems();
+      console.log('fdfsf', offset);
     }
   }, [
     containerEl.current?.scrollWidth,
@@ -106,20 +107,17 @@ export function Carousel({ children }) {
       <div
         ref={leftNavRef}
         className={`${classes.chevron} 
-        ${classes.chevronLeft}`}
+        ${classes.chevronLeft}
+        ${classes.hidden}`}
         onClick={prevItems}>
-        <span className={`${classes.navIcon} ${classes.left}`}>
-          {LeftNavIcon}
-        </span>
+        <span className={`${classes.navIcon}`}>{LeftNavIcon}</span>
       </div>
       <div
         ref={rightNavRef}
         className={`${classes.chevron} 
         ${classes.chevronRight}`}
         onClick={nextItems}>
-        <span className={`${classes.navIcon} ${classes.right}`}>
-          {RightNavIcon}
-        </span>
+        <span className={`${classes.navIcon}`}>{RightNavIcon}</span>
       </div>
 
       <div className={classes.carouselWindow}>

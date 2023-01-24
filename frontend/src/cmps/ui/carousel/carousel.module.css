@@ -15,7 +15,6 @@
 }
 
 .chevron {
-    /* display: grid; */
     position: absolute;
     z-index: 2;
 
@@ -26,7 +25,6 @@
     width: 75px;
     margin-top: 12px;
     margin-bottom: 10px;
-    /* font-size: 2rem; */
 
     cursor: pointer;
 }
