@@ -1,18 +1,18 @@
 import { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-export function DetailsHeart({ cb }) {
-  const [like, setLike] = useState(false)
-  function handleClick(ev) {
+export function DetailsHeart({handleClick, isLiked= false }) {
+  const [like, setLike] = useState(isLiked)
+  function onClick(ev) {
     // ev.stopPropagation()
     setLike(!like)
-      cb(!like)   
+    handleClick()
   }
 
   if (like)
     return (
       <>
-      <span onClick={handleClick} style={{ cursor: 'pointer' }} className="details-heart">
+      <span onClick={onClick} style={{ cursor: 'pointer' }} className="details-heart">
         <FaHeart
           style={{
             color: 'red',
@@ -22,13 +22,13 @@ export function DetailsHeart({ cb }) {
           }}
         />
       </span>
-      <span onClick={handleClick} style={{ textDecoration: "underline" }}>Save</span>
+      <span onClick={onClick} style={{ textDecoration: "underline" }}>Save</span>
       </>
     )
 
   return (
     <>
-    <span onClick={handleClick} style={{ cursor: 'pointer' }} className="details-heart">
+    <span onClick={onClick} style={{ cursor: 'pointer' }} className="details-heart">
       <FaHeart
         style={{
           color: 'white',
@@ -47,7 +47,7 @@ export function DetailsHeart({ cb }) {
         }}
       />
     </span>
-    <span onClick={handleClick} style={{ textDecoration: "underline" }}>Save</span>
+    <span onClick={onClick} style={{ textDecoration: "underline" }}>Save</span>
     </>
   )
 }

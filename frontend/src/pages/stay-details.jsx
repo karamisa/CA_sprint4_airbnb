@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { stayService } from '../services/stay.service.local.js'
 import { useModal } from '../customHooks/useModal'
+import { likeStay } from '../store/stay/stay.action.js'
+
 
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
@@ -20,14 +22,13 @@ import { AllReviews } from '../cmps/stay-details/all-reviews.jsx'
 import { AboutHost } from '../cmps/stay-details/about-host.jsx'
 import useOnScreen from '../customHooks/useOnScreen.js'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
+import { LoginSignup } from '../cmps/login-signup.jsx'
 
 
 export function StayDetails() {
   const [stay, setStay] = useState(null)
-  const [wishList, setWishList] = useState(null)
   const { stayId } = useParams()
   const navigate = useNavigate()
-  const [like, setLike] = useState(false)
   const { openModal, Modal } = useModal()
   const imgGridRef = useRef()
   const reserveBtnRef = useRef()
@@ -35,15 +36,9 @@ export function StayDetails() {
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
   const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
   const user = useSelector(state => state.userModule.user)
-  const loggedinUser = (!user) ? false : true
 
   useEffect(() => {
-    if (!refVisible) {
-      return
-    }
-  }, [refVisible])
-
-  useEffect(() => {
+    console.log(imgGridRef.current)
     loadStay()
   }, [])
 
@@ -55,7 +50,6 @@ export function StayDetails() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
-      setWishList(stay.wishList)
     } catch (err) {
       console.log('Had issues in stay details', err)
       // showErrorMsg('Cannot load toy')
@@ -67,20 +61,12 @@ export function StayDetails() {
 
   function openReviewMap() { }
 
-  function onSaveStay() {
-    console.log('wishList', wishList)
-    if (!loggedinUser) {
-      console.log('login first')
-      return
-    }
-    setLike(!like)
-    if (like) {
-      console.log('save stay')
-    }
-    else {
-      console.log('unsave stay')
-    }
-    console.log('stay', stay)
+  async function onLikeStay() {
+    if (!user) {
+      openModal(<LoginSignup />) 
+      return}
+    const updatedStay = await likeStay(stay._id)
+    setStay(updatedStay)
   }
 
   function onOpenStayGallery() {
@@ -105,7 +91,7 @@ export function StayDetails() {
        <>
       <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
         <div className='anchor-links'>
-          <a className='anchor-link' href='imgs' >Photos</a>
+          <a className='anchor-link' href='#imgGallery' >Photos</a>
           <a className='anchor-link' href='imgs' >Amenities</a>
           <a className='anchor-link' href='imgs' >Reviews</a>
           <a className='anchor-link' href='imgs' >Location</a>
@@ -131,7 +117,7 @@ export function StayDetails() {
       <section className='secondary-layout'>
 
         <section className='stay-details'>
-          <h1 className='title'>{stay.name}</h1>
+          <h1  id='imgGallery' className='title'>{stay.name}</h1>
           <div className='flex justify-between'>
             <div className='name-subtitle flex'>
               <RatingReview reviews={stay.reviews} />
@@ -144,9 +130,9 @@ export function StayDetails() {
                 {stay.loc.address}
               </div>
             </div>
-            <button className='save-stay active' onClick={onSaveStay}>
+            <button className='save-stay active'>
               <div className="heart">
-                <DetailsHeart cb={(like) => setLike(like)} /></div>
+                <DetailsHeart handleClick={onLikeStay} isLiked={(!!user) ? stay.likedByUsers.find(miniUser => miniUser._id === user._id) : false}/></div>
             </button>
           </div>
 

@@ -8,7 +8,7 @@ const LeftNavIcon = (
   <svg
     viewBox='0 0 18 18'
     role='img'
-    ariaLabel='Previous'
+    aria-label='Previous'
     focusable='false'
     style={{
       height: '10px',
@@ -26,7 +26,7 @@ const RightNavIcon = (
   <svg
     viewBox='0 0 18 18'
     role='img'
-    ariaLabel='Next'
+    aria-label='Next'
     focusable='false'
     style={{
       height: '10px',

@@ -20,7 +20,7 @@ export function ImageCarousel({ imgs }) {
     // nextArrow: <CustomNextButton />
   };
 
-  console.log(imgs);
+
   return (
     <div>
       <Slider ref={carousel} {...settings}>

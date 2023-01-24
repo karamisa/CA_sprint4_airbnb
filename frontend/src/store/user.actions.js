@@ -10,6 +10,8 @@ import {
   SET_WATCHED_USER,
 } from './user.reducer.js';
 
+
+
 export async function loadUsers() {
   try {
     store.dispatch({ type: LOADING_START });

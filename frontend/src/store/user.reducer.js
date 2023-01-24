@@ -7,7 +7,7 @@ export const SET_USER = 'SET_USER'
 export const SET_WATCHED_USER = 'SET_WATCHED_USER'
 export const REMOVE_USER = 'REMOVE_USER'
 export const SET_USERS = 'SET_USERS'
-export const SET_SCORE = 'SET_SCORE'
+export const SET_WISH_LIST = 'SET_WISH_LIST'
 
 const initialState = {
     count: 10,
@@ -34,7 +34,7 @@ export function userReducer(state = initialState, action) {
         case SET_USERS:
             newState = { ...state, users: action.users }
             break
-        case SET_SCORE:
+        case SET_WISH_LIST:
             newState = { ...state, user: { ...state.user, score: action.score } }
             break
         default:

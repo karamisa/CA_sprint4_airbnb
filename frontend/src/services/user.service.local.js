@@ -1,5 +1,6 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
+import { likeStay } from '../store/stay/stay.action.js'
 
 const USER_KEY = 'userDB'
 _createUsers()
@@ -61,6 +62,8 @@ function logout() {
     return Promise.resolve()
 }
 
+
+
 function _saveLoggedinUser(user) {
     sessionStorage.setItem('loggedinUser', JSON.stringify(user))
 }
@@ -76,7 +79,9 @@ function _createUsers() {
               "imgUrl": "https://robohash.org/mukihost",
               "username": "host",
               "password": "secret",
-              "isOwner": true // OPTIONAL
+              "isOwner": true, // OPTIONAL
+              "likedStays": [{_id:'622f337a75c7d36e498aaaf8'}]
+
             },
             {
               "_id": "u102",
@@ -84,6 +89,7 @@ function _createUsers() {
               "imgUrl": "https://robohash.org/pukiguest",
               "username": "guest",
               "password": "secret",
+              "likedStays": [{_id:'622f337a75c7d36e498aaaf8'}]
             }
           ]
 

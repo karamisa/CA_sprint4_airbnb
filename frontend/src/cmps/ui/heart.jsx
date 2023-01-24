@@ -1,19 +1,17 @@
 import { useState } from 'react';
 import { FaHeart, FaRegHeart } from 'react-icons/fa';
 
-export function Heart({ cb = (like) => like }) {
-  const [like, setLike] = useState(false);
-  function handleClick(ev) {
+export function Heart({ handleClick, isLiked=false }) {
+  const [like, setLike] = useState(isLiked);
+  function onClick(ev) {
     ev.stopPropagation();
-    setLike((like) => {
-      cb(!like);
-      return !like;
-    });
+    handleClick()
+    setLike(!like);
   }
 
   if (like)
     return (
-      <span onClick={handleClick} style={{ cursor: 'pointer' }}>
+      <span onClick={onClick} style={{ cursor: 'pointer' }}>
         <FaHeart
           style={{
             color: 'red',
@@ -34,7 +32,7 @@ export function Heart({ cb = (like) => like }) {
     );
 
   return (
-    <span onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <span onClick={onClick} style={{ cursor: 'pointer' }}>
       <FaHeart
         style={{
           color: 'black',

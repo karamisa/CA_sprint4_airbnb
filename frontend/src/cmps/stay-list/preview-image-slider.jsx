@@ -2,8 +2,7 @@ import { Heart } from '../ui/heart';
 import { Slider } from '../ui/slider/slider';
 import { ImageCarousel } from './image-carousel';
 
-export function PreviewImageSlider({ imgUrls }) {
-  console.log('imgUrls', imgUrls);
+export function PreviewImageSlider({ imgUrls, isLiked, onLikeStay, stayId }) {
 
   const imgs = imgUrls.map((url, index) => (
     <img id={index} src={url} alt='Stay' />
@@ -12,7 +11,7 @@ export function PreviewImageSlider({ imgUrls }) {
   return (
     <div className='image-slider square-ratio'>
       <span className='heart'>
-        <Heart />
+        <Heart handleClick={()=> onLikeStay(stayId)} isLiked={isLiked}/>
       </span>
       <Slider>
         {imgs.map((image, idx) => (

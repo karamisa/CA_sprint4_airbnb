@@ -349,7 +349,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaaf9',
@@ -472,7 +472,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaafa',
@@ -885,7 +885,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaafb',
@@ -1303,7 +1303,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaafc',
@@ -1386,7 +1386,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaafd',
@@ -1799,7 +1799,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaafe',
@@ -2221,7 +2221,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aaaff',
@@ -2647,7 +2647,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aab00',
@@ -2791,7 +2791,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
     {
       _id: '622f337a75c7d36e498aab01',
@@ -3197,7 +3197,7 @@ function _createDemoStays() {
           },
         },
       ],
-      likedByUsers: {},
+      likedByUsers: [],
     },
   ];
   utilService.saveToStorage(STORAGE_KEY, JSON.parse(JSON.stringify(DEMO_STAYS)));
