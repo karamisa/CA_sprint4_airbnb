@@ -20,7 +20,15 @@
 .secondary-layout {
   max-width: $secondary-max-width;
   margin: auto;
-  padding-inline: 80px;
+  padding-inline: $normal-layout-padding;
+
+
+  @include for-wide-layout {
+    padding: 0 $wide-layout-padding;
+  }
+
+
+
 }
 
 .card-grid {

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 
 import { utilService } from '../../services/util.service.js'
-import {IoIosArrowDown, IoIosArrowUp} from 'react-icons/io'
+import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 
 import { OrderDetails } from './order-details.jsx'
 import { DateSelect } from './../search-cmps/date-select.jsx'
@@ -12,10 +12,11 @@ import { RatingReview } from '../ui/rating-review.jsx'
 import { LowerRate } from './lower-rate.jsx'
 
 
-export function OrderModal({ stay }) {
-  const [openTab, setOpenTab] = useState()
+export function OrderModal({ stay, setOpenTab, openTab }) {
   const [searchParams, setSearchParams] = useSearchParams()
   const navigate = useNavigate()
+
+
 
   const orderParams = {
     checkIn: searchParams.get('checkIn')
@@ -73,7 +74,7 @@ export function OrderModal({ stay }) {
     if (children) guestSubheading += `, ${children} children`
     if (infants) guestSubheading += `, ${infants} infants`
     if (pets) guestSubheading += `, ${pets} pets`
-    if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')){
+    if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
       guestSubheading = guestSubheading.replace('1 adults', '1 adult')
       guestSubheading = guestSubheading.replace('1 children', '1 child')
       guestSubheading = guestSubheading.replace('1 infants', '1 infant')
@@ -90,14 +91,14 @@ export function OrderModal({ stay }) {
         <header className='order-form-header flex'>
           <h4>
             <span className="order-price">${(Math.round(stay.price)).toLocaleString()}</span>
-            <span className="order-night" style={{fontFamily: 'cereal-Book'}}> night</span>
+            <span className="order-night" style={{ fontFamily: 'cereal-Book' }}> night</span>
           </h4>
           <div className='order-rating-review flex'>
             <RatingReview reviews={stay.reviews} />
             <span>•</span>
             <div
               className='stay-rating'
-              onClick={() => setOpenTab('reviews-modal')}>
+              onClick={() => openTab('reviews-modal')}>
               {stay.reviews.length} reviews
             </div>
           </div>
@@ -135,9 +136,9 @@ export function OrderModal({ stay }) {
           {/* Guests */}
           <div className='guest-picker'>
             <button className='clean-button guest-btn' onClick={() => (openTab === 'guests' ? setOpenTab(null) : setOpenTab('guests'))}>
-            <div className='order-heading'>Guests</div>
-            <div className='order-sub-heading'>{getGuestsSubHeading()}</div>
-            <div className="drawer-arrow-icon">{(openTab === 'guests' ? <IoIosArrowUp/> : <IoIosArrowDown/>)}</div>
+              <div className='order-heading'>Guests</div>
+              <div className='order-sub-heading'>{getGuestsSubHeading()}</div>
+              <div className="drawer-arrow-icon">{(openTab === 'guests' ? <IoIosArrowUp /> : <IoIosArrowDown />)}</div>
             </button>
             {openTab === 'guests' && (
               <div className='guest-select-container-small'>
@@ -151,30 +152,32 @@ export function OrderModal({ stay }) {
         </section>
 
         {/* Reserve/CheckAvailability Button */}
-
-        {orderParams.checkIn && orderParams.checkOut && (
-          <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
-        )}
-        {(!orderParams.checkIn || !orderParams.checkOut) && (
-          <BtnSquareColor
-            onClick={() => {
-              setOpenTab('checkIn')
-            }}
-            children={'Check Availability'}
-          />
-        )}
-
-        <section className='order-details flex'>
+        <div>
           {orderParams.checkIn && orderParams.checkOut && (
-            <OrderDetails
-              checkIn={orderParams.checkIn}
-              checkOut={orderParams.checkOut}
-              stay={stay}
+            <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
+          )}
+          {(!orderParams.checkIn || !orderParams.checkOut) && (
+            <BtnSquareColor
+              onClick={() => {
+                setOpenTab('checkIn')
+              }}
+              children={'Check Availability'}
             />
           )}
-        </section>
+
+          <section className='order-details flex'>
+            {orderParams.checkIn && orderParams.checkOut && (
+              <OrderDetails
+                checkIn={orderParams.checkIn}
+                checkOut={orderParams.checkOut}
+                stay={stay}
+              />
+            )}
+
+          </section>
+        </div>
       </div>
-        <LowerRate/>
+      <LowerRate />
     </section>
   )
 }
