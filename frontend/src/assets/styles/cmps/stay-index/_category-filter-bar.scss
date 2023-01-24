@@ -1,4 +1,7 @@
-.category-filter-bar {
+.filter-bar {
+  display: flex;
+  align-items: center;
+
   margin-top: 10px;
   height: 100px;
   background-color: $clr-white;
@@ -8,7 +11,16 @@
   z-index: 9;
 }
 
+.btn-container {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
 .carousel {
+  display: flex;
+  align-items: center;
+
   padding-top: 20px;
   overflow: scroll;
   background-color: $clr-white;
@@ -67,4 +79,18 @@
     background-color: $clr-black;
     transform: scale(1);
   }
+}
+
+.filter-bar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-inline-start: 24px;
+
+  font-size: 12px;
+}
+
+.filter-bar-btn-img {
+  width: 14px;
 }
