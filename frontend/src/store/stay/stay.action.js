@@ -1,12 +1,14 @@
 import { useParams } from 'react-router-dom';
 import { stayService } from '../../services/stay.service.local.js';
+import { userService } from '../../services/user.service.local.js';
 import { store } from '../store.js';
+import { SET_USER } from '../user.reducer.js';
+
 import {
   REMOVE_STAYS,
   SAVE_STAYS,
   SET_STAYS,
   UPDATE_STAYS,
-  SET_LABELS,
   SET_IS_LOADING,
 } from './stay.reducer';
 
@@ -56,3 +58,20 @@ export function removeStay(stayId) {
       throw err;
     });
 }
+
+
+export async function likeStay(stayId){
+  try {
+    const user = userService.getLoggedinUser()
+    const stay = await stayService.getById(stayId)
+    const likedByUser = stay.likedByUsers.filter(miniUser => miniUser._id === user._id)
+    stay.likedByUsers = likedByUser.length ? stay.likedByUsers.filter(miniUser => miniUser._id !== user._id) : [...stay.likedByUsers, user]
+    saveStay(stay)
+
+    return stay
+} catch (err) {
+    console.log('CarActions: err in toggling likeStay', err)
+    throw err
+}
+}
+
