@@ -9,8 +9,6 @@
 }
 
 .carousel {
-  display: flex;
-  gap: 2.2rem;
   padding-top: 20px;
   overflow: scroll;
   background-color: $clr-white;
@@ -33,17 +31,9 @@
     line-height: 1rem;
 
     cursor: pointer;
+
     &:hover {
       color: black;
     }
   }
-  .active {
-  }
 }
-
-// .clr-secondary {
-//   mask-position: 0% 0%;
-//   mask-size: 100% 100%;
-//   mask-repeat: no-repeat;
-//   background-color: $clr-text-secondary;
-// }
