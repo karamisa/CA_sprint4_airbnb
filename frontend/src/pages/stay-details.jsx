@@ -23,10 +23,12 @@ import { AboutHost } from '../cmps/stay-details/about-host.jsx'
 import useOnScreen from '../customHooks/useOnScreen.js'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { LoginSignup } from '../cmps/login-signup.jsx'
+import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
 
 
 export function StayDetails() {
   const [stay, setStay] = useState(null)
+  const [openTab, setOpenTab] = useState(null)
   const { stayId } = useParams()
   const navigate = useNavigate()
   const { openModal, Modal } = useModal()
@@ -34,11 +36,11 @@ export function StayDetails() {
   const reserveBtnRef = useRef()
   const [refVisible, setRefVisible] = useState(false)
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
-  const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
+  const reserveBtnVisible = useOnScreen(reserveBtnRef, '89px')
   const user = useSelector(state => state.userModule.user)
 
   useEffect(() => {
-    console.log(imgGridRef.current)
+    console.log(reserveBtnRef.current)
     loadStay()
   }, [])
 
@@ -89,31 +91,7 @@ export function StayDetails() {
        {(!stay) && <h1 style={{textAlign: 'center', marginTop: '20px', fontSize: '1rem'}}>Loading...</h1>}
        {(!!stay) &&
        <>
-      <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
-        <div className='anchor-links'>
-          <a className='anchor-link' href='#imgGallery' >Photos</a>
-          <a className='anchor-link' href='imgs' >Amenities</a>
-          <a className='anchor-link' href='imgs' >Reviews</a>
-          <a className='anchor-link' href='imgs' >Location</a>
-        </div>
-        <div className='book-it-details' style={{ display: reserveBtnVisible ? 'none' : 'flex' }}>
-          <header className='order-form-header'>
-            <h4>
-              <span>${(Math.round(stay.price)).toLocaleString()}</span> night
-            </h4>
-            <div className='order-rating-review flex'>
-              <RatingReview reviews={stay.reviews} />
-              <span>•</span>
-              <div
-                className='stay-rating'>
-                {stay.reviews.length} reviews
-              </div>
-            </div>
-          </header>
-
-          <BtnSquareColor children={'Reserve'} />
-        </div>
-      </div>
+      <SecondaryHeader stay={stay} imgGridVisible={imgGridVisible} reserveBtnVisible={reserveBtnVisible} setOpenTab={setOpenTab}/>
       <section className='secondary-layout'>
 
         <section className='stay-details'>
@@ -161,8 +139,8 @@ export function StayDetails() {
                   trouble checking in.
                 </p>
               </div>
-              <div className='stay-summery border-buttom'>{stay.summary}</div>
-              <div className='stay-amenities'>
+              <div ref={reserveBtnRef} className='stay-summery border-buttom'>{stay.summary}</div>
+              <div id='amenities' className='stay-amenities'>
                 <h4 className='subheading'>What this place offers</h4>
                 {amenitiesToDisplay && (
                   <AmenitiesList amenitiesToDisplay={amenitiesToDisplay} />
@@ -178,13 +156,13 @@ export function StayDetails() {
               <div className='stay-calendar'></div>
             </div>
 
-            <div ref={reserveBtnRef} className='stay-review-order'>
-              <OrderModal stay={stay} />
+            <div className='stay-review-order'>
+              <OrderModal stay={stay} openTab={openTab} setOpenTab={setOpenTab}/>
             </div>
           </section>
 
           <div className='reviews border-buttom'>
-            <h2 className='stay-mid-reviews flex'>
+            <h2 id='reviews' className='stay-mid-reviews flex'>
               <RatingReview reviews={stay.reviews} /> • {stay.reviews.length}{' '}
               reviews
             </h2>
