@@ -35,11 +35,13 @@ export function StayDetails() {
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
   const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
   const user = useSelector(state => state.userModule.user)
+  const loggedinUser = (!user) ? false : true
+  
   useEffect(() => {
     if (!refVisible) { 
       return
     }
-    // detected rendering  const loggedinUser = (!user) ? false : true
+    // detected rendering  
   }, [refVisible])
 
   useEffect(() => {
