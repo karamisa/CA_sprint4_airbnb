@@ -40,19 +40,6 @@ const RightNavIcon = (
   </svg>
 );
 
-const styleHidden = {
-  opacity: 0,
-  zIndex: -1,
-};
-
-const styleShown = {
-  opacity: 1,
-  zIndex: 1,
-};
-
-let isLChevronHidden = true;
-let isRChevronHidden = false;
-
 export function Carousel({ children }) {
   const size = useWindowSize();
   const [pages, setPages] = useState([]);
@@ -62,6 +49,8 @@ export function Carousel({ children }) {
 
   // container with items
   let containerEl = useRef();
+  const leftNavRef = useRef();
+  const rightNavRef = useRef();
 
   // current offset
   const [offset, setOffset] = useState(0);
@@ -82,23 +71,17 @@ export function Carousel({ children }) {
     size,
   ]);
 
-  console.log(
-    'containerEl.current.parentNode.offsetWidth:',
-    containerEl.current?.parentNode.offsetWidth,
-    'containerEl.current.scrollWidth',
-    containerEl.current?.scrollWidth
-  );
-
   // navigation
   function prevItems() {
     setOffset((prev) => {
       let diff = prev + winWidth * 0.85;
-
+      rightNavRef.current.classList.remove(classes.hidden);
       if (diff >= 0) {
         diff = 0;
-        console.log('here:true', diff);
-        isLChevronHidden = true;
-      } else isLChevronHidden = false;
+        leftNavRef.current.classList.add(classes.hidden);
+      } else {
+        leftNavRef.current.classList.remove(classes.hidden);
+      }
       return diff;
     });
   }
@@ -106,13 +89,12 @@ export function Carousel({ children }) {
   function nextItems() {
     setOffset((prev) => {
       let diff = prev - winWidth * 0.85;
+      leftNavRef.current.classList.remove(classes.hidden);
       if (diff <= -1 * (containerWidth - winWidth)) {
         diff = -1 * (containerWidth - winWidth);
 
-        console.log('ontainerWidth - winWidth:', containerWidth, winWidth);
-
-        isRChevronHidden = true;
-      } else isRChevronHidden = false;
+        rightNavRef.current.classList.add(classes.hidden);
+      } else rightNavRef.current.classList.remove(classes.hidden);
 
       return diff;
     });
@@ -122,21 +104,20 @@ export function Carousel({ children }) {
     <div className={`carousel ${classes.carousel}`}>
       {/* navigation */}
       <div
-        className={`${isLChevronHidden ? 'hidden' : ''} ${classes.chevron} ${
-          classes.chevronLeft
-        }`}
+        ref={leftNavRef}
+        className={`${classes.chevron} 
+        ${classes.chevronLeft}`}
         onClick={prevItems}>
         <span className={`${classes.navIcon} ${classes.left}`}>
           {LeftNavIcon}
         </span>
       </div>
       <div
-        className={`${classes.chevron} ${classes.chevronRight}`}
+        ref={rightNavRef}
+        className={`${classes.chevron} 
+        ${classes.chevronRight}`}
         onClick={nextItems}>
-        <span
-          className={`${isRChevronHidden ? 'hidden' : ''} ${classes.navIcon} ${
-            classes.right
-          }`}>
+        <span className={`${classes.navIcon} ${classes.right}`}>
           {RightNavIcon}
         </span>
       </div>
@@ -153,13 +134,3 @@ export function Carousel({ children }) {
     </div>
   );
 }
-
-/* 
-{
-  <div className='carousel-item'>item1</div>
-<div className='carousel-item'>item2</div>
-<div className='carousel-item'>item3</div>
-<div className='carousel-item'>item4</div>
-<div className='carousel-item'>item4</div>
-}
- */

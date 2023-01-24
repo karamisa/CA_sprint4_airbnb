@@ -19,12 +19,13 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    opacity: 0.65;
 
     height: 54px;
     margin-top: 12px;
     margin-bottom: 10px;
     font-size: 12px;
-    color: $clr-text-secondary;
+    color: $clr-black;
     white-space: nowrap;
     font-weight: 600;
     text-align: center;
@@ -32,8 +33,38 @@
 
     cursor: pointer;
 
-    &:hover {
-      color: black;
+    &:hover,
+    &.active {
+      opacity: 1;
     }
+  }
+}
+
+.category-name {
+  position: relative;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    height: 2px;
+    right: 0;
+    left: 0;
+    bottom: -10px;
+  }
+
+  &::before {
+    background-color: $clr-border;
+    transform: scale(0);
+    transition: transform ease-out 250ms;
+  }
+
+  .category:hover &::before {
+    transform: scale(1);
+  }
+
+  .category.active &::before {
+    background-color: $clr-black;
+    transform: scale(1);
   }
 }

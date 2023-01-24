@@ -24,7 +24,7 @@
     width: 75px;
     margin-top: 12px;
     margin-bottom: 10px;
-    font-size: 2rem;
+    /* font-size: 2rem; */
 
     cursor: pointer;
 }
@@ -64,11 +64,12 @@
 }
 
 .navIcon:hover {
-    transform: scale(1.04);
     box-shadow: 1px 1px 5px lightgray;
+    width: 31px;
+    height: 31px;
 }
 
-.chevron.hidden {
+.hidden {
     opacity: 0;
     z-index: -1;
 }
