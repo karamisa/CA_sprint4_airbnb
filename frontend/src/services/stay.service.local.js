@@ -6,6 +6,7 @@ const STORAGE_KEY = 'stayDB'
 
 export const stayService = {
   query,
+  getAllStays,
   getById,
   save,
   remove,
@@ -30,6 +31,13 @@ async function query(filterBy) {
   }
   return stays
 }
+
+
+async function getAllStays() {
+  const stays = await storageService.query(STORAGE_KEY)
+  return stays
+}
+
 
 async function getById(stayId) {
   const stay = await storageService.get(STORAGE_KEY, stayId)
@@ -180,7 +188,6 @@ function _createDemoStays() {
       amenities: [
         'TV',
         'Cable TV',
-        'Internet',
         'Wifi',
         'Air conditioning',
         'Wheelchair accessible',
@@ -192,7 +199,6 @@ function _createDemoStays() {
         'Elevator',
         'Hot tub',
         'Heating',
-        'Family/kid friendly',
         'Suitable for events',
         'Washer',
         'Dryer',
@@ -437,16 +443,13 @@ function _createDemoStays() {
         'Air conditioning',
         'Kitchen',
         'Elevator',
-        'Buzzer/wireless intercom',
         'Heating',
-        'Family/kid friendly',
         'Washer',
         'Dryer',
         'Smoke detector',
         'Carbon monoxide detector',
         'Essentials',
         'Iron',
-        'translation missing: en.hosting_amenity_50',
       ],
       labels: ['campers', 'trending'],
       host: {
@@ -557,14 +560,11 @@ function _createDemoStays() {
       amenities: [
         'TV',
         'Cable TV',
-        'Internet',
         'Wifi',
         'Air conditioning',
         'Kitchen',
         'Paid parking off premises',
         'Free street parking',
-        'Buzzer/wireless intercom',
-        'Family/kid friendly',
         'Washer',
         'Smoke detector',
         'First aid kit',
@@ -968,12 +968,10 @@ function _createDemoStays() {
         'A spacious, art-filled one-bedroom apartment near the express train (28 minutes to Times Square) and a Citibike station. Sample Bed-Stuy life at a nearby French restaurant,  a sunny Haitian cafe, a boutique grocery and more. We do NOT discriminate based on race, religion or sexual orientation.',
       capacity: 2,
       amenities: [
-        'Internet',
         'Wifi',
         'Air conditioning',
         'Kitchen',
         'Heating',
-        'Family/kid friendly',
         'Smoke detector',
         'Carbon monoxide detector',
         'Fire extinguisher',
@@ -984,7 +982,6 @@ function _createDemoStays() {
         'Hair dryer',
         'Iron',
         'Laptop friendly workspace',
-        'translation missing: en.hosting_amenity_49',
         'Self check-in',
         'Lockbox',
       ],
@@ -1390,13 +1387,10 @@ function _createDemoStays() {
         'Kitchen',
         'Doorman',
         'Elevator',
-        'Buzzer/wireless intercom',
         'Heating',
         'Essentials',
         'Hangers',
         'Hair dryer',
-        'translation missing: en.hosting_amenity_49',
-        'translation missing: en.hosting_amenity_50',
       ],
       labels: ['surfing', 'trending'],
       host: {
@@ -1481,8 +1475,6 @@ function _createDemoStays() {
         'Hangers',
         'Hair dryer',
         'Iron',
-        'translation missing: en.hosting_amenity_49',
-        'translation missing: en.hosting_amenity_50',
         'Hot water',
         'Bed linens',
         'Host greets you',
@@ -1896,8 +1888,6 @@ function _createDemoStays() {
         'Hangers',
         'Iron',
         'Laptop friendly workspace',
-        'translation missing: en.hosting_amenity_49',
-        'translation missing: en.hosting_amenity_50',
         'Private living room',
         'Hot water',
         'Bed linens',
@@ -2306,7 +2296,6 @@ function _createDemoStays() {
       amenities: [
         'TV',
         'Cable TV',
-        'Internet',
         'Wifi',
         'Kitchen',
         'Free street parking',
@@ -2319,8 +2308,6 @@ function _createDemoStays() {
         '24-hour check-in',
         'Hangers',
         'Hair dryer',
-        'translation missing: en.hosting_amenity_49',
-        'translation missing: en.hosting_amenity_50',
         'Room-darkening shades',
         'Hot water',
         'Bed linens',
@@ -2746,8 +2733,6 @@ function _createDemoStays() {
         'Hair dryer',
         'Iron',
         'Laptop friendly workspace',
-        'translation missing: en.hosting_amenity_49',
-        'translation missing: en.hosting_amenity_50',
       ],
       labels: ['ski', 'trending'],
       host: {
@@ -2876,7 +2861,6 @@ function _createDemoStays() {
       amenities: [
         'TV',
         'Cable TV',
-        'Internet',
         'Wifi',
         'Air conditioning',
         'Kitchen',

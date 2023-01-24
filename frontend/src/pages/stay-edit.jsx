@@ -46,9 +46,9 @@ export function StayEdit() {
 
     function handleSelect(data) {
         setSelectedOptions(data)
-        const labelsToSet = data.length ? data.map(i => i.value) : []
-        console.log(labelsToSet)
-        setStayToEdit((prevStay) => ({ ...prevStay, labels: labelsToSet }))
+        const amenitiesToSet = data.length ? data.map(i => i.value) : []
+        console.log(amenitiesToSet)
+        setStayToEdit((prevStay) => ({ ...prevStay, amenities: amenitiesToSet }))
     }
 
     async function onAddStay(ev) {
@@ -123,7 +123,7 @@ export function StayEdit() {
                             What you have to offer?
                         </h3>
                         <Select
-                            // options={stayService.getStayAmenities().map((label) => ({ value: label, label }))}
+                            // options={stayService.getStayAmenities().map((amenitie) => ({ value: amenitie, amenitie }))}
                             options={getStayAmenities().map((label) => ({ value: label, label }))}
                             placeholder="Select amenities"
                             value={selectedOptions}

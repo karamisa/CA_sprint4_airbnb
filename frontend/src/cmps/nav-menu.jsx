@@ -41,6 +41,7 @@ export function NavMenu({ user, onLogout, onAddStay }) {
           ) : (
             <div className='menu-links'>
               <Link to='/trip'>Trips</Link>
+              <Link to='/wishlist'>My Wish List</Link>
               <Link to='/stay'>Messages (coming soon)</Link>
               {user.isOwner && (
                 <Link to='/hosting/order'>View Orders (host)</Link>

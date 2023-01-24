@@ -1,11 +1,12 @@
 import { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-export function Heart({ handleClick, isLiked=false }) {
+export function Heart({ handleClick, isLiked=false, isLoggedin=false }) {
   const [like, setLike] = useState(isLiked)
   function onClick(ev) {
     ev.stopPropagation()
     handleClick()
+    if(!isLoggedin) return
     setLike(!like)
   }
 

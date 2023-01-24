@@ -13,6 +13,7 @@ import { TripPage } from './pages/trip-page'
 import { UI } from './pages/ui'
 import { BookPage } from './pages/book-page'
 import { StayEdit } from './pages/stay-edit'
+import { WishList } from './pages/wishlist'
 
 export function RootCmp() {
   return (
@@ -27,6 +28,7 @@ export function RootCmp() {
         <Route element={<StayEdit />} path='/stay/edit/:stayId'/>
         <Route element={<BookPage />} path='/book/stay/:stayId' />
         <Route element={<TripPage />} path='/trip' />
+        <Route element={<WishList />} path='/wishlist' />
         <Route element={<Hosting />} path='/hosting'>
           <Route element={<OrderPage />} path='/hosting/order' />
           <Route element={<DashboardPage />} path='/hosting/dashboard' />
