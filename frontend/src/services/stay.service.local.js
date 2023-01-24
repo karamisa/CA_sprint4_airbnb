@@ -16,11 +16,11 @@ _createStays();
 
 async function query(filterBy) {
   let stays = await storageService.query(STORAGE_KEY)
- 
+
   if (filterBy.category) {
     stays = stays.filter((stay) => {
-        return stay.labels.includes(filterBy.category)
-        })
+      return stay.labels.includes(filterBy.category)
+    })
   }
   if (filterBy.location) {
     stays = stays.filter((stay) => {
@@ -31,7 +31,7 @@ async function query(filterBy) {
 }
 
 async function getById(stayId) {
-    const stay = await storageService.get(STORAGE_KEY, stayId)
+  const stay = await storageService.get(STORAGE_KEY, stayId)
   return stay
 }
 
@@ -49,7 +49,7 @@ async function remove(stayId) {
 
 function getEmptyStay() {
   return {
-    _id:'',
+    _id: '',
     name: '',
     type: '',
     imgUrls: ['http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436390/om97cgufeacwlric2r5w.jpg'],
@@ -58,10 +58,10 @@ function getEmptyStay() {
     capacity: 100,
     amenities: ['learn to fly'],
     labels: [''],
-    host:{
-      _id:'',
-      fullname:'',
-      imgUrl:'',
+    host: {
+      _id: '',
+      fullname: '',
+      imgUrl: '',
     },
     loc: {
       country: 'Canada',
@@ -388,8 +388,8 @@ function _createDemoStays() {
         _id: 'u101',
         fullname: 'Muki Host',
         imgUrl:
-        "https://robohash.org/mukihost"
-            },
+          "https://robohash.org/mukihost"
+      },
       loc: {
         country: 'Canada',
         countryCode: 'CA',
@@ -549,8 +549,8 @@ function _createDemoStays() {
         _id: 'u101',
         fullname: 'Muki Host',
         imgUrl:
-        "https://robohash.org/mukihost"
-            },
+          "https://robohash.org/mukihost"
+      },
       loc: {
         country: 'Portugal',
         countryCode: 'PT',
@@ -938,9 +938,8 @@ function _createDemoStays() {
         lat: -73.92922,
         lng: 40.68683,
       },
-      wishList: [
-        {user: '622f3402e36c59e6164fac46', at: 1627400000000},
-        {user: '622f3402e36c59e6164fac46', at: 1627400000000},
+      likedByUsers: [
+        'u101'
       ],
       reviews: [
         {
@@ -3201,7 +3200,7 @@ function _createDemoStays() {
       likedByUsers: {},
     },
   ];
-  utilService.saveToStorage(STORAGE_KEY,JSON.parse(JSON.stringify(DEMO_STAYS)));
+  utilService.saveToStorage(STORAGE_KEY, JSON.parse(JSON.stringify(DEMO_STAYS)));
 }
 
 function _createStays() {

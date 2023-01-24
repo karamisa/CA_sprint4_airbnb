@@ -30,15 +30,15 @@ export function StayDetails() {
   const [like, setLike] = useState(false)
   const { openModal, Modal } = useModal()
   const imgGridRef = useRef()
-  const reserveBtnRef= useRef()
+  const reserveBtnRef = useRef()
   const [refVisible, setRefVisible] = useState(false)
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
   const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
   const user = useSelector(state => state.userModule.user)
   const loggedinUser = (!user) ? false : true
-  
+
   useEffect(() => {
-    if (!refVisible) { 
+    if (!refVisible) {
       return
     }
     // detected rendering  
@@ -70,13 +70,17 @@ export function StayDetails() {
 
   function onSaveStay() {
     console.log('wishList', wishList)
-    if(!loggedinUser){
+    if (!loggedinUser) {
       console.log('login first')
       return
-    } 
+    }
     setLike(!like)
-    if(like) console.log('save stay')
-    else console.log('unsave stay')
+    if (like) {
+      console.log('save stay')
+    }
+    else {
+      console.log('unsave stay')
+    }
     console.log('stay', stay)
   }
 
@@ -96,7 +100,7 @@ export function StayDetails() {
   return (
     <>
       <AppHeader className='secondary-layout' />
-       <div className="details-modal"> <Modal /></div>
+      <div className="details-modal"> <Modal /></div>
       <div className={'sudo-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
         <div className='anchor-links'>
           <a className='anchor-link' href='imgs' >Photos</a>
@@ -140,7 +144,7 @@ export function StayDetails() {
             </div>
             <button className='save-stay active' onClick={onSaveStay}>
               <div className="heart">
-                <DetailsHeart cb={(like) => setLike(like)}/></div>
+                <DetailsHeart cb={(like) => setLike(like)} /></div>
             </button>
           </div>
 
@@ -154,7 +158,7 @@ export function StayDetails() {
           <section className='stay-review-mid grid border-buttom'>
             <div className='stay-review-details'>
               <div className='about-host border-buttom'>
-              <AboutHost stay={stay} />
+                <AboutHost stay={stay} />
               </div>
               <div className='stay-highlights border-buttom'>
                 can be hardcoaded
@@ -178,7 +182,7 @@ export function StayDetails() {
                 {stay.amenities.length > 10 && (
                   <BtnSquare
                     className='rev-btn show-all-amenities'
-                    onClick={() => openModal(<AllAmenities amenities={stay.amenities}/>)}>
+                    onClick={() => openModal(<AllAmenities amenities={stay.amenities} />)}>
                     show all {stay.amenities.length} amenities{' '}
                   </BtnSquare>
                 )}
@@ -206,7 +210,7 @@ export function StayDetails() {
             {stay.reviews.length > 6 && (
               <BtnSquare
                 className='rev-btn show-all-reviews'
-                onClick={() => openModal(<AllReviews reviews={stay.reviews}/>)}>
+                onClick={() => openModal(<AllReviews reviews={stay.reviews} />)}>
                 show all {stay.reviews.length} reviews{' '}
               </BtnSquare>
             )}
