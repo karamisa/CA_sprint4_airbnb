@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 
-export default function useOnScreen(ref, rootMargin = "0px") {
-  const [isVisible, setIsVisible] = useState(false)
+export default function useOnScreen(ref, rootMargin = "0px" ) {
+  const [isVisible, setIsVisible] = useState(true)
+
 
   useEffect(() => {
-    if (ref.current == null) return
+    if (ref.current == null) {
+      return
+    }
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
       { rootMargin }
@@ -14,7 +17,7 @@ export default function useOnScreen(ref, rootMargin = "0px") {
       if (ref.current == null) return
       observer.unobserve(ref.current)
     }
-  }, [ref.current, rootMargin])
+  }, [rootMargin,ref, ref.current])
 
   return isVisible
 }

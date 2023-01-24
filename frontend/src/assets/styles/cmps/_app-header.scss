@@ -1,9 +1,10 @@
 .app-header {
   display: flex;
+  // flex-wrap: wrap;
+  // flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   background-color: $clr-white;
-  position: relative;
 
   position: sticky;
   top: 0px;
@@ -11,10 +12,11 @@
   min-height: 80px;
   z-index: 100;
 
-  &::after{
+  &::after {
     content: '';
     position: absolute;
     top: 0;
+    right:0;
     min-width: 100vw;
     height: 80px;
     background-color: rgb(255, 255, 255);
@@ -24,15 +26,20 @@
     transform: initial;
   }
 
-  &.secondary-layout{
-      position: relative;
+  &.secondary-layout {
+    position: relative;
   }
 
-  &:has(.search-bars-open)::after{
-    transform: scaleY(3.25);
+  &:has(.search-bars-open){
+  flex-wrap: wrap;
+  }
+  &:has(.search-bars-open)::after {
+    transform: scaleY(5.5);
     border-bottom: none;
     transition: transform 250ms ease;
   }
+
+
 
   .header-logo-container {
     display: flex;
@@ -45,17 +52,38 @@
       cursor: pointer;
     }
 
-    .akebnb{
+    .akebnb {
       margin: 0;
+      display: none;
+      @media (min-width:$grid-break-point-2 ){
+        display:block;
+      }
     }
+
   }
 
-  .header-search-bar-container{
+  .header-search-bar-container {
+    display: flex;
+    flex-grow: 1;
+    flex-basis: 850px;
     min-height: 80px;
     padding-top: 16px;
-    min-width: 850px;
-    text-align: center;
     position: relative;
+    &:has(.search-bars-open){
+      justify-self: flex-end;
+      order:2;
+    }
+
+
+    @media (min-width:$grid-break-point-2 ) {
+      justify-self: center;
+      justify-content: center;
+      flex-basis: 1;
+      &:has(.search-bars-open) {
+        justify-content: flex-start;
+        order:2;
+      }
+    }
   }
 
   .header-menu-container {
@@ -64,5 +92,31 @@
     height: 80px;
     justify-content: flex-end;
     align-items: center;
+
+    @media (min-width:$grid-break-point-2 ) {
+      flex-grow: 0;
+
+
+      &:not(:has(.search-bars-open)) {
+        flex-grow: 1;
+      }
+    }
   }
+
+
+@media(min-width: $grid-break-point-2) {
+  &:has(.search-bars-open){
+    flex-wrap: nowrap;
+    .header-menu-container{
+      order:3;
+    }
+  }
+  &:has(.search-bars-open)::after {
+    transform: scaleY(3.2);
+    border-bottom: none;
+    transition: transform 250ms ease;
+  }
+
+
+}
 }

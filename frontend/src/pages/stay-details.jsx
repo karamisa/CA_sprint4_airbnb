@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 import { stayService } from '../services/stay.service.local.js'
@@ -28,13 +28,17 @@ export function StayDetails() {
   const { openModal, Modal } = useModal()
   const imgGridRef = useRef()
   const reserveBtnRef= useRef()
+  const [refVisible, setRefVisible] = useState(false)
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
   const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
 
+  useEffect(() => {
+    if (!refVisible) { 
+      return
+    }
+    // detected rendering
+  }, [refVisible])
 
-
-
-  console.log(imgGridVisible)
   useEffect(() => {
     loadStay()
   }, [])
@@ -128,7 +132,7 @@ export function StayDetails() {
             </button>
           </div>
 
-          <div ref={imgGridRef}>
+          <div ref={el => { imgGridRef.current = el; setRefVisible(!!el); }}>
             <ImgGrid
               imgsToDisplay={imgsToDisplay}
               onOpenStayGallery={onOpenStayGallery}

@@ -2,8 +2,8 @@
 .search-bars-open .search-preview{
     opacity: 0;
     visibility: hidden;
-    transform: scale(2.857142857142857,1.375) translateY(58px);
-    transition: transform 250ms ease, opacity 100ms ease,visibility 0ms 50ms;
+    // transform: scale(1.857142857142857,1.375) translateY(58px);
+    transition: transform 250ms ease, opacity 100ms ease,visibility 0ms;
 }
 
 
