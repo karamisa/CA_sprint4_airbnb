@@ -1,7 +1,7 @@
-import { Order } from './order';
+import { Order } from './order'
 
 export function OrderList({ orders }) {
-  if (!orders) return <div></div>;
+  if (!orders) return <div></div>
   return (
     <div>
       <table>
@@ -24,5 +24,5 @@ export function OrderList({ orders }) {
         </tbody>
       </table>
     </div>
-  );
+  )
 }

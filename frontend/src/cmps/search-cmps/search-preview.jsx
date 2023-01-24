@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
-import { utilService } from "../../services/util.service";
-import { SearchBtn } from "./search-btn";
+import { useParams } from "react-router-dom"
+import { utilService } from "../../services/util.service"
+import { SearchBtn } from "./search-btn"
 
 
 export function SearchPreview({handlePreviewClick, staySearchParams}) {

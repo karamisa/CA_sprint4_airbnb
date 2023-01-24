@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom'
-import { useEffect, useRef, useState } from "react";
-import { useForm } from "../../customHooks/useForm";
+import { useEffect, useRef, useState } from "react"
+import { useForm } from "../../customHooks/useForm"
 
-import { SearchBtn } from "./search-btn";
-import { RegionSelect } from "./region-select";
-import { DateSelect } from "./date-select.jsx";
-import { GuestSelect } from "./guest-select.jsx";
-import { SearchFormNav } from "./search-form-nav.jsx";
+import { SearchBtn } from "./search-btn"
+import { RegionSelect } from "./region-select"
+import { DateSelect } from "./date-select.jsx"
+import { GuestSelect } from "./guest-select.jsx"
+import { SearchFormNav } from "./search-form-nav.jsx"
 
-import { utilService } from "../../services/util.service";
+import { utilService } from "../../services/util.service"
 
 export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSelectedTab }) {
     const navigate = useNavigate()
@@ -59,16 +59,16 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
         if (fields.guests.pets) guestSubheading += `, ${fields.guests.pets} pets`
         if (!guestSubheading) guestSubheading = 'Add guests'
         if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
-            guestSubheading = guestSubheading.replace('1 adults', '1 adult');
-            guestSubheading = guestSubheading.replace('1 children', '1 child');
-            guestSubheading = guestSubheading.replace('1 infants', '1 infant');
-            guestSubheading = guestSubheading.replace('1 pets', '1 pet');
+            guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+            guestSubheading = guestSubheading.replace('1 children', '1 child')
+            guestSubheading = guestSubheading.replace('1 infants', '1 infant')
+            guestSubheading = guestSubheading.replace('1 pets', '1 pet')
         }
         return guestSubheading
     }
 
     function checkForActiveClass(category) {
-        return (selectedTab === category) ? ' active' : '';
+        return (selectedTab === category) ? ' active' : ''
     }
 
     return (
@@ -128,5 +128,5 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
                 </div>
             </div>
         </section >
-    );
+    )
 }

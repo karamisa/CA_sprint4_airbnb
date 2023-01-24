@@ -1,8 +1,8 @@
-import { storageService } from './async-storage.service.js';
-import { utilService } from './util.service.js';
+import { storageService } from './async-storage.service.js'
+import { utilService } from './util.service.js'
 // import { userService } from './user.service.js'
 
-const STORAGE_KEY = 'stayDB';
+const STORAGE_KEY = 'stayDB'
 
 export const stayService = {
   query,
@@ -11,9 +11,9 @@ export const stayService = {
   remove,
   getEmptyStay,
   getAmenitiesList,
-};
+}
 
-_createStays();
+_createStays()
 
 async function query(filterBy) {
   let stays = await storageService.query(STORAGE_KEY)
@@ -3264,13 +3264,13 @@ function _createDemoStays() {
       ],
       likedByUsers: [],
     },
-  ];
-  utilService.saveToStorage(STORAGE_KEY, JSON.parse(JSON.stringify(DEMO_STAYS)));
+  ]
+  utilService.saveToStorage(STORAGE_KEY, JSON.parse(JSON.stringify(DEMO_STAYS)))
 }
 
 function _createStays() {
-  let staysDB = utilService.loadFromStorage(STORAGE_KEY);
+  let staysDB = utilService.loadFromStorage(STORAGE_KEY)
   if (!staysDB || !staysDB.length) {
-    _createDemoStays();
+    _createDemoStays()
   }
 }

@@ -1,11 +1,11 @@
-import { useState, useEffect } from 'react';
-import { userService } from '../services/user.service.local';
-import { ImgUploader } from '../cmps/img-uploader';
-import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service';
-import { login, signup } from '../store/user.actions';
-import { BtnSquareColor } from './ui/buttons/btn-square-color';
-import { BtnSquare } from './ui/buttons/btn-square';
-import { BtnSquareBlack } from './ui/buttons/btn-square-black';
+import { useState, useEffect } from 'react'
+import { userService } from '../services/user.service.local'
+import { ImgUploader } from '../cmps/img-uploader'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { login, signup } from '../store/user.actions'
+import { BtnSquareColor } from './ui/buttons/btn-square-color'
+import { BtnSquare } from './ui/buttons/btn-square'
+import { BtnSquareBlack } from './ui/buttons/btn-square-black'
 import {BtnNavRounded} from './ui/buttons/btn-nav-rounded'
 
 export function LoginSignup({ closeModal }) {
@@ -13,59 +13,59 @@ export function LoginSignup({ closeModal }) {
     username: '',
     password: '',
     fullname: '',
-  });
-  const [isSignup, setIsSignup] = useState(false);
-  const [users, setUsers] = useState([]);
+  })
+  const [isSignup, setIsSignup] = useState(false)
+  const [users, setUsers] = useState([])
 
   useEffect(() => {
-    loadUsers();
-  }, []);
+    loadUsers()
+  }, [])
 
   async function loadUsers() {
-    const users = await userService.getUsers();
-    setUsers(users);
+    const users = await userService.getUsers()
+    setUsers(users)
   }
 
   function clearState() {
-    setCredentials({ username: '', password: '', fullname: '', imgUrl: '' });
-    setIsSignup(false);
+    setCredentials({ username: '', password: '', fullname: '', imgUrl: '' })
+    setIsSignup(false)
   }
 
   function handleChange(ev) {
-    const field = ev.target.name;
-    const value = ev.target.value;
-    setCredentials({ ...credentials, [field]: value });
+    const field = ev.target.name
+    const value = ev.target.value
+    setCredentials({ ...credentials, [field]: value })
   }
 
   async function onLogin(ev = null) {
-    console.log('onLogin');
-    if (ev) ev.preventDefault();
-    if (!credentials.username) return;
+    console.log('onLogin')
+    if (ev) ev.preventDefault()
+    if (!credentials.username) return
 
     try {
-      const user = await login(credentials);
-      showSuccessMsg(`Welcome: ${user.fullname}`);
+      const user = await login(credentials)
+      showSuccessMsg(`Welcome: ${user.fullname}`)
       closeModal()
     } catch (err) {
-      showErrorMsg('Cannot login');
+      showErrorMsg('Cannot login')
     }
-    clearState();
+    clearState()
   }
 
   function onSignup(ev = null) {
-    if (ev) ev.preventDefault();
+    if (ev) ev.preventDefault()
     if (!credentials.username || !credentials.password || !credentials.fullname)
-      return;
-    onSignup(credentials);
-    clearState();
+      return
+    onSignup(credentials)
+    clearState()
   }
 
   function toggleSignup() {
-    setIsSignup(!isSignup);
+    setIsSignup(!isSignup)
   }
 
   function onUploaded(imgUrl) {
-    setCredentials({ ...credentials, imgUrl });
+    setCredentials({ ...credentials, imgUrl })
   }
 
   return (
@@ -111,14 +111,14 @@ export function LoginSignup({ closeModal }) {
       )}
       <div className='demo-login-btns'>
         <BtnSquare onClick={() => {
-          credentials.username = 'host';
-          onLogin();
+          credentials.username = 'host'
+          onLogin()
         }}>
           DEMO: login as Muki Host
         </BtnSquare>
         <BtnSquareBlack onClick={() => {
-          credentials.username = 'guest';
-          onLogin();
+          credentials.username = 'guest'
+          onLogin()
         }}>
           DEMO: login as Puki Guest
         </BtnSquareBlack>
@@ -161,5 +161,5 @@ export function LoginSignup({ closeModal }) {
         </BtnNavRounded>
       </div>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,9 +8,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Line } from 'react-chartjs-2';
-import { utilService } from '../../../services/util.service';
+} from 'chart.js'
+import { Line } from 'react-chartjs-2'
+import { utilService } from '../../../services/util.service'
 
 ChartJS.register(
   CategoryScale,
@@ -20,7 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-);
+)
 
 export const options = {
   responsive: true,
@@ -33,9 +33,9 @@ export const options = {
       text: 'Rating',
     },
   },
-};
+}
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
 export const data = {
   labels,
@@ -77,12 +77,12 @@ export const data = {
       backgroundColor: 'rgba(53, 162, 235, 0.5)',
     },
   ],
-};
+}
 
 export function ChartRating() {
   return (
     <div className='chart chart-rectangle'>
       <Line options={options} data={data} />
     </div>
-  );
+  )
 }

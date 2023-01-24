@@ -1,10 +1,10 @@
-import { useOrderStatus } from '../../customHooks/useOrderStatus';
+import { useOrderStatus } from '../../customHooks/useOrderStatus'
 
 export function Trip({ order }) {
-  const { orderForPrecessing, cancelOrder } = useOrderStatus(order);
+  const { orderForPrecessing, cancelOrder } = useOrderStatus(order)
 
-  if (!orderForPrecessing) return <></>;
-  console.log('order:', orderForPrecessing);
+  if (!orderForPrecessing) return <></>
+  console.log('order:', orderForPrecessing)
   return (
     <>
       <td>{orderForPrecessing.stay.name}</td>
@@ -18,5 +18,5 @@ export function Trip({ order }) {
         <button onClick={() => cancelOrder()}>Cancel</button>
       </td>
     </>
-  );
+  )
 }

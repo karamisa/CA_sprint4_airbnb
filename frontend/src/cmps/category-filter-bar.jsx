@@ -1,20 +1,20 @@
-import { filterService } from '../services/filter.service';
-import filterIcon from '../assets/img/filter.svg';
+import { filterService } from '../services/filter.service'
+import filterIcon from '../assets/img/filter.svg'
 
-import { Carousel } from './ui/carousel/carousel';
-import { BtnSquareSecond } from './ui/buttons/btn-square-second';
+import { Carousel } from './ui/carousel/carousel'
+import { BtnSquareSecond } from './ui/buttons/btn-square-second'
 
 const buttonStyle = {
   height: '48px',
   marginInlineStart: '24px',
   fontSize: '12px',
-};
+}
 
 export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
-  const categories = filterService.getCategories();
+  const categories = filterService.getCategories()
 
   function onSelectCategory(newCategory) {
-    handleChange({ field: 'category', value: newCategory });
+    handleChange({ field: 'category', value: newCategory })
   }
 
   return (
@@ -29,7 +29,7 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
                 }
                 key={category.url}
                 onClick={() => {
-                  onSelectCategory(category.url);
+                  onSelectCategory(category.url)
                 }}>
                 <img
                   style={{}}
@@ -39,7 +39,7 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
                 />
                 <p className='category-name'>{category.name}</p>
               </div>
-            );
+            )
           })}{' '}
         </Carousel>
         <div className='btn-container'>
@@ -50,5 +50,5 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
         </div>
       </section>
     </>
-  );
+  )
 }

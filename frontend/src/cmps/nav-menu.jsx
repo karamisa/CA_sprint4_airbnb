@@ -1,19 +1,19 @@
-import { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import guest from '../assets/img/guest.svg';
-import useClickOutside from '../customHooks/useClickOutside';
-import { useModal } from '../customHooks/useModal';
-import { LoginSignup } from './login-signup';
-import { NavHamburger } from './ui/nav-hamburger';
+import { useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
+import guest from '../assets/img/guest.svg'
+import useClickOutside from '../customHooks/useClickOutside'
+import { useModal } from '../customHooks/useModal'
+import { LoginSignup } from './login-signup'
+import { NavHamburger } from './ui/nav-hamburger'
 
 export function NavMenu({ user, onLogout, onAddStay }) {
-  const [navbarOpen, setNavbarOpen] = useState(false);
-  const { closeModal, openModal, Modal } = useModal();
-  const elNav= useRef();
+  const [navbarOpen, setNavbarOpen] = useState(false)
+  const { closeModal, openModal, Modal } = useModal()
+  const elNav= useRef()
 
   const handleToggle = () => {
-    setNavbarOpen((prev) => !prev);
-  };
+    setNavbarOpen((prev) => !prev)
+  }
 
   useClickOutside(elNav, () => {
     if (navbarOpen) setNavbarOpen(false)
@@ -53,5 +53,5 @@ export function NavMenu({ user, onLogout, onAddStay }) {
           ))}
       </nav>
     </>
-  );
+  )
 }

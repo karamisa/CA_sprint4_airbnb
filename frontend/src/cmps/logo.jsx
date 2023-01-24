@@ -1,5 +1,5 @@
-import { Fragment } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Fragment } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export function Logo() {
   return (
@@ -18,5 +18,5 @@ export function Logo() {
       </svg>
       <h2 className="akebnb">akebnb</h2>
     </Fragment>
-  );
+  )
 }

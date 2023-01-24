@@ -1,8 +1,8 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import React from 'react'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const data = {
   labels: ['Woman', 'Man'],
@@ -15,12 +15,12 @@ export const data = {
       borderWidth: 1,
     },
   ],
-};
+}
 
 export function ChartGuestSex() {
   return (
     <div className='chart chart-square'>
       <Doughnut data={data} />
     </div>
-  );
+  )
 }

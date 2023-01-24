@@ -136,7 +136,7 @@ export function StayDetails() {
             </button>
           </div>
 
-          <div ref={el => { imgGridRef.current = el; setRefVisible(!!el); }}>
+          <div ref={el => { imgGridRef.current = el; setRefVisible(!!el) }}>
             <ImgGrid
               imgsToDisplay={imgsToDisplay}
               onOpenStayGallery={onOpenStayGallery}

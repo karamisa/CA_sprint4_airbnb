@@ -149,12 +149,6 @@ export function StayAmenity({ amenity }) {
 
     }
 
-
-    // let amenityName = amenity.split(" ").join("")
-    // amenityName = amenityName.replace(/-/g,'')
-    // console.log('amenityName', amenityName)
-
-
     return (
         <>
             <img src={amenityMap[amenity]} className="amenity-img" alt="amenityImg" />

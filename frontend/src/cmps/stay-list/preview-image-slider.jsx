@@ -1,12 +1,12 @@
-import { Heart } from '../ui/heart';
-import { Slider } from '../ui/slider/slider';
-import { ImageCarousel } from './image-carousel';
+import { Heart } from '../ui/heart'
+import { Slider } from '../ui/slider/slider'
+import { ImageCarousel } from './image-carousel'
 
 export function PreviewImageSlider({ imgUrls, isLiked, onLikeStay, stayId }) {
 
   const imgs = imgUrls.map((url, index) => (
     <img id={index} src={url} alt='Stay' />
-  ));
+  ))
 
   return (
     <div className='image-slider square-ratio'>
@@ -19,5 +19,5 @@ export function PreviewImageSlider({ imgUrls, isLiked, onLikeStay, stayId }) {
         ))}
       </Slider>
     </div>
-  );
+  )
 }

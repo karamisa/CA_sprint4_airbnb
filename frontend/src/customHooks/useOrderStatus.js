@@ -1,17 +1,17 @@
-import { useState } from 'react';
-import { orderService } from '../services/order.service';
+import { useState } from 'react'
+import { orderService } from '../services/order.service'
 
 export const useOrderStatus = (order) => {
-  const [orderForPrecessing, setOrderForPrecessing] = useState(order);
+  const [orderForPrecessing, setOrderForPrecessing] = useState(order)
 
   // host approves
   function approveOrder() {
     setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'approved',
-    }));
+    }))
 
-    _save(orderForPrecessing);
+    _save(orderForPrecessing)
   }
 
   // host rejects
@@ -19,9 +19,9 @@ export const useOrderStatus = (order) => {
     setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'rejected',
-    }));
+    }))
 
-    _save(orderForPrecessing);
+    _save(orderForPrecessing)
   }
 
   // user can cancel order till it turns to processing status
@@ -29,9 +29,9 @@ export const useOrderStatus = (order) => {
     setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'cancelled',
-    }));
+    }))
 
-    _save(orderForPrecessing);
+    _save(orderForPrecessing)
   }
 
   // TODO do logic
@@ -40,7 +40,7 @@ export const useOrderStatus = (order) => {
     setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'processing',
-    }));
+    }))
   }
 
   // TODO do logic
@@ -49,11 +49,11 @@ export const useOrderStatus = (order) => {
     setOrderForPrecessing((prevState) => ({
       ...prevState,
       status: 'finished',
-    }));
+    }))
   }
 
   function _save(orderToSave) {
-    orderService.save(orderToSave);
+    orderService.save(orderToSave)
   }
 
   return {
@@ -61,5 +61,5 @@ export const useOrderStatus = (order) => {
     rejectOrder,
     approveOrder,
     cancelOrder,
-  };
-};
+  }
+}

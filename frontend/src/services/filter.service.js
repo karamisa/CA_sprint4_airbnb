@@ -1,10 +1,10 @@
 export const filterService = {
   getCategories,
   getDefaultFilter,
-};
+}
 
 function getDefaultFilter() {
-  return { destination: '' };
+  return { destination: '' }
 }
 
 function getCategories() {
@@ -249,7 +249,7 @@ function getCategories() {
       name: 'Skiing',
       url: 'skiing',
     },
-  ];
+  ]
 
-  return categories;
+  return categories
 }

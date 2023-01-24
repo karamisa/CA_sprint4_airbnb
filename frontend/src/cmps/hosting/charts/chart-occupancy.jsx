@@ -6,9 +6,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { utilService } from '../../../services/util.service';
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+import { utilService } from '../../../services/util.service'
 
 ChartJS.register(
   CategoryScale,
@@ -17,7 +17,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-);
+)
 
 export const options = {
   responsive: true,
@@ -34,10 +34,10 @@ export const options = {
     tooltip: {
       callbacks: {
         label: function (context) {
-          // let label = context.dataset.label || '';
-          let label = ` Occupancy in ${context.label} ${context.parsed.y}%`;
-          // console.log('context:', context);
-          return label;
+          // let label = context.dataset.label || ''
+          let label = ` Occupancy in ${context.label} ${context.parsed.y}%`
+          // console.log('context:', context)
+          return label
         },
       },
     },
@@ -49,9 +49,9 @@ export const options = {
       text: 'Occupancy',
     },
   },
-};
+}
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
 export const data = {
   labels,
@@ -62,12 +62,12 @@ export const data = {
       backgroundColor: 'rgba(255, 99, 132, 0.5)',
     },
   ],
-};
+}
 
 export function ChartOccupancy() {
   return (
     <div className='chart chart-rectangle'>
       <Bar options={options} data={data} />
     </div>
-  );
+  )
 }

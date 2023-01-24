@@ -3,5 +3,5 @@ export function AppFooter({ className, ...props }) {
     <footer {...props} className={`app-footer ${className}`}>
       <p>ake-bnb &copy; 2023</p>
     </footer>
-  );
+  )
 }

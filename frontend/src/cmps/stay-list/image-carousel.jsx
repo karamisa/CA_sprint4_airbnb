@@ -1,12 +1,12 @@
-import Slider from 'react-slick';
+import Slider from 'react-slick'
 
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-import { useRef } from 'react';
+import { useRef } from 'react'
 
 export function ImageCarousel({ imgs }) {
-  const carousel = useRef();
+  const carousel = useRef()
 
   const settings = {
     infinite: false,
@@ -18,7 +18,7 @@ export function ImageCarousel({ imgs }) {
     lazyLoad: true,
     // prevArrow: <CustomPrevButton />,
     // nextArrow: <CustomNextButton />
-  };
+  }
 
 
   return (
@@ -31,7 +31,7 @@ export function ImageCarousel({ imgs }) {
         ))}
       </Slider>
     </div>
-  );
+  )
 }
 
 // function CustomPrevButton(props) {

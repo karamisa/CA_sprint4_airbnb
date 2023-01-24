@@ -1,7 +1,7 @@
-import { Trip } from './trip';
+import { Trip } from './trip'
 
 export function TripList({ orders }) {
-  if (!orders) return <div></div>;
+  if (!orders) return <div></div>
   return (
     <div>
       <table>
@@ -24,5 +24,5 @@ export function TripList({ orders }) {
         </tbody>
       </table>
     </div>
-  );
+  )
 }

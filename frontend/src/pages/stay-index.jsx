@@ -1,28 +1,28 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useSearchParams } from 'react-router-dom';
-import { CategoryFilterBar } from '../cmps/category-filter-bar';
-import { AppFooter } from '../cmps/header-footer/app-footer';
-import { AppHeader } from '../cmps/header-footer/app-header';
-import { StayList } from '../cmps/stay-list/stay-list';
-import { loadStays } from '../store/stay/stay.action';
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
+import { CategoryFilterBar } from '../cmps/category-filter-bar'
+import { AppFooter } from '../cmps/header-footer/app-footer'
+import { AppHeader } from '../cmps/header-footer/app-header'
+import { StayList } from '../cmps/stay-list/stay-list'
+import { loadStays } from '../store/stay/stay.action'
 
 export function StayIndex() {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const stays = useSelector((storeState) => storeState.stayModule.stays);
+  const [searchParams, setSearchParams] = useSearchParams()
+  const stays = useSelector((storeState) => storeState.stayModule.stays)
 
   //TODO: add more filters for params 
   const filterBy = { 
     category: searchParams.get('category'),
-    location: searchParams.get('location') };
+    location: searchParams.get('location') }
 
 
   useEffect(() => {
-    loadStays(filterBy);
-  }, [searchParams]);
+    loadStays(filterBy)
+  }, [searchParams])
 
   function handleChange({ field, value }) {
-    setSearchParams((prevFilter) => ({ ...prevFilter, [field]: value }));
+    setSearchParams((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
 
 
@@ -38,5 +38,5 @@ export function StayIndex() {
       {!!stays && stays.length===0 && <h1 style={{textAlign: 'center', marginTop: '20px'}}>Loading...</h1>}
       <AppFooter className='main-layout fixed' />
     </section>
-  );
+  )
 }

@@ -1,8 +1,8 @@
-import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-import { Doughnut } from 'react-chartjs-2';
+import React from 'react'
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+import { Doughnut } from 'react-chartjs-2'
 
-ChartJS.register(ArcElement, Tooltip, Legend);
+ChartJS.register(ArcElement, Tooltip, Legend)
 
 export const data = {
   labels: ['0-16', '17-20', '21-30', '31-40', '41+'],
@@ -27,12 +27,12 @@ export const data = {
       borderWidth: 1,
     },
   ],
-};
+}
 
 export function ChartGuestAge() {
   return (
     <div className='chart chart-square'>
       <Doughnut data={data} />
     </div>
-  );
+  )
 }

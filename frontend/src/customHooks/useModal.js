@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { CloseBtn } from '../cmps/ui/buttons/close-btn';
+import { useState } from 'react'
+import { CloseBtn } from '../cmps/ui/buttons/close-btn'
 
 export function useModal() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [component, setComponent] = useState(null);
+  const [isOpen, setIsOpen] = useState(false)
+  const [component, setComponent] = useState(null)
 
   function openModal(componentToOpen) {
-    console.log('isOpen:', isOpen);
-    setIsOpen(true);
-    setComponent(componentToOpen);
+    console.log('isOpen:', isOpen)
+    setIsOpen(true)
+    setComponent(componentToOpen)
   }
 
   function closeModal() {
-    setIsOpen(false);
-    setComponent(null);
+    setIsOpen(false)
+    setComponent(null)
   }
 
   const Modal = ({ isOpen, component: Component, closeModal }) => {
-    if (!isOpen || !Component) return null;
+    if (!isOpen || !Component) return null
     return (
       <div className='modal'>
       <div className='content-container'>
@@ -27,7 +27,7 @@ export function useModal() {
           {component}
       </div>
   </div>
-    )};
+    )}
   
   return {
     isOpen,
@@ -37,16 +37,16 @@ export function useModal() {
     Modal: (props) => (
       <Modal isOpen={isOpen} component={component} closeModal={closeModal} {...props} />
       )
-      };
+      }
       }
       
 
 // You can then use this hook in your component like so:
 /* 
-import useModal from './useModal';
+import useModal from './useModal'
 
 function MyComponent() {
-  const { isOpen, component, openModal, closeModal } = useModal();
+  const { isOpen, component, openModal, closeModal } = useModal()
 
   return (
     <div>
@@ -58,7 +58,7 @@ function MyComponent() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
 

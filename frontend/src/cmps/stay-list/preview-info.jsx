@@ -1,5 +1,5 @@
-import { utilService } from '../../services/util.service';
-import { RatingReview } from '../ui/rating-review';
+import { utilService } from '../../services/util.service'
+import { RatingReview } from '../ui/rating-review'
 
 export function PreviewInfo({ info }) {
   return (
@@ -14,5 +14,5 @@ export function PreviewInfo({ info }) {
         {utilService.formatCurrency(info.price)} <span style={{fontFamily: 'cereal-Book'}}> night</span>
       </p>
     </>
-  );
+  )
 }

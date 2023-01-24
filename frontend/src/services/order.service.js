@@ -1,6 +1,6 @@
-import { utilService } from './util.service.js';
-import { storageService } from './async-storage.service.js';
-// import { stayService } from './stay.service.local.js';
+import { utilService } from './util.service.js'
+import { storageService } from './async-storage.service.js'
+// import { stayService } from './stay.service.local.js'
 // import { userService } from './user.service.js'
 
 export const orderService = {
@@ -11,9 +11,9 @@ export const orderService = {
     getEmptyOrder,
     
 }
-const STORAGE_KEY = 'orders';
+const STORAGE_KEY = 'orders'
 
-_createOrders();
+_createOrders()
 
 async function query(filterBy = {}) {
     let orders = await storageService.query(STORAGE_KEY)
@@ -36,7 +36,7 @@ async function remove(orderId) {
 }
 
 async function save(order) {
-    console.log('order', order);
+    console.log('order', order)
     if (order._id) {
         return storageService.put(STORAGE_KEY, order)
     } else {

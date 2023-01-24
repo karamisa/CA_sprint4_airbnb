@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -7,9 +7,9 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js';
-import { Bar } from 'react-chartjs-2';
-import { utilService } from '../../../services/util.service';
+} from 'chart.js'
+import { Bar } from 'react-chartjs-2'
+import { utilService } from '../../../services/util.service'
 
 ChartJS.register(
   CategoryScale,
@@ -18,7 +18,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-);
+)
 
 export const options = {
   plugins: {
@@ -40,9 +40,9 @@ export const options = {
       stacked: true,
     },
   },
-};
+}
 
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
 export const data = {
   labels,
@@ -66,12 +66,12 @@ export const data = {
       stack: 'Stack 1',
     },
   ],
-};
+}
 
 export function ChartIncome() {
   return (
     <div className='chart chart-rectangle'>
       <Bar options={options} data={data} />
     </div>
-  );
+  )
 }

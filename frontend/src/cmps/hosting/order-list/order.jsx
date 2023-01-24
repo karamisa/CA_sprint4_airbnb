@@ -1,12 +1,12 @@
-import { useOrderStatus } from '../../../customHooks/useOrderStatus';
-import { BtnSquare } from '../../ui/buttons/btn-square';
+import { useOrderStatus } from '../../../customHooks/useOrderStatus'
+import { BtnSquare } from '../../ui/buttons/btn-square'
 
 export function Order({ order }) {
   const { orderForPrecessing, approveOrder, rejectOrder } =
-    useOrderStatus(order);
+    useOrderStatus(order)
 
-  if (!orderForPrecessing) return <></>;
-  // console.log('order:', orderForPrecessing);
+  if (!orderForPrecessing) return <></>
+  // console.log('order:', orderForPrecessing)
   return (
     <>
       <td>{orderForPrecessing.buyer.fullname}</td>
@@ -21,5 +21,5 @@ export function Order({ order }) {
         <BtnSquare onClick={() => rejectOrder()}>Reject</BtnSquare>
       </td>
     </>
-  );
+  )
 }

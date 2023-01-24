@@ -1,5 +1,5 @@
-import { ChartGuestAge } from './chart-guest-age';
-import { ChartGuestSex } from './chat-guest-sex';
+import { ChartGuestAge } from './chart-guest-age'
+import { ChartGuestSex } from './chat-guest-sex'
 
 export function ChartGuest() {
   return (
@@ -7,5 +7,5 @@ export function ChartGuest() {
       <ChartGuestSex />
       <ChartGuestAge />
     </div>
-  );
+  )
 }

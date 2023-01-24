@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { useRef} from 'react';
-import { useSearchParams } from 'react-router-dom';
-import { SearchForm as StaySearchForm } from './search-form';
-import { SearchPreview } from './search-preview';
+import { useState } from 'react'
+import { useRef} from 'react'
+import { useSearchParams } from 'react-router-dom'
+import { SearchForm as StaySearchForm } from './search-form'
+import { SearchPreview } from './search-preview'
 
 
 export function SearchBars() {
