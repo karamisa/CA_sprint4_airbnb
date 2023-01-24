@@ -43,6 +43,7 @@ const RightNavIcon = (
 export function Carousel({ children }) {
   const size = useWindowSize();
   const [pages, setPages] = useState([]);
+
   useEffect(() => {
     setPages(children);
   }, []);
@@ -64,7 +65,6 @@ export function Carousel({ children }) {
 
     if (offset <= -1 * (containerWidth - winWidth) && offset) {
       nextItems();
-      console.log('fdfsf', offset);
     }
   }, [
     containerEl.current?.scrollWidth,
