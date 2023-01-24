@@ -938,6 +938,10 @@ function _createDemoStays() {
         lat: -73.92922,
         lng: 40.68683,
       },
+      wishList: [
+        {user: '622f3402e36c59e6164fac46', at: 1627400000000},
+        {user: '622f3402e36c59e6164fac46', at: 1627400000000},
+      ],
       reviews: [
         {
           id: 'YKAmPW',

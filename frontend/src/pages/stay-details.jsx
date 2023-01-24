@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 import { stayService } from '../services/stay.service.local.js'
 import { useModal } from '../customHooks/useModal'
@@ -20,8 +21,10 @@ import { AboutHost } from '../cmps/stay-details/about-host.jsx'
 import useOnScreen from '../customHooks/useOnScreen.js'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 
+
 export function StayDetails() {
   const [stay, setStay] = useState(null)
+  const [wishList, setWishList] = useState(null)
   const { stayId } = useParams()
   const navigate = useNavigate()
   const [like, setLike] = useState(false)
@@ -30,8 +33,8 @@ export function StayDetails() {
   const reserveBtnRef= useRef()
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
   const reserveBtnVisible = useOnScreen(reserveBtnRef, '-220px')
-
-
+  const user = useSelector(state => state.userModule.user)
+  const loggedinUser = (!user) ? false : true
 
 
   console.log(imgGridVisible)
@@ -47,6 +50,7 @@ export function StayDetails() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
+      setWishList(stay.wishList)
     } catch (err) {
       console.log('Had issues in stay details', err)
       // showErrorMsg('Cannot load toy')
@@ -59,13 +63,19 @@ export function StayDetails() {
   function openReviewMap() { }
 
   function onSaveStay() {
+    console.log('wishList', wishList)
+    if(!loggedinUser){
+      console.log('login first')
+      return
+    } 
     setLike(!like)
-    console.log('save stay')
+    if(like) console.log('save stay')
+    else console.log('unsave stay')
     console.log('stay', stay)
   }
 
   function onOpenStayGallery() {
-    console.log('open gallery');
+    console.log('open gallery')
   }
 
 
@@ -76,7 +86,7 @@ export function StayDetails() {
 
 
 
-  if (!stay) return <section className='secondary-layout'>Loading...</section>;
+  if (!stay) return <section className='secondary-layout'>Loading...</section>
   return (
     <>
       <AppHeader className='secondary-layout' />
@@ -124,7 +134,7 @@ export function StayDetails() {
             </div>
             <button className='save-stay active' onClick={onSaveStay}>
               <div className="heart">
-                <DetailsHeart cb={(like) => setLike(like)} /></div>
+                <DetailsHeart cb={(like) => setLike(like)}/></div>
             </button>
           </div>
 
@@ -204,5 +214,5 @@ export function StayDetails() {
       </section>
       <AppFooter className='secondary-layout' />
     </>
-  );
+  )
 }

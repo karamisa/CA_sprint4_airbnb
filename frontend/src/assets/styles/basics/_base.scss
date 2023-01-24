@@ -38,15 +38,14 @@ button {
   &.show-more {
     margin-top: 10px;
     background-color: transparent;
-    text-decoration: underline;
     font-weight: 700;
     font-size: inherit;
     padding: 0;
     border: 0;
     width: max-content;
-
-    .no-decoration{
-      text-decoration: none;
+    
+    .underline{
+      text-decoration: underline;
     }
   }
 }
