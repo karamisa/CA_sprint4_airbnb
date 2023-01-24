@@ -10,6 +10,7 @@ export const stayService = {
   save,
   remove,
   getEmptyStay,
+  getAmenitiesList,
 };
 
 _createStays();
@@ -47,16 +48,98 @@ async function remove(stayId) {
   return storageService.remove(STORAGE_KEY, stayId)
 }
 
+function getAmenitiesList() {
+  return [
+    "Air conditioning",
+    "Balcony",
+    "Beachfront",
+    "Bed linens",
+    "Blender",
+    "Board Games",
+    "Body soap",
+    "Building staff",
+    "Carbon monoxide detector",
+    "City skyline view",
+    "Cleaning products",
+    "Coffee maker",
+    "Cooking basics",
+    "Crib",
+    "Dining table",
+    "Dishes and silverware",
+    "Dishwasher",
+    "Doorman",
+    "Dryer",
+    "Elevator",
+    "Essentials",
+    "Ethernet connection",
+    "Extra pillows and blankets",
+    "Fire extinguisher",
+    "Fire pit",
+    "First aid kit",
+    "Free parking on premises",
+    "Free street parking",
+    "Gym",
+    "Hair dryer",
+    "Hangers",
+    "Heating",
+    "High Chair",
+    "Host greets you",
+    "Hot tub",
+    "Hot water",
+    "Hot water kettle",
+    "Iron",
+    "Kitchen",
+    "Laptop friendly workspace",
+    "Lockbox",
+    "Long term stays allowed",
+    "Microwave",
+    "Mountain view",
+    "Oven",
+    "Paid parking off premises",
+    "Paid parking on premises",
+    "Park view",
+    "Parking",
+    "Patio or balcony",
+    "Pets allowed",
+    "Pool",
+    "Private entrance",
+    "Refrigerator",
+    "Room-darkening shades",
+    "Safe",
+    "Security cameras",
+    "Self check-in",
+    "Shampoo",
+    "Single level home",
+    "Smoke detector",
+    "Smoking allowed",
+    "Step-free access",
+    "Stove",
+    "Suitable for events",
+    "Toaster",
+    "TV",
+    "Valley view",
+    "Wardrobe",
+    "Washer",
+    "Waterfront",
+    "Wifi"]
+
+}
 function getEmptyStay() {
   return {
     _id: '',
-    name: '',
+    name: 'Magical Place',
     type: '',
-    imgUrls: ['http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436390/om97cgufeacwlric2r5w.jpg'],
-    price: 100000000000,
+    imgUrls: [
+      'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg',
+      'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436294/mvhb3iazpiar6duvy9we.jpg',
+      'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436496/ihozxprafjzuhil9qhh4.jpg',
+      'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436952/aef9ajipinpjhkley1e3.jpg',
+      'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436948/vgfxpvmcpd2q40qxtuv3.jpg',
+    ],
+    price: 100,
     summary: 'An imaginary place far far away',
-    capacity: 100,
-    amenities: ['learn to fly'],
+    capacity: '',
+    amenities: [],
     labels: [''],
     host: {
       _id: '',
@@ -71,26 +154,8 @@ function getEmptyStay() {
       lat: -73.54985,
       lng: 45.52797,
     },
-    reviews: [
-      {
-        id: 'kErRhY',
-        txt: 'The place was great, as was the host! I would recommend staying here.',
-        rate: {
-          cleanliness: 4.8,
-          communication: 4.4,
-          'check-in': 4.8,
-          accuracy: 2.7,
-          location: 5,
-          value: 4,
-        },
-        by: {
-          _id: '622f3407e36c59e6164fc058',
-          fullname: 'Rowan',
-          imgUrl:
-            'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/58.jpg',
-        },
-      }
-    ]
+    reviews: [],
+    likedByUsers: []
   }
 }
 

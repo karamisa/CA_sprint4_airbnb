@@ -1,13 +1,5 @@
-// export function StayEdit() {
-// return (
-//     <section className="edit-stay">
-//         Hello from EditStay
-//     </section>
-// )
-// }
-
-import { Link, Navigate, useNavigate, useParams } from "react-router-dom"
-import { useEffect, useRef, useState } from "react"
+import { Link, useNavigate, useParams } from "react-router-dom"
+import { useEffect, useState } from "react"
 import Select from "react-select"
 import { Formik, Form, Field } from 'formik'
 import * as Yup from 'yup'
@@ -40,7 +32,7 @@ export function StayEdit() {
 
     function getStayAmenities() {
         //supposed to be on service - but Karam is working on service now.
-        const amenities = ["On wheels", "Box game", "Art", "Baby", "Doll", "Puzzle", "Outdoor", "Battery Powered"]
+        const amenities = stayService.getAmenitiesList()
         return amenities
     }
 
@@ -60,9 +52,10 @@ export function StayEdit() {
     }
 
     async function onAddStay(ev) {
+        console.log('adding stay')
         ev.preventDefault()
-        const savedStay = await saveStay(stayToEdit)
         try {
+            const savedStay = await saveStay(stayToEdit)
             showSuccessMsg(`Stay added (id: ${savedStay._id})`)
             navigate('/stay')
         } catch (err) {

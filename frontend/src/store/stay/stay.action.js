@@ -39,6 +39,7 @@ export function saveStay(stay) {
     .save(stay)
     .then((savedStay) => {
       store.dispatch({ type, stay: savedStay });
+      return savedStay;
     })
     .catch((err) => {
       console.error(`Cannot save stay: `, err);

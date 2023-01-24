@@ -68,7 +68,6 @@
   &::before {
     background-color: $clr-border;
     transform: scale(0);
-    transition: transform ease-out 250ms;
   }
 
   .category:hover &::before {
