@@ -10,7 +10,6 @@
 .carouselContainer {
     display: flex;
     gap: 35px;
-
     transition: transform 600ms ease-out;
 }
 
@@ -23,8 +22,8 @@
 
     height: 54px;
     width: 75px;
-    margin-top: 12px;
-    margin-bottom: 10px;
+    /* margin-top: 12px;
+    margin-bottom: 10px; */
 
     cursor: pointer;
 }

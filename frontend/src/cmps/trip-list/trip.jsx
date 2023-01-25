@@ -1,4 +1,5 @@
 import { useOrderStatus } from '../../customHooks/useOrderStatus'
+import { BtnSquare } from '../ui/buttons/btn-square'
 
 export function Trip({ order }) {
   const { orderForPrecessing, cancelOrder } = useOrderStatus(order)
@@ -15,7 +16,7 @@ export function Trip({ order }) {
       <td>{orderForPrecessing.stay.price}</td>
       <td>{orderForPrecessing.status}</td>
       <td>
-        <button onClick={() => cancelOrder()}>Cancel</button>
+        <BtnSquare onClick={() => cancelOrder()}>Cancel</BtnSquare>
       </td>
     </>
   )

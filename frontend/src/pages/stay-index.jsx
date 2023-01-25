@@ -11,11 +11,14 @@ export function StayIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
   const stays = useSelector((storeState) => storeState.stayModule.stays)
 
-  //TODO: add more filters for params 
-  const filterBy = { 
+  //TODO: add more filters for params
+  const filterBy = {
     category: searchParams.get('category'),
-    location: searchParams.get('location') }
-
+    location: searchParams.get('location'),
+    // TODO ? is this good to filter by dates?
+    startDate: new Date().setDate(new Date().getDate() + 1),
+    endDate: new Date().setDate(new Date().getDate() + 4),
+  }
 
   useEffect(() => {
     loadStays(filterBy)
@@ -24,7 +27,6 @@ export function StayIndex() {
   function handleChange({ field, value }) {
     setSearchParams((prevFilter) => ({ ...prevFilter, [field]: value }))
   }
-
 
   return (
     <section style={{ position: 'relative' }}>
@@ -35,7 +37,9 @@ export function StayIndex() {
       />
 
       {!!stays && <StayList stays={stays} />}
-      {!!stays && stays.length===0 && <h1 style={{textAlign: 'center', marginTop: '20px'}}>Loading...</h1>}
+      {!!stays && stays.length === 0 && (
+        <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>
+      )}
       <AppFooter className='main-layout fixed' />
     </section>
   )

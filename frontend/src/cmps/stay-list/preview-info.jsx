@@ -2,6 +2,7 @@ import { utilService } from '../../services/util.service'
 import { RatingReview } from '../ui/rating-review'
 
 export function PreviewInfo({ info }) {
+  console.log('info:', info)
   return (
     <>
       <p className='flex justify-between'>
@@ -11,7 +12,8 @@ export function PreviewInfo({ info }) {
       <p className='text-grey'>{info.type}</p>
       <p className='text-grey'>Dates</p>
       <p className='text-bold'>
-        {utilService.formatCurrency(info.price)} <span style={{fontFamily: 'cereal-Book'}}> night</span>
+        {utilService.formatCurrency(info.price)}{' '}
+        <span style={{ fontFamily: 'cereal-Book' }}> night</span>
       </p>
     </>
   )

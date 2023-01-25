@@ -7,10 +7,10 @@ export function OrderList({ orders }) {
       <table>
         <thead>
           <tr>
-            <th>Buyer Name</th>
+            <th>Guest</th>
             <th>Dates</th>
             <th>Stay</th>
-            <th>Cost</th>
+            <th>Payment</th>
             <th>Status</th>
             <th>Action</th>
           </tr>

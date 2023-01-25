@@ -29,8 +29,8 @@
     position: relative;
   }
 
-  &:has(.search-bars-open){
-  flex-wrap: wrap;
+  &:has(.search-bars-open) {
+    flex-wrap: wrap;
   }
   &:has(.search-bars-open)::after {
     transform: scaleY(5.5);
@@ -38,11 +38,9 @@
     transition: transform 250ms ease;
   }
 
-
-
   .header-logo-container {
     display: flex;
-    flex: 1 0 75px;
+    // flex: 1 0 75px;
     align-items: center;
     height: 80px;
     color: $clr-brand;
@@ -51,11 +49,10 @@
     .akebnb {
       margin: 0;
       display: none;
-      @media (min-width:$grid-break-point-2 ){
-        display:block;
+      @media (min-width: $grid-break-point-2) {
+        display: block;
       }
     }
-
   }
 
   .header-search-bar-container {
@@ -65,19 +62,18 @@
     min-height: 80px;
     padding-top: 16px;
     position: relative;
-    &:has(.search-bars-open){
+    &:has(.search-bars-open) {
       justify-self: flex-end;
-      order:2;
+      order: 2;
     }
 
-
-    @media (min-width:$grid-break-point-2 ) {
+    @media (min-width: $grid-break-point-2) {
       justify-self: center;
       justify-content: center;
       flex-basis: 1;
       &:has(.search-bars-open) {
         justify-content: flex-start;
-        order:2;
+        order: 2;
       }
     }
   }
@@ -89,9 +85,8 @@
     justify-content: flex-end;
     align-items: center;
 
-    @media (min-width:$grid-break-point-2 ) {
+    @media (min-width: $grid-break-point-2) {
       flex-grow: 0;
-
 
       &:not(:has(.search-bars-open)) {
         flex-grow: 1;
@@ -99,20 +94,17 @@
     }
   }
 
-
-@media(min-width: $grid-break-point-2) {
-  &:has(.search-bars-open){
-    flex-wrap: nowrap;
-    .header-menu-container{
-      order:3;
+  @media (min-width: $grid-break-point-2) {
+    &:has(.search-bars-open) {
+      flex-wrap: nowrap;
+      .header-menu-container {
+        order: 3;
+      }
+    }
+    &:has(.search-bars-open)::after {
+      transform: scaleY(3.2);
+      border-bottom: none;
+      transition: transform 250ms ease;
     }
   }
-  &:has(.search-bars-open)::after {
-    transform: scaleY(3.2);
-    border-bottom: none;
-    transition: transform 250ms ease;
-  }
-
-
-}
 }

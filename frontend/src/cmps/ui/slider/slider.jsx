@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react'
+import { Children, useEffect, useRef } from 'react'
+import { cloneElement } from 'react'
 import { useState } from 'react'
 import classes from './slider.module.css'
 
@@ -39,7 +40,6 @@ const RightNavIcon = (
 )
 
 export function Slider({ children }) {
-  console.log('children:', children)
   const [page, setPage] = useState([])
   let [winWidth, setWinWidth] = useState(0)
   let containerEl = useRef()
@@ -47,8 +47,18 @@ export function Slider({ children }) {
   const rightNavRef = useRef()
 
   useEffect(() => {
-    setPage()
     setWinWidth(containerEl.current.offsetWidth)
+
+    setPage(
+      Children.map(children, (child) => {
+        return cloneElement(child, {
+          style: {
+            maxWidth: `100%`,
+            minWidth: `100%`,
+          },
+        })
+      })
+    )
   }, [])
 
   // current offset
@@ -105,7 +115,7 @@ export function Slider({ children }) {
           ref={containerEl}
           style={{ transform: `translateX(${offset}px)` }}
           className={classes.carouselContainer}>
-          {children}
+          {page}
         </div>
       </div>
     </div>

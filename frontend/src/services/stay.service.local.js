@@ -26,18 +26,18 @@ async function query(filterBy) {
   }
   if (filterBy.location) {
     stays = stays.filter((stay) => {
-      return stay.loc.country.toLowerCase().includes(filterBy.location.toLowerCase())
+      return stay.loc.country
+        .toLowerCase()
+        .includes(filterBy.location.toLowerCase())
     })
   }
   return stays
 }
 
-
 async function getAllStays() {
   const stays = await storageService.query(STORAGE_KEY)
   return stays
 }
-
 
 async function getById(stayId) {
   const stay = await storageService.get(STORAGE_KEY, stayId)
@@ -58,85 +58,139 @@ async function remove(stayId) {
 
 function getAmenitiesList() {
   return [
-    "Air conditioning",
-    "Balcony",
-    "Beachfront",
-    "Bed linens",
-    "Blender",
-    "Board Games",
-    "Body soap",
-    "Building staff",
-    "Carbon monoxide detector",
-    "City skyline view",
-    "Cleaning products",
-    "Coffee maker",
-    "Cooking basics",
-    "Crib",
-    "Dining table",
-    "Dishes and silverware",
-    "Dishwasher",
-    "Doorman",
-    "Dryer",
-    "Elevator",
-    "Essentials",
-    "Ethernet connection",
-    "Extra pillows and blankets",
-    "Fire extinguisher",
-    "Fire pit",
-    "First aid kit",
-    "Free parking on premises",
-    "Free street parking",
-    "Gym",
-    "Hair dryer",
-    "Hangers",
-    "Heating",
-    "High Chair",
-    "Host greets you",
-    "Hot tub",
-    "Hot water",
-    "Hot water kettle",
-    "Iron",
-    "Kitchen",
-    "Laptop friendly workspace",
-    "Lockbox",
-    "Long term stays allowed",
-    "Microwave",
-    "Mountain view",
-    "Oven",
-    "Paid parking off premises",
-    "Paid parking on premises",
-    "Park view",
-    "Parking",
-    "Patio or balcony",
-    "Pets allowed",
-    "Pool",
-    "Private entrance",
-    "Refrigerator",
-    "Room-darkening shades",
-    "Safe",
-    "Security cameras",
-    "Self check-in",
-    "Shampoo",
-    "Single level home",
-    "Smoke detector",
-    "Smoking allowed",
-    "Step-free access",
-    "Stove",
-    "Suitable for events",
-    "Toaster",
-    "TV",
-    "Valley view",
-    "Wardrobe",
-    "Washer",
-    "Waterfront",
-    "Wifi"]
-
+    'Air conditioning',
+    'Balcony',
+    'Beachfront',
+    'Bed linens',
+    'Blender',
+    'Board Games',
+    'Body soap',
+    'Building staff',
+    'Carbon monoxide detector',
+    'City skyline view',
+    'Cleaning products',
+    'Coffee maker',
+    'Cooking basics',
+    'Crib',
+    'Dining table',
+    'Dishes and silverware',
+    'Dishwasher',
+    'Doorman',
+    'Dryer',
+    'Elevator',
+    'Essentials',
+    'Ethernet connection',
+    'Extra pillows and blankets',
+    'Fire extinguisher',
+    'Fire pit',
+    'First aid kit',
+    'Free parking on premises',
+    'Free street parking',
+    'Gym',
+    'Hair dryer',
+    'Hangers',
+    'Heating',
+    'High Chair',
+    'Host greets you',
+    'Hot tub',
+    'Hot water',
+    'Hot water kettle',
+    'Iron',
+    'Kitchen',
+    'Laptop friendly workspace',
+    'Lockbox',
+    'Long term stays allowed',
+    'Microwave',
+    'Mountain view',
+    'Oven',
+    'Paid parking off premises',
+    'Paid parking on premises',
+    'Park view',
+    'Parking',
+    'Patio or balcony',
+    'Pets allowed',
+    'Pool',
+    'Private entrance',
+    'Refrigerator',
+    'Room-darkening shades',
+    'Safe',
+    'Security cameras',
+    'Self check-in',
+    'Shampoo',
+    'Single level home',
+    'Smoke detector',
+    'Smoking allowed',
+    'Step-free access',
+    'Stove',
+    'Suitable for events',
+    'Toaster',
+    'TV',
+    'Valley view',
+    'Wardrobe',
+    'Washer',
+    'Waterfront',
+    'Wifi',
+  ]
 }
 function getEmptyStay() {
   return {
     _id: '',
     name: 'Magical Place',
     type: '',
+    orders: [
+      {
+        _id: 'o1225',
+        hostId: 'u101',
+        buyer: {
+          _id: 'u102',
+          fullname: 'Puki guest',
+          imgURL: 'https://robohash.org/pukiguest',
+        },
+        totalPrice: 160,
+        startDate: '2025/10/15',
+        endDate: '2025/10/17',
+        guests: {
+          adults: 2,
+          kids: 1,
+          infants: 0,
+          pets: 0,
+        },
+        stay: {
+          _id: 'h102',
+          name: 'House Of Uncle My',
+          price: 80.0,
+          loc: {},
+        },
+        msgs: [],
+        status: 'pending', // pending, approved
+      },
+      {
+        _id: 'o1225',
+        hostId: 'u101',
+        buyer: {
+          _id: 'u102',
+          fullname: 'Puki guest',
+          imgURL: 'https://robohash.org/pukiguest',
+        },
+        totalPrice: 160,
+        startDate: '2025/01/8',
+        endDate: '2025/01/17',
+        guests: {
+          adults: 2,
+          kids: 1,
+          infants: 0,
+          pets: 0,
+        },
+        stay: {
+          _id: 'h102',
+          name: 'House Of Uncle My',
+          price: 80.0,
+          loc: {},
+        },
+        msgs: [],
+        status: 'pending', // pending, approved
+      },
+    ],
     imgUrls: [
       'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg',
       'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436294/mvhb3iazpiar6duvy9we.jpg',
@@ -163,7 +217,7 @@ function getEmptyStay() {
       lng: 45.52797,
     },
     reviews: [],
-    likedByUsers: []
+    likedByUsers: [],
   }
 }
 
@@ -174,6 +228,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaaf8',
       name: "Moshe's house",
       type: 'Entire home/apt',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436294/mvhb3iazpiar6duvy9we.jpg',
@@ -245,8 +353,7 @@ function _createDemoStays() {
       host: {
         _id: 'u101',
         fullname: 'Muki Host',
-        imgUrl:
-          "https://robohash.org/mukihost",
+        imgUrl: 'https://robohash.org/mukihost',
       },
       loc: {
         country: 'Portugal',
@@ -426,6 +533,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaaf9',
       name: 'Belle chambre à côté Metro Papineau',
       type: 'Private room',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437045/dmquvficldi8ssfdlrrx.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437033/rhw6gycttaimzocc1poz.jpg',
@@ -455,8 +616,7 @@ function _createDemoStays() {
       host: {
         _id: 'u101',
         fullname: 'Muki Host',
-        imgUrl:
-          "https://robohash.org/mukihost"
+        imgUrl: 'https://robohash.org/mukihost',
       },
       loc: {
         country: 'Canada',
@@ -546,6 +706,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaafa',
       name: 'M&M Space MM2  Apartamento no centro da cidade',
       type: 'Entire home/apt',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436861/xrxhgsif3ekhxgn8irlm.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437017/gjyzgdjngyrhfrj2loxz.jpg',
@@ -613,8 +827,7 @@ function _createDemoStays() {
       host: {
         _id: 'u101',
         fullname: 'Muki Host',
-        imgUrl:
-          "https://robohash.org/mukihost"
+        imgUrl: 'https://robohash.org/mukihost',
       },
       loc: {
         country: 'Portugal',
@@ -956,6 +1169,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaafb',
       name: 'Fresh and modern 1BR in Bed-Stuy',
       type: 'Entire home/apt',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436912/xle8ueqxjeazbs4bp09p.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436460/qi3vkpts37b4k0dedosc.jpg',
@@ -1000,9 +1267,7 @@ function _createDemoStays() {
         lat: -73.92922,
         lng: 40.68683,
       },
-      likedByUsers: [
-        'u101'
-      ],
+      likedByUsers: ['u101'],
       reviews: [
         {
           id: 'YKAmPW',
@@ -1371,6 +1636,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaafc',
       name: 'Habitación centro de Barcelona',
       type: 'Private room',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670407572/stayby/stays-pics/4ddde677-af85-4038-a2a1-93294bffd8f5_vkddr8.webp',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436394/kscsvxyn0uro9tjhefeb.jpg',
@@ -1451,6 +1770,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaafd',
       name: 'DOUBLE ROOM IN THE HEART OF BCN',
       type: 'Private room',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436793/httqod38otalkzp9kynq.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436236/ctnbnqazpqhotjcauqwp.jpg',
@@ -1862,6 +2235,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaafe',
       name: 'Home, Sweet, Harlem. Welcome!',
       type: 'Entire home/apt',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436390/om97cgufeacwlric2r5w.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436827/znh7gqzbwb4wm6bdziy7.jpg',
@@ -2282,6 +2709,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aaaff',
       name: 'Heroísmo IV',
       type: 'Entire home/apt',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436823/af6elioxovkhvp6cg1un.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437327/epcnh2tzpafwmvi3srcp.jpg',
@@ -2705,6 +3186,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aab00',
       name: 'Monte dos Burgos - Cosy Room',
       type: 'Private room',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436993/yzxnnw83e9qyas022au4.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436329/cvylwkta0uannbxm3zns.jpg',
@@ -2847,6 +3382,60 @@ function _createDemoStays() {
       _id: '622f337a75c7d36e498aab01',
       name: 'Nice Cosy Room In Taksim',
       type: 'Private room',
+      orders: [
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/10/15',
+          endDate: '2025/10/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+        {
+          _id: 'o1225',
+          hostId: 'u101',
+          buyer: {
+            _id: 'u102',
+            fullname: 'Puki guest',
+            imgURL: 'https://robohash.org/pukiguest',
+          },
+          totalPrice: 160,
+          startDate: '2025/01/8',
+          endDate: '2025/01/17',
+          guests: {
+            adults: 2,
+            kids: 1,
+            infants: 0,
+            pets: 0,
+          },
+          stay: {
+            _id: 'h102',
+            name: 'House Of Uncle My',
+            price: 80.0,
+            loc: {},
+          },
+          msgs: [],
+          status: 'pending', // pending, approved
+        },
+      ],
       imgUrls: [
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663437241/wt0seud4ot4cmdrztdzz.jpg',
         'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436867/yocip4igdbruuh2grzpf.jpg',

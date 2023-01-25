@@ -34,11 +34,11 @@ export function HostMenu() {
     saveStay(newStay)
   }
   return (
-    <div className='host-menu  main-layout app-header'>
+    <div className='main-layout app-header'>
       <div className='header-logo-container'>
         <Logo />
       </div>
-      <div>
+      <div className='host-menu'>
         <NavLink className='menu-link' to='order'>
           Order
         </NavLink>
