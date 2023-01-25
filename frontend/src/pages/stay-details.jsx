@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { stayService } from '../services/stay.service.local.js'
 import { useModal } from '../customHooks/useModal'
-import { likeStay } from '../store/stay/stay.action.js'
+import { onLikeStayOptimistic } from '../store/stay/stay.action.js'
 
 import { AmenitiesList } from '../cmps/stay-details/amenities-list.jsx'
 import { ReviewsCmp } from '../cmps/stay-details/reviews-cmp.jsx'
@@ -20,7 +20,6 @@ import { AllAmenities } from '../cmps/stay-details/all-amenities.jsx'
 import { AllReviews } from '../cmps/stay-details/all-reviews.jsx'
 import { AboutHost } from '../cmps/stay-details/about-host.jsx'
 import useOnScreen from '../customHooks/useOnScreen.js'
-import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { LoginSignup } from '../cmps/login-signup.jsx'
 import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
 import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
@@ -41,7 +40,6 @@ export function StayDetails() {
   const isLoggedin = (user) ? true : false
 
   useEffect(() => {
-    console.log(reserveBtnRef.current)
     loadStay()
   }, [])
 
@@ -65,13 +63,12 @@ export function StayDetails() {
 
   function openReviewMap() { }
 
-  async function onLikeStay() {
+  async function onLikeStay(stayId) {
     if (!user) {
       openModal(<LoginSignup />)
       return
     } else {
-      const updatedStay = await likeStay(stay._id)
-      setStay(updatedStay)
+      onLikeStayOptimistic(stayId)
     }
   }
 
@@ -105,7 +102,7 @@ export function StayDetails() {
                 </div>
                 <button className='save-stay active'>
                   <div className="heart">
-                    <DetailsHeart handleClick={onLikeStay} isLiked={(!!user) ? stay.likedByUsers.find(miniUser => miniUser._id === user._id) : false} isLoggedin={isLoggedin}/></div>
+                    <DetailsHeart handleClick={()=> onLikeStay(stay._id)} isLiked={(!!user) ? stay.likedByUsers.find(miniUser => miniUser._id === user._id) : false} isLoggedin={isLoggedin}/></div>
                 </button>
               </div>
 

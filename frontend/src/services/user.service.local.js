@@ -1,6 +1,5 @@
 import { utilService } from './util.service.js'
 import { storageService } from './async-storage.service.js'
-import { likeStay } from '../store/stay/stay.action.js'
 
 const USER_KEY = 'userDB'
 _createUsers()
@@ -61,17 +60,6 @@ function logout() {
     sessionStorage.removeItem('loggedinUser')
     return Promise.resolve()
 }
-
-// function toggleLikeStay(stayId,user) {
-//     for (let i = 0; i < user.likedStays.length; i++) {
-//         if (user.likedStays[i]._id === stayId) {
-//             user.likedStays.splice(i, 1)
-//             return
-//         }
-//     }
-//     user.likedStays.push({ _id: stayId })
-//     updateUser(user)
-// }
 
 
 
