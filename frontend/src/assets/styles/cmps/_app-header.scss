@@ -46,6 +46,10 @@
     color: $clr-brand;
     cursor: pointer;
 
+    @media (min-width: $grid-break-point-2){
+      flex: 0 0 150px;
+    }
+
     .akebnb {
       margin: 0;
       display: none;
@@ -58,19 +62,19 @@
   .header-search-bar-container {
     display: flex;
     flex-grow: 1;
-    flex-basis: 850px;
+    // flex-basis: 850px;
     min-height: 80px;
     padding-top: 16px;
     position: relative;
     &:has(.search-bars-open) {
       justify-self: flex-end;
       order: 2;
+      flex-basis: 850px;
     }
 
     @media (min-width: $grid-break-point-2) {
-      justify-self: center;
+      flex-grow: 1;
       justify-content: center;
-      flex-basis: 1;
       &:has(.search-bars-open) {
         justify-content: flex-start;
         order: 2;
@@ -89,7 +93,7 @@
       flex-grow: 0;
 
       &:not(:has(.search-bars-open)) {
-        flex-grow: 1;
+        flex: 0 0 150px;
       }
     }
   }

@@ -12,8 +12,9 @@ import { RatingReview } from '../ui/rating-review.jsx'
 import { LowerRate } from './lower-rate.jsx'
 
 
-export function OrderModal({ stay, setOpenTab, openTab }) {
+export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
   const [searchParams, setSearchParams] = useSearchParams()
+  const [refVisible, setRefVisible] = useState(false)
   const navigate = useNavigate()
 
 
@@ -153,6 +154,7 @@ export function OrderModal({ stay, setOpenTab, openTab }) {
 
         {/* Reserve/CheckAvailability Button */}
         <div>
+          <div className='reserve-btns-ref' ref={el => { reserveBtnRef.current = el; setRefVisible(!!el)}}></div>
           {orderParams.checkIn && orderParams.checkOut && (
             <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
           )}

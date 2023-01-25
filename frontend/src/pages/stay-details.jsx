@@ -35,7 +35,7 @@ export function StayDetails() {
   const reserveBtnRef = useRef()
   const [refVisible, setRefVisible] = useState(false)
   const imgGridVisible = useOnScreen(imgGridRef, '0px')
-  const reserveBtnVisible = useOnScreen(reserveBtnRef, '89px')
+  const reserveBtnVisible = useOnScreen(reserveBtnRef, '-34px')
   const user = useSelector(state => state.userModule.user)
   const isLoggedin = (user) ? true : false
 
@@ -58,6 +58,7 @@ export function StayDetails() {
       navigate('/stay')
     }
   }
+
 
   function openReviewModal() { }
 
@@ -132,7 +133,7 @@ export function StayDetails() {
                   trouble checking in.
                 </p>
               </div>
-              <div ref={reserveBtnRef} className='stay-summery border-buttom'>{stay.summary}</div>
+              <div className='stay-summery border-buttom'>{stay.summary}</div>
               <div id='amenities' className='stay-amenities'>
                 <h4 className='subheading'>What this place offers</h4>
                 {amenitiesToDisplay && (
@@ -150,7 +151,7 @@ export function StayDetails() {
             </div>
 
             <div className='stay-review-order'>
-              <OrderModal stay={stay} openTab={openTab} setOpenTab={setOpenTab}/>
+              <OrderModal stay={stay} openTab={openTab} setOpenTab={setOpenTab} reserveBtnRef={reserveBtnRef}/>
             </div>
           </section>
 

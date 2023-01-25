@@ -99,17 +99,17 @@
     // Check-In & Check-Out Tab
     .input-split-date {
         display: flex;
-        flex: 1 0 0%;
         min-width: 0;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        // width: 100%;
 
         &>* {
             border-radius: 32px;
             line-height: rem(16px);
             letter-spacing: 0.04em;
             padding: 14px 24px;
+            white-space: nowrap;
         }
 
         .check-in:hover:not(.active),
@@ -175,6 +175,7 @@
 
             .rdrCalendarWrapper {
                 height: 300px;
+                max-width: 100%;
 
 
                 .rdrMonthAndYearWrapper {
