@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: flex-start;
   background-color: $clr-white;
-
+  overflow-y: hidden;
   position: sticky;
   top: 0px;
   width: 100%;
@@ -32,6 +32,7 @@
   &:has(.search-bars-open) {
     flex-wrap: wrap;
   }
+
   &:has(.search-bars-open)::after {
     transform: scaleY(5.5);
     border-bottom: none;
@@ -46,13 +47,14 @@
     color: $clr-brand;
     cursor: pointer;
 
-    @media (min-width: $grid-break-point-2){
+    @media (min-width: $grid-break-point-2) {
       flex: 0 0 150px;
     }
 
     .akebnb {
       margin: 0;
       display: none;
+
       @media (min-width: $grid-break-point-2) {
         display: block;
       }
@@ -66,6 +68,7 @@
     min-height: 80px;
     padding-top: 16px;
     position: relative;
+
     &:has(.search-bars-open) {
       justify-self: flex-end;
       order: 2;
@@ -75,6 +78,7 @@
     @media (min-width: $grid-break-point-2) {
       flex-grow: 1;
       justify-content: center;
+
       &:has(.search-bars-open) {
         justify-content: flex-start;
         order: 2;
@@ -101,10 +105,12 @@
   @media (min-width: $grid-break-point-2) {
     &:has(.search-bars-open) {
       flex-wrap: nowrap;
+
       .header-menu-container {
         order: 3;
       }
     }
+
     &:has(.search-bars-open)::after {
       transform: scaleY(3.2);
       border-bottom: none;

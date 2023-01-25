@@ -3,7 +3,20 @@
     grid-template-columns: 1fr 1fr;
     row-gap: 40px;
     margin-bottom: 40px;
+    
+    @include for-max-narrow-layout{
+        grid-template-columns: 1fr;
+
+        @for $i from 1 through 6 {
+            > :nth-child(#{$i}) {
+              @if $i > 2 {
+                display: none;
+              }
+            }
+          }
+    }
 }
+
 
 
 .review-prev{
@@ -11,6 +24,11 @@
     margin-right: 130px;
     flex-direction: column;
     padding-bottom: 16px;
+
+    @include for-max-narrow-layout{
+        margin-right: 30px;
+        
+    }
 
 
     .mini-user-details{

@@ -22,11 +22,18 @@
   margin: auto;
   padding-inline: $normal-layout-padding;
 
+  
+  @include for-mobile-layout {
+    padding: 0;
+  }
+  @include for-max-narrow-layout {
+    padding: 0;
+  }
+
 
   @include for-wide-layout {
     padding: 0 $wide-layout-padding;
   }
-
 
 
 }

@@ -23,6 +23,7 @@ import useOnScreen from '../customHooks/useOnScreen.js'
 import { BtnSquareColor } from '../cmps/ui/buttons/btn-square-color.jsx'
 import { LoginSignup } from '../cmps/login-signup.jsx'
 import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
+import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
 
 
 export function StayDetails() {
@@ -183,7 +184,11 @@ export function StayDetails() {
             </section>
           </section>
         </>}
-      <AppFooter className='secondary-layout' />
+        <div className='details-app-footer'>
+          {stay&&
+        <StayMobileFooter stay={stay} setOpenTab={setOpenTab}/>
+      }</div>
+      {/* <AppFooter className='secondary-layout' /> */}
     </>
   )
 }

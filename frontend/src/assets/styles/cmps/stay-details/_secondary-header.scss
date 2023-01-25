@@ -9,6 +9,11 @@
     display: none;
     justify-content: space-between;
 
+
+    @include for-max-narrow-layout {
+        display: none !important;
+      }
+
     .anchor-links {
         display: flex;
         align-items: center;
