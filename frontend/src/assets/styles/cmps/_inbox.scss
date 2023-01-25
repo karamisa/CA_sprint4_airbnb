@@ -1,0 +1,56 @@
+.chat-app {
+  min-height: 100vh;
+}
+
+.spacer {
+  flex-grow: 1;
+}
+
+.inbox-container {
+  margin-top: header-height;
+  height: 100%;
+
+  display: grid;
+  grid-template-columns: 370px auto 370px;
+}
+
+.inbox-column {
+  display: flex;
+  flex-direction: column;
+
+  &-header {
+    height: 72px;
+    padding-left: 20px;
+    padding-right: 10px;
+
+    border-bottom: 1px solid $clr-border;
+
+    h1,
+    h2 {
+      font-size: 18px;
+      line-height: 72px;
+      font-family: cereal-Medium;
+    }
+  }
+
+  .contacts {
+    overflow-y: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .chat-msgs {
+  }
+
+  .chat-input {
+    margin: 0 auto;
+    display: flex;
+    max-width: 684px;
+    width: 100%;
+  }
+}
+
+.chat {
+  border-left: 1px solid $clr-border;
+  border-right: 1px solid $clr-border;
+}

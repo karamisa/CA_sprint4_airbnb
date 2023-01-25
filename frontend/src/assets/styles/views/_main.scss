@@ -1,4 +1,10 @@
+#root {
+  min-height: 100vh;
+}
+
 main {
+  min-height: 100vh;
+
   > *:nth-last-child(1) {
     padding-bottom: 80px;
   }

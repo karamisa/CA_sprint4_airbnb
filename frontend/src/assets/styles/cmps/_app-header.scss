@@ -1,7 +1,5 @@
 .app-header {
   display: flex;
-  // flex-wrap: wrap;
-  // flex-direction: row;
   justify-content: center;
   align-items: flex-start;
   background-color: $clr-white;
@@ -9,7 +7,7 @@
   position: sticky;
   top: 0px;
   width: 100%;
-  min-height: 80px;
+  min-height: $header-height;
   z-index: 100;
 
   &::after {
