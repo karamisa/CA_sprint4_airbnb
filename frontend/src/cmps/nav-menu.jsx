@@ -1,15 +1,45 @@
 import { useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import guest from '../assets/img/guest.svg'
 import useClickOutside from '../customHooks/useClickOutside'
 import { useModal } from '../customHooks/useModal'
+import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { logout } from '../store/user.actions'
 import { LoginSignup } from './login-signup'
 import { NavHamburger } from './ui/nav-hamburger'
 
-export function NavMenu({ user, onLogout, onAddStay }) {
+export function NavMenu() {
+  const user = useSelector((storeState) => storeState.userModule.user)
+  const navigate = useNavigate()
+
+  async function onLogout() {
+    try {
+      await logout()
+      navigate('/stay')
+      showSuccessMsg(`Bye now`)
+    } catch (err) {
+      showErrorMsg('Cannot logout')
+    }
+  }
+
+  function onAddStay() {
+    navigate('/stay/edit')
+    // const newStay = stayService.getEmptyStay()
+    // newStay.name = prompt('Enter stay name')
+    // newStay.host._id = user._id
+    // newStay.host.fullname = user.fullname
+    // newStay.host.imgUrl = user.imgUrl
+    // if (!user.isOwner) {
+    //   user.isOwner = true
+    //   updateUser(user)
+    // }
+    // saveStay(newStay)
+  }
+
   const [navbarOpen, setNavbarOpen] = useState(false)
   const { closeModal, openModal, Modal } = useModal()
-  const elNav= useRef()
+  const elNav = useRef()
 
   const handleToggle = () => {
     setNavbarOpen((prev) => !prev)
@@ -36,7 +66,12 @@ export function NavMenu({ user, onLogout, onAddStay }) {
         {navbarOpen &&
           (!user ? (
             <div className='menu-links'>
-              <Link onClick={() => openModal(<LoginSignup closeModal={closeModal} />)}>Log in</Link>
+              <Link
+                onClick={() =>
+                  openModal(<LoginSignup closeModal={closeModal} />)
+                }>
+                Log in
+              </Link>
             </div>
           ) : (
             <div className='menu-links'>
