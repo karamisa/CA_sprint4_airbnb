@@ -27,6 +27,7 @@
 
   &.secondary-layout {
     position: relative;
+    overflow-y: inherit;
   }
 
   &:has(.search-bars-open) {

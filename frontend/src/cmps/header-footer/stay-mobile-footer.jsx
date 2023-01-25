@@ -4,6 +4,7 @@ import { BtnSquareColor } from "../ui/buttons/btn-square-color";
 import { RatingReview } from "../ui/rating-review";
 
 export function StayMobileFooter({ stay, setOpenTab }) {
+
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
 
@@ -22,6 +23,9 @@ export function StayMobileFooter({ stay, setOpenTab }) {
         },
     }
 
+    const CheckIndate = utilService.ShortFormattedDate(orderParams.checkIn)
+    const CheckOutdate = utilService.ShortFormattedDate(orderParams.checkIn)
+
     function onClickReserve() {
         const paramsToSet = utilService.objectToSearchParams({
             checkIn: orderParams.checkIn.getTime(),
@@ -37,29 +41,34 @@ export function StayMobileFooter({ stay, setOpenTab }) {
         <div className={'stay-mobile-footer flex'} >
             <div className='book-it-details'>
                 <h4><span className="price">${(Math.round(stay.price)).toLocaleString()}</span> night</h4>
-                <div className='order-rating-review flex'>
-                    <RatingReview reviews={stay.reviews} />
-                    <span>•</span>
-                    <div
-                        className='stay-rating'>
-                        {stay.reviews.length} reviews
+
+                {(!orderParams.checkIn || !orderParams.checkOut) && (
+                    <div className='order-rating-review flex'>
+                        <RatingReview reviews={stay.reviews} />
                     </div>
-                </div>
-
-                {orderParams.checkIn && orderParams.checkOut && (
-                    <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
                 )}
-
+                {(orderParams.checkIn || orderParams.checkOut) && (
+                    <div className='order-rating-review flex'>
+                        <span>{CheckIndate}</span><span>-</span><span>{CheckOutdate}</span>
+                    </div>
+                )}
             </div>
+
+            {orderParams.checkIn && orderParams.checkOut && (
+                <div className="footer-btn">
+                    <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
+                </div>
+            )}
+
             {(!orderParams.checkIn || !orderParams.checkOut) && (
                 <div className="footer-btn">
-                <BtnSquareColor
-                    onClick={() => {
-                        setOpenTab('checkIn')
+                    <BtnSquareColor
+                        onClick={() => {
+                            setOpenTab('checkIn')
 
-                    }}
-                    children={<a href="#stay-mid" className="footer-btn-link">Check availability</a>}
-                />
+                        }}
+                        children={<a href="#stay-mid" className="footer-btn-link">Check availability</a>}
+                    />
                 </div>
             )}
 
