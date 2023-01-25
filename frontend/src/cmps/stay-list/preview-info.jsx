@@ -2,7 +2,6 @@ import { utilService } from '../../services/util.service'
 import { RatingReview } from '../ui/rating-review'
 
 export function PreviewInfo({ info }) {
-  console.log('info:', info)
   return (
     <>
       <p className='flex justify-between'>

@@ -1,7 +1,7 @@
 // Colors
 $clr-brand: hsl(349, 100%, 61%);
 $clr-text-secondary: hsl(0, 0%, 44%);
-$clr-text-lighter:#717171;
+$clr-text-lighter: #717171;
 $clr-text-primary: hsl(0, 0%, 13%);
 $clr-svg-imgs: #222222;
 
@@ -14,6 +14,8 @@ $clr-hover-bg-dark: #dddddd;
 $clr-black: #000;
 
 $border-radius: 12px;
+
+$header-height: 80px;
 
 //PADDING
 $wide-layout-padding: 80px;
@@ -29,7 +31,6 @@ $mobile-breakpoint: 460px;
 $narrow-breakpoint: 744px;
 $normal-breakpoint: 945px;
 $wide-breakpoint: 1440px;
-
 
 $grid-break-point-1: 550px;
 $grid-break-point-2: 950px;

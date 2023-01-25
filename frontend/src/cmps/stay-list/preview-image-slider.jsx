@@ -1,16 +1,26 @@
 import { useEffect } from 'react'
 import { Heart } from '../ui/heart'
 import { Slider } from '../ui/slider/slider'
+import { onLikeStayOptimistic } from '../../store/stay/stay.action'
+import { LoginSignup } from '../login-signup'
+import { useSelector } from 'react-redux'
 
 export function PreviewImageSlider({
   imgUrls,
-  user,
   isLiked,
-  onLikeStay,
+  openModal,
   stayId,
 }){
+  const user = useSelector((state) => state.userModule.user)
 
-
+  function onLikeStay(stayId){
+    if (!user) {
+      openModal(<LoginSignup />)
+      return
+    } else {
+      onLikeStayOptimistic(stayId)
+    }
+  }
 
   const isLoggedin = user ? true : false
 

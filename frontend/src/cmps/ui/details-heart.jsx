@@ -4,9 +4,7 @@ import { FaHeart, FaRegHeart } from 'react-icons/fa'
 export function DetailsHeart({handleClick, isLiked = false , isLoggedin = false}) {
   const [like, setLike] = useState(isLiked)
   function onClick(ev) {
-    // ev.stopPropagation()
     handleClick()
-    if(!isLoggedin) return
     setLike(!like)
   }
   

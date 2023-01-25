@@ -1,16 +1,14 @@
 import { useState } from 'react'
 import { FaHeart, FaRegHeart } from 'react-icons/fa'
 
-export function Heart({ handleClick, isLiked=false, isLoggedin=false }) {
-  const [like, setLike] = useState(isLiked)
+export function Heart({ handleClick, isLiked=false, isLoggedin}) {
+  // const [like, setLike] = useState(isLiked)
   function onClick(ev) {
     ev.stopPropagation()
     handleClick()
-    if(!isLoggedin) return
-    setLike(!like)
   }
 
-  if (like)
+  if (isLiked)
     return (
       <span onClick={onClick} style={{ cursor: 'pointer' }}>
         <FaHeart
