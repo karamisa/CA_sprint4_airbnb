@@ -19,8 +19,8 @@ h4,
 h5,
 h6 {
   font-family: cereal-Medium;
-  margin: 0 0 0.6em;
-  line-height: 1;
+  // margin: 0 0 0.6em;
+  // line-height: 1;
 }
 
 img {
@@ -28,7 +28,6 @@ img {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
-
 
 button {
   font-size: inherit;
@@ -44,8 +43,8 @@ button {
     padding: 0;
     border: 0;
     width: max-content;
-    
-    .underline{
+
+    .underline {
       text-decoration: underline;
     }
   }
