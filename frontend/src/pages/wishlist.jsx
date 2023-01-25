@@ -7,7 +7,7 @@ import { AppFooter } from '../cmps/header-footer/app-footer.jsx'
 import { WishlistList } from '../cmps/wishlist-list.jsx'
 // import { loadStays } from '../store/stay/stay.action.js'
 
-import { likeStay } from '../store/stay/stay.action.js'
+import { onLikeStayOptimistic } from '../store/stay/stay.action.js'
 
 export function WishList() {
     const [stays, setStays] = useState(null)
@@ -37,7 +37,7 @@ export function WishList() {
 
    async  function onRemoveLike(stayId, ev) {
         ev.stopPropagation()
-        const updatedStay = await likeStay(stayId)
+        const updatedStay = await onLikeStayOptimistic(stayId)
         loadStays()
     }
 

@@ -20,15 +20,16 @@ export function useModal() {
     if (!isOpen || !Component) return null
     return (
       <div className='modal'>
-      <div className='content-container'>
-          <div className='close-modal-btn-container'>
-              <CloseBtn onClick={closeModal} />
-          </div>
+        <div className='close-modal-btn-container'>
+          <CloseBtn onClick={closeModal} />
+        </div>
+        <div className='content-container'>
           {component}
+        </div>
       </div>
-  </div>
-    )}
-  
+    )
+  }
+
   return {
     isOpen,
     component,
@@ -36,10 +37,10 @@ export function useModal() {
     closeModal,
     Modal: (props) => (
       <Modal isOpen={isOpen} component={component} closeModal={closeModal} {...props} />
-      )
-      }
-      }
-      
+    )
+  }
+}
+
 
 // You can then use this hook in your component like so:
 /* 
