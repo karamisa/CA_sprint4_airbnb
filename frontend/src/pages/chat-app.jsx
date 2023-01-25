@@ -1,7 +1,11 @@
+import { Logo } from '../cmps/logo'
+
 export function ChatApp() {
-    return (
-        <section>
-            <h1>Chat App</h1>
-        </section>
-    )
+  return (
+    <section>
+      <header>
+        <Logo />
+      </header>
+    </section>
+  )
 }
