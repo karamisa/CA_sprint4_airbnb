@@ -2,7 +2,7 @@ import { Children, useEffect, useRef } from 'react'
 import { cloneElement } from 'react'
 import { useState } from 'react'
 import classes from './slider.module.css'
-import {useWindowSize} from '../../../customHooks/useWindowSize.js'
+import { useWindowSize } from '../../../customHooks/useWindowSize.js'
 
 const LeftNavIcon = (
   <svg
@@ -43,15 +43,15 @@ const RightNavIcon = (
 export function Slider({ children }) {
   const [page, setPage] = useState([])
 
- const [winWidth, setWinWidth] = useState(0)
- const windowSize = useWindowSize()
+  const [winWidth, setWinWidth] = useState(0)
+  const screenSize = useWindowSize()
   let containerEl = useRef()
   const leftNavRef = useRef()
   const rightNavRef = useRef()
 
-
-  useEffect(()=>{
+  useEffect(() => {
     setWinWidth(containerEl.current.offsetWidth)
+
     setPage(
       Children.map(children, (child) => {
         return cloneElement(child, {
@@ -62,7 +62,18 @@ export function Slider({ children }) {
         })
       })
     )
-  },[children, windowSize])
+  }, [children, screenSize])
+
+  useEffect(() => {
+    // correct offset
+    setOffset((prev) => {
+      const winWidth = containerEl.current.parentNode.offsetWidth
+      const currItemIndex = Math.round(prev / winWidth)
+      const correctContainerOffset = winWidth * currItemIndex
+
+      return correctContainerOffset
+    })
+  }, [screenSize])
 
   // current offset
   const [offset, setOffset] = useState(0)
