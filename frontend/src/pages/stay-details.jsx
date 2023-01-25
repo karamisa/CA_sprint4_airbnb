@@ -158,8 +158,8 @@ export function StayDetails() {
 
           <div className='reviews border-buttom'>
             <h2 id='reviews' className='stay-mid-reviews flex'>
-              <RatingReview reviews={stay.reviews} /> • {stay.reviews.length}{' '}
-              reviews
+              <RatingReview reviews={stay.reviews} /><span className="stay-review-count"> • {stay.reviews.length}{' '}
+              reviews</span>
             </h2>
             <div className='stay-mid-reviews-container'>
               <ReviewBar reviews={stay.reviews} />
