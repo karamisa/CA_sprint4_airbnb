@@ -24,9 +24,9 @@ export function TripPage() {
     }
   }
   return (
-    <section className='main-layout trip-page'>
+    <section className='main-layout'>
       <AppHeader className='main-layout' />
-      <div className='secondary-layout'>
+      <div className='secondary-layout trip-page'>
         <div className='hero'>
           <h2>Welcome</h2>
         </div>

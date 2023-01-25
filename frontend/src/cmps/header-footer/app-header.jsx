@@ -13,7 +13,6 @@ export function AppHeader({ className, ...props }) {
   const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
 
-
   async function onLogout() {
     try {
       await logout()
@@ -39,16 +38,20 @@ export function AppHeader({ className, ...props }) {
   }
 
   return (
-      <header {...props} className={`app-header ${className}`}>
-        <div className='header-logo-container'  onClick={() => {navigate('/stay')}}>
-          <Logo />
-        </div>
-        <div className='header-search-bar-container'>
-          <StaySearchBars />
-        </div>
-        <div className='header-menu-container'>
-          <NavMenu user={user} onLogout={onLogout} onAddStay={onAddStay} />
-        </div>
-      </header>
+    <header {...props} className={`app-header ${className}`}>
+      <div
+        className='header-logo-container'
+        onClick={() => {
+          navigate('/stay')
+        }}>
+        <Logo />
+      </div>
+      <div className='header-search-bar-container'>
+        <StaySearchBars />
+      </div>
+      <div className='header-menu-container'>
+        <NavMenu user={user} onLogout={onLogout} onAddStay={onAddStay} />
+      </div>
+    </header>
   )
 }

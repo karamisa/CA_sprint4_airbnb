@@ -15,10 +15,9 @@ export function Order({ order }) {
           day: 'numeric',
           month: 'short',
         })}
-        -{' '}
+        -
         {new Date(orderForPrecessing.endDate).toLocaleString('en-US', {
           day: 'numeric',
-          month: 'short',
         })}
       </td>
       <td>{orderForPrecessing.stay.name}</td>
