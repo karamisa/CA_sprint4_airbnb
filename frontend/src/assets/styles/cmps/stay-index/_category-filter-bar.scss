@@ -1,19 +1,37 @@
+.filter-ref{
+
+}
 .filter-bar {
   display: flex;
   align-items: center;
 
-  margin-top: 10px;
-  padding-bottom: 15px;
-  height: 100px;
+  margin-top: 17px;
   background-color: $clr-white;
   position: sticky;
   top: 80px;
   width: 100%;
   z-index: 9;
+
+  
+  &::after{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+    box-shadow: rgb(0 0 0 / 16%) 0 3px 2px -2px;
+    transition: box-shadow 0.2s ease
+  }
+
+  &.scrolling::after{
+    right:0;
+    left:0;
+    transition: box-shadow 0.2s ease
+  }
 }
 
 .btn-container {
-  padding-top: 20px;
   display: flex;
   align-items: center;
 }
@@ -21,8 +39,6 @@
 .carousel {
   display: flex;
   align-items: center;
-
-  padding-top: 20px;
   overflow: scroll;
   background-color: $clr-white;
   overflow: hidden;

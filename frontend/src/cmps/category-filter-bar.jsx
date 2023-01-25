@@ -3,6 +3,8 @@ import filterIcon from '../assets/img/filter.svg'
 
 import { Carousel } from './ui/carousel/carousel'
 import { BtnSquareSecond } from './ui/buttons/btn-square-second'
+import useOnScreen from '../customHooks/useOnScreen'
+import { useRef } from 'react'
 
 const buttonStyle = {
   height: '48px',
@@ -11,15 +13,19 @@ const buttonStyle = {
 }
 
 export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
+  const filterRef = useRef()
+  const topFilterVisible = useOnScreen(filterRef, '-79px')
   const categories = filterService.getCategories()
 
+  const scrollClass = topFilterVisible ? '' : 'scrolling'
   function onSelectCategory(newCategory) {
     handleChange({ field: 'category', value: newCategory })
   }
 
   return (
     <>
-      <section className='main-layout filter-bar'>
+    <div ref={filterRef} className='filter-ref'></div>
+      <section className={`main-layout filter-bar ${scrollClass}`} >
         <Carousel>
           {categories.map((category) => {
             return (

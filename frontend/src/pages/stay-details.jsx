@@ -89,8 +89,8 @@ export function StayDetails() {
       <section className='secondary-layout'>
 
             <section className='stay-details'>
-              <h1 id='imgGallery' className='title'>{stay.name}</h1>
-              <div className='flex justify-between'>
+              <h1 id='stay-top' className='title'>{stay.name}</h1>
+              <div className='flex justify-between stay-title-subheader'>
                 <div className='name-subtitle flex'>
                   <RatingReview reviews={stay.reviews} />
                   <span>•</span>
@@ -115,7 +115,7 @@ export function StayDetails() {
                 />
               </div>
 
-          <section className='stay-review-mid grid border-buttom'>
+          <section className='stay-review-mid grid border-buttom' id='stay-mid'>
             <div className='stay-review-details'>
               <div className='about-host border-buttom'>
                 <AboutHost stay={stay} />

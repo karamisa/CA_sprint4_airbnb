@@ -78,6 +78,10 @@
   @include aspect-ratio(1, 1);
 }
 
+.almost-square-ratio {
+  @include aspect-ratio(20, 19);
+}
+
 .video-ratio {
   @include aspect-ratio(16, 9);
 }

@@ -6,14 +6,9 @@ import { PreviewInfo } from './preview-info'
 export function StayPreview({ stay, onLikeStay }) {
   console.log('stay:', stay)
   const user = useSelector((state) => state.userModule.user)
+  
+  
 
-  // async function onLikeStay(stayId) {
-  //     if (!user){
-  //       // openModal(<LoginSignup />)
-  //       return
-  //     }
-  //     await likeStay(stayId)
-  //   }
 
   console.log('stay?.likedByUsers?:', stay?.likedByUsers)
   console.log('user:', user)

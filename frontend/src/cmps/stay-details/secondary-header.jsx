@@ -36,7 +36,7 @@ export function SecondaryHeader({ imgGridVisible, reserveBtnVisible, stay, setOp
     return (
         <div className={'secondary-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
             <div className='anchor-links'>
-                <a className='anchor-link' href='#imgGallery' >Photos</a>
+                <a className='anchor-link' href='#stay-top' >Photos</a>
                 <a className='anchor-link' href='#amenities' >Amenities</a>
                 <a className='anchor-link' href='#reviews' >Reviews</a>
                 {/* fix href to map */}
@@ -63,8 +63,9 @@ export function SecondaryHeader({ imgGridVisible, reserveBtnVisible, stay, setOp
                     <BtnSquareColor
                         onClick={() => {
                             setOpenTab('checkIn')
+                            
                         }}
-                        children={'Check Availability'}
+                        children={<a href="#stay-mid">Check availability</a>}
                     />
                 )}
 

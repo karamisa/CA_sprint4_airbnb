@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Heart } from '../ui/heart'
 import { Slider } from '../ui/slider/slider'
 
@@ -7,11 +8,14 @@ export function PreviewImageSlider({
   isLiked,
   onLikeStay,
   stayId,
-}) {
+}){
+
+
+
   const isLoggedin = user ? true : false
 
   return (
-    <div className='image-slider square-ratio'>
+    <div className='image-slider almost-square-ratio'>
       <span className='heart'>
         <Heart
           handleClick={() => onLikeStay(stayId)}
@@ -26,4 +30,4 @@ export function PreviewImageSlider({
       </Slider>
     </div>
   )
-}
+        }
