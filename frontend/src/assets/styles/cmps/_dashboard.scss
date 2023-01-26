@@ -20,3 +20,20 @@
     max-width: 160px;
   }
 }
+
+.chart-info {
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    margin: 1rem 0 2rem 0;
+  }
+  &-amount {
+    font-size: 32px;
+    font-family: cereal-Medium;
+    margin-bottom: 1rem;
+  }
+
+  &-last-amount {
+  }
+}
