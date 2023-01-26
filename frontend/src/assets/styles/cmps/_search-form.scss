@@ -5,6 +5,7 @@
         opacity: 1;
         visibility: visible;
         transition: transform 250ms ease, opacity 200ms ease 100ms, visibility 0ms 200ms;
+        
     }
 
     .screen-blur {
@@ -174,7 +175,7 @@
 
 
             .rdrCalendarWrapper {
-                height: 300px;
+                padding-top: 40px;
                 max-width: 100%;
 
 
@@ -184,6 +185,16 @@
                     display: none;
                   }
                  }
+
+                 .rdrMonthAndYearWrapper {
+                    position: absolute;
+                    right: 60px;
+                    left: 60px;
+                  }
+                  .rdrDays{
+                    font-size:14px;
+                    font-family: cereal-medium;
+                  }
                 .rdrMonthName {
                     text-align: center;
                     font-family: cereal-medium;

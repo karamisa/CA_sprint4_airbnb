@@ -258,6 +258,12 @@
 
     .air-cover {
         padding-bottom: 1.5rem;
+        img {
+            width: 86px;
+            height: 17px;
+            object-fit: contain;
+            align-self: center;
+        }
 
         .air-cover-text {
             margin-top: 3px;
@@ -271,7 +277,6 @@
 
         .air-cover-cover {
             font-size: 1rem;
-
         }
 
 

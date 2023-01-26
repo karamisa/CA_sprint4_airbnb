@@ -36,10 +36,8 @@ export function StayIndex() {
         currCategory={filterBy.category}
       />
 
+      {(!stays) && <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
       {!!stays && <StayList stays={stays} />}
-      {!!stays && stays.length === 0 && (
-        <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>
-      )}
       <AppFooter className='main-layout fixed' />
     </section>
   )

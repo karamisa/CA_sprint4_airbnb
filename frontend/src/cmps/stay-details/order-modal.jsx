@@ -10,6 +10,7 @@ import { GuestSelect } from './../search-cmps/guest-select.jsx'
 import { BtnSquareColor } from '../ui/buttons/btn-square-color.jsx'
 import { RatingReview } from '../ui/rating-review.jsx'
 import { LowerRate } from './lower-rate.jsx'
+import { BtnSquareBlack } from '../ui/buttons/btn-square-black.jsx'
 
 
 export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
@@ -43,7 +44,9 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
       searchParams.set('pets', value.pets)
     }
     if (field === 'checkIn' || field === 'checkOut') {
+      if (value){
       value = value.getTime()
+      }
       searchParams.set(field, value)
     }
     setSearchParams(searchParams)
@@ -82,6 +85,7 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
       guestSubheading = guestSubheading.replace('1 pets', '1 pet')
     }
     if (!guestSubheading) guestSubheading = 'Add Guests'
+    if (guestSubheading === '1 adult') guestSubheading = '1 guest'
     return guestSubheading
   }
 
@@ -108,17 +112,31 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
         {/* Reservation Edit */}
         <section className='picker-container'>
           {/* Dates: checkIn/checkOut */}
-          <section className='date-picker-modal'>
-            {(openTab === 'checkIn' || openTab === 'checkOut') && (
+
+          {(openTab === 'checkIn' || openTab === 'checkOut') && (
+            <section className='date-picker-modal'>
+              <div className='date-picker-header'>
+             <h4>{utilService.totalDays(orderParams.checkIn, orderParams.checkOut)} nights</h4>
+             {!!orderParams.checkIn && !!orderParams.checkOut && <h5>{utilService.ShortFormattedDate(orderParams.checkIn)}-{utilService.ShortFormattedDate(orderParams.checkOut)}</h5>}
+              </div>
+
               <DateSelect
                 checkIn={orderParams.checkIn}
                 checkOut={orderParams.checkOut}
                 onSetField={onSetField}
                 className='date-picker'
               />
-            )}
-          </section>
-          <section className='dates-selection flex'>
+              <div className="date-picker-modal-btns">
+                <button className="reset-dates-btn clean-button" onClick={()=> {onSetField('checkIn', ''); onSetField('checkOut', '')}}>Clear dates</button>
+                <div className='close-dates-btn'>
+                  <BtnSquareBlack onClick={() => setOpenTab('')}>Close</BtnSquareBlack>
+                </div>
+              </div>
+
+
+            </section>
+          )}
+          <section className={(openTab === 'checkIn' || openTab === 'checkOut') ? 'dates-selection active' : 'dates-selection'}>
             <button
               onClick={() => setOpenTab('checkIn')}
               className='clean-button check-in picker'>
@@ -154,7 +172,7 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
 
         {/* Reserve/CheckAvailability Button */}
         <div>
-          <div className='reserve-btns-ref' ref={el => { reserveBtnRef.current = el; setRefVisible(!!el)}}></div>
+          <div className='reserve-btns-ref' ref={el => { reserveBtnRef.current = el; setRefVisible(!!el) }}></div>
           {orderParams.checkIn && orderParams.checkOut && (
             <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
           )}

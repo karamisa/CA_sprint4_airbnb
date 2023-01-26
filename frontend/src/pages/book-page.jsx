@@ -249,7 +249,7 @@ export function BookPage() {
                 <section className="summary-card">
 
                     <div className="stay-details flex border-buttom">
-                        <img className="stay-img" src={stay.imgUrls[0]} alt="stay image" />
+                        <img className="stay-img" src={stay.imgUrls[0]} alt="staypreview" />
                         <div className="stay-desc flex justify-between">
                             <div>
                                 <h4 className="stay-type">{stay.type}</h4>
@@ -268,9 +268,11 @@ export function BookPage() {
                     <div className="air-cover flex border-buttom">
                         <p className="flex">
                             <span className="air-cover-text">Your booking is protected by</span>
-                        <h3>
-                            <span className="air-cover-air"> air</span><span className="air-cover-cover">cover</span>
-                        </h3>
+                            <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt="aircover" />
+                        {/* <h3> */}
+                            {/* <span className="air-cover-air"> air</span><span className="air-cover-cover">cover</span> */}
+
+                        {/* </h3> */}
                         </p>
 
                     </div>
