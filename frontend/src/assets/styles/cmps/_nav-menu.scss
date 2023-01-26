@@ -46,6 +46,9 @@
         display: block;
         min-width: 240px;
 
+        @include for-mobile-layout {
+            transform: translate(0%, -120%);
+          }
 
         >* {
             text-decoration: none;

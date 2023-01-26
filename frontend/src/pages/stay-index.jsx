@@ -30,7 +30,7 @@ export function StayIndex() {
 
   return (
     <section style={{ position: 'relative' }}>
-      <AppHeader className='main-layout' />
+      <AppHeader className='main-layout stay-index' />
       <CategoryFilterBar
         handleChange={handleChange}
         currCategory={filterBy.category}
@@ -38,7 +38,7 @@ export function StayIndex() {
 
       {(!stays) && <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
       {!!stays && <StayList stays={stays} />}
-      <AppFooter className='main-layout fixed' />
+      <AppFooter className='main-layout stay-index-footer fixed' />
     </section>
   )
 }

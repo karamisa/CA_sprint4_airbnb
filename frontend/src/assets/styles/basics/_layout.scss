@@ -17,6 +17,22 @@
   }
 }
 
+.stay-index{
+  .header-logo-container{
+    @include for-mobile-layout {
+      display: none !important;
+    }
+  }
+
+  .header-menu-container{
+    .nav-menu{
+      @include for-mobile-layout {
+        display: none;
+      }
+    }
+  }
+}
+
 .secondary-layout {
   max-width: $secondary-max-width;
   margin: auto;

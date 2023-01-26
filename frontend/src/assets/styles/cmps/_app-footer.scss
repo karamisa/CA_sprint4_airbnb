@@ -12,4 +12,14 @@
     z-index: 10;
     width: 100%;
   }
+
+
+&.stay-index-footer{
+  .header-menu-container{
+      @include for-narrow-layout {
+        display: none;
+    }
+  }
+}
+
 }
