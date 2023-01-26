@@ -3,6 +3,7 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
 
+
     .date-picker-header {
 
         h4 {
@@ -20,7 +21,7 @@
 
     .rdrCalendarWrapper {
 
-        max-width: 100%;
+        width: 100%;
 
         .rdrNextPrevButton {
             background-color: transparent;
@@ -35,7 +36,7 @@
 
 
         .rdrMonthAndYearWrapper {
-            min-width: 500px;
+            min-width: minmax(500px,100vw);
         }
 
         .rdrMonthAndYearPickers {
@@ -43,7 +44,7 @@
         }
 
         .rdrMonths {
-            min-width: inherit;
+            min-width: 100%;
         }
 
         .rdrMonth {
