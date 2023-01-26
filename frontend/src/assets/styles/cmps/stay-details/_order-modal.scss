@@ -83,7 +83,7 @@
       span {
         padding-left: 4px;
       }
-      
+
       .stay-rating {
         // font-size: 1rem;
         color: $clr-text-lighter;
@@ -97,22 +97,99 @@
     }
   }
 
-  .date-picker-modal {
-    position: relative;
-  }
 
 
-  .rdrCalendarWrapper {
-    @extend .container;
-    position: absolute;
-    right: 110%;
-    z-index: 10;
-  }
+
+
 
   .picker-container {
+    position: relative;
     margin-bottom: 15px;
     border-radius: 8px;
     border: 1px solid $clr-border-dark;
+
+
+    .date-picker-header {
+      display: flex;
+      flex-direction: column;
+      padding-inline-start: 20px;
+      padding-top: 10px;
+
+
+
+
+      h4 {
+        font-size: rem(22px);
+        font-family: 'cereal-Book';
+      }
+
+      h5 {
+        font-size: rem(14px);
+        font-family: cereal-regular;
+        color: $clr-text-secondary;
+      }
+    }
+
+
+    .date-picker-modal {
+      @extend .container;
+      position: absolute;
+      right: -30px;
+      top: -22px;
+      z-index: 2;
+      background-color: $clr-white;
+
+      .date-picker-modal-btns {
+        display: flex;
+        justify-content: flex-end;
+        gap: 14px;
+        margin-inline-end: 22px;
+      }
+
+      .reset-dates-btn {
+        text-decoration: underline;
+        font-family: cereal-medium;
+        font-size: rem(14px);
+        color: $clr-text-primary;
+      }
+
+      .close-dates-btn button {
+        font-family: cereal-book;
+        font-size: rem(14px);
+        padding: 8px 16px;
+        margin-right: 0px;
+
+        &:hover {
+          background-color: $clr-black;
+        }
+      }
+
+
+    }
+
+    //CALENDER SELECT
+    .rdrCalendarWrapper {
+      padding-top: 20px;
+
+      .rdrMonthAndYearWrapper {
+        position: absolute;
+        right: 28px;
+        left: 25px;
+      }
+
+      .rdrMonthAndYearPickers {
+        display: none;
+      }
+
+      .rdrMonthName {
+        text-align: center;
+        color: $clr-text-primary;
+        font-size: 1rem;
+        font-family: cereal-medium;
+      }
+
+    }
+
 
     .order-heading {
       font-size: 0.625rem;
@@ -125,8 +202,16 @@
     }
 
     .dates-selection {
+      display: flex;
       justify-content: space-between;
       position: relative;
+
+
+      &.active {
+        border-radius: 8px;
+        z-index: 3;
+        border: 2px solid $clr-black;
+      }
 
       .check-out {
         border-left: 1px solid $clr-border-dark;
@@ -135,7 +220,7 @@
       .picker {
         display: flex;
         flex-direction: column;
-        gap: 5px;
+        gap: 0px;
         padding: 7px 12px;
         width: 50%;
         font-size: 0.625em;

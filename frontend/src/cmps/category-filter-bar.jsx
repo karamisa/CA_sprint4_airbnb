@@ -18,9 +18,14 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
   const categories = filterService.getCategories()
 
   const scrollClass = topFilterVisible ? '' : 'scrolling'
+
   function onSelectCategory(newCategory) {
     handleChange({ field: 'category', value: newCategory })
   }
+
+  const toggleSearchForm = () => {
+    document.querySelector('.search-bars').classList.toggle('search-bars-open')
+}
 
   return (
     <>
@@ -48,7 +53,7 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
             )
           })}{' '}
         </Carousel>
-        <div className='btn-container'>
+        <div className='btn-container' onClick={toggleSearchForm}>
           <BtnSquareSecond style={buttonStyle}>
             <img className='filter-bar-btn-img' src={filterIcon} alt='Icon' />{' '}
             Filters

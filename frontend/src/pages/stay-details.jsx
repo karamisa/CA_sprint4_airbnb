@@ -51,7 +51,7 @@ export function StayDetails() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
-      
+
     } catch (err) {
       console.log('Had issues in stay details', err)
       // showErrorMsg('Cannot load toy')
@@ -124,7 +124,7 @@ export function StayDetails() {
               </div>
               <div className='air-cover border-buttom'>
                 <h3>
-                  <span>air</span>cover
+                  <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt="aircover" />
                 </h3>
                 <p>
                   Every booking includes free protection from Host
