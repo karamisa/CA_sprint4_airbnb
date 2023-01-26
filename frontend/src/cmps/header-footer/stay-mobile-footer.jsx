@@ -24,7 +24,7 @@ export function StayMobileFooter({ stay, setOpenTab }) {
     }
 
     const CheckIndate = utilService.ShortFormattedDate(orderParams.checkIn)
-    const CheckOutdate = utilService.ShortFormattedDate(orderParams.checkIn)
+    const CheckOutdate = utilService.ShortFormattedDate(orderParams.checkOut)
 
     function onClickReserve() {
         const paramsToSet = utilService.objectToSearchParams({

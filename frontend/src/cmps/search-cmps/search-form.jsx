@@ -32,11 +32,19 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
         if (field === 'checkOut') setSelectedTab('guests')
     }
 
+    function setRandDates(){
+        const randCheckIn = utilService.getTimeStampXDaysFromNow(utilService.getRandomIntInclusive(1, 5))
+        const randCheckOut = utilService.getTimeStampXDaysFromNow(utilService.getRandomIntInclusive(8, 20))
+        setFields((prevFields) => ({...prevFields, checkIn: new Date(randCheckIn), checkOut: new Date (randCheckOut)}))
+        setSelectedTab('guests')
+        return {randCheckIn, randCheckOut}
+    }
+
     function handleSubmit() {
         const searchObject = {
             location: fields.location,
-            checkIn: (fields.checkIn) ? fields.checkIn.getTime() :utilService.getTimeStampXDaysFromNow(utilService.getRandomIntInclusive(1, 5)),
-            checkOut: (fields.checkOut) ? fields.checkOut.getTime() : new Date(),
+            checkIn: (fields.checkIn) ? fields.checkIn.getTime() :  utilService.getTimeStampXDaysFromNow(7),
+            checkOut: (fields.checkOut) ? fields.checkOut.getTime() : utilService.getTimeStampXDaysFromNow(14),
             adults: fields.guests.adults,
             children: fields.guests.children,
             infants: fields.guests.infants,
@@ -46,7 +54,6 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
         navigate(`/stay?${searchParams}`)
         handleToggle()
     }
-
 
     const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(fields.checkIn)}` : 'Add dates'
     const checkOutSubHeading = (fields.checkOut) ? `${utilService.formattedDate(fields.checkOut)}` : 'Add dates'
@@ -104,7 +111,7 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
                             <div className="date-select-container">
                                 <div className='date-tabs'>
                                     <button className='clean-button active'>Choose dates</button>
-                                    <button className='clean-button'>Flexible dates</button>
+                                    <button className='clean-button' onClick={setRandDates}>Flexible dates</button>
                                 </div>
                                 <DateSelect checkIn={fields.checkIn} checkOut={fields.checkOut} onSetField={onSetField} />
                                 

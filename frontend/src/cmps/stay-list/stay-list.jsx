@@ -1,11 +1,18 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 import { StayPreview } from './stay-preview'
 import { useModal } from '../../customHooks/useModal'
+import { utilService } from '../../services/util.service'
 
 export function StayList({ stays}) {
   const navigate = useNavigate()
   const { openModal, Modal } = useModal()
-  const currSearch = useLocation()
+  const currLocation = useLocation()
+
+  const handleClick = (stayId) => {
+    console.log('stayId', stayId)
+    const searchStr = utilService.setAnyBlankParamsWithDefaults(currLocation.search)
+    navigate(`/stay/${stayId}${searchStr}`)
+  }
 
   if (!stays)
     <ul className='card-grid stay-list clean-list main-layout'>Loading...</ul>
@@ -17,7 +24,7 @@ export function StayList({ stays}) {
         return (
           <li
             key={stay._id}
-            onClick={() => navigate(`/stay/${stay._id}${currSearch.search}`)}
+            onClick={() => handleClick(stay._id)}
             className='stay-list-item'>
             <StayPreview stay={stay} openModal={openModal} />
           </li>

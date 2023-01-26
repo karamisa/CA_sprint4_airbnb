@@ -8,7 +8,7 @@ export function SearchPreview({handlePreviewClick, staySearchParams}) {
     const {stayId} = useParams()
 
     const locationContent = location || 'Anywhere'
-    const dateContent = (checkIn && checkOut) ? `${utilService.formattedDate(+checkIn)} - ${utilService.formattedDate(+checkOut)}` : 'Any week'
+    const dateContent = (checkIn && checkOut) ? `${utilService.ShortFormattedDate(+checkIn)} - ${utilService.ShortFormattedDate(+checkOut)}` : 'Any week'
     const guestsContent = guests.adults ? `${guests.adults} guests` : 'Add guests'
     
     return (

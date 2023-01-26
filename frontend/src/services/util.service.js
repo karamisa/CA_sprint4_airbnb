@@ -13,6 +13,7 @@ export const utilService = {
   objectToSearchParams,
   getTimeStampXDaysAgo,
   getTimeStampXDaysFromNow,
+  setAnyBlankParamsWithDefaults
 }
 
 function makeId(length = 6) {
@@ -159,3 +160,17 @@ function getTimeStampXDaysFromNow(days) {
   return date.getTime()
 }
 
+
+function setAnyBlankParamsWithDefaults(searchStr){
+  if (!searchStr.includes('checkIn')){
+    searchStr += '&checkIn=' + getTimeStampXDaysFromNow(7)
+  } 
+  if (!searchStr.includes('checkOut')){
+    searchStr += '&checkOut=' + getTimeStampXDaysFromNow(14)
+  }
+  const firstChar=searchStr.charAt(0)
+  if (firstChar === '&') {
+    searchStr= '?' + searchStr.slice(1)
+  }
+  return searchStr
+}

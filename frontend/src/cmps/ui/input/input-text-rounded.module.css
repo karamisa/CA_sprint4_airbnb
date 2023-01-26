@@ -2,7 +2,8 @@
     width: 100%;
 }
 
-.messageText {
+
+.chat-wrapper .messageText {
     min-height: 1em;
     padding: 0 10px;
     /* prevent height collapsing when there is no text */
@@ -28,7 +29,7 @@
 }
 
 
-.wrapper {
+.chat-wrapper .wrapper {
     width: 387px;
     border: 1px solid hsl(0, 0%, 87%);
     border-radius: 20px;
@@ -41,7 +42,7 @@
     display: flex;
 }
 
-*:focus-visible,
+.chat-wrapper *:focus-visible,
 *:focus {
     outline: none;
     outline-width: 0;
@@ -53,7 +54,7 @@
 
 }
 
-button {
+.chat-wrapper button {
     border: none;
     height: 20px;
 }

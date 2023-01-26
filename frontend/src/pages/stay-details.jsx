@@ -51,6 +51,7 @@ export function StayDetails() {
     try {
       const stay = await stayService.getById(stayId)
       setStay(stay)
+      
     } catch (err) {
       console.log('Had issues in stay details', err)
       // showErrorMsg('Cannot load toy')
