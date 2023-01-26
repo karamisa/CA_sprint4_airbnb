@@ -24,6 +24,7 @@ import { LoginSignup } from '../cmps/login-signup.jsx'
 import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
 import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
 import { StayHighlights } from '../cmps/stay-details/stay-highlights.jsx'
+import { StayMap } from '../cmps/stay-details/stay-map.jsx'
 import { StayCalendar } from '../cmps/stay-details/stay-calendar.jsx'
 
 
@@ -176,8 +177,12 @@ export function StayDetails() {
               </BtnSquare>
             )}
           </div>
-          <div className='stay-map border-buttom'>Where you'll be</div>
-
+          <div className='stay-map border-buttom'>
+            <h1>Where you'll be</h1>
+            <StayMap stay={stay} />
+            <h3 className="stay-location-name">{stay.loc.country}, {stay.loc.city}</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iusto ratione modi, reiciendis cupiditate, ex quisquam quo doloribus non pariatur adipisci consequuntur sed hic, ipsam fugit numquam nisi accusamus suscipit.</p>
+          </div>
               <div className='stay-about-host border-buttom'>
                 <BtnSquare className='rev-btn contact host'>contact host</BtnSquare>
               </div>

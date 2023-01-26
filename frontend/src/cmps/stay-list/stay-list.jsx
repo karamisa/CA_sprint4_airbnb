@@ -14,7 +14,7 @@ export function StayList({ stays}) {
     navigate(`/stay/${stayId}${searchStr}`)
   }
 
-if (stays && stays.length===0) return <h1 style={{ textAlign: 'center', marginTop: '20px' }}>No Stays Found</h1>
+
   return (
     <>
     <div className="details-modal"> <Modal /></div>
