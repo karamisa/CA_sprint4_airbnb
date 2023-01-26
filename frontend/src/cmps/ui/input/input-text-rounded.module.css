@@ -16,6 +16,15 @@
     word-wrap: break-word;
     flex-grow: 1;
 
+    /* limit lines  */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+
+
 }
 
 
@@ -24,6 +33,7 @@
     border: 1px solid hsl(0, 0%, 87%);
     border-radius: 20px;
     padding: 5px;
+    padding-right: 5px;
 
     /* the container will keep the padding untouched */
     max-height: 145px;
@@ -45,5 +55,5 @@
 
 button {
     border: none;
-
+    height: 20px;
 }
