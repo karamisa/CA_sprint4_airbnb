@@ -23,6 +23,7 @@ import useOnScreen from '../customHooks/useOnScreen.js'
 import { LoginSignup } from '../cmps/login-signup.jsx'
 import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
 import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
+import { StayHighlights } from '../cmps/stay-details/stay-highlights.jsx'
 
 
 export function StayDetails() {
@@ -120,7 +121,7 @@ export function StayDetails() {
                 <AboutHost stay={stay} />
               </div>
               <div className='stay-highlights border-buttom'>
-                can be hardcoaded
+                <StayHighlights/>
               </div>
               <div className='air-cover border-buttom'>
                 <h3>
