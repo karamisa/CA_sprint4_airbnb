@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { orderService } from '../../services/order.service'
+import { orderService } from '../../services/order.service.local'
 import { OrderList } from './order-list/order-list'
 import { useSelector } from 'react-redux'
 

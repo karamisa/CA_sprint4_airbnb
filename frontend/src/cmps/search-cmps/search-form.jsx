@@ -35,8 +35,8 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
     function handleSubmit() {
         const searchObject = {
             location: fields.location,
-            checkIn: (fields.checkIn) ? fields.checkIn.getTime() : '',
-            checkOut: (fields.checkOut) ? fields.checkOut.getTime() : '',
+            checkIn: (fields.checkIn) ? fields.checkIn.getTime() :utilService.getTimeStampXDaysFromNow(utilService.getRandomIntInclusive(1, 5)),
+            checkOut: (fields.checkOut) ? fields.checkOut.getTime() : new Date(),
             adults: fields.guests.adults,
             children: fields.guests.children,
             infants: fields.guests.infants,

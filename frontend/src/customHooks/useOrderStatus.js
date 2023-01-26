@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { orderService } from '../services/order.service'
+import { orderService } from '../services/order.service.local'
 
 export const useOrderStatus = (order) => {
   const [orderForPrecessing, setOrderForPrecessing] = useState(order)
