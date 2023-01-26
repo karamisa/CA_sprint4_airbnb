@@ -24,6 +24,7 @@ import { LoginSignup } from '../cmps/login-signup.jsx'
 import { SecondaryHeader } from '../cmps/stay-details/secondary-header.jsx'
 import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
 import { StayHighlights } from '../cmps/stay-details/stay-highlights.jsx'
+import { StayCalendar } from '../cmps/stay-details/stay-calendar.jsx'
 
 
 export function StayDetails() {
@@ -134,7 +135,7 @@ export function StayDetails() {
                 </p>
               </div>
               <div className='stay-summery border-buttom'>{stay.summary}</div>
-              <div id='amenities' className='stay-amenities'>
+              <div id='amenities' className='stay-amenities border-buttom'>
                 <h4 className='subheading'>What this place offers</h4>
                 {amenitiesToDisplay && (
                   <AmenitiesList amenitiesToDisplay={amenitiesToDisplay} />
@@ -147,7 +148,7 @@ export function StayDetails() {
                   </BtnSquare>
                 )}
               </div>
-              <div className='stay-calendar'></div>
+              <div className='stay-calendar'><StayCalendar/></div>
             </div>
 
             <div className='stay-review-order'>

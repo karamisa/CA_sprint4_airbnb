@@ -1,9 +1,5 @@
 .stay-highlights {
 
-
-
-
-
     .highlight-img {
         display: block;
         height: 1.5rem;
@@ -21,12 +17,10 @@
             font-family: 'cereal-Bold';
         }
 
-        p{
+        p {
             font-size: em(14px, 16px);
             font-family: 'cereal-Book';
             color: $clr-text-lighter;
         }
     }
-
-
 }

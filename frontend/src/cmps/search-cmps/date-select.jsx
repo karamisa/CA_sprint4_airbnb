@@ -4,7 +4,7 @@ import { DateRange } from 'react-date-range'
 
 import {useState} from 'react'
 
-export function DateSelect({onSetField, checkIn, checkOut}) {
+export function DateSelect({onSetField, checkIn, checkOut, monthsToShow = 2}) {
   checkIn = checkIn || new Date()
   checkOut = checkOut || new Date()
 const [range, setRange] = useState([
@@ -32,7 +32,7 @@ const [range, setRange] = useState([
   onChange={handleChange}
   moveRangeOnFirstSelection={false}
   ranges={range}
-  months={2}
+  months={monthsToShow}
   direction="horizontal"
   rangeColors={['black']}
   showDateDisplay={false}
