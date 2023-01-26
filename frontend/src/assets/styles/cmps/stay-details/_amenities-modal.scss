@@ -3,7 +3,9 @@
         transform: translate(-50%, -50%);
         padding: 40px;
         max-height: 93%;
+  
     }
+
 }
 
 .all-amenities {
@@ -13,6 +15,13 @@
 
     max-height: 80vh;
     overflow-x: auto;
+
+    @include for-max-narrow-layout {
+        max-height: 60vh;
+      }
+
+
+
 
     .amenities-header {
 
