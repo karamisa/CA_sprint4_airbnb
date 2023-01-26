@@ -1,10 +1,10 @@
 import { useState } from 'react'
 
 
-export function ReviewsCmp({ reviewsToDisplay }) {
+export function ReviewsCmp({ reviewsToDisplay, MAX_LENGTH = 100 }) {
 
     const [expanded, setExpanded] = useState(Array(reviewsToDisplay.length).fill(false))
-    const MAX_LENGTH = 100
+    // const MAX_LENGTH = 100
 
 
     const handleExpand = (index) => {
