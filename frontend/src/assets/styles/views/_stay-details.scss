@@ -246,6 +246,10 @@
   }
 
   .reviews {
+
+    padding-bottom: 1.5rem;
+    padding-top: 1.5rem;
+
     @include for-max-narrow-layout {
       padding-inline: em(24px, 16px);
       border-top: solid 1px $clr-border;

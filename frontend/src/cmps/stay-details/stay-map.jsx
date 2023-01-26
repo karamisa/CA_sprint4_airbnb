@@ -6,7 +6,7 @@ export function StayMap({stay}){
     console.log(lat, lng)
     const [coordinates, setCoordinates] = useState({ lat, lng})
 
-    const zoom = 4
+    const zoom = 11
 
     const Popper = () => <div className="map-popper"><AiFillHome/><div className="popper-wedge"></div></div>
 
