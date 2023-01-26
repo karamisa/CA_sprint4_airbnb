@@ -238,16 +238,10 @@ export function BookPage() {
                             </>
                         }
                     </div>
-
-
-
-
                 </section>
 
 
-
                 <section className="summary-card">
-
                     <div className="stay-details flex border-buttom">
                         <img className="stay-img" src={stay.imgUrls[0]} alt="staypreview" />
                         <div className="stay-desc flex justify-between">
@@ -274,10 +268,7 @@ export function BookPage() {
 
                         {/* </h3> */}
                         </p>
-
                     </div>
-
-
 
                     <div className="price-details">
                         <h3 className="price-details-header">Price details</h3>
@@ -297,7 +288,7 @@ export function BookPage() {
 
                             <div className="total-container">
                                 <div className="cost-total flex justify-between">
-                                    <span>Total</span>
+                                    <span>Total <span style={{textDecoration:"underline"}}>(USD)</span></span>
                                     <span>${(fields.totalWithFees).toLocaleString()}</span>
                                 </div>
                             </div>

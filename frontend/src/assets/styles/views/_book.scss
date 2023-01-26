@@ -216,6 +216,7 @@
                 font-size: 12px;
                 align-items: baseline;
                 gap: 0.3125em;
+                // align-items: center;
 
                 .avg-rating-seperator {
                     @include for-max-narrow-layout {
@@ -226,7 +227,7 @@
                 .avg-rating {
                     align-items: baseline;
                     font-weight: 600;
-                    margin-bottom: 24px;
+                    // margin-bottom: 24px;
 
                     @include for-mobile-layout {
                         margin-bottom: 0;
@@ -242,7 +243,13 @@
                     color: $clr-text-secondary;
                     font-weight: 600;
                     border-top: none !important;
+                    padding-inline: unset !important;
 
+
+                    @include for-max-narrow-layout {
+                        padding-top: 1 rem !important;
+                    }
+                    
                     @include for-mobile-layout {
                         padding-top: 0;
                         padding-left: 0;
@@ -314,6 +321,7 @@
 
             .total-container {
                 margin-top: 24px;
+                font-family: 'cereal-Bold';
             }
         }
     }
