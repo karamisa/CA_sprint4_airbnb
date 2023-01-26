@@ -3,11 +3,20 @@
     background-color: $clr-white;
     width: 100vw;
     z-index: 100;
-    border-bottom: 1px solid $clr-border;
     top: 0;
     height: 80px;
     display: none;
     justify-content: space-between;
+
+    &::after {
+        content: "";
+        top: 81px;
+        border-bottom: 1px solid hsl(0deg, 0%, 87%);
+        z-index: -1;
+        position: fixed;
+        right: 0;
+        left: 0;
+    }
 
 
     @include for-max-narrow-layout {
