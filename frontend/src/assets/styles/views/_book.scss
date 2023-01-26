@@ -108,10 +108,11 @@
 
             .trip-subheader {
                 font-size: 1rem;
-                line-height: 1.25rem;
+                // line-height: 1.25rem;
             }
 
             .trip-details-data {
+                font-family: 'cereal-Regular'; 
                 font-size: 1rem;
                 font-weight: unset;
             }
@@ -160,6 +161,8 @@
     border-radius: 1em;
     height: fit-content;
     min-height: 40%;
+    padding-bottom: 40px !important;
+
 
     @include for-max-narrow-layout {
         border: none;

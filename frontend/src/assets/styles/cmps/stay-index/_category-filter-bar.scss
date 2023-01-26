@@ -34,6 +34,10 @@
 .btn-container {
   display: flex;
   align-items: center;
+  
+  @include for-mobile-layout {
+    display: none !important;
+  }
 }
 
 .carousel {
