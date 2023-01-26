@@ -25,6 +25,9 @@
   
   @include for-mobile-layout {
     padding: 0;
+    &.app-header .logo, &.app-header .nav-menu{
+      display: none;
+    }
   }
   @include for-max-narrow-layout {
     padding: 0;
