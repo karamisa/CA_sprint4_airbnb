@@ -1,7 +1,9 @@
 import { useOrderStatus } from '../../../customHooks/useOrderStatus'
 import { BtnSquare } from '../../ui/buttons/btn-square'
+import { GuestCard } from '../../ui/cards/guest-card'
+import { StayCard } from '../../ui/cards/stay-card'
 
-export function Order({ order }) {
+export function Order({ stays, order }) {
   const { orderForPrecessing, approveOrder, rejectOrder } =
     useOrderStatus(order)
 
@@ -9,7 +11,10 @@ export function Order({ order }) {
   // console.log('order:', orderForPrecessing)
   return (
     <>
-      <td>{orderForPrecessing.buyer.fullname}</td>
+      <td>
+        <GuestCard guest={orderForPrecessing.buyer} />
+      </td>
+      {/* <td>{orderForPrecessing.buyer.fullname}</td> */}
       <td>
         {new Date(orderForPrecessing.startDate).toLocaleString('en-US', {
           day: 'numeric',
@@ -20,7 +25,10 @@ export function Order({ order }) {
           day: 'numeric',
         })}
       </td>
-      <td>{orderForPrecessing.stay.name}</td>
+      <td>
+        <StayCard stay={orderForPrecessing.stay} />
+      </td>
+      {/* <td>{orderForPrecessing.stay.name}</td> */}
       <td>{orderForPrecessing.stay.price}</td>
       <td>{orderForPrecessing.status}</td>
       <td>

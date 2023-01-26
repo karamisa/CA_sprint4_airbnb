@@ -1,6 +1,6 @@
 import { Order } from './order'
 
-export function OrderList({ orders }) {
+export function OrderList({ stays, orders }) {
   if (!orders) return <div></div>
   return (
     <div>
@@ -18,7 +18,7 @@ export function OrderList({ orders }) {
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <Order order={order} />
+              <Order stays={stays} order={order} />
             </tr>
           ))}
         </tbody>

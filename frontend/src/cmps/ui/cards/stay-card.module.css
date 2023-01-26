@@ -1,0 +1,40 @@
+.stayCard {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 36px auto;
+    grid-template-rows: 20px auto;
+    grid-template-areas: 'img name' 'img text';
+    line-height: 1.1;
+}
+
+.stayCard span {
+    padding-left: 4px;
+}
+
+.city {
+    grid-area: name;
+    font-weight: 800;
+    align-self: flex-end;
+}
+
+.city h4 {
+    font-size: 14px;
+    padding: 0;
+}
+
+.name {
+    grid-area: text;
+    font-size: 14px;
+    align-self: flex-end;
+}
+
+.imgContainer {
+    grid-area: img;
+
+}
+
+.imgContainer img {
+    height: 36px;
+    width: 36px;
+    border-radius: 3px;
+}
