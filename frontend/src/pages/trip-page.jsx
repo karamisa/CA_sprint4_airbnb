@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { AppFooter } from '../cmps/header-footer/app-footer'
 import { AppHeader } from '../cmps/header-footer/app-header'
 import { TripList } from '../cmps/trip-list/trip-list'
-import { orderService } from '../services/order.service'
+import { orderService } from '../services/order.service.local'
 
 export function TripPage() {
   const [orders, setOrders] = useState(null)

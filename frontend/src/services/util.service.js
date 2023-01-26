@@ -11,6 +11,8 @@ export const utilService = {
   formattedDate,
   ShortFormattedDate,
   objectToSearchParams,
+  getTimeStampXDaysAgo,
+  getTimeStampXDaysFromNow,
 }
 
 function makeId(length = 6) {
@@ -143,5 +145,17 @@ function objectToSearchParams(obj) {
   }
   flattenObject(obj)
   return searchParams.toString()
+}
+
+function getTimeStampXDaysAgo(days) {
+  const date = new Date()
+  date.setDate(date.getDate() - days)
+  return date.getTime()
+}
+
+function getTimeStampXDaysFromNow(days) {
+  const date = new Date()
+  date.setDate(date.getDate() + days)
+  return date.getTime()
 }
 

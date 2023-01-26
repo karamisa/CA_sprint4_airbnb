@@ -4,7 +4,7 @@ import { useForm } from '../customHooks/useForm.js'
 
 import { stayService } from '../services/stay.service.local.js'
 import { utilService } from '../services/util.service.js'
-import { orderService } from '../services/order.service.js'
+import { orderService } from '../services/order.service.local.js'
 
 
 import arrowLeftImg from '../assets/img/arrow-left.svg'
