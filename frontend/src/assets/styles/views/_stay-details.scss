@@ -68,11 +68,16 @@
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 50% 50%;
     border-radius: 12px;
+    width: 100%;
+    max-height: 451.39px;
+    height: calc(100%/2);
 
     @include for-max-narrow-layout {
       grid-column: 1/-1;
       grid-template: repeat(2, 275px) / 1fr;
       border-radius: 0;
+      max-height: 478.656px;
+      height: calc((100%*2)/3);
 
       >*:not(:first-child) {
         display: none;

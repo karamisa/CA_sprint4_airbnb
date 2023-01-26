@@ -121,8 +121,8 @@ export function BookPage() {
         console.log('isBooked', isBooked)
     }
 
-    function onGoToTrips() {
-        console.log('go to trips')
+    function onGoToTrip() {
+        navigate('/trip')
     }
 
 
@@ -192,8 +192,8 @@ export function BookPage() {
 
             <main className="order-content flex justify-between">
 
-                <section className="order-details flex justify-between">
-                    <div className="border-buttom">
+                <section className="order-details flex">
+                    <div className="">
                         <div className="rare-find flex justify-between">
                             <div>
                                 <h4>This is a rare find</h4>
@@ -221,7 +221,6 @@ export function BookPage() {
                                 {loggedinUser ? (<BtnSquareColor onClick={onAddOrder}>Confirm</BtnSquareColor>)
                                     : (<div>
                                         <h3 className="login-msg">Please login to book</h3>
-                                        <span>login component</span>
                                         <LoginSignup />
                                     </div>)}
                             </>
@@ -229,7 +228,7 @@ export function BookPage() {
                         {isBooked &&
                             <>
                                 <h3 className="success-msg">We look forward to hosting you!</h3>
-                                {loggedinUser && <BtnSquareColor onClick={onGoToTrips}>Review Trips</BtnSquareColor>}
+                                {loggedinUser && <BtnSquareColor onClick={onGoToTrip}>Review Trips</BtnSquareColor>}
                                 <div className="success-txt flex">
                                     <div className="icon-svg">
                                         <img src={greenCheck} className="greenCheck-img" alt="greenCheckImg" />
@@ -260,11 +259,23 @@ export function BookPage() {
                             <div className="rating-review flex">
                                 <span className="avg-rating">
                                     <RatingReview reviews={stay.reviews} />
-                                </span><span>•</span><span className="reviews">({stay.reviews.length} reviews)</span>
+                                </span><span className="avg-rating-seperator">•</span><span className="reviews">({stay.reviews.length}<span className="avg-rating-reviews"> reviews</span>)</span>
                                 {/* <RatingReview reviews={stay.reviews} /> */}
                             </div>
                         </div>
                     </div>
+
+                    <div className="air-cover flex border-buttom">
+                        <p className="flex">
+                            <span className="air-cover-text">Your booking is protected by</span>
+                        <h3>
+                            <span className="air-cover-air"> air</span><span className="air-cover-cover">cover</span>
+                        </h3>
+                        </p>
+
+                    </div>
+
+
 
                     <div className="price-details">
                         <h3 className="price-details-header">Price details</h3>
