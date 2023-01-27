@@ -14,12 +14,15 @@
   }
 
 
-&.stay-index-footer{
-  .header-menu-container{
+  &.stay-index-footer {
+    .header-menu-container {
       @include for-narrow-layout {
         display: none;
+      }
     }
   }
-}
 
+  &.wishlist-footer {
+    transform: translate(-40px, 0);
+  }
 }

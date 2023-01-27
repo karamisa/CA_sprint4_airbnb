@@ -3,6 +3,7 @@ import { useModal } from '../customHooks/useModal'
 import { utilService } from '../services/util.service'
 import { StayPreview } from './stay-list/stay-preview'
 import arrowLeftImg from '../assets/img/arrow-left.svg'
+import { AppFooter } from './header-footer/app-footer'
 
 export function WishlistList({ stays, onRemoveLike }) {
   const { openModal, Modal } = useModal()
@@ -24,7 +25,7 @@ export function WishlistList({ stays, onRemoveLike }) {
         <Modal />
       </div> */}
 
-      <header className='wishlist-title flex'>
+      <header className='wishlist-title main-layout full flex'>
         <div className='icon-svg'>
           <img
             src={arrowLeftImg}
@@ -56,6 +57,8 @@ export function WishlistList({ stays, onRemoveLike }) {
           )
         })}
       </ul>
+
+      <AppFooter className='main-layout wishlist-footer fixed' />
     </>
 
     // <div>
