@@ -335,6 +335,7 @@
     font-weight: unset;
     gap: rem(4px);
     font-size: 1.5rem;
+    padding-bottom: 1.5rem;
 
     @include for-max-narrow-layout {
       font-family: 'cereal-Bold';
