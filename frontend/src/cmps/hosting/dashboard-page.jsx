@@ -6,7 +6,9 @@ import { ChartRating } from './charts/chart-rating'
 
 export function DashboardPage() {
   const infoIncome = { title: 'Income', amount: 3643, lastMonthAmount: 15 }
-  const infoLike = { title: 'Likes', amount: 4, lastMonthAmount: -3 }
+  const infoLike = { title: 'In wish list', amount: 4, lastMonthAmount: -3 }
+  const infoRating = { title: 'Rating', amount: 4.76, lastMonthAmount: +2 }
+  const infoOrders = { title: 'Orders', amount: 16, lastMonthAmount: +10 }
   return (
     <div className='dashboard-page secondary-layout'>
       <div className='hero'>
@@ -15,6 +17,8 @@ export function DashboardPage() {
       <h3>Dashboard</h3>
       <div className='dashboard'>
         <ChartInfo info={infoIncome} />
+        <ChartInfo info={infoOrders} />
+        <ChartInfo info={infoRating} />
         <ChartInfo info={infoLike} />
         <ChartOccupancy />
         <ChartRating />
