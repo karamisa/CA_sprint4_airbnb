@@ -36,3 +36,24 @@
     color: $clr-text-primary;
   }
 }
+
+.slider-btns {
+
+  .slider_navIconRight__jsyAf {
+    top: calc(50% - 27px) !important;
+    right: -4px !important;
+  }
+
+  .slider_navIconLeft__KjLtN {
+    top: calc(50% - 27px) !important;
+    left: -4px !important;
+  }
+
+  .slider-dots{
+    position: absolute;
+    z-index: 5;
+    font-size: 3rem;
+    top: 73%;
+    right: 38%;
+  }
+}

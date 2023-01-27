@@ -125,24 +125,58 @@ export function Slider({ children }) {
       return Math.max(prev - winWidth, maxOffset)
     })
   }
+ console.log('currPage:', currPage)
+
+ const Pagination = ( data, currPage ) => {
+  console.log('data', data)
+  console.log('currPage', currPage)
+  //  return null
+  if(!data.length) return console.log('no data')
+  return (
+    page&& <div className="slider-dots">
+      {data.map((item, index) => (
+        <span
+          key={index}
+          style={{ color: currPage === index ? 'white' : '#ffffffb3' }}
+        >
+          {'•'}
+          {/* {'🟠'} */}
+        </span>
+      ))}
+    </div>
+  )
+}
+
+
 
   return (
-    <div className={`${classes.carousel}`}>
+    <div className={`${classes.carousel} slider-btns`}>
       {/* navigation */}
 
       <span
         ref={leftNavRef}
         onClick={prevItems}
-        className={` ${classes.hidden} ${classes.navIconLeft} ${classes.navIcon} `}>
+        className={`slider-btn ${classes.hidden} ${classes.navIconLeft} ${classes.navIcon} `}>
         {LeftNavIcon}
       </span>
 
       <span
         ref={rightNavRef}
         onClick={nextItems}
-        className={`${classes.navIconRight} ${classes.navIcon}`}>
+        className={`slider-btn ${classes.navIconRight} ${classes.navIcon}`}>
         {RightNavIcon}
       </span>
+
+      {/* {page[currPage]&& (
+      <div className="curr-img-indication flex">
+            {page[currPage].key.map((k, idx) => {
+                const dotClr = (page[currPage].key === k) ? "white" : "rgba(255, 255, 255,0.7)"
+                return <div key={k + idx} style={{ color: dotClr }}>.</div>
+            })}
+       </div>)} */}
+
+{Pagination(page, currPage)}
+
 
       <div className={classes.carouselWindow}>
         {/* items */}
