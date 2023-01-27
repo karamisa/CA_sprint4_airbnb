@@ -38,22 +38,29 @@ export function StayMobileFooter({ stay, setOpenTab }) {
         navigate(`/book/stay/${stay._id}?${paramsToSet}`)
     }
 
-    function getGuestsSubHeading() {
-        var guestSubheading = ''
-        const { adults, children, infants, pets } = orderParams.guests
-        if (adults) guestSubheading += `${adults} adults`
-        if (children) guestSubheading += `, ${children} children`
-        if (infants) guestSubheading += `, ${infants} infants`
-        if (pets) guestSubheading += `, ${pets} pets`
-        if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
-            guestSubheading = guestSubheading.replace('1 adults', '1 adult')
-            guestSubheading = guestSubheading.replace('1 children', '1 child')
-            guestSubheading = guestSubheading.replace('1 infants', '1 infant')
-            guestSubheading = guestSubheading.replace('1 pets', '1 pet')
-        }
-        if (!guestSubheading) guestSubheading = 'Add Guests'
-        if (guestSubheading === '1 adult') guestSubheading = '1 guest'
-        return guestSubheading
+    // function getGuestsSubHeading() {
+    //     var guestSubheading = ''
+    //     const { adults, children, infants, pets } = orderParams.guests
+    //     if (adults) guestSubheading += `${adults} adults`
+    //     if (children) guestSubheading += `, ${children} children`
+    //     if (infants) guestSubheading += `, ${infants} infants`
+    //     if (pets) guestSubheading += `, ${pets} pets`
+    //     if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
+    //         guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+    //         guestSubheading = guestSubheading.replace('1 children', '1 child')
+    //         guestSubheading = guestSubheading.replace('1 infants', '1 infant')
+    //         guestSubheading = guestSubheading.replace('1 pets', '1 pet')
+    //     }
+    //     if (!guestSubheading) guestSubheading = 'Add Guests'
+    //     if (guestSubheading === '1 adult') guestSubheading = '1 guest'
+    //     return guestSubheading
+    // }
+
+    function getGuestCount() {
+        const { adults, children } = orderParams.guests
+        const totalGuests = adults + children
+        if(totalGuests === 1) return '1 guest'
+        return (totalGuests + ' guests')
     }
 
     return (
@@ -95,7 +102,7 @@ export function StayMobileFooter({ stay, setOpenTab }) {
                 )}
 
             </div>
-            <div className='footer-guest-view'>{getGuestsSubHeading()}</div>
+            <div className='footer-guest-view'>{getGuestCount()}</div>
         </>
     )
 }
