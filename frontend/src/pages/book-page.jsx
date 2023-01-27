@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useLocation, useParams, useNavigate } from 'react-router-dom'
-import { useForm } from '../customHooks/useForm.js'
 
-import { stayService } from '../services/stay.service.local.js'
+import { stayService } from '../services/stay.service.js'
 import { utilService } from '../services/util.service.js'
-import { orderService } from '../services/order.service.local.js'
+import { orderService } from '../services/order.service.js'
 
 
 import arrowLeftImg from '../assets/img/arrow-left.svg'
@@ -17,55 +16,34 @@ import { useSelector } from 'react-redux'
 import { Logo } from '../cmps/logo.jsx'
 
 
-
-
-
-
 export function BookPage() {
     const navigate = useNavigate()
     const { stayId } = useParams()
-    // const stayId = '622f337a75c7d36e498aaaf8'
-    const [stay, setStay] = useState(null)
+    const [info, setInfo] = useState(null)
     const location = useLocation()
     const params = new URLSearchParams(location.search)
     const user = useSelector(state => state.userModule.user)
     const [isBooked, setIsBooked] = useState(false)
-    const loggedinUser = (!user) ? false : true
-    // let isBooked = false  //after reservation success
-
-    const SERVICE_FEE = 11.2
-    const fields = getOrderFields()
-    console.log('fields', fields)
-    const formattedStartDate = utilService.formattedDate(fields.startDate)
-    const formattedEndDate = utilService.formattedDate(fields.endDate)
-
+    const {stay, order } = info || {}
 
     useEffect(() => {
-        loadStay()
+        loadInfo()
     }, [])
 
-
-
-    async function loadStay() {
+    async function loadInfo() {
         try {
-            const stay = await stayService.getById(stayId)
-            setStay(stay)
+            const stayToSet = await stayService.getById(stayId)
+            const orderToSet = loadOrder(stayToSet)
+            setInfo({stay: stayToSet, order: orderToSet})
         } catch (err) {
-            console.log('Had issues in stay details', err)
+            console.log('Had issues loading  reservation', err)
             // showErrorMsg('Cannot load stay')
             navigate('/stay')
         }
     }
 
-    function getOrderFields() {
-        let buyer = {}
-        if (user) {
-            buyer = {
-                _id: user._id,
-                fullname: user.fullname,
-                imgUrl: user.imgUrl,
-            }
-        }
+    function loadOrder(stayToSet) {
+        const SERVICE_FEE = 11.2
         const startDate = +params.get('checkIn') || Date.now()
         const endDate = +params.get('checkOut') || Date.now() + (1000 * 60 * 60 * 24)
         const totalDays = +utilService.totalDays(startDate, endDate)
@@ -75,32 +53,29 @@ export function BookPage() {
             infants: +params.get('infants') || 0,
             pets: +params.get('pets') || 0,
         }
-        let stayToSet = {}
-        let hostId
-        let totalFees
-        let totalStayPrice
-        let totalWithFees
-        if (stay) {
-            totalStayPrice = +(stay.price * utilService.totalDays(startDate, endDate)).toFixed(2)
-            totalFees = +(SERVICE_FEE * utilService.totalDays(startDate, endDate)).toFixed(2)
-            totalWithFees = +(totalStayPrice + (SERVICE_FEE * utilService.totalDays(startDate, endDate))).toFixed(2)
-            stayToSet = {
-                _id: stay._id,
-                name: stay.name,
-                price: stay.price,
-                loc: stay.loc,
-            }
-            hostId = stay.host._id
-
-
-        }
-        return { buyer, stayToSet, hostId, startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
+        const totalStayPrice = +(stayToSet.price * utilService.totalDays(startDate, endDate)).toFixed(2)
+        const totalFees = +(SERVICE_FEE * utilService.totalDays(startDate, endDate)).toFixed(2)
+        const totalWithFees = +(totalStayPrice + (SERVICE_FEE * utilService.totalDays(startDate, endDate))).toFixed(2)
+        const hostId = stayToSet.host._id
+        return { hostId, startDate, endDate, totalDays, totalWithFees, guests, totalFees, totalStayPrice }
     }
 
 
+    async function onAddOrder() {
+        var {startDate, guests, endDate, totalWithFees: totalPrice, hostId} = order
+        const orderToSet = orderService.getEmptyOrder(startDate,endDate,guests, stayId, totalPrice, hostId)
+        try {   
+            await orderService.save(orderToSet)
+            setIsBooked(true)
+            console.log('isBooked', isBooked)
+        } catch (err) {
+            console.log('Had issues in booking', err)
+        }
+    }
+
     function getGuestsSubHeading() {
         var guestSubheading = ''
-        const { adults, children, infants, pets } = fields.guests
+        const { adults, children, infants, pets } = order.guests
         if (adults) guestSubheading += `${adults} adults`
         if (children) guestSubheading += `, ${children} children`
         if (infants) guestSubheading += `, ${infants} infants`
@@ -116,16 +91,6 @@ export function BookPage() {
         return guestSubheading
     }
 
-
-    function onAddOrder() {
-        console.log('add order')
-        // const newOrder = setOrder()
-        orderService.save(setOrder())
-        // navigate('/stay')
-        setIsBooked(true)
-        console.log('isBooked', isBooked)
-    }
-
     function onGoToTrip() {
         navigate('/trip')
     }
@@ -135,40 +100,7 @@ export function BookPage() {
         navigate(-1)
     }
 
-
-    function setOrder() {
-        return (
-            {
-                hostId: fields.hostId,
-                buyer: {
-                    _id: fields.buyer._id,
-                    fullname: fields.buyer.fullname,
-                    imgURL: fields.buyer.imgURL
-                },
-                totalPrice: fields.totalWithFees,
-                startDate: fields.startDate,
-                endDate: fields.endDate,
-                guests: {
-                    adults: fields.guests.adults,
-                    kids: fields.guests.kids,
-                    infants: fields.guests.infants,
-                    pets: fields.guests.pets,
-                },
-                stay: {
-                    _id: fields.stayToSet._id,
-                    name: fields.stayToSet.name,
-                    price: fields.stayToSet.price,
-                    loc: fields.stayToSet.loc,
-                },
-                msgs: [],
-                status: 'pending' // pending, approved
-            }
-        )
-
-    }
-
-
-    if (!stay) return <div>Loading...</div>
+    if (!info) return <div>Loading...</div>
     return (<>
         <header className="app-header main-layout booking-header">
             <div className='header-logo-container'>
@@ -211,7 +143,7 @@ export function BookPage() {
                             <h3 className="your-trip">Your trip</h3>
                             <div className="flex justify-between">
                                 <h4 className="trip-subheader">Dates</h4>
-                                <h5 className="trip-details-data">{formattedStartDate} - {formattedEndDate}</h5>
+                                <h5 className="trip-details-data">{utilService.formattedDate(order.startDate)} - {utilService.formattedDate(order.endDate)}</h5>
                             </div>
                             <div className="flex justify-between">
                                 <h4 className="trip-subheader">Guests</h4>
@@ -223,7 +155,7 @@ export function BookPage() {
                     <div className="order-user">
                         {!isBooked &&
                             <>
-                                {loggedinUser ? (<BtnSquareColor onClick={onAddOrder}>Confirm</BtnSquareColor>)
+                                {user ? (<BtnSquareColor onClick={onAddOrder}>Confirm</BtnSquareColor>)
                                     : (<div>
                                         <h3 className="login-msg">Please login to book</h3>
                                         <LoginSignup />
@@ -233,7 +165,7 @@ export function BookPage() {
                         {isBooked &&
                             <>
                                 <h3 className="success-msg">We look forward to hosting you!</h3>
-                                {loggedinUser && <BtnSquareColor onClick={onGoToTrip}>Review Trips</BtnSquareColor>}
+                                {user && <BtnSquareColor onClick={onGoToTrip}>Review Trips</BtnSquareColor>}
                                 <div className="success-txt flex">
                                     <div className="icon-svg">
                                         <img src={greenCheck} className="greenCheck-img" alt="greenCheckImg" />
@@ -259,7 +191,6 @@ export function BookPage() {
                                 <span className="avg-rating">
                                     <RatingReview reviews={stay.reviews} />
                                 </span><span className="avg-rating-seperator">•</span><span className="reviews">({stay.reviews.length}<span className="avg-rating-reviews"> reviews</span>)</span>
-                                {/* <RatingReview reviews={stay.reviews} /> */}
                             </div>
                         </div>
                     </div>
@@ -268,10 +199,6 @@ export function BookPage() {
                         <p className="flex">
                             <span className="air-cover-text">Your booking is protected by</span>
                             <img src="https://a0.muscache.com/im/pictures/54e427bb-9cb7-4a81-94cf-78f19156faad.jpg" alt="aircover" />
-                        {/* <h3> */}
-                            {/* <span className="air-cover-air"> air</span><span className="air-cover-cover">cover</span> */}
-
-                        {/* </h3> */}
                         </p>
                     </div>
 
@@ -281,20 +208,20 @@ export function BookPage() {
                             <div className="cost-details flex border-buttom">
                                 <div className="base-cost flex justify-between">
                                     <span className="cost-calc">
-                                        ${(stay.price).toLocaleString()} x {fields.totalDays} nights
+                                        ${(stay.price).toLocaleString()} x {order.totalDays} nights
                                     </span>
-                                    <span>$ {(fields.totalStayPrice).toLocaleString()}</span>
+                                    <span>$ {(order.totalStayPrice).toLocaleString()}</span>
                                 </div>
                                 <div className="base-cost service flex justify-between">
                                     <span className="cost-calc">Service fee</span>
-                                    <span>${(fields.totalFees).toLocaleString()}</span>
+                                    <span>${(order.totalFees).toLocaleString()}</span>
                                 </div>
                             </div>
 
                             <div className="total-container">
                                 <div className="cost-total flex justify-between">
                                     <span>Total <span style={{textDecoration:"underline"}}>(USD)</span></span>
-                                    <span>${(fields.totalWithFees).toLocaleString()}</span>
+                                    <span>${(order.totalWithFees).toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>

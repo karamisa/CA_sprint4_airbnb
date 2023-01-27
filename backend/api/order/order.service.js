@@ -9,6 +9,8 @@ async function query(filterBy = {}) {
     try {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
+        console.log(criteria)
+        // var orders = await collection.find(criteria).toArray()
         var orders = await collection.aggregate([
             {
                 $match: criteria
@@ -40,7 +42,6 @@ async function query(filterBy = {}) {
         ]).toArray()
         orders = orders.map(order => {
             order.buyer = { _id: order.buyer._id, fullname: order.buyer.fullname }
-            order.stay = { _id: order.stay._id, name: order.stay.name }
             delete order.buyerId
             delete order.stayId
             return order
@@ -54,14 +55,15 @@ async function query(filterBy = {}) {
 
 
 async function add(order) {
+    console.log(order.stayId, 'order.stayId')
     try {
         const orderToAdd = {
             buyerId: ObjectId(order.buyerId),
             stayId: ObjectId(order.stayId),
             hostId: ObjectId(order.hostId),
             totalPrice: order.totalPrice,
-            checkInDate: order.checkInDate,
-            checkOutDate: order.checkOutDate,
+            startDate: order.startDate,
+            endDate: order.endDate,
             guests: order.guests,
             msgs: order.msgs,
             status: order.status
@@ -78,18 +80,19 @@ async function add(order) {
 async function update(order) {
     try {
         const orderToAdd = {
-            buyerId: ObjectId(order.buyerId),
-            stayId: ObjectId(order.stayId),
+            buyerId: ObjectId(order.buyer._id),
+            stayId: ObjectId(order.stay._id),
+            hostId: ObjectId(order.hostId),
             totalPrice: order.totalPrice,
-            checkInDate: order.checkInDate,
-            checkOutDate: order.checkOutDate,
+            startDate: order.startDate,
+            endDate: order.endDate,
             guests: order.guests,
             msgs: order.msgs,
             status: order.status
         }
         const collection = await dbService.getCollection('order')
         await collection.updateOne({ _id: ObjectId(order._id) }, { $set: orderToAdd })
-        return orderToAdd
+        return order
     } catch {
         logger.error(`cannot update order ${order._id}`, err)
         throw err
@@ -141,8 +144,8 @@ async function removeOrderMsg(orderId, msgId){
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.hostId) criteria.hostId = filterBy.hostId
-    if (filterBy.buyerId) criteria.buyerId = filterBy.buyerId
+    if (filterBy.hostId) criteria.hostId = ObjectId(filterBy.hostId)
+    if (filterBy.buyerId) criteria.buyerId = ObjectId(filterBy.buyerId)
     if (filterBy.stayId) criteria.stayId = filterBy.stayId
     if (filterBy.orderId) criteria._id = filterBy.orderId
     return criteria

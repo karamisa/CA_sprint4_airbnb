@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { userService } from '../services/user.service.local'
+import { userService } from '../services/user.service.js'
 import { ImgUploader } from '../cmps/img-uploader'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
 import { login, signup } from '../store/user.actions'

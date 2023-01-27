@@ -22,7 +22,7 @@ export function StayIndex() {
   }
 
   useEffect(() => {
-    loadStays(filterBy)
+    if (!stays || !stays.length) loadStays(filterBy)
   }, [searchParams])
 
   function handleChange({ field, value }) {

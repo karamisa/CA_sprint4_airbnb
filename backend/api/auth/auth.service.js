@@ -22,6 +22,7 @@ async function login(username, password) {
 
     delete user.password
     user._id = user._id.toString()
+    user.imgUrl= user.imgUrl || "https://robohash.org/vitaequovelit.png?size=50x50&set=set1"
     return user
 }
    
@@ -41,7 +42,7 @@ async function signup({username, password, fullname, imgUrl}) {
 
 
 function getLoginToken(user) {
-    const userInfo = {_id : user._id, fullname: user.fullname, isAdmin: user.isAdmin}
+    const userInfo = {_id : user._id, fullname: user.fullname, imgUrl:user.imgUrl, isAdmin: user.isAdmin}
     return cryptr.encrypt(JSON.stringify(userInfo))    
 }
 

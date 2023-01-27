@@ -17,8 +17,8 @@ export const userService = {
 window.userService = userService
 
 
-function getUsers() {
-    return httpService.get(`user`)
+async function getUsers() {
+    return await httpService.get(`user`)
 }
 
 
@@ -34,6 +34,7 @@ function remove(userId) {
 
 async function login(userCred) {
     const user = await httpService.post('auth/login', userCred)
+    console.log(user)
     if (user) {
         socketService.login(user._id)
         return saveLocalUser(user)

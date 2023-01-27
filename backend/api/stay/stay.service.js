@@ -1,3 +1,4 @@
+const asyncLocalStorage = require('../../services/als.service')
 const dbService = require('../../services/db.service')
 const logger = require('../../services/logger.service')
 const utilService = require('../../services/util.service')
@@ -56,6 +57,8 @@ async function update(stay) {
         const stayToSave = {
             ...stay,
         }
+
+        console.log(stayToSave)
         const collection = await dbService.getCollection('stay')
         await collection.updateOne({ _id: ObjectId(stay._id) }, { $set: stayToSave })
         return stay
@@ -88,6 +91,33 @@ async function removeStayReview(stayId, reviewId) {
     }
 }
 
+async function addStayLike(stayId) {
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
+    try {
+        const collection = await dbService.getCollection('stay')
+        await collection.updateOne({ _id: ObjectId(stayId) }, { $push: { likedByUsers: {_id: ObjectId(loggedinUser._id), fullname: loggedinUser.fullname, imgUrl: loggedinUser.imgUrl}  } })
+        return loggedinUser
+    } catch (err) {
+        logger.error(`cannot add like ${stayId}`, err)
+        throw err
+    }
+}
+
+async function removeStayLike(stayId) {
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
+    try {
+        const collection = await dbService.getCollection('stay')
+        await collection.updateOne({ _id: ObjectId(stayId) }, { $pull: { likedByUsers: {_id: ObjectId(loggedinUser._id)} } })
+        return loggedinUser
+    } catch (err) {
+        logger.error(`cannot remove like ${stayId}`, err)
+        throw err
+    }
+}
+
+
 
 module.exports = {
     query,
@@ -97,4 +127,6 @@ module.exports = {
     update,
     addStayReview,
     removeStayReview,
+    addStayLike,
+    removeStayLike
 }

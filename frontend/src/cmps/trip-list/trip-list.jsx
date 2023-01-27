@@ -1,7 +1,7 @@
 import { Trip } from './trip'
 
-export function TripList({ orders, hosts }) {
-  if (!orders || !hosts) return <div></div>
+export function TripList({ orders }) {
+  if (!orders) return <div></div>
   return (
     <div>
       <table>
@@ -18,7 +18,7 @@ export function TripList({ orders, hosts }) {
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <Trip hosts={hosts} order={order} />
+              <Trip order={order} />
             </tr>
           ))}
         </tbody>

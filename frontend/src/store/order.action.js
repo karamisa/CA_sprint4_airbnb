@@ -1,6 +1,6 @@
-import {orderService} from '../services/order.service.local.js'
+import {orderService} from '../services/order.service.js'
 import {store} from './store.js'
-import {ADD_ORDER, REMOVE_ORDER, SET_ORDERS} from './order.reducer.js'
+import {ADD_ORDER, REMOVE_ORDER, SET_ORDERS,UPDATE_ORDER} from './order.reducer.js'
 import { SET_WATCHED_USER} from './user.reducer.js'
 
 // Action Creators
@@ -16,9 +16,9 @@ export function getActionSetWatchedUser(user) {
 
 export async function loadOrders(filterBy={}) {
     try {
+        console.log('loadingorder')
         const orders = await orderService.query(filterBy)
         store.dispatch({type: SET_ORDERS, orders})
-
     } catch (err) {
         console.log('OrderActions: err in loadOrders', err)
         throw err
@@ -32,6 +32,17 @@ export async function saveOrder(order) {
         //Maybe another action creator for the msg?
     } catch (err) {
         console.log('OrderActions: err in addOrder', err)
+        throw err
+    }
+}
+
+export async function updateOrder(order) {
+    try {
+        const updatedOrder = await orderService.save(order)
+        console.log(updatedOrder)
+        store.dispatch({type: UPDATE_ORDER, order: updatedOrder})
+    } catch (err) {
+        console.log('OrderActions: err in updateOrder', err)
         throw err
     }
 }

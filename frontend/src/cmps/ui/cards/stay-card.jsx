@@ -2,11 +2,11 @@ import classes from './stay-card.module.css'
 
 export function StayCard({ stay }) {
   console.log('stay in card:', stay)
-  const { name, imgUrl } = stay
+  const { name, imgUrls } = stay
   return (
     <div className={classes.stayCard}>
       <div className={classes.imgContainer}>
-        <img src='https://picsum.photos/100/100' />
+        <img src={imgUrls[0]} alt='stay-img' />
       </div>
       <div className={classes.city}>
         <h4>

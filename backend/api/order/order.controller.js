@@ -4,10 +4,11 @@ const authService = require('../auth/auth.service')
 // const socketService = require('../../services/socket.service')
 const stayService = require('../stay/stay.service')
 const orderService = require('./order.service')
-const { restart } = require('nodemon')
+const asyncLocalStorage = require('../../services/als.service')
 
 async function getOrders(req, res) {
     try {
+        console.log('req.query', req.query)
         const orders = await orderService.query(req.query)
         res.send(orders)
     } catch (err) {
@@ -17,14 +18,19 @@ async function getOrders(req, res) {
 }
 
 async function addOrder(req, res) {
-    //ASK ABOUT LOGGED IN USER BEING ON REQ OR FROM AUTHSERVICE
-    var { loggedinUser } = req
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
+    if (!loggedinUser) return res.status(401).send({ err: 'You must be logged in' })
     try {
+        //Prepare order for  order.service to save to DB
         var order = req.body
-        order.buyerId = loggedinUser._id
+        // if (order.hostId !== loggedinUser._id){
+            order.buyerId = loggedinUser._id
+        // }
         order = await orderService.add(order)
-        
-        order.buyer= await userService.getById(order.buyerId)
+
+        //Prepare order to be sent back out
+        order.buyer= loggedinUser
         order.stay = await stayService.getById(order.stayId)
         const loginToken = authService.getLoginToken(loggedinUser)
         res.cookie('loginToken', loginToken)
@@ -47,9 +53,8 @@ async function addOrder(req, res) {
 async function updateOrder(req, res) {
     try {
         const order = req.body
-        console.log(order)
         const updatedOrder = await orderService.update(order)
-        console.log(updatedOrder, 'updatedOrder')
+        console.log(updatedOrder, 'updatedOrder here')
         res.json(updatedOrder)
     } catch (err) {
         logger.error('Failed to update order', err)

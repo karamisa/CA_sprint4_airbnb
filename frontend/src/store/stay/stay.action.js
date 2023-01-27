@@ -1,7 +1,6 @@
-import { stayService } from '../../services/stay.service.local.js'
-import { userService } from '../../services/user.service.local.js'
+import { stayService } from '../../services/stay.service.js'
+import { userService } from '../../services/user.service.js'
 import { store } from '../store.js'
-import { SET_USER } from '../user.reducer.js'
 
 import {
   REMOVE_STAYS,
@@ -67,8 +66,15 @@ export async function onLikeStayOptimistic(stayId) {
   try {
     const stay = await stayService.getById(stayId)
     const likedByUser = stay.likedByUsers.filter(miniUser => miniUser._id === user._id)
-    stay.likedByUsers = likedByUser.length ? stay.likedByUsers.filter(miniUser => miniUser._id !== user._id) : [...stay.likedByUsers, user]
-    await stayService.save(stay)
+
+    if(likedByUser.length) {
+      stay.likedByUsers.filter(miniUser => miniUser._id !== user._id)
+      await stayService.removeStayLike(stayId)
+    } else {
+      stay.likedByUsers.push(user)
+      await stayService.addStayLike(stayId)
+
+    } 
   } catch (err) {
     console.log('Cannot update stay', err)
     store.dispatch({

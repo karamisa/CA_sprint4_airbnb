@@ -90,9 +90,6 @@ async function addStayReview(req, res) {
 }
 
 async function removeStayReview(req, res) {
-
-    //1.ASK ABOUT WHEN TO PUT ID IN PARAMS OR BODY
-    //2. ASK ABOUT LOGGEDinUser on request
     try {
         const stayId = req.body.id
         const {reviewId} = req.params
@@ -104,6 +101,29 @@ async function removeStayReview(req, res) {
     }
 }
 
+async function addStayLike(req, res) {
+    try {
+        const stayId = req.params.id
+        const addedLike = await stayService.addStayLike(stayId)
+        res.json(addedLike)
+    } catch (err) {
+        logger.error('Failed to add stay like', err)
+        res.status(500).send({ err: 'Failed to add stay like' })
+    }
+}
+
+async function removeStayLike(req, res) {
+    try {
+        const stayId = req.params.id
+        const removedLike = await stayService.removeStayLike(stayId)
+        res.json(removedLike)
+    } catch (err) {
+        logger.error('Failed to remove stay like', err)
+        res.status(500).send({ err: 'Failed to remove stay like' })
+    }
+}
+
+
 
 module.exports = {
     getStays,
@@ -113,4 +133,6 @@ module.exports = {
     removeStay,
     addStayReview,
     removeStayReview,
+    addStayLike,
+    removeStayLike,
 }
