@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import { CategoryFilterBar } from '../cmps/category-filter-bar'
 import { AppFooter } from '../cmps/header-footer/app-footer'
 import { AppHeader } from '../cmps/header-footer/app-header'
+import { IndexLoader } from '../cmps/stay-list/index-loader'
 import { StayList } from '../cmps/stay-list/stay-list'
 import { loadStays } from '../store/stay/stay.action'
 
@@ -35,8 +36,8 @@ export function StayIndex() {
         handleChange={handleChange}
         currCategory={filterBy.category}
       />
-
-      {(!stays) && <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
+      {(!stays) && <IndexLoader/>  }
+      {/* {(!!stays) && <IndexLoader/>  } */}
       {!!stays && <StayList stays={stays} />}
       <AppFooter className='main-layout stay-index-footer fixed' />
     </section>

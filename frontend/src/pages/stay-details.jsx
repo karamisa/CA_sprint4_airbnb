@@ -26,6 +26,7 @@ import { StayMobileFooter } from '../cmps/header-footer/stay-mobile-footer.jsx'
 import { StayHighlights } from '../cmps/stay-details/stay-highlights.jsx'
 import { StayMap } from '../cmps/stay-details/stay-map.jsx'
 import { StayCalendar } from '../cmps/stay-details/stay-calendar.jsx'
+import { DetailsLoader } from '../cmps/stay-details/details-loader.jsx'
 
 
 export function StayDetails() {
@@ -84,8 +85,8 @@ export function StayDetails() {
     <>
       <AppHeader className='secondary-layout' />
        <div className="details-modal"> <Modal /></div>
-       {(!stay) && <h1 style={{textAlign: 'center', marginTop: '20px', fontSize: '1rem'}}>Loading...</h1>}
-       {(!!stay) &&
+       {(!stay) && <DetailsLoader />}
+        {(!!stay) &&
        <>
       <SecondaryHeader stay={stay} imgGridVisible={imgGridVisible} reserveBtnVisible={reserveBtnVisible} setOpenTab={setOpenTab}/>
       <section className='secondary-layout'>
