@@ -9,6 +9,8 @@ import { WishlistList } from '../cmps/wishlist-list.jsx'
 
 import { onLikeStayOptimistic } from '../store/stay/stay.action.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
+import { Logo } from '../cmps/logo.jsx'
+import { NavMenu } from '../cmps/nav-menu.jsx'
 
 export function WishList() {
   const [stays, setStays] = useState(null)
@@ -46,19 +48,28 @@ export function WishList() {
 
   return (
     <>
-      <AppHeader className='secondary-layout' />
+      {/* <AppHeader className='secondary-layout' /> */}
+      <header className='app-header secondary-layout-p flex'>
+        <div className='header-logo-container'>
+          <Logo />
+        </div>
+        <div className='spacer'></div>
+        <div className='header-menu-container'>
+          <NavMenu />
+        </div>
+      </header>
+
       {!likedStay && (
-        <div className='secondary-layout wish-list'>
+        <div className='secondary-layout-p wish-list'>
           {' '}
           Your wishlist is empty{' '}
         </div>
       )}
       {likedStay && (
-        <div className='secondary-layout wish-list'>
+        <div className='secondary-layout-p wish-list'>
           <WishlistList stays={likedStay} onRemoveLike={onRemoveLike} />
         </div>
       )}
-      <AppFooter className='main-layout fixed' />
     </>
   )
 }

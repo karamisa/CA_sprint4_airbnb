@@ -60,14 +60,15 @@
   padding-inline: $normal-layout-padding;
 
   @include for-mobile-layout {
-    padding: 0;
+    padding: 0 $mobile-layout-padding;
     &.app-header .logo,
     &.app-header .nav-menu {
       display: none;
     }
   }
+
   @include for-max-narrow-layout {
-    padding: 0;
+    padding: 0 $normal-layout-padding;
   }
 
   @include for-wide-layout {
@@ -77,23 +78,28 @@
 
 .card-grid {
   display: grid;
-  row-gap: 40px;
+
   column-gap: 24px;
   grid-template-columns: 1, repeat(1, 1fr);
 
   @media (max-width: $grid-break-point-1) {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    row-gap: 50px;
   }
 
   @media (min-width: $grid-break-point-1) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @media (min-width: $grid-break-point-2) {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    row-gap: 40px;
   }
 
   @media (min-width: $grid-break-point-4) {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  @media (min-width: $grid-break-point-5) {
     grid-template-columns: repeat(5, minmax(0, 1fr));
   }
 }
