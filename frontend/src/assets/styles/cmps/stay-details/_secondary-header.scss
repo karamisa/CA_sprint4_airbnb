@@ -1,11 +1,10 @@
-.secondary-header {
-    position: sticky;
+.secondary-header-container{
+    position: fixed;
     background-color: $clr-white;
-    width: 98vw;
+    width: 100%;
     z-index: 100;
     top: 0;
     height: 80px;
-    display: none;
     justify-content: space-between;
 
     &::after {
@@ -13,19 +12,23 @@
         top: 81px;
         border-bottom: 1px solid hsl(0deg, 0%, 87%);
         z-index: -1;
-        position: fixed;
+        position: absolute;
         right: 0;
         left: 0;
     }
-
-
     @include for-max-narrow-layout {
         display: none !important;
       }
+}
+
+.secondary-header {
+    height: 100%;
+    display: flex;
 
     .anchor-links {
         display: flex;
         align-items: center;
+        height: 100%;
     }
 
     .anchor-link {

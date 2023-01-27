@@ -4,6 +4,7 @@ import { SearchBars as StaySearchBars } from '../search-cmps/search-bars'
 
 export function AppHeader({ className, ...props }) {
   return (
+    <div className='header-container'>
     <header {...props} className={`app-header ${className}`}>
       <div className='header-logo-container'>
         <Logo />
@@ -15,5 +16,6 @@ export function AppHeader({ className, ...props }) {
         <NavMenu />
       </div>
     </header>
+    </div>
   )
 }

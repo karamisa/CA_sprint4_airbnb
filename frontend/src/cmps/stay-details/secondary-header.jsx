@@ -34,41 +34,43 @@ export function SecondaryHeader({ imgGridVisible, reserveBtnVisible, stay, setOp
         navigate(`/book/stay/${stay._id}?${paramsToSet}`)
     }
     return (
-        <div className={'secondary-header secondary-layout'} style={{ display: imgGridVisible ? 'none' : 'flex' }} >
-            <div className='anchor-links'>
-                <a className='anchor-link' href='#stay-top' >Photos</a>
-                <a className='anchor-link' href='#amenities' >Amenities</a>
-                <a className='anchor-link' href='#reviews' >Reviews</a>
-                {/* fix href to map */}
-                <a className='anchor-link' href='#reviews' >Location</a>
-            </div>
-            <div className='book-it-details' style={{ display: reserveBtnVisible ? 'none' : 'flex' }}>
-                <header className='order-form-header'>
-                    <h4><span className="price">${(Math.round(stay.price)).toLocaleString()}</span> night</h4>
-                    <div className='order-rating-review flex'>
-                        <RatingReview reviews={stay.reviews} />
-                        <span>•</span>
-                        <div
-                            className='stay-rating'>
-                            {stay.reviews.length} reviews
+        <div className='secondary-header-container' style={{ display: imgGridVisible ? 'none' : 'block' }}>
+            <div className={'secondary-header secondary-layout'} >
+                <div className='anchor-links'>
+                    <a className='anchor-link' href='#stay-top' >Photos</a>
+                    <a className='anchor-link' href='#amenities' >Amenities</a>
+                    <a className='anchor-link' href='#reviews' >Reviews</a>
+                    {/* fix href to map */}
+                    <a className='anchor-link' href='#reviews' >Location</a>
+                </div>
+                <div className='book-it-details' style={{ display: reserveBtnVisible ? 'none' : 'flex' }}>
+                    <header className='order-form-header'>
+                        <h4><span className="price">${(Math.round(stay.price)).toLocaleString()}</span> night</h4>
+                        <div className='order-rating-review flex'>
+                            <RatingReview reviews={stay.reviews} />
+                            <span>•</span>
+                            <div
+                                className='stay-rating'>
+                                {stay.reviews.length} reviews
+                            </div>
                         </div>
-                    </div>
-                </header>
+                    </header>
 
-                {orderParams.checkIn && orderParams.checkOut && (
-                    <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
-                )}
+                    {orderParams.checkIn && orderParams.checkOut && (
+                        <BtnSquareColor onClick={onClickReserve} children={'Reserve'} />
+                    )}
 
-                {(!orderParams.checkIn || !orderParams.checkOut) && (
-                    <BtnSquareColor
-                        onClick={() => {
-                            setOpenTab('checkIn')
-                            
-                        }}
-                        children={<a href="#stay-mid">Check availability</a>}
-                    />
-                )}
+                    {(!orderParams.checkIn || !orderParams.checkOut) && (
+                        <BtnSquareColor
+                            onClick={() => {
+                                setOpenTab('checkIn')
 
+                            }}
+                            children={<a href="#stay-mid">Check availability</a>}
+                        />
+                    )}
+
+                </div>
             </div>
         </div>
     )
