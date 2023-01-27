@@ -53,11 +53,25 @@
 
     width: 29px;
     height: 29px;
+    padding: 5px;
     background-color: white;
     border: 2px solid hsl(0, 0%, 87%);
     border-radius: 16px;
 
     transition: box-shadow 0.2s ease 0s;
+}
+
+/* increase hover area  */
+.navIcon::before {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    width: 200%;
+    height: 200%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
 }
 
 .navIcon:hover {
