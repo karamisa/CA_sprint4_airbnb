@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { Heart } from '../ui/heart'
 import { Slider } from '../ui/slider/slider'
 import { onLikeStayOptimistic } from '../../store/stay/stay.action'

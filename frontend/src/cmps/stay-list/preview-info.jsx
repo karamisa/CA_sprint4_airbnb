@@ -1,7 +1,9 @@
+import { useLocation } from 'react-router'
 import { utilService } from '../../services/util.service'
 import { RatingReview } from '../ui/rating-review'
 
 export function PreviewInfo({ info }) {
+  const url = useLocation()
   return (
     <>
       <p className='flex justify-between'>
@@ -9,7 +11,10 @@ export function PreviewInfo({ info }) {
         <RatingReview reviews={info.reviews} />
       </p>
       <p className='text-grey'>{info.type}</p>
-      <p className='text-grey'>Dates</p>
+      <p className='text-grey'>
+        {/stay$/.test(url.pathname) && 'Dates'}
+        {/wishlist$/.test(url.pathname) && `${info.capacity} beds`}
+      </p>
       <p className='text-bold'>
         {utilService.formatCurrency(info.price)}{' '}
         <span style={{ fontFamily: 'cereal-Book' }}> night</span>
@@ -17,3 +22,10 @@ export function PreviewInfo({ info }) {
     </>
   )
 }
+
+//  {
+//    ;/stay$/.test(url.pathname) && <PreviewInfo info={info} />
+//  }
+//  {
+//    ;/wishlist$/.test(url.pathname) && <PreviewInfo info={info} />
+//  }
