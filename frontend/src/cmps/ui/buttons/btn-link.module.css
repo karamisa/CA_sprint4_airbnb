@@ -1,0 +1,22 @@
+.btnLink {
+    cursor: pointer;
+    text-align: center;
+    color: #222222;
+    font-family: cereal-Medium;
+    font-size: 16px;
+    line-height: 18px;
+    line-break: strict;
+
+    border: none;
+    border-radius: 8px;
+
+    padding: 10px 13px;
+    transition: background-color 0.2s ease;
+    background: transparent;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.btnLink:hover {
+    background-color: rgb(247, 247, 247);
+}

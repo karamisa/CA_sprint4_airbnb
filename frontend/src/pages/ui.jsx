@@ -5,6 +5,7 @@ import { BtnNavRounded } from '../cmps/ui/buttons/btn-nav-rounded'
 import { BtnNavRoundedBlack } from '../cmps/ui/buttons/btn-nav-rounded-black'
 import { Heart } from '../cmps/ui/heart'
 import { BtnSquareSecond } from '../cmps/ui/buttons/btn-square-second'
+import { BtnLink } from '../cmps/ui/buttons/btn-link'
 
 export function UI() {
   return (
@@ -13,6 +14,7 @@ export function UI() {
       <BtnSquare>BtnSquare</BtnSquare>
       <BtnSquareSecond>BtnSquareSecond</BtnSquareSecond>
       <BtnSquareBlack>BtnSquareBlack</BtnSquareBlack>
+      <BtnLink>BtnLink</BtnLink>
 
       <p>Nav buttons has active state like NavLink </p>
       <BtnNavRounded>BtnNavRounded</BtnNavRounded>

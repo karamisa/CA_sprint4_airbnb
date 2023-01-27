@@ -1,0 +1,10 @@
+.progress-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  padding: 16px 48px;
+}
