@@ -7,6 +7,8 @@
     overflow: hidden;
 }
 
+.carouselWindow img {}
+
 .carouselContainer {
     display: flex;
     gap: 35px;
@@ -16,14 +18,10 @@
 .chevron {
     position: absolute;
     z-index: 2;
-
     display: flex;
     align-items: center;
-
     height: 54px;
     width: 75px;
-    /* margin-top: 12px;
-    margin-bottom: 10px; */
 
     cursor: pointer;
 }
