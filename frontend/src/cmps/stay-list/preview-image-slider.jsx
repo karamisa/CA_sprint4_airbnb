@@ -5,18 +5,12 @@ import { onLikeStayOptimistic } from '../../store/stay/stay.action'
 import { LoginSignup } from '../login-signup'
 import { useSelector } from 'react-redux'
 
-export function PreviewImageSlider({
-  imgUrls,
-  isLiked,
-  openModal,
-  stayId,
-}){
+export function PreviewImageSlider({ imgUrls, isLiked, openModal, stayId }) {
   const user = useSelector((state) => state.userModule.user)
 
-  function onLikeStay(stayId){
+  function onLikeStay(stayId) {
     if (!user) {
       openModal(<LoginSignup />)
-      return
     } else {
       onLikeStayOptimistic(stayId)
     }
@@ -40,4 +34,4 @@ export function PreviewImageSlider({
       </Slider>
     </div>
   )
-        }
+}

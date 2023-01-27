@@ -42,7 +42,8 @@ const RightNavIcon = (
 
 export function Slider({ children }) {
   const [page, setPage] = useState([])
-
+  const [isAnimation, setIsAnimation] = useState(false)
+  const [currPage, setCurrPage] = useState(0)
   const [winWidth, setWinWidth] = useState(0)
   const screenSize = useWindowSize()
   let containerEl = useRef()
@@ -58,10 +59,12 @@ export function Slider({ children }) {
           style: {
             maxWidth: `100%`,
             minWidth: `100%`,
+            height: `100%`,
           },
         })
       })
     )
+    console.log('page:', page)
   }, [children, screenSize])
 
   useEffect(() => {
@@ -80,6 +83,11 @@ export function Slider({ children }) {
 
   function prevItems(ev) {
     ev.stopPropagation()
+    setIsAnimation(true)
+    setTimeout(() => {
+      setIsAnimation(false)
+    }, 500)
+
     rightNavRef.current.classList.remove(classes.hidden)
 
     setOffset((prev) => {
@@ -87,12 +95,21 @@ export function Slider({ children }) {
         leftNavRef.current.classList.add(classes.hidden)
       else leftNavRef.current.classList.remove(classes.hidden)
 
+      const currItemIndex = Math.abs(
+        Math.round(Math.min(prev + winWidth, 0) / winWidth)
+      )
+      setCurrPage(currItemIndex)
       return Math.min(prev + winWidth, 0)
     })
   }
 
   function nextItems(ev) {
     ev.stopPropagation()
+    setIsAnimation(true)
+    setTimeout(() => {
+      setIsAnimation(false)
+    }, 500)
+
     leftNavRef.current.classList.remove(classes.hidden)
     const maxOffset = -(winWidth * (children.length - 1))
 
@@ -101,6 +118,10 @@ export function Slider({ children }) {
         rightNavRef.current.classList.add(classes.hidden)
       else rightNavRef.current.classList.remove(classes.hidden)
 
+      const currItemIndex = Math.abs(
+        Math.round(Math.max(prev - winWidth, maxOffset) / winWidth)
+      )
+      setCurrPage(currItemIndex)
       return Math.max(prev - winWidth, maxOffset)
     })
   }
@@ -125,6 +146,8 @@ export function Slider({ children }) {
 
       <div className={classes.carouselWindow}>
         {/* items */}
+        {!isAnimation && page[currPage]}
+
         <div
           ref={containerEl}
           style={{ transform: `translateX(${offset}px)` }}
