@@ -108,6 +108,12 @@
     justify-content: flex-end;
     align-items: center;
 
+    @include for-mobile-layout {
+    height: 0;
+    // ek
+  }
+
+
     @media (min-width: $grid-break-point-2) {
       flex-grow: 0;
 

@@ -4,9 +4,13 @@ import { utilService } from '../../services/util.service.js'
 
 import { DateSelect } from './../search-cmps/date-select.jsx'
 import { BtnSquareBlack } from '../ui/buttons/btn-square-black.jsx'
+import { GuestSelect } from '../search-cmps/guest-select.jsx'
+import { useState } from 'react'
 
 export function StayCalendar() {
     const [searchParams, setSearchParams] = useSearchParams()
+    const [isGuestsOpen, setGuestModal] = useState(false)
+
 
     const orderParams = {
         checkIn: searchParams.get('checkIn')
@@ -24,6 +28,7 @@ export function StayCalendar() {
     }
 
     let monthsToShow = 1
+
     function onSetField(field, value) {
         console.log(searchParams)
         if (field === 'guests') {
@@ -41,6 +46,11 @@ export function StayCalendar() {
         setSearchParams(searchParams)
     }
 
+
+    function toggleGuest() {
+        setGuestModal(!isGuestsOpen)
+    }
+
     return (
         <section className='stay-calendar-container'>
             <section className='date-picker-modal'>
@@ -52,10 +62,22 @@ export function StayCalendar() {
                     checkIn={orderParams.checkIn}
                     checkOut={orderParams.checkOut}
                     onSetField={onSetField}
-                    monthsToShow = {monthsToShow}
+                    monthsToShow={monthsToShow}
                     className='date-picker'
                 />
-                <div className="date-picker-modal-btns">
+                {isGuestsOpen && (
+                    <>
+                        <button className="select-guests-btn clean-button" onClick={() => { toggleGuest() }}>X</button>
+                        <div className='guest-select-container-small'>
+                            <GuestSelect
+                                guests={orderParams.guests}
+                                onSetField={onSetField}
+                            />
+                        </div>
+                    </>
+                )}
+                <div className="date-picker-modal-btns  flex justify-between">
+                    <button className="select-guests-btn clean-button" onClick={() => { toggleGuest() }}>Select guests</button>
                     <button className="reset-dates-btn clean-button" onClick={() => { onSetField('checkIn', ''); onSetField('checkOut', '') }}>Clear dates</button>
                 </div>
             </section>

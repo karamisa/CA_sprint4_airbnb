@@ -71,7 +71,7 @@ export function BookPage() {
         const totalDays = +utilService.totalDays(startDate, endDate)
         const guests = {
             adults: +params.get('adults') || 1,
-            kids: +params.get('children') || 0,
+            children: +params.get('children') || 0,
             infants: +params.get('infants') || 0,
             pets: +params.get('pets') || 0,
         }
@@ -105,9 +105,14 @@ export function BookPage() {
         if (children) guestSubheading += `, ${children} children`
         if (infants) guestSubheading += `, ${infants} infants`
         if (pets) guestSubheading += `, ${pets} pets`
-        if (guestSubheading === '1 adults')
+        if (guestSubheading.includes('1 adults' || '1 children' || '1 infants' || '1 pets')) {
             guestSubheading = guestSubheading.replace('1 adults', '1 adult')
+            guestSubheading = guestSubheading.replace('1 children', '1 child')
+            guestSubheading = guestSubheading.replace('1 infants', '1 infant')
+            guestSubheading = guestSubheading.replace('1 pets', '1 pet')
+        }
         if (!guestSubheading) guestSubheading = 'Add Guests'
+        if (guestSubheading === '1 adult') guestSubheading = '1 guest'
         return guestSubheading
     }
 

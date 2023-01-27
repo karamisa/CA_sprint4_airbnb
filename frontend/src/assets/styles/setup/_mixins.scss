@@ -12,6 +12,12 @@
     }
 }
 
+@mixin for-max-breakpoint-layout {
+    @media (max-width: calc($grid-break-point-1 + 40px)) {
+        @content;
+    }
+}
+
 @mixin for-max-narrow-layout {
     @media (max-width: calc($narrow-breakpoint + 40px)) {
         @content;

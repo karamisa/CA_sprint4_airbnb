@@ -14,10 +14,13 @@
    
     .stay-mobile-footer {
       flex-direction: row;
-      padding: 1rem;
+      padding: 0.8rem 1rem 0.2rem;
         justify-content: space-between;
 
     }
+   
+  }
 
-
+  .footer-guest-view{
+    padding-left: 1rem;
   }
