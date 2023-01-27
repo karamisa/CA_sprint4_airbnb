@@ -12,7 +12,7 @@ import { DashboardPage } from './cmps/hosting/dashboard-page'
 import { TripPage } from './pages/trip-page'
 import { UI } from './pages/ui'
 import { BookPage } from './pages/book-page'
-import { StayEdit } from './pages/stay-edit'
+import { NewStay } from './pages/new-stay'
 import { WishList } from './pages/wishlist'
 
 export function RootCmp() {
@@ -24,8 +24,7 @@ export function RootCmp() {
         <Route element={<UI />} path='/ui' />
         <Route element={<StayIndex />} path='/stay' />
         <Route element={<StayDetails />} path='/stay/:stayId' />
-        <Route element={<StayEdit />} path='/stay/edit'/>
-        <Route element={<StayEdit />} path='/stay/edit/:stayId'/>
+        <Route element={<NewStay />} path='/new-stay' />
         <Route element={<BookPage />} path='/book/stay/:stayId' />
         <Route element={<TripPage />} path='/trip' />
         <Route element={<WishList />} path='/wishlist' />
