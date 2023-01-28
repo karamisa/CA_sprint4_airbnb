@@ -1,0 +1,17 @@
+.progressBar {
+    width: 100%;
+    height: 6px;
+    background-color: transparent;
+
+    display: grid;
+    gap: 5px;
+
+}
+
+.progressBar .step {
+    background-color: hsl(0, 0%, 87%);
+}
+
+.progressBar .step.done {
+    background-color: hsl(0, 0%, 13%);
+}
