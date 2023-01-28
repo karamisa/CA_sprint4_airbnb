@@ -1,8 +1,8 @@
 import classes from './stay-card.module.css'
 
 export function StayCard({ stay }) {
-  console.log('stay in card:', stay)
-  const { name, imgUrls } = stay
+  console.log(stay)
+  const { name, imgUrls, loc: {city} } = stay
   return (
     <div className={classes.stayCard}>
       <div className={classes.imgContainer}>
@@ -10,7 +10,7 @@ export function StayCard({ stay }) {
       </div>
       <div className={classes.city}>
         <h4>
-          <span>City</span>
+          <span>{city}</span>
         </h4>
       </div>
       <div className={classes.name}>

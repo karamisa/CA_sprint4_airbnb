@@ -11,13 +11,14 @@ export const stayService = {
     removeStayLike
 }
 
-async function query(filterBy={}) {
-    return await httpService.get('stay', filterBy)
+async function query(filterBy) {
+    //can you not put the filterBy in the body?
+    var queryStr = (!filterBy) ? '' : `?txt=${filterBy.txt || ''}&likedByUserId=${filterBy.likedByUserId || ''}`
+    return await httpService.get(`stay${queryStr}` )
 }
 
 async function getById(stayId) {
     const stay= await httpService.get(`stay/${stayId}`)
-    console.log(stay)
     return stay
 }
 

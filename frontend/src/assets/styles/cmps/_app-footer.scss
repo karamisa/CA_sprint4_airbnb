@@ -11,32 +11,21 @@
     position: fixed;
     bottom: 0vh;
     z-index: 10;
-    width: 100%;
+    right: 0;
+    left: 0;
   }
 
 
-  &.stay-index-footer {
     .header-menu-container {
       @include for-narrow-layout {
         display: none;
       }
-    }
-  }
-
-  &.wishlist-footer {
-    transform: translate(-40px, 0);
   }
 
 
   p{
     @include for-mobile-layout {
       margin-top: 10px;
-    }
-  }
-  .footer-names {
-    font-size: 12px;
-    @include for-mobile-layout {
-      display: none;
     }
   }
 

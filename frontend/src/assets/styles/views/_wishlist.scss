@@ -3,7 +3,14 @@
   border-radius: 8px;
 }
 
-.wish-list {
+.wishlist-title {
+  padding-top: 64px;
+  padding-bottom: 48px;
+  gap: 32px;
+  align-items: center;
+  border: none;
+  line-height: 1.25rem;
+
   .icon-svg {
     width: 35px;
     line-height: 1;
@@ -20,14 +27,7 @@
       cursor: pointer;
     }
   }
-  .wishlist-title {
-    padding-top: 64px;
-    padding-bottom: 48px;
-    gap: 32px;
-    align-items: center;
-    border: none;
-    line-height: 1.25rem;
-  }
+
 }
 
 // @include for-max-narrow-layout {}

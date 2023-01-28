@@ -3,7 +3,6 @@ import GoogleMapReact from 'google-map-react';
 import { AiFillHome } from "react-icons/ai";
 export function StayMap({stay}){
     const {lat, lng} = stay.loc
-    console.log(lat, lng)
     const [coordinates, setCoordinates] = useState({ lat, lng})
 
     const zoom = 11

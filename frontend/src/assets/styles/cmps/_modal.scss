@@ -1,9 +1,9 @@
 .modal {
   border-radius: 12px;
   background-color: #fefefe;
-  padding: 20px;
   border: 1px solid #888;
   width: 80vw;
+  padding:2rem;
   max-width: 650px;
   box-shadow: 3px 3px 10px rgba(0 0 0 / 0.5);
   position: fixed;
@@ -11,7 +11,24 @@
   left: 50%;
   transform: translate(-50%, -70%);
 
+
+  .close-modal-btn-container {
+    margin-bottom: 10px;
+    float:left;
+}
+
   z-index: 999;
+
+  .reviews-list{
+    display:block;
+    padding-top: 10px;
+    max-height: 80vh;
+    overflow: scroll;
+    .review-prev{
+      margin-right:0;
+      
+    }
+  }
 }
 
 .modal::backdrop {
@@ -24,16 +41,11 @@
   background: rgba(0, 0, 0, 0.1);
 }
 
+
 .modal .content-container {
   position: relative;
+  z-index: -1;
 
-  .close-modal-btn-container {
-      position: absolute;
-      display: flex;
-      top: 16px;
-      left: 24px;
-      z-index: 1;
-  }
 }
 
 
@@ -41,6 +53,8 @@
 
   .modal{
     top: 67% !important;
-
   }
 }
+
+
+

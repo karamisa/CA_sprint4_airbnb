@@ -1,55 +1,33 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 
-import { stayService } from '../services/stay.service.local.js'
-import { AppHeader } from '../cmps/header-footer/app-header.jsx'
 import { AppFooter } from '../cmps/header-footer/app-footer.jsx'
 import { WishlistList } from '../cmps/wishlist-list.jsx'
-// import { loadStays } from '../store/stay/stay.action.js'
+import arrowLeftImg from '../assets/img/arrow-left.svg'
 
-import { onLikeStayOptimistic } from '../store/stay/stay.action.js'
+import { loadStays, onLikeStayOptimistic } from '../store/stay/stay.action.js'
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { Logo } from '../cmps/logo.jsx'
 import { NavMenu } from '../cmps/nav-menu.jsx'
+import { IndexLoader } from '../cmps/stay-list/index-loader.jsx'
+import { useNavigate } from 'react-router-dom'
 
 export function WishList() {
-  const [stays, setStays] = useState(null)
-  const [likedStay, setFoundStay] = useState(null)
+  const stays = useSelector((state) => state.stayModule.stays)
   const user = useSelector((state) => state.userModule.user)
-  const searchId = user._id
+  const isLoading = useSelector((state) => state.systemModule.isLoading)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    loadStays()
+    loadStays({ likedByUserId: user._id })
   }, [])
 
-  console.log('likedStay', likedStay)
-
-  async function loadStays() {
-    try {
-      const stays = await stayService.getAllStays()
-      setStays(stays)
-      setFoundStay(
-        stays.filter((stay) => {
-          return stay.likedByUsers.some(
-            (likedByUser) => likedByUser._id === searchId
-          )
-        })
-      )
-    } catch (err) {
-      showErrorMsg('Cannot load stay')
-    }
-  }
-
-  async function onRemoveLike(stayId, ev) {
-    ev.stopPropagation()
-    const updatedStay = await onLikeStayOptimistic(stayId)
-    loadStays()
-  }
 
   return (
+
     <>
       {/* <AppHeader className='secondary-layout' /> */}
-      <header className='app-header secondary-layout-p flex'>
+      <header className='app-header main-layout flex'>
         <div className='header-logo-container'>
           <Logo />
         </div>
@@ -58,17 +36,26 @@ export function WishList() {
           <NavMenu />
         </div>
       </header>
-
-      {!likedStay && (
-        <div className='secondary-layout-p wish-list'>
+      <header className='wishlist-title main-layout full flex'>
+        <div className='icon-svg'>
+          <img
+            src={arrowLeftImg}
+            className='arrow-img'
+            alt='arrowLeftImg'
+            onClick={() => navigate(-1)}
+          />
+        </div>
+        <div>{<h2>Wishlist</h2>}</div>
+      </header>
+      {isLoading && <IndexLoader />}
+      {!stays && (
+        <div className='main-layout wish-list'>
           {' '}
           Your wishlist is empty{' '}
         </div>
       )}
-      {likedStay && (
-        <div className='secondary-layout-p wish-list'>
-          <WishlistList stays={likedStay} onRemoveLike={onRemoveLike} />
-        </div>
+      {stays && (
+          <WishlistList stays={stays} onToggleLike={onLikeStayOptimistic} />
       )}
     </>
   )

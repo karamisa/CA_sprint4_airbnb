@@ -68,9 +68,48 @@
       width: 140px;
     }
 
+    .order-status{
+      color:$clr-text-secondary;
+      // font-style: italic;
+      font-family: cereal-medium;
+    }
+
+    .action-btns{
+      display: flex;
+      flex-grow: 1;
+      gap:10px;
+      align-items: center;
+      height: 100%;
+    }
     button {
-      margin-inline: 0.2em;
-      display: inline;
+      display: flex;
+      flex:1;
+    }
+
+    button:first-child{
+      color: #28a745;
+      background-color: transparent;
+      background-image: none;
+      border-color: #28a745;
+
+      &:hover {
+        color: #fff;
+        background-color: #28a745;
+        border-color: #28a745;
+      }
+    }
+
+    button:last-child{
+      color: #dc3545;
+      background-color: transparent;
+      background-image: none;
+      border-color: #dc3545;
+
+      &:hover {
+        color: #fff;
+        background-color: #dc3545;
+        border-color: #dc3545;
+      }
     }
   }
 }

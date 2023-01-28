@@ -8,7 +8,6 @@ import { loadOrders } from '../store/order.action'
 export function TripPage() {
   const orders = useSelector((storeState) => storeState.orderModule.orders)
   const loggedinUser = useSelector((storeState) => storeState.userModule.user)
-  console.log(orders)
 
   useEffect(() => {
     loadOrders({ buyerId: loggedinUser._id })
@@ -16,18 +15,19 @@ export function TripPage() {
 
 
   return (
-   (orders) && <section className='main-layout'>
+    <>
       <AppHeader className='main-layout' />
-      <div className='secondary-layout trip-page'>
-        <div className='hero'>
-          <h2>Welcome</h2>
-        </div>
-        <h3>Your trips</h3>
-        <TripList
-          orders={orders}
-        />
-      </div>
-      <AppFooter className='main-layout fixed' />
-    </section>
+      {orders && <section className='trip-page main-layout'>
+          <div className='hero'>
+            <h2>Welcome</h2>
+          </div>
+          <h3>Your trips</h3>
+          <TripList
+            orders={orders}
+          />
+        <AppFooter className='main-layout fixed' />
+      </section>}
+    </>
   )
+
 }

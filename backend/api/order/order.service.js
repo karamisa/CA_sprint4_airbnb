@@ -9,7 +9,6 @@ async function query(filterBy = {}) {
     try {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
-        console.log(criteria)
         // var orders = await collection.find(criteria).toArray()
         var orders = await collection.aggregate([
             {
@@ -41,7 +40,7 @@ async function query(filterBy = {}) {
             }
         ]).toArray()
         orders = orders.map(order => {
-            order.buyer = { _id: order.buyer._id, fullname: order.buyer.fullname }
+            order.buyer = { _id: order.buyer._id, fullname: order.buyer.fullname, imgUrl: order.buyer.imgUrl }
             delete order.buyerId
             delete order.stayId
             return order

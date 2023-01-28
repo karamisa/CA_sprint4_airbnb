@@ -1,4 +1,5 @@
-
+import Skeleton from '@mui/material/Skeleton';
+import Stack from '@mui/material/Stack';
 
 export function IndexLoader() {
 
@@ -17,13 +18,22 @@ export function IndexLoader() {
                             key={demoStay._id}
                             className='loader-list-item stay-list-item'>
                             <article className='preview'>
-                                <div className="img-place-loader image-slider almost-square-ratio preview" style={{backgroundColor:'#ebebeb'}}></div>
-                                <div className="text1-place-loader" style={{backgroundColor:"#b0b0b0", color:"#b0b0b0", lineHeight:'15px', marginTop:'15px', width:'45%'}}>.</div>
-                                <div className="text2-place-loader" style={{backgroundColor:"#ebebeb", color:"#ebebeb",lineHeight:'15px', marginTop:'5px', width:'45%'}}>.</div>
-                                <div className="text3-place-loader" style={{backgroundColor:"#ebebeb", color:"#ebebeb",lineHeight:'15px', marginTop:'6px', width:'33%'}}>.</div>
-                                <div className="text4-place-loader" style={{backgroundColor:"#b0b0b0", color:"#ebebeb",lineHeight:'15px', marginTop: '6px', width:'33%'}}>.</div>
+                                <Stack sx={{height: '100%'}}>
+                                    {/* For variant="text", adjust the height via font-size */}
+                                    <Skeleton variant="rounded" sx={{ backgroundColor: '#ebebeb', borderRadius: '15px', height: '100%', aspectRatio: '20/19' }} />
+                                    <div className='preview-header flex justify-between'>
+                                    <Skeleton variant="text" sx={{ backgroundColor: '#b0b0b0', fontSize: '1.5rem', width:'45%' }} />
+                                    <Skeleton variant="text" sx={{ fontSize: '1.5rem', width:'15%' }} />
+                                    </div>
+                                    <Stack spacing={0}>
+                                    <Skeleton variant="text" sx={{ fontSize: '0.8rem', width:'33%' }} />
+                                    <Skeleton variant="text" sx={{ fontSize: '0.8rem', width:'20%' }} />
+                                    </Stack>
+                                    <Skeleton variant="text" sx={{ fontSize: '1rem', width:'33%' }} />
+                                </Stack>
                             </article>
                         </li>
+
                     )
                 })}
             </ul>

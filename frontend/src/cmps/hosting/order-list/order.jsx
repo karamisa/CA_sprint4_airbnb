@@ -13,7 +13,7 @@ export function Order({ order }) {
     updateOrder({...order, status})
   }
 
-  if (!order) return <></>
+  if (!order) return
   // console.log('order:', orderForPrecessing)
   return (
     <>
@@ -36,8 +36,8 @@ export function Order({ order }) {
       </td>
       {/* <td>{orderForPrecessing.stay.name}</td> */}
       <td>{order.stay.price}</td>
-      <td>{order.status}</td>
-      <td>
+      <td className='order-status'>{order.status}</td>
+      <td className='action-btns'>
         <BtnSquare onClick={() => onUpdateOrderStatus('approved')}>Accept</BtnSquare>
         <BtnSquare onClick={() => onUpdateOrderStatus('rejected')}>Reject</BtnSquare>
       </td>

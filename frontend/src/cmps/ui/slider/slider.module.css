@@ -61,12 +61,12 @@
 }
 
 .navIconLeft {
-    top: 50%;
+    top: calc(50% - 15px);
     left: 12px;
 }
 
 .navIconRight {
-    top: 50%;
+    top: calc(50% - 15px);
     right: 12px;
 }
 

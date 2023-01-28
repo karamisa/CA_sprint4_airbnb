@@ -97,7 +97,7 @@ export function StayDetails() {
                 <div className='name-subtitle flex'>
                   <RatingReview reviews={stay.reviews} />
                   <span>•</span>
-                  <div className='stay-rating' onClick={openReviewModal}>
+                  <div className='stay-rating' onClick={()=>openModal(<ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id}/>)}>
                     {stay.reviews.length} reviews
                   </div>
                   <span>•</span>
@@ -173,7 +173,7 @@ export function StayDetails() {
             {stay.reviews.length > 6 && (
               <BtnSquare
                 className='rev-btn show-all-reviews'
-                onClick={() => openModal(<AllReviews reviews={stay.reviews} />)}>
+                onClick={() => openModal(<ReviewsCmp reviewsToDisplay={reviewsToDisplay} key={reviewsToDisplay.id}/>)}>
                 show all {stay.reviews.length} reviews{' '}
               </BtnSquare>
             )}
