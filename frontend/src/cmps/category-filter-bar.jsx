@@ -25,12 +25,12 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
 
   const toggleSearchForm = () => {
     document.querySelector('.search-bars').classList.toggle('search-bars-open')
-}
+  }
 
   return (
     <>
-    <div ref={filterRef} className='filter-ref'></div>
-      <section className={`main-layout filter-bar ${scrollClass}`} >
+      <div ref={filterRef} className='filter-ref'></div>
+      <section className={`main-layout filter-bar ${scrollClass}`}>
         <Carousel>
           {categories.map((category) => {
             return (
@@ -43,7 +43,6 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
                   onSelectCategory(category.url)
                 }}>
                 <img
-                  style={{}}
                   className='icon24 clr-secondary'
                   src={require(`../assets/img/categories/${category.url}.png`)}
                   alt={category.name}
@@ -51,7 +50,7 @@ export function CategoryFilterBar({ handleChange, currCategory = 'none' }) {
                 <p className='category-name'>{category.name}</p>
               </div>
             )
-          })}{' '}
+          })}
         </Carousel>
         <div className='btn-container' onClick={toggleSearchForm}>
           <BtnSquareSecond style={buttonStyle}>

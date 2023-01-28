@@ -136,7 +136,7 @@ function getEmptyStay() {
   return {
     _id: '',
     name: 'Magical Place',
-    type: '',
+    type: 'Entire home/apt',
     imgUrls: [
       'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436975/hx9ravtjop3uqv4giupt.jpg',
       'http://res.cloudinary.com/dmtlr2viw/image/upload/v1663436294/mvhb3iazpiar6duvy9we.jpg',

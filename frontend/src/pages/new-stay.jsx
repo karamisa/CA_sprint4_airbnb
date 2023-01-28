@@ -9,31 +9,44 @@ import { showSuccessMsg, showErrorMsg } from '../services/event-bus.service.js'
 import { saveStay } from '../store/stay/stay.action.js'
 import { LogoHeader } from '../cmps/header-footer/logo-header.jsx'
 import { ProgressFooter } from '../cmps/header-footer/progress-footer.jsx'
+import { filterService } from '../services/filter.service.js'
+import { BtnCard } from '../cmps/ui/buttons/btn-card.jsx'
+import { BtnCardLg } from '../cmps/ui/buttons/btn-card-lg.jsx'
+import { AutoComplete } from '../cmps/auto-complete.jsx'
+import { mapService } from '../services/map.service.js'
+
+// import video from 'https://stream.media.muscache.com/zFaydEaihX6LP01x8TSCl76WHblb01Z01RrFELxyCXoNek.mp4?v_q=high'
+
+mapService.connectGoogleApi()
 
 export function NewStay() {
+  const categories = filterService.getPopularCategories()
+  const types = filterService.getTypes()
+
   const [stayToEdit, setStayToEdit] = useState(stayService.getEmptyStay())
+
   const [selectedOptions, setSelectedOptions] = useState()
 
+  // steps to create new stay
+  const [stepNum, setStepNum] = useState(0)
+
   const navigate = useNavigate()
-  const { stayId } = useParams()
 
-  useEffect(() => {
-    if (!stayId) return
-    loadStay()
-  }, [])
+  // step 2
+  const [selectedCategory, setSelectedCategory] = useState(null)
+  function onSelectCategory(category) {
+    setSelectedCategory(category)
+  }
 
-  function loadStay() {
-    stayService
-      .getById(stayId)
-      .then((stay) => setStayToEdit(stay))
-      .catch((err) => {
-        console.log('Had issues in stay details', err)
-        navigate('/stay')
-      })
+  // step 3
+  const [selectedType, setSelectedType] = useState(null)
+  function onSelectType(type) {
+    setSelectedType(type)
   }
 
   function getStayAmenities() {
     //supposed to be on service - but Karam is working on service now.
+
     const amenities = stayService.getAmenitiesList()
     return amenities
   }
@@ -79,7 +92,97 @@ export function NewStay() {
   return (
     <section className='new-stay'>
       <LogoHeader />
-      <ProgressFooter />
+
+      {stepNum === 0 && (
+        <div className='new-stay-form step-1'>
+          <div className='tutorial'>
+            <h5>Step 1</h5>
+            <h1>Tell us about your place</h1>
+            <p>
+              In this step, we'll ask you which type of property you have and if
+              guests will book the entire place or just a room. Then let us know
+              the location and how many guests can stay.
+            </p>
+
+            {/* <video
+            src={video}
+            class='_e2l2kr'
+            style={{ objectFit: 'cover' }}
+            crossorigin='anonymous'
+            muted=''
+            playsinline=''
+            preload='auto'
+            autoplay=''
+          /> */}
+          </div>
+        </div>
+      )}
+
+      {stepNum === 1 && (
+        <div className='new-stay-form step-2'>
+          <h1>Which of these best describes your place?</h1>
+
+          <div className='category-list'>
+            {categories.map((category) => {
+              return (
+                <BtnCard
+                  className={
+                    category.url === selectedCategory ? 'selected' : ''
+                  }
+                  key={category.url}
+                  onClick={() => {
+                    onSelectCategory(category.url)
+                  }}>
+                  <img
+                    className='icon24 clr-secondary'
+                    src={require(`../assets/img/categories/${category.url}.png`)}
+                    alt={category.name}
+                  />
+                  <p className='category-name'>{category.name}</p>
+                </BtnCard>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {stepNum === 2 && (
+        <div className='new-stay-form step-3'>
+          <h1>What type of place will guests have?</h1>
+
+          <div className='type-list'>
+            {types.map((type) => {
+              return (
+                <BtnCardLg
+                  className={type.url === selectedType ? 'selected' : ''}
+                  key={type.url}
+                  onClick={() => {
+                    onSelectType(type.url)
+                  }}>
+                  <div>
+                    <h2>{type.name}</h2>
+                    <p>{type.desc}</p>
+                  </div>
+                  <img
+                    className='icon36 clr-secondary'
+                    src={require(`../assets/img/type/${type.url}.svg`)}
+                    alt={type.name}
+                  />
+                </BtnCardLg>
+              )
+            })}
+          </div>
+        </div>
+      )}
+
+      {stepNum === 3 && (
+        <div className='new-stay-form step-4'>
+          <h1>Where's your place located?</h1>
+          <AutoComplete />
+        </div>
+      )}
+
+      <ProgressFooter currStep={stepNum} setStepNum={setStepNum} />
 
       {/* <h1>Edit Stay</h1>
       <Formik

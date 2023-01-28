@@ -1,0 +1,56 @@
+.btnCardLg {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+
+    min-height: 88px;
+    padding: 13px 23px;
+    width: 100%;
+
+    background-color: #FFFFFF;
+
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 0px 1px hsl(0, 0%, 87%);
+
+    text-align: center;
+
+    color: #222222;
+    font-family: cereal-Medium;
+    font-size: 1.2rem;
+    line-height: 20px;
+
+    transition: box-shadow 0.2s ease, transform 0.1s ease;
+}
+
+.btnCardLg.selected {
+    background-color: hsl(0, 0%, 87%);
+    box-shadow: inset 0px 0px 0px 2px #000000;
+}
+
+.btnCardLg:hover {
+    box-shadow: inset 0px 0px 0px 2px #000000;
+}
+
+.btnCardLg:active {
+    animation: press 1s forwards;
+    transition: .3s;
+}
+
+@keyframes press {
+    0% {
+        transform: scale(1);
+    }
+
+    40% {
+        transform: scale(.96);
+    }
+
+    60% {
+        transform: scale(.96);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}

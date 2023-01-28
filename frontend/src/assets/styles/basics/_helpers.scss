@@ -32,7 +32,7 @@
 .flex {
   display: flex;
 
-  >*.full {
+  > *.full {
     flex: 1;
   }
 
@@ -94,6 +94,12 @@
 .icon24 {
   height: 24px;
   width: 24px;
+}
+
+// icon
+.icon36 {
+  height: 36px;
+  width: 36px;
 }
 
 // text
