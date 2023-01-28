@@ -3,6 +3,7 @@ import { InputTextRounded } from '../ui/input/input-text-rounded'
 import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_SET_TOPIC } from '../../services/socket.service'
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { loadOrders } from '../../store/order.action'
 
 export function Inbox() {
   const [msg, setMsg] = useState({ txt: '' })
@@ -15,6 +16,7 @@ export function Inbox() {
   const botTimeoutRef = useRef()
 
   useEffect(() => {
+    loadOrders({buyerId: loggedInUser._id})
     socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
     return () => {
       socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
@@ -58,6 +60,11 @@ export function Inbox() {
       <div className='contacts inbox-column'>
         <div className='inbox-column-header '>
           <h2>Messages</h2>
+          <label>
+                <input type="checkbox" name="isBotMode" checked={isBotMode}
+                    onChange={({ target }) => setIsBotMode(target.checked)} />
+                Bot Mode
+            </label>
         </div>
       </div>
       <div className='chat  inbox-column'>
