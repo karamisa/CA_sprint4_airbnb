@@ -9,7 +9,7 @@ export function SearchPreview({handlePreviewClick, staySearchParams}) {
 
     const locationContent = location || 'Anywhere'
     const dateContent = (checkIn && checkOut) ? `${utilService.ShortFormattedDate(+checkIn)} - ${utilService.ShortFormattedDate(+checkOut)}` : 'Any week'
-    const guestsContent = guests.adults ? `${guests.adults} guests` : 'Add guests'
+    const guestsContent = guests.adults ? `${guests.adults + guests.children} guests` : 'Add guests'
     
     return (
         <div className="search-preview" >

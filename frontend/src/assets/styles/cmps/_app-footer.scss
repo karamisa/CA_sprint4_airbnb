@@ -5,6 +5,7 @@
   font-family: cereal-Book;
   color: $clr-text-primary;
   text-align: start;
+  font-size: 14px;
 
   &.fixed {
     position: fixed;
@@ -25,4 +26,12 @@
   &.wishlist-footer {
     transform: translate(-40px, 0);
   }
+
+  .footer-names {
+    font-size: 12px;
+    @include for-mobile-layout {
+      display: none;
+    }
+  }
+
 }
