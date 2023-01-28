@@ -9,7 +9,6 @@ export function StayList({ stays }) {
   const currLocation = useLocation()
 
   const handleClick = (stayId) => {
-    console.log('stayId', stayId)
     const searchStr = utilService.setAnyBlankParamsWithDefaults(
       currLocation.search
     )

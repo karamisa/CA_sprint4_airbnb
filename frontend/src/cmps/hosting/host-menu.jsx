@@ -34,7 +34,7 @@ export function HostMenu() {
     saveStay(newStay)
   }
   return (
-    <div className='main-layout app-header'>
+    <div className='secondary-layout app-header'>
       <div className='header-logo-container'>
         <Logo />
       </div>

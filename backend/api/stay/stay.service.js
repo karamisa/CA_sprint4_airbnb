@@ -4,12 +4,11 @@ const logger = require('../../services/logger.service')
 const utilService = require('../../services/util.service')
 const ObjectId = require('mongodb').ObjectId
 
-async function query(filterBy={txt:''}) {
+async function query(filterBy) {
     try {
-        const criteria = {
-            name: { $regex: filterBy.txt, $options: 'i' }
-            //ADD MORE FILTERS HERE
-        }
+        const criteria = _buildCriteria(filterBy)
+        //ADD MORE FILTERS HERE
+        console.log('criteria', criteria)
         const collection = await dbService.getCollection('stay')
         var stays = await collection.find(criteria).toArray()
         return stays
@@ -117,6 +116,17 @@ async function removeStayLike(stayId) {
     }
 }
 
+function _buildCriteria(filterBy) {
+    const criteria = {}
+    if (filterBy.txt) {
+       criteria.name= { $regex: filterBy.txt, $options: 'i' }
+    }
+    if (filterBy.likedByUserId){
+        console.log('filterBy.likedByUserId', filterBy.likedByUserId)
+        criteria.likedByUsers = { $elemMatch: {_id:  ObjectId(filterBy.likedByUserId)}}
+    }
+    return criteria
+}
 
 
 module.exports = {

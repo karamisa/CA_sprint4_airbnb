@@ -5,12 +5,10 @@ const userService = require('../user/user.service.js');
 const logger = require('../../services/logger.service');
 
 async function getStays(req, res) {
+    const filterBy = req.query
     try {
         logger.debug('Getting Stays')
-        const filterBy = {
-        txt: req.query.txt || '',
-        category: req.query.category || '',
-        }
+        console.log('filterBy', filterBy)
         const stays = await stayService.query(filterBy)
         res.json(stays)
     } catch (err) {

@@ -2,6 +2,7 @@ import {orderService} from '../services/order.service.js'
 import {store} from './store.js'
 import {ADD_ORDER, REMOVE_ORDER, SET_ORDERS,UPDATE_ORDER} from './order.reducer.js'
 import { SET_WATCHED_USER} from './user.reducer.js'
+import { LOADING_DONE, LOADING_START } from './system.reducer'
 
 // Action Creators
 export function getActionRemoveOrder(orderId) {
@@ -15,13 +16,16 @@ export function getActionSetWatchedUser(user) {
     }
 
 export async function loadOrders(filterBy={}) {
+    store.dispatch({ type: LOADING_START})
     try {
-        console.log('loadingorder')
         const orders = await orderService.query(filterBy)
         store.dispatch({type: SET_ORDERS, orders})
     } catch (err) {
         console.log('OrderActions: err in loadOrders', err)
         throw err
+    }
+    finally{
+        store.dispatch({ type: LOADING_DONE })
     }
 }
 
@@ -39,7 +43,6 @@ export async function saveOrder(order) {
 export async function updateOrder(order) {
     try {
         const updatedOrder = await orderService.save(order)
-        console.log(updatedOrder)
         store.dispatch({type: UPDATE_ORDER, order: updatedOrder})
     } catch (err) {
         console.log('OrderActions: err in updateOrder', err)

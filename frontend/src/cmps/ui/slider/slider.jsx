@@ -64,7 +64,6 @@ export function Slider({ children }) {
         })
       })
     )
-    console.log('page:', page)
   }, [children, screenSize])
 
   useEffect(() => {
@@ -125,13 +124,10 @@ export function Slider({ children }) {
       return Math.max(prev - winWidth, maxOffset)
     })
   }
- console.log('currPage:', currPage)
 
  const Pagination = ( data, currPage ) => {
-  console.log('data', data)
-  console.log('currPage', currPage)
   //  return null
-  if(!data.length) return console.log('no data')
+  if(!data.length) return 
   return (
     page&& <div className="slider-dots">
       {data.map((item, index) => (

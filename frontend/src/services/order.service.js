@@ -12,9 +12,8 @@ export const orderService = {
 }
 
 async function query(filterBy = { hostId: '', buyerId: '', stayId: '' }) {
-    console.log('filterBy:', filterBy)
+    //should maybe be in body?
     var queryStr = (!filterBy) ? '' : `?hostId=${filterBy.hostId || ''}&buyerId=${filterBy.buyerId || ''}&stayId=${filterBy.stayId || ''}`
-    console.log(queryStr)
     return await httpService.get(`order${queryStr}`)
 }
 

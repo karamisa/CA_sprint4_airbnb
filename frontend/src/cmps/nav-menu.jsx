@@ -12,7 +12,6 @@ import { NavHamburger } from './ui/nav-hamburger'
 export function NavMenu() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
-  console.log(user)
 
   async function onLogout() {
     try {
@@ -26,16 +25,6 @@ export function NavMenu() {
 
   function onAddStay() {
     navigate('/stay/edit')
-    // const newStay = stayService.getEmptyStay()
-    // newStay.name = prompt('Enter stay name')
-    // newStay.host._id = user._id
-    // newStay.host.fullname = user.fullname
-    // newStay.host.imgUrl = user.imgUrl
-    // if (!user.isOwner) {
-    //   user.isOwner = true
-    //   updateUser(user)
-    // }
-    // saveStay(newStay)
   }
 
   const [navbarOpen, setNavbarOpen] = useState(false)
@@ -78,7 +67,7 @@ export function NavMenu() {
             <div className='menu-links'>
               <Link to='/trip'>Trips</Link>
               <Link to='/wishlist'>My Wish List</Link>
-              <Link to='/stay'>Messages (coming soon)</Link>
+              <Link to='/user/inbox'>Messages (coming soon)</Link>
               {user.isOwner && (
                 <Link to='/hosting/order'>View Orders (host)</Link>
               )}

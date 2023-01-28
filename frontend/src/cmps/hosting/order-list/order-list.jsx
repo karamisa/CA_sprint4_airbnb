@@ -1,7 +1,7 @@
+import { TableLoader } from '../../ui/table-loader'
 import { Order } from './order'
 
-export function OrderList({ orders }) {
-  if (!orders) return <div></div>
+export function OrderList({ orders, isLoading }) {
   return (
     <div>
       <table>
@@ -16,7 +16,8 @@ export function OrderList({ orders }) {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+        {isLoading && <TableLoader />}
+         {!isLoading && orders.map((order) => (
             <tr key={order._id}>
               <Order order={order} />
             </tr>

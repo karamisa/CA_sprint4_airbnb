@@ -9,7 +9,7 @@
 
         h1 {
             font-family: cereal-bold;
-            font-size: rem(16px);
+            font-size: rem(24px);
             line-height: rem(20px);
         }
     }
@@ -39,7 +39,7 @@
 
     .demo-login-btns {
         display: flex;
-        justify-content: space-around;
+        justify-content: space-between;
         margin-bottom: 20px;
     }
 }

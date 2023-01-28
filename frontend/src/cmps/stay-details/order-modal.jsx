@@ -44,8 +44,8 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
       searchParams.set('pets', value.pets)
     }
     if (field === 'checkIn' || field === 'checkOut') {
-      if (value){
-      value = value.getTime()
+      if (value) {
+        value = value.getTime()
       }
       searchParams.set(field, value)
     }
@@ -111,13 +111,13 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
 
         {/* Reservation Edit */}
         <section className='picker-container'>
+          
           {/* Dates: checkIn/checkOut */}
-
           {(openTab === 'checkIn' || openTab === 'checkOut') && (
             <section className='date-picker-modal'>
               <div className='date-picker-header'>
-             <h4>{utilService.totalDays(orderParams.checkIn, orderParams.checkOut)} nights</h4>
-             {!!orderParams.checkIn && !!orderParams.checkOut && <h5>{utilService.ShortFormattedDate(orderParams.checkIn)}-{utilService.ShortFormattedDate(orderParams.checkOut)}</h5>}
+              {(orderParams.checkIn && orderParams.checkOut) ? (<h4>{utilService.totalDays(orderParams.checkIn, orderParams.checkOut)} nights</h4>) : <h4>Select Dates</h4>}
+              {(orderParams.checkIn && orderParams.checkOut) ? ( <h5>{utilService.ShortFormattedDate(orderParams.checkIn)}-{utilService.ShortFormattedDate(orderParams.checkOut)}</h5>) : <h5>Minimum nights: 2 days</h5>}
               </div>
 
               <DateSelect
@@ -127,7 +127,7 @@ export function OrderModal({ stay, setOpenTab, openTab, reserveBtnRef }) {
                 className='date-picker'
               />
               <div className="date-picker-modal-btns">
-                <button className="reset-dates-btn clean-button" onClick={()=> {onSetField('checkIn', ''); onSetField('checkOut', '')}}>Clear dates</button>
+                <button className="reset-dates-btn clean-button" onClick={() => { onSetField('checkIn', ''); onSetField('checkOut', '') }}>Clear dates</button>
                 <div className='close-dates-btn'>
                   <BtnSquareBlack onClick={() => setOpenTab('')}>Close</BtnSquareBlack>
                 </div>
