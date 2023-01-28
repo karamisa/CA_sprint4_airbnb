@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { showErrorMsg, showSuccessMsg } from '../../services/event-bus.service'
-import { stayService } from '../../services/stay.service.local'
+import { stayService } from '../../services/stay.service'
 import { saveStay } from '../../store/stay/stay.action'
 import { logout, updateUser } from '../../store/user.actions'
 import { Logo } from '../logo'

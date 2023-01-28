@@ -7,14 +7,14 @@ import {
   SAVE_STAYS,
   SET_STAYS,
   TOGGLE_LIKE_STAY,
-  SET_IS_LOADING,
   UNDO_TOGGLE_LIKE_STAY,
   UPDATE_STAYS
 } from './stay.reducer'
 
+import { LOADING_DONE, LOADING_START } from '../system.reducer'
 //  Load stays
 export async function loadStays(filterBy={},sortBy={}) {
-  store.dispatch({ type: SET_IS_LOADING, isLoading: true })
+  store.dispatch({ type: LOADING_START})
   try {
     try {
       const stays = await stayService
@@ -27,7 +27,7 @@ export async function loadStays(filterBy={},sortBy={}) {
       throw err
     }
   } finally {
-    store.dispatch({ type: SET_IS_LOADING, isLoading: false })
+    store.dispatch({ type: LOADING_DONE })
   }
 }
 

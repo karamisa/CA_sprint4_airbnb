@@ -12,6 +12,7 @@ import { NavHamburger } from './ui/nav-hamburger'
 export function NavMenu() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
+  console.log(user)
 
   async function onLogout() {
     try {

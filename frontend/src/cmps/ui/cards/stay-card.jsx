@@ -14,7 +14,7 @@ export function StayCard({ stay }) {
         </h4>
       </div>
       <div className={classes.name}>
-        <span>{stay.name}</span>
+        <span>{name}</span>
       </div>
     </div>
   )
