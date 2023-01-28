@@ -27,6 +27,12 @@
     transform: translate(-40px, 0);
   }
 
+
+  p{
+    @include for-mobile-layout {
+      margin-top: 10px;
+    }
+  }
   .footer-names {
     font-size: 12px;
     @include for-mobile-layout {
