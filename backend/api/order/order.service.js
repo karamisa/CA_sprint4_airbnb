@@ -6,11 +6,21 @@ const asyncLocalStorage = require('../../services/als.service')
 
 
 async function query(filterBy = {}) {
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
     try {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
         // var orders = await collection.find(criteria).toArray()
         var orders = await collection.aggregate([
+            {
+                $match: {
+                    $or: [
+                       { "buyerId": ObjectId(loggedinUser._id) },
+                       { "hostId": ObjectId(loggedinUser._id) }
+                    ]
+                 }
+             },
             {
                 $match: criteria
             },
@@ -41,6 +51,7 @@ async function query(filterBy = {}) {
         ]).toArray()
         orders = orders.map(order => {
             order.buyer = { _id: order.buyer._id, fullname: order.buyer.fullname, imgUrl: order.buyer.imgUrl }
+            order.createdAt=order._id.getTimestamp()
             delete order.buyerId
             delete order.stayId
             return order
@@ -143,8 +154,6 @@ async function removeOrderMsg(orderId, msgId){
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.hostId) criteria.hostId = ObjectId(filterBy.hostId)
-    if (filterBy.buyerId) criteria.buyerId = ObjectId(filterBy.buyerId)
     if (filterBy.stayId) criteria.stayId = filterBy.stayId
     if (filterBy.orderId) criteria._id = filterBy.orderId
     return criteria

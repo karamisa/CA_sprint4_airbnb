@@ -1,5 +1,28 @@
 .chat-app {
-  min-height: 100vh;
+  padding-bottom: 0px !important;
+  form{
+    display: flex;
+    flex:1;
+    width: 100%;
+    gap:10px;
+    border-top:1px solid $clr-border;
+    padding-inline:10px;
+    & > *{
+    width: auto;
+    }
+    input{
+      flex: 1;
+      border: none;
+      border-radius: 45px;
+      border: 1px solid $clr-border;
+      padding: 10px 20px;
+      font-size: 16px;
+      &:focus{
+        outline: none;
+      }
+    }
+
+  }
 }
 
 .spacer {
@@ -7,15 +30,16 @@
 }
 
 .inbox-container {
-  margin-top: header-height;
   height: 100%;
 
-  display: grid;
-  grid-template-columns: 370px auto 370px;
+  display: flex;
+  height: calc(100vh - 80px);
+
 }
 
 .inbox-column {
   display: flex;
+  flex: 1 1 0;
   flex-direction: column;
 
   &-header {
@@ -39,16 +63,30 @@
     flex-direction: column;
   }
 
-  .chat-msgs {
+  .msg-previews-list{
+    padding-right: 10px;
   }
 
-  .chat-input {
-    margin: 0 auto;
-    display: flex;
-    max-width: 684px;
-    width: 100%;
-  }
 }
+
+
+
+.chat-msgs {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 0;
+  overflow-y: auto;
+  padding: 0 20px;
+  padding-bottom: 20px;
+}
+
+.chat-input {
+  margin: 0 auto;
+  display: flex;
+  max-width: 684px;
+  width: 100%;
+}
+
 
 .chat {
   border-left: 1px solid $clr-border;

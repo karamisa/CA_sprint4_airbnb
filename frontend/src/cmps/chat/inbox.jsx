@@ -4,78 +4,124 @@ import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_
 import { useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { loadOrders } from '../../store/order.action'
+import { MsgPreview } from '../msg-preview'
+import { orderService } from '../../services/order.service'
 
 export function Inbox() {
-  const [msg, setMsg] = useState({ txt: '' })
-  const [msgs, setMsgs] = useState([])
-  const [topic, setTopic] = useState('Love')
-  const [isBotMode, setIsBotMode] = useState(false)
-
+  const orders = useSelector(storeState => storeState.orderModule.orders)
+  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
   const loggedInUser = useSelector(storeState => storeState.userModule.user)
 
-  const botTimeoutRef = useRef()
+  const [msg, setMsg] = useState({ txt: '' })
+  const [contact, setContact] = useState(null)
+  const [groupedMessages, setGroupedMessages] = useState(null)
+
+
+
+  function groupOrders() {
+    if (!orders) return
+    const groupedOrders = orders.reduce((acc, order) => {
+      const key = order.hostId === loggedInUser._id ? order.buyer._id : order.hostId
+      if (!acc[key]) {
+        acc[key] = { msgs:[], orders: [] }
+      }
+      acc[key].orders.push(order)
+      acc[key].msgs.push(...order.msgs)
+      return acc
+    }, {})
+    for (const key in groupedOrders) {
+      groupedOrders[key].msgs.sort((a, b) => a.createdAt - b.createdAt)
+      groupedOrders[key].orders.sort((a, b) => b.createdAt - a.createdAt)
+    }
+    console.log('groupedOrders', groupedOrders)
+    
+    // let sortedOrders = [...groupedOrders]
+    // console.log('sortedOrders', sortedOrders)
+    return groupedOrders
+  }
+
+
 
   useEffect(() => {
-    loadOrders({buyerId: loggedInUser._id})
-    socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
+    loadOrders()
+    // socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
     return () => {
-      socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
-      botTimeoutRef.current && clearTimeout(botTimeoutRef.current)
+      // socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
     }
   }, [])
 
   useEffect(() => {
-    socketService.emit(SOCKET_EMIT_SET_TOPIC, topic)
-  }, [topic])
+    if (isLoading) return
+    if (!orders) return
+    if (!loggedInUser) return
+    const groupedOrders = groupOrders()
+    const groupedMessages = Object.keys(groupedOrders).map(key => {
+      const contact = groupedOrders[key].orders[0].hostId === loggedInUser._id ? groupedOrders[key].orders[0].buyer : groupedOrders[key].orders[0].stay.host
+      contact.orderIdRef = groupedOrders[key].orders[0]._id
+      contact.msgs = groupedOrders[key].msgs
+      return contact
+    }
+    )
+    console.log('groupedMessages', groupedMessages)
+    setGroupedMessages(groupedMessages)
+  }, [isLoading, orders, loggedInUser])
+
+
+  // useEffect(() => {
+  //   socketService.emit(SOCKET_EMIT_SET_TOPIC, topic)
+  // }, [topic])
 
   function addMsg(newMsg) {
-    setMsgs(prevMsgs => [...prevMsgs, newMsg])
+    setContact(prevContact => {
+      if (!prevContact.msgs) {
+        prevContact.msgs = []
+      }
+      return { ...prevContact, msgs: [...prevContact.msgs, newMsg] }
+    })
   }
 
-  function sendBotResponse() {
-    // Handle case: send single bot response (debounce).
-    botTimeoutRef.current && clearTimeout(botTimeoutRef.current)
-    botTimeoutRef.current = setTimeout(() => {
-      setMsgs(prevMsgs => ([...prevMsgs, { from: 'Bot', txt: 'You are amazing!' }]))
-    }, 1250)
-  }
-
-  function sendMsg(ev) {
+  async function sendMsg(ev) {
     ev.preventDefault()
-    const from = loggedInUser?.fullname || 'Me'
-    const newMsg = { from, txt: msg.txt }
-    socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
-    if (isBotMode) sendBotResponse()
-    // for now - we add the msg ourself
-    addMsg(newMsg)
-    setMsg({ txt: '' })
+    try {
+      const by = loggedInUser || 'Guest'
+      const newMsg = { by, txt: msg.txt }
+      addMsg(newMsg)
+      await orderService.addOrderMsg(contact.orderIdRef, newMsg)
+      // socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
+      // for now - we add the msg ourself
+      setMsg({ txt: '' })
+    } catch (err) {
+      console.log('err', err)
+    }
   }
 
   function handleFormChange(ev) {
     const { name, value } = ev.target
     setMsg(prevMsg => ({ ...prevMsg, [name]: value }))
   }
+
+  if (isLoading) return <div>Loading...</div>
+  if (!groupedMessages) return <div>No messages yet</div>
   return (
-    <section className='inbox-container main-layout'>
+    <section className='inbox-container'>
       <div className='contacts inbox-column'>
         <div className='inbox-column-header '>
           <h2>Messages</h2>
-          <label>
-                <input type="checkbox" name="isBotMode" checked={isBotMode}
-                    onChange={({ target }) => setIsBotMode(target.checked)} />
-                Bot Mode
-            </label>
         </div>
+        {groupedMessages.map((contact, idx) => (
+          <div className="msg-list-item" onClick={() => setContact(contact)} key={idx}>
+            <MsgPreview contact={contact} />
+          </div>
+        ))}
+
       </div>
       <div className='chat  inbox-column'>
         <div className='inbox-column-header '>
           <h2>From Name</h2>
         </div>
-        <div className='chat-msgs'>
-          <div className='inbox-column-header '>
-            {msgs.map((msg, idx) => (<li key={idx}>{msg.from}: {msg.txt}</li>))}
-          </div>
-        </div>
+       {!!contact && <div className='chat-msgs'>
+          {contact.msgs.map((msg, idx) => (<li key={idx}>{msg.by.fullname}: {msg.txt}</li>))}
+        </div>}
         <div className='chat-input'>
           <form onSubmit={sendMsg}>
             <input
@@ -83,13 +129,23 @@ export function Inbox() {
               name="txt" autoComplete="off" />
             <button>Send</button>
           </form>
-          {/* <InputTextRounded /> */}
         </div>
       </div>
       <div className='stay-info inbox-column'>
         <div className='inbox-column-header '>
-          <h2>Details</h2>
+          <h2>Orders</h2>
         </div>
+        {contact && orders.map((order, idx) => {
+          if (order.buyer._id === contact._id || order.hostId === contact._id) {
+            return (
+              <div className="order-list-item" key={idx}>
+                <h3>{order.stay.name}</h3>
+                <p>Check in: {new Date(order.startDate).toLocaleDateString()}</p>
+                <p>Check out: {new Date(order.endDate).toLocaleDateString()}</p>
+                <p>Price: {order.totalPrice}</p>
+              </div>
+            )}})}
+
       </div>
     </section>
   )

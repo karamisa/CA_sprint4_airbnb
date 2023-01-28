@@ -4,12 +4,12 @@ import { useSelector } from 'react-redux'
 import { loadOrders } from '../../store/order.action'
 
 export function OrderPage() {
-  const orders = useSelector((storeState) => storeState.orderModule.orders)
   const user = useSelector((storeState) => storeState.userModule.user)
+  const orders = useSelector((storeState) => storeState.orderModule.orders).filter(order => order.hostId === user._id)
   const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
 
   useEffect(() => {
-    loadOrders({ hostId: user._id })
+    loadOrders({ userId: user._id })
   }, [])
 
   return (
