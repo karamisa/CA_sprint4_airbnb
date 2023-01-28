@@ -1,12 +1,10 @@
 import Skeleton from '@mui/material/Skeleton';
+// import Skeleton from '@material-ui/core/Skeleton';
 import Stack from '@mui/material/Stack';
 
 export function IndexLoader() {
 
     const demoStays = Array.from({ length: 15 }, (_, i) => ({ _id: i + 101 }));
-
-
-
 
     return (
         <>
