@@ -114,9 +114,10 @@
       text-align: left;
 
     }
+
     img {
       height: 26px;
-      width:123px;
+      width: 123px;
       object-fit: contain;
     }
 
@@ -268,18 +269,20 @@
 
   .stay-map {
     padding-bottom: 18px;
+
     @include for-max-narrow-layout {
       padding-inline: em(24px, 16px);
     }
 
-    h1{
-      font-size:rem(22px);
+    h1 {
+      font-size: rem(22px);
       font-family: cereal-book;
       padding-bottom: 24px;
       padding-top: 30px;
     }
-    h3{
-      font-size:rem(16px);
+
+    h3 {
+      font-size: rem(16px);
       font-family: cereal-book;
       padding-bottom: 24px;
       padding-top: 24px;
@@ -287,7 +290,7 @@
 
 
 
-    .map-popper{
+    .map-popper {
       height: 48px;
       width: 48px;
       display: flex;
@@ -297,18 +300,19 @@
       border-radius: 50%;
       position: relative;
 
-      .popper-wedge{
-        background: linear-gradient(135deg, rgba(0, 0, 0, 0) 50%,rgb(255, 56, 92) 50%); 
-         border-radius: 2px; 
-         bottom: -4px; 
-         height: 12px; 
-         left: 50%; 
-         position: absolute; 
-         transform: translate(-50%, 0px) rotate(45deg); 
-         width: 12px; 
-         z-index: autol
+      .popper-wedge {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0) 50%, rgb(255, 56, 92) 50%);
+        border-radius: 2px;
+        bottom: -4px;
+        height: 12px;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, 0px) rotate(45deg);
+        width: 12px;
+        z-index: autol
       }
-      svg{
+
+      svg {
         height: 22px;
         width: 22px;
         display: block;
@@ -319,12 +323,13 @@
 
   .stay-about-host {
 
-    
+    padding-bottom: 1.5rem;
+
     @include for-max-narrow-layout {
       padding-inline: em(24px, 16px);
 
-      button{
-          width: 100%
+      button {
+        width: 100%
       }
 
     }
@@ -380,7 +385,7 @@
 
   }
 
-  
+
 }
 
 .footer-btn-link {

@@ -7,6 +7,17 @@
   &-item {
     cursor: pointer;
   }
+
+  &.main-layout {
+    @include for-mobile-layout {
+      // margin: 0;
+      // padding: 0;
+      .stay-list-item {
+        // padding: 1.5rem;
+        transform: translate(-10px, 10px);
+      }
+    }
+  }
 }
 
 .preview {
@@ -49,7 +60,7 @@
     left: -4px !important;
   }
 
-  .slider-dots{
+  .slider-dots {
     position: absolute;
     z-index: 5;
     font-size: 3rem;
