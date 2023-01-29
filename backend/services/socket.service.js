@@ -13,6 +13,9 @@ function setupSocketAPI(http) {
         socket.on('disconnect', socket => {
             logger.info(`Socket disconnected [id: ${socket.id}]`)
         })
+
+
+        //MESSAGES
         socket.on('chat-set-topic', topic => {
             if (socket.myTopic === topic) return
             if (socket.myTopic) {
@@ -32,11 +35,16 @@ function setupSocketAPI(http) {
         socket.on('set-user-is-typing', username => {
             socket.broadcast.to(socket.myTopic).emit('user-is-typing', username)
         })
+
+
         socket.on('user-watch', userId => {
             logger.info(`user-watch from socket [id: ${socket.id}], on user ${userId}`)
             socket.join('watching:' + userId)
             
         })
+
+
+        //LOGIN-LOGOUT
         socket.on('set-user-socket', userId => {
             logger.info(`Setting socket.userId = ${userId} for socket [id: ${socket.id}]`)
             socket.userId = userId
@@ -55,6 +63,7 @@ function emitTo({ type, data, label }) {
 }
 
 async function emitToUser({ type, data, userId }) {
+    console.log(userId)
     userId = userId.toString()
     const socket = await _getUserSocket(userId)
 

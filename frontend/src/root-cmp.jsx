@@ -14,10 +14,12 @@ import { UI } from './pages/ui'
 import { BookPage } from './pages/book-page'
 import { NewStay } from './pages/new-stay'
 import { WishList } from './pages/wishlist'
+import { UserMsg } from './cmps/user-msg'
 
 export function RootCmp() {
   return (
     <main>
+      <UserMsg />
       <Routes>
         <Route element={<HomePage />} path='/' />
         {/* TODO for development, remove on production */}

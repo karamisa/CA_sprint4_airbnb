@@ -11,8 +11,11 @@ export const SOCKET_EVENT_USER_IS_TYPING = 'user-is-typing'
 
 export const SOCKET_EMIT_USER_WATCH = 'user-watch'
 export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
-export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
-export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
+
+export const SOCKET_EVENT_ORDER_FOR_YOU = 'order-for-you'
+export const SOCKET_EVENT_ORDER_UPDATED = 'order-status-update'
+export const SOCKET_EVENT_NEW_MESSAGE = 'new-order-msg'
+
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

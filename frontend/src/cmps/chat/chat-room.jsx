@@ -39,12 +39,11 @@ export function ChatRoom({ order }) {
         ev.preventDefault()
         try{
         const by = loggedInUser || 'Me'
-        const newMsg = { by, txt: msg.txt }
-        addMsg(newMsg)
+        const newMsg = { by, txt: msg.txt}
+        setMsg({ txt: '' })
         await orderService.addOrderMsg(order._id, newMsg)
         socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
         // for now - we add the msg ourself
-        setMsg({ txt: '' })
         } catch (err) {
             console.log('err', err)
         }

@@ -131,8 +131,10 @@ async function addOrderMsg(orderId, msg) {
     try {
         msg.id = utilService.makeId()
         msg.createdAt = Date.now()
+        delete(msg.to)
         const collection = await dbService.getCollection('order')
         await collection.updateOne({ _id: ObjectId(orderId) }, { $push: { msgs: msg } })
+        return msg
     } catch (err) {
         logger.error(`cannot add order message ${orderId}`, err)
         throw err
@@ -151,11 +153,22 @@ async function removeOrderMsg(orderId, msgId){
     }
 }
 
+async function getById(orderId) {
+    try {
+        const collection = await dbService.getCollection('order')
+        const order = await collection.findOne({ '_id': ObjectId(orderId) })
+        return order
+    } catch (err) {
+        logger.error(`while finding order ${orderId}`, err)
+        throw err
+    }
+}
+
 
 function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.stayId) criteria.stayId = filterBy.stayId
-    if (filterBy.orderId) criteria._id = filterBy.orderId
+    if (filterBy.orderId) criteria._id = ObjectId(filterBy.orderId)
     return criteria
 }
 
@@ -167,5 +180,6 @@ module.exports = {
     update,
     remove,
     addOrderMsg,
-    removeOrderMsg
+    removeOrderMsg,
+    getById
 }

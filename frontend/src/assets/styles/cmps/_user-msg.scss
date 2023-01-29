@@ -1,11 +1,13 @@
 .user-msg {
-    color:white;
+    color:rgb(255, 0, 0);
     padding: 10px;
     font-size: 1.4em;
     position: fixed;
-    top:0;
+    top:50px;
     right:0;
     background-color: grey;
+    z-index: 100000;
+
 }
 .user-msg button {
     float:right;

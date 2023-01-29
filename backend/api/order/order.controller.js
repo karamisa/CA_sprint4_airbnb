@@ -1,10 +1,11 @@
 const logger = require('../../services/logger.service')
 const userService = require('../user/user.service')
 const authService = require('../auth/auth.service')
-// const socketService = require('../../services/socket.service')
+const socketService = require('../../services/socket.service')
 const stayService = require('../stay/stay.service')
 const orderService = require('./order.service')
 const asyncLocalStorage = require('../../services/als.service')
+
 
 async function getOrders(req, res) {
     try {
@@ -24,31 +25,21 @@ async function addOrder(req, res) {
     try {
         //Prepare order for  order.service to save to DB
         var order = req.body
-        // if (order.hostId !== loggedinUser._id){
-            order.buyerId = loggedinUser._id
-            order.msgs = [{
-                by: loggedinUser,
-                txt: 'I would like to book your stay',
-            }
-            ]
-
-        // }
+        order.buyerId = loggedinUser._id
         order = await orderService.add(order)
 
         //Prepare order to be sent back out
-        order.buyer= loggedinUser
+        order.buyer = loggedinUser
         order.stay = await stayService.getById(order.stayId)
         const loginToken = authService.getLoginToken(loggedinUser)
         res.cookie('loginToken', loginToken)
         delete order.buyerId
         delete order.stayId
 
-        // socketService.broadcast({ type: 'order-added', data: order, userId: loggedinUser._id })
-        // socketService.emitToUser({ type: 'order-for-you', data: order, userId: order.hostId })
+        //Send order to host
+        socketService.emitToUser({ type: 'order-for-you', data: order, userId: order.hostId })
 
         const fullUser = await userService.getById(loggedinUser._id)
-
-        // socketService.emitTo({type: 'user-updated', data: fullUser, label: fullUser._id})
         res.json(order)
     } catch (err) {
         logger.error('Failed to add order', err)
@@ -57,10 +48,16 @@ async function addOrder(req, res) {
 }
 
 async function updateOrder(req, res) {
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
     try {
         const order = req.body
         const updatedOrder = await orderService.update(order)
-        console.log(updatedOrder, 'updatedOrder here')
+
+        //Update parties involved
+        const userId = (loggedinUser._id === order.hostId) ? order.buyer._id : order.hostId
+        socketService.emitToUser({ type: 'order-status-update', data: order, userId })
+
         res.json(updatedOrder)
     } catch (err) {
         logger.error('Failed to update order', err)
@@ -84,18 +81,21 @@ async function deleteOrder(req, res) {
 }
 
 async function addOrderMsg(req, res) {
-    const { loggedinUser } = req
+    const store = asyncLocalStorage.getStore()
+    const { loggedinUser } = store
     try {
         const orderId = req.params.id
         const msg = {
             txt: req.body.txt,
-            by: loggedinUser
-          }
-          const savedMsg = await orderService.addOrderMsg(orderId, msg)
-          res.json(savedMsg)
+            by: loggedinUser,
+        }
+        const savedMsg = await orderService.addOrderMsg(orderId, msg)
+        const order = await orderService.getById( orderId )
+        console.log(order)
+        const userId = (loggedinUser._id === order.hostId.toString()) ? order.buyerId : order.hostId
+        console.log(userId)
 
-        // socketService.broadcast({ type: 'order-added', data: order, userId: loggedinUser._id })
-        // socketService.emitToUser({ type: 'order-for-you', data: order, userId: order.hostId })
+        // socketService.emitToUser({ type: 'new-order-msg', data: order, userId: msg.to._id })
         res.json(savedMsg)
     } catch (err) {
         logger.error('Failed to update order', err)
@@ -106,7 +106,7 @@ async function addOrderMsg(req, res) {
 async function removeOrderMsg(req, res) {
     try {
         const orderId = req.params.id
-        const {msgId} = req.params
+        const { msgId } = req.params
 
 
         const removedMsgId = await orderService.removeOrderMsg(orderId, msgId)
