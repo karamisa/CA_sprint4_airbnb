@@ -40,7 +40,7 @@ export function HostMenu() {
       </div>
       <div className='host-menu'>
         <NavLink className='menu-link' to='order'>
-          Order
+          Orders
         </NavLink>
         <NavLink className='menu-link' to='dashboard'>
           Dashboard

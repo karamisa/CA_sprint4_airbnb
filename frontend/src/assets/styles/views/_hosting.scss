@@ -7,7 +7,7 @@
 }
 
 .menu-link {
-  font-size: 14px;
+  font-size: 16px;
   padding: 10px 16px;
   line-height: 18px;
 
@@ -52,12 +52,12 @@
 
     th:nth-child(1),
     td:nth-child(1) {
-      width: 200px;
+      width: 190px;
     }
 
     th:nth-child(2),
     td:nth-child(2) {
-      width: 140px;
+      width: 100px;
     }
     th:nth-child(4),
     td:nth-child(4) {
@@ -68,25 +68,25 @@
       width: 140px;
     }
 
-    .order-status{
-      color:$clr-text-secondary;
+    .order-status {
+      color: $clr-text-secondary;
       // font-style: italic;
       font-family: cereal-medium;
     }
 
-    .action-btns{
+    .action-btns {
       display: flex;
       flex-grow: 1;
-      gap:10px;
+      gap: 10px;
       align-items: center;
       height: 100%;
     }
     button {
       display: flex;
-      flex:1;
+      flex: 1;
     }
 
-    button:first-child{
+    button:first-child {
       color: #28a745;
       background-color: transparent;
       background-image: none;
@@ -99,7 +99,7 @@
       }
     }
 
-    button:last-child{
+    button:last-child {
       color: #dc3545;
       background-color: transparent;
       background-image: none;
