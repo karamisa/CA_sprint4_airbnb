@@ -33,7 +33,11 @@
 @import 'cmps/modal';
 @import 'cmps/dashboard';
 @import 'cmps/login-signup';
+
+// Components- messages
 @import 'cmps/messages-page/msg-preview';
+@import 'cmps/messages-page/msg-order-details';
+@import 'cmps/messages-page/msg-order-list';
 
 // Components- stay index
 @import 'cmps/stay-index/stay-list.scss';

@@ -1,0 +1,72 @@
+.chat-order-details {
+    overflow: hidden;
+    width: 400px;
+
+    .order-img {
+        // min-width: 124px;
+        // width: 100%;
+        width: inherit;
+        max-width: 360px;
+        // min-height: 106px;
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+
+
+        img {
+            object-fit: cover;
+            border-radius: 0.5em;
+            margin-right: 0.8rem;
+            margin-left: 3rem;
+        }
+    }
+
+
+    .order-header {
+        margin: 1rem;
+
+        .chat-stay-type{
+            font-family: "cereal-Book";
+            font-size: 1rem;
+            color: $clr-text-lighter;
+        }
+    }
+
+    .details {
+        margin: 1rem;
+
+        .details-title{
+            font-family: "cereal-Bold";
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+
+        .chat-dates-details{
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+
+            margin-right: 1rem;
+        }
+      
+        .chat-stay-price{
+            justify-content: space-between;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            align-items: center;
+            margin-right: 1rem;
+
+            .details-total{
+                font-family: "cereal-Bold";
+                font-size: 1rem;
+            }
+        }
+    }
+
+
+
+}
