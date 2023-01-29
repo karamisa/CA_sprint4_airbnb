@@ -78,6 +78,7 @@ export function Trip({ order }) {
       <td>
         {order.status === 'pending' && yellowDot}
         {order.status === 'approved' && greenDot}
+        {order.status === 'canceled' && redDot}
         {order.status === 'rejected' && redDot} {order.status}
       </td>
       <td>

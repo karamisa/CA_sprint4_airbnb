@@ -15,7 +15,15 @@
     table-layout: fixed;
     text-align: start;
 
+    tr:nth-child(odd) {
+      background: $clr-white;
+    }
+    tr:nth-child(even) {
+      background: hsl(0, 0%, 95%);
+    }
+
     th {
+      background: hsl(0, 0%, 92%);
       text-align: start;
       font-size: 12px;
       text-transform: uppercase;

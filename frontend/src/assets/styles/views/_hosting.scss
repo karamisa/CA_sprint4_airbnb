@@ -49,6 +49,15 @@
       padding-inline: 0.3em;
       padding-block: 0.2em;
     }
+    tr:nth-child(odd) {
+      background: $clr-white;
+    }
+    tr:nth-child(even) {
+      background: hsl(0, 0%, 95%);
+    }
+    th {
+      background: hsl(0, 0%, 92%);
+    }
 
     th:nth-child(1),
     td:nth-child(1) {
