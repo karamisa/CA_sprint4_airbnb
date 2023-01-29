@@ -29,7 +29,7 @@
     transition: transform 250ms ease;
   }
 
-  @media (min-width: $grid-break-point-2) {
+  @media (min-width: $grid-break-point-3) {
   &:has(.search-bars-open)::after {
     transform: scaleY(3.2);
     border-bottom: none;
@@ -62,7 +62,7 @@
     color: $clr-brand;
     cursor: pointer;
 
-    @media (min-width: $grid-break-point-2) {
+    @media (min-width: $grid-break-point-3) {
       flex: 0 0 150px;
     }
 
@@ -70,7 +70,7 @@
       margin: 0;
       display: none;
 
-      @media (min-width: $grid-break-point-2) {
+      @media (min-width: $grid-break-point-3) {
         display: block;
       }
     }
@@ -95,7 +95,7 @@
 
     }
 
-    @media (min-width: $grid-break-point-2) {
+    @media (min-width: $grid-break-point-3) {
       flex-grow: 1;
       justify-content: center;
 
@@ -119,7 +119,7 @@
   }
 
 
-    @media (min-width: $grid-break-point-2) {
+    @media (min-width: $grid-break-point-3) {
       flex-grow: 0;
 
       &:not(:has(.search-bars-open)) {
@@ -128,7 +128,7 @@
     }
   }
 
-  @media (min-width: $grid-break-point-2) {
+  @media (min-width: $grid-break-point-3) {
     &:has(.search-bars-open) {
       flex-wrap: nowrap;
 

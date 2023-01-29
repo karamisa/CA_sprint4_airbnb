@@ -5,7 +5,12 @@
         opacity: 1;
         visibility: visible;
         transition: transform 250ms ease, opacity 200ms ease 100ms, visibility 0ms 200ms;
-        
+        @media (min-width: $grid-break-point-3) and (max-width: $grid-break-point-4) {
+            min-width: 850px; 
+         position: fixed; 
+         left: 150px;
+        right: 150px;
+        }
     }
 
     .screen-blur {
@@ -13,7 +18,15 @@
         left: 0;
         background-color: rgb(0 0 0 / 25%);
     }
-}
+
+        .search-form {
+            transform: scale(1, 1) translateY(0px);
+            opacity: 1;
+            visibility: visible;
+            transition: transform 250ms ease, opacity 200ms ease 100ms, visibility 0ms 200ms;
+        }
+    }
+
 
 .search-bars .screen-blur {
     bottom: 0;

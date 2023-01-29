@@ -19,9 +19,9 @@ export function Inbox() {
 
 
   function groupOrders() {
-    if (!orders) return
+    if (!orders) return {}
     const groupedOrders = orders.reduce((acc, order) => {
-      const key = order.hostId === loggedInUser._id ? order.buyer._id : order.hostId
+      const key = (order.hostId === loggedInUser._id) ? order.buyer._id : order.hostId
       if (!acc[key]) {
         acc[key] = { msgs:[], orders: [] }
       }
@@ -31,12 +31,9 @@ export function Inbox() {
     }, {})
     for (const key in groupedOrders) {
       groupedOrders[key].msgs.sort((a, b) => a.createdAt - b.createdAt)
-      groupedOrders[key].orders.sort((a, b) => b.createdAt - a.createdAt)
+      groupedOrders[key].orders.sort((a, b) => a.createdAt - b.createdAt)
     }
-    console.log('groupedOrders', groupedOrders)
-    
-    // let sortedOrders = [...groupedOrders]
-    // console.log('sortedOrders', sortedOrders)
+
     return groupedOrders
   }
 
@@ -44,9 +41,9 @@ export function Inbox() {
 
   useEffect(() => {
     loadOrders()
-    // socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
+    socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
     return () => {
-      // socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
+      socketService.off(SOCKET_EVENT_ADD_MSG, addMsg)
     }
   }, [])
 
@@ -104,8 +101,8 @@ export function Inbox() {
   if (!groupedMessages) return <div>No messages yet</div>
   return (
     <section className='inbox-container'>
-      <div className='contacts inbox-column'>
-        <div className='inbox-column-header '>
+      <div className='contacts inbox-column left'>
+        <div className='inbox-column-header'>
           <h2>Messages</h2>
         </div>
         {groupedMessages.map((contact, idx) => (
@@ -131,7 +128,7 @@ export function Inbox() {
           </form>
         </div>
       </div>
-      <div className='stay-info inbox-column'>
+      <div className='stay-info inbox-column right'>
         <div className='inbox-column-header '>
           <h2>Orders</h2>
         </div>
