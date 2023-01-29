@@ -88,6 +88,11 @@
       justify-self: flex-end;
       order: 2;
       flex-basis: 850px;
+
+      .rdrMonth{
+        width: 24rem;
+      }
+
     }
 
     @media (min-width: $grid-break-point-2) {
