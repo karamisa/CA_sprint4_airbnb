@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Formik, Form, Field } from 'formik'
-import Select from 'react-select'
 import * as Yup from 'yup'
 
 import { stayService } from '../services/stay.service.local.js'
@@ -17,8 +16,6 @@ import { mapService } from '../services/map.service.js'
 import { AiFillHome } from 'react-icons/ai'
 import GoogleMapReact from 'google-map-react'
 
-// import video from 'https://stream.media.muscache.com/zFaydEaihX6LP01x8TSCl76WHblb01Z01RrFELxyCXoNek.mp4?v_q=high'
-
 mapService.connectGoogleApi()
 
 export function NewStay() {
@@ -27,11 +24,8 @@ export function NewStay() {
 
   const [stayToEdit, setStayToEdit] = useState(stayService.getEmptyStay())
 
-  const [selectedOptions, setSelectedOptions] = useState()
-
   // steps to create new stay
   const [stepNum, setStepNum] = useState(0)
-
   const navigate = useNavigate()
 
   // step 2
@@ -74,15 +68,7 @@ export function NewStay() {
     setLocation({ lat, lng })
   }
 
-  // function getStayAmenities() {
-  //   //supposed to be on service - but Karam is working on service now.
-
-  //   const amenities = stayService.getAmenitiesList()
-  //   return amenities
-  // }
-
   // step 5
-
   const style = {
     padding: '13px 23px',
     width: '100%',
@@ -103,7 +89,6 @@ export function NewStay() {
   }
 
   function handleSelect(data) {
-    setSelectedOptions(data)
     const amenitiesToSet = data.length ? data.map((i) => i.value) : []
     console.log(amenitiesToSet)
     setStayToEdit((prevStay) => ({ ...prevStay, amenities: amenitiesToSet }))
@@ -112,6 +97,10 @@ export function NewStay() {
   async function onAddStay(ev) {
     console.log('adding stay')
     ev.preventDefault()
+
+    saveStay((prev) => {
+      return { ...prev }
+    })
     try {
       const savedStay = await saveStay(stayToEdit)
       showSuccessMsg(`Stay added (id: ${savedStay._id})`)
@@ -146,17 +135,6 @@ export function NewStay() {
               guests will book the entire place or just a room. Then let us know
               the location and how many guests can stay.
             </p>
-
-            {/* <video
-            src={video}
-            class='_e2l2kr'
-            style={{ objectFit: 'cover' }}
-            crossorigin='anonymous'
-            muted=''
-            playsinline=''
-            preload='auto'
-            autoplay=''
-          /> */}
           </div>
         </div>
       )}

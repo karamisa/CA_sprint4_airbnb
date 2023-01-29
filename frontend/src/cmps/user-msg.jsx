@@ -1,11 +1,12 @@
 import { eventBus, showSuccessMsg } from "../services/event-bus.service.js"
 import { useState, useEffect, useRef } from 'react'
-import { socketService, SOCKET_EVENT_REVIEW_ABOUT_YOU } from "../services/socket.service.js"
+import { socketService, SOCKET_EVENT_NEW_MESSAGE, SOCKET_EVENT_ORDER_FOR_YOU, SOCKET_EVENT_ORDER_UPDATED } from "../services/socket.service.js"
 
 export function UserMsg() {
 
   const [msg, setMsg] = useState(null)
   const timeoutIdRef = useRef()
+  console.log(msg)
 
   useEffect(() => {
     const unsubscribe = eventBus.on('show-msg', (msg) => {
@@ -18,13 +19,25 @@ export function UserMsg() {
       timeoutIdRef.current = setTimeout(closeMsg, 3000)
     })
 
-    socketService.on(SOCKET_EVENT_REVIEW_ABOUT_YOU, (review) => {
-      showSuccessMsg(`New review about me ${review.txt}`)
+    socketService.on(SOCKET_EVENT_ORDER_FOR_YOU, (data) => {
+      console.log(data)
+      showSuccessMsg(`New order about for you`)
     })
+
+    socketService.on(SOCKET_EVENT_NEW_MESSAGE, (data) => {
+      showSuccessMsg(`New message from ${data}`)
+    })
+
+    socketService.on(SOCKET_EVENT_ORDER_UPDATED, (data)=>{
+      showSuccessMsg(`Order status has been updated to ${data.status}`)
+    })
+
+
 
     return () => {
       unsubscribe()
-      socketService.off(SOCKET_EVENT_REVIEW_ABOUT_YOU)
+      socketService.off(SOCKET_EVENT_ORDER_FOR_YOU)
+      socketService.off(SOCKET_EVENT_NEW_MESSAGE)
     }
   }, [])
 

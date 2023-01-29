@@ -1,10 +1,11 @@
 .stayCard {
     width: 100%;
     display: grid;
-    grid-template-columns: 36px auto;
+    grid-template-columns: 50px auto;
     grid-template-rows: 20px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
+    cursor: pointer;
 }
 
 .stayCard span {
@@ -34,7 +35,16 @@
 }
 
 .imgContainer img {
-    height: 36px;
-    width: 36px;
-    border-radius: 3px;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+}
+
+.ellipsis {
+    text-overflow: ellipsis;
+    /* enables ellipsis */
+    white-space: nowrap;
+    /* keeps the text in a single line */
+    overflow: hidden;
+    /* keeps the element from overflowing its parent */
 }

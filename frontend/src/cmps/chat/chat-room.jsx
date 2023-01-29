@@ -36,14 +36,13 @@ export function ChatRoom({ order, loggedInUser }) {
 
     async function sendMsg(ev) {
         ev.preventDefault()
-        try {
-            const by = loggedInUser || 'Me'
-            const newMsg = { by, txt: msg.txt }
-            addMsg(newMsg)
-            await orderService.addOrderMsg(order._id, newMsg)
-            socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
-            // for now - we add the msg ourself
-            setMsg({ txt: '' })
+        try{
+        const by = loggedInUser || 'Me'
+        const newMsg = { by, txt: msg.txt}
+        setMsg({ txt: '' })
+        await orderService.addOrderMsg(order._id, newMsg)
+        socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
+        // for now - we add the msg ourself
         } catch (err) {
             console.log('err', err)
         }

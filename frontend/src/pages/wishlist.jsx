@@ -22,15 +22,13 @@ export function WishList() {
     loadStays({ likedByUserId: user._id })
   }, [])
 
-  function backToList(){
-    loadStays()    
+  function backToList() {
+    loadStays()
     navigate(-1)
   }
 
   return (
-
     <>
-      {/* <AppHeader className='secondary-layout' /> */}
       <header className='app-header main-layout flex'>
         <div className='header-logo-container'>
           <Logo />
@@ -46,7 +44,6 @@ export function WishList() {
             src={arrowLeftImg}
             className='arrow-img'
             alt='arrowLeftImg'
-            // onClick={() => navigate(-1)}
             onClick={() => backToList()}
           />
         </div>
@@ -54,13 +51,10 @@ export function WishList() {
       </header>
       {isLoading && <IndexLoader />}
       {!stays && (
-        <div className='main-layout wish-list'>
-          {' '}
-          Your wishlist is empty{' '}
-        </div>
+        <div className='main-layout wish-list'> Your wishlist is empty </div>
       )}
       {stays && (
-          <WishlistList stays={stays} onToggleLike={onLikeStayOptimistic} />
+        <WishlistList stays={stays} onToggleLike={onLikeStayOptimistic} />
       )}
     </>
   )
