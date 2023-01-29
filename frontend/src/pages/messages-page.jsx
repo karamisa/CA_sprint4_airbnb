@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { ChatOrderDetails } from '../cmps/chat/chat-order-details'
 import { ChatOrderList } from '../cmps/chat/chat-order-list'
 import { ChatRoom } from '../cmps/chat/chat-room'
@@ -13,10 +13,13 @@ export function MessagesPage() {
   const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
   const loggedInUser = useSelector(storeState => storeState.userModule.user)
   const [currOrder, setCurrOrder] = useState(null)
-  console.log('currOrder', currOrder)
+  const notifications = useSelector(storeState => storeState.userModule.notifications)
+  const dispatch=useDispatch()
+  console.log(notifications)
 
   useEffect(() => {
     loadOrders()
+    dispatch({type: 'REMOVE_NOTIFICATIONS' , notificationType: 'msg'})
   }, [])
 
   function onSetCurrOrder(orderId) {

@@ -40,6 +40,13 @@
 
 }
 
+
+@include for-max-narrow-layout{
+  .header-container{
+  padding: 0px 12px;
+  }
+}
+
 .app-header {
   display: flex;
   justify-content: center;
@@ -48,6 +55,8 @@
   // top: 0px;
   width: 100%;
   min-height: $header-height;
+
+
 
 
   &:has(.search-bars-open) {

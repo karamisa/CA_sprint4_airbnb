@@ -35,7 +35,7 @@
 
     }
 
-    .menu-links{
+    .menu-links {
         position: absolute;
         right: 0;
         background: $clr-white;
@@ -48,7 +48,7 @@
 
         @include for-mobile-layout {
             transform: translate(0%, -120%);
-          }
+        }
 
         >* {
             text-decoration: none;
@@ -62,9 +62,30 @@
             padding: 12px 16px;
             min-width: 100%;
         }
-        >*:hover{
+
+        >*:hover {
             background-color: $clr-hover-bg;
         }
-        }
-
     }
+
+    .notificaiton-badge {
+        background-color: $clr-brand;
+        box-shadow: 0 0 0 1.5px $clr-white;
+        color: $clr-white;
+        font-size: rem(10px);
+        font-family: cereal-medium;
+        height: 1rem;
+        min-width: 1rem;
+        line-height: 16px;
+        top: -2px;
+        position: absolute;
+        z-index: 1;
+        left: 100%;
+        margin-left: -14px;
+        border-radius: 500px;
+        padding: 0 0.3125rem;
+        text-align: center;
+    }
+
+
+}

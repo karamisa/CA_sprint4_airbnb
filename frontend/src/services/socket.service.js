@@ -14,7 +14,7 @@ export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
 
 export const SOCKET_EVENT_ORDER_FOR_YOU = 'order-for-you'
 export const SOCKET_EVENT_ORDER_UPDATED = 'order-status-update'
-export const SOCKET_EVENT_NEW_MESSAGE = 'new-order-msg'
+export const SOCKET_EVENT_NEW_MESSAGE = 'new-order-notification'
 
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'

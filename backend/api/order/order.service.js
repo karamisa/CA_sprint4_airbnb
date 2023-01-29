@@ -102,7 +102,7 @@ async function update(order) {
         }
         const collection = await dbService.getCollection('order')
         await collection.updateOne({ _id: ObjectId(order._id) }, { $set: orderToAdd })
-        return order
+        return orderToAdd
     } catch {
         logger.error(`cannot update order ${order._id}`, err)
         throw err
@@ -168,7 +168,7 @@ async function getById(orderId) {
 function _buildCriteria(filterBy) {
     const criteria = {}
     if (filterBy.stayId) criteria.stayId = filterBy.stayId
-    if (filterBy.orderId) criteria._id = ObjectId(filterBy.orderId)
+    // if (filterBy.orderId) criteria._id = ObjectId(filterBy.orderId)
     return criteria
 }
 

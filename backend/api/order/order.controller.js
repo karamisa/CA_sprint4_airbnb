@@ -9,7 +9,6 @@ const asyncLocalStorage = require('../../services/als.service')
 
 async function getOrders(req, res) {
     try {
-        console.log('req.query', req.query)
         const orders = await orderService.query(req.query)
         res.send(orders)
     } catch (err) {
@@ -52,11 +51,23 @@ async function updateOrder(req, res) {
     const { loggedinUser } = store
     try {
         const order = req.body
+        // console.log(order, 'order')
         const updatedOrder = await orderService.update(order)
+        console.log(updatedOrder.buyerId, 'updatedOrder')
+
 
         //Update parties involved
-        const userId = (loggedinUser._id === order.hostId) ? order.buyer._id : order.hostId
-        socketService.emitToUser({ type: 'order-status-update', data: order, userId })
+        let otherPartyId;
+        if (order.buyer._id === loggedinUser._id) {
+            otherPartyId = updatedOrder.hostId;
+        } else {
+            otherPartyId = updatedOrder.buyerId;
+        }
+        // console.log(order)
+        // console.log(order._id)
+        console.log('other party:' + otherPartyId)
+        console.log('loggedinUser:' + loggedinUser._id)
+        socketService.emitToUser({ type: 'order-status-update', data: updatedOrder, userId: otherPartyId })
 
         res.json(updatedOrder)
     } catch (err) {
@@ -90,12 +101,7 @@ async function addOrderMsg(req, res) {
             by: loggedinUser,
         }
         const savedMsg = await orderService.addOrderMsg(orderId, msg)
-        const order = await orderService.getById( orderId )
-        console.log(order)
-        const userId = (loggedinUser._id === order.hostId.toString()) ? order.buyerId : order.hostId
-        console.log(userId)
-
-        // socketService.emitToUser({ type: 'new-order-msg', data: order, userId: msg.to._id })
+        const order = await orderService.getById(orderId)
         res.json(savedMsg)
     } catch (err) {
         logger.error('Failed to update order', err)

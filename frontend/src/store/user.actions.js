@@ -8,6 +8,7 @@ import {
   SET_USER,
   SET_USERS,
   SET_WATCHED_USER,
+  CLEAR_NOTIFICATIONS,
 } from './user.reducer.js'
 
 
@@ -83,6 +84,9 @@ export async function logout() {
     store.dispatch({
       type: SET_USER,
       user: null,
+    })
+    store.dispatch({
+      type: CLEAR_NOTIFICATIONS
     })
   } catch (err) {
     console.log('Cannot logout', err)

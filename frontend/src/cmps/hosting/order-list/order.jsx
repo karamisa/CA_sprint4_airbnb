@@ -40,10 +40,6 @@ const yellowDot = (
 export function Order({ order }) {
   function onUpdateOrderStatus(status) {
     updateOrder({ ...order, status })
-    orderService.addOrderMsg(order._id, {
-      txt: `Your order has been ${status}`,
-      by: 'host',
-    })
   }
 
   const startDate = new Date(order.startDate)

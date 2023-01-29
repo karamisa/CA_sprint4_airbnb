@@ -12,12 +12,21 @@
     margin-bottom: rem(7px);
 
     @include for-max-narrow-layout {
-      font-size: em(20px, 16px);
+      &:not(.secondary-title) {
+        font-size: em(20px, 16px);
+        padding: 0px 12px;
+      }
     }
   }
 
   .stay-title-subheader {
     margin-top: rem(4px);
+    @include for-max-narrow-layout {
+      padding: 0px 12px;
+    }
+  
+
+
   }
 
   .name-subtitle {

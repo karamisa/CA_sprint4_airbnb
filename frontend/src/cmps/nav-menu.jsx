@@ -13,6 +13,8 @@ import { NavHamburger } from './ui/nav-hamburger'
 export function NavMenu() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
+  const notifications = useSelector((storeState) => storeState.userModule.notifications)
+  console.log(notifications)
 
   async function onLogout() {
     try {
@@ -45,6 +47,7 @@ export function NavMenu() {
     <>
       <Modal />
       <nav className='nav-menu' onClick={handleToggle} ref={elNav}>
+        {(notifications.length>0) && <div className='notificaiton-badge'>{notifications.length}</div>}
         <div className='menu-btn'>
           <NavHamburger />
           <div className='menu-avatar'>
