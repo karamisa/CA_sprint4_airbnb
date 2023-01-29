@@ -21,28 +21,28 @@
       text-transform: uppercase;
       font-family: cereal-Bold;
       color: $clr-text-secondary;
+      padding-inline: 0.5em;
+      padding-block: 0.8em;
     }
 
     td {
-      padding-inline: 0.3em;
+      padding-inline: 0.5em;
       padding-block: 0.2em;
     }
 
-    th:nth-child(2),
-    td:nth-child(2) {
-      width: 140px;
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 120px;
     }
     th:nth-child(4),
     td:nth-child(4) {
-      width: 90px;
+      width: 120px;
     }
     th:nth-child(5),
     td:nth-child(5) {
       width: 140px;
-    }
-
-    button {
-      margin-inline: 0.2em;
+      color: hsl(0deg, 0%, 44%);
+      font-family: cereal-medium;
     }
   }
 }

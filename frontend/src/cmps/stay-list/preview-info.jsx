@@ -22,10 +22,3 @@ export function PreviewInfo({ info }) {
     </>
   )
 }
-
-//  {
-//    ;/stay$/.test(url.pathname) && <PreviewInfo info={info} />
-//  }
-//  {
-//    ;/wishlist$/.test(url.pathname) && <PreviewInfo info={info} />
-//  }
