@@ -48,7 +48,7 @@ export function MessagesPage() {
         {/* Column 1 - Orders List/Select */}
         <div className="inbox-column orders-list">
           <div className="inbox-header">
-            <h2>Orders</h2>
+            <h2>All orders</h2>
           </div>
           {isLoading && <div>Loading...</div>}
           {!isLoading &&

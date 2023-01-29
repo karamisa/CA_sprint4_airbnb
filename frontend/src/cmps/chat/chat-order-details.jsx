@@ -8,7 +8,7 @@ export function ChatOrderDetails({ currOrder }) {
 
     return (
 
-        <div className="chat-order-details">
+        <div className="msg-order-details">
             <div className="order-img flex">
                 <img src={currOrder.stay.imgUrls[0]} alt="orderImg" />
             </div>

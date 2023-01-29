@@ -6,7 +6,7 @@ import { utilService } from "../../services/util.service"
 import { socketService, SOCKET_EMIT_SEND_MSG, SOCKET_EVENT_ADD_MSG, SOCKET_EMIT_SET_TOPIC, SOCKET_EMIT_USER_IS_TYPING, SOCKET_EVENT_USER_IS_TYPING } from '../../services/socket.service'
 
 export function ChatRoom({ order, loggedInUser }) {
-    console.log(order)
+    // console.log(order)
     const [msg, setMsg] = useState({ txt: '' })
     const [msgs, setMsgs] = useState([])
     const [typingUser, setTypingUser] = useState()
@@ -16,6 +16,7 @@ export function ChatRoom({ order, loggedInUser }) {
     useEffect(() => {
         if (!order) return
         setMsgs([...order.msgs])
+        scrollToBottom(chatRoomRef.current)
         socketService.emit(SOCKET_EMIT_SET_TOPIC, order._id)
         socketService.on(SOCKET_EVENT_USER_IS_TYPING, onSetTypingUser)
         socketService.on(SOCKET_EVENT_ADD_MSG, addMsg)
@@ -31,18 +32,19 @@ export function ChatRoom({ order, loggedInUser }) {
     function onSetTypingUser(fullname) {
         setTypingUser(fullname)
         //need to add a debounce. (not quite debounce but same concept)
-        setTimeout(() => setTypingUser(null), 1000)
+        setTimeout(() => setTypingUser(null), 1500)
     }
 
     async function sendMsg(ev) {
         ev.preventDefault()
-        try{
-        const by = loggedInUser || 'Me'
-        const newMsg = { by, txt: msg.txt}
-        setMsg({ txt: '' })
-        await orderService.addOrderMsg(order._id, newMsg)
-        socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
-        // for now - we add the msg ourself
+        scrollToBottom(chatRoomRef.current)
+        try {
+            const by = loggedInUser || 'Me'
+            const newMsg = { by, txt: msg.txt }
+            setMsg({ txt: '' })
+            await orderService.addOrderMsg(order._id, newMsg)
+            socketService.emit(SOCKET_EMIT_SEND_MSG, newMsg)
+            // for now - we add the msg ourself
         } catch (err) {
             console.log('err', err)
         }
@@ -55,24 +57,35 @@ export function ChatRoom({ order, loggedInUser }) {
         socketService.emit(SOCKET_EMIT_USER_IS_TYPING, loggedInUser?.fullname || 'guest')
     }
 
+
+    const chatRoomRef = React.createRef();
+    function scrollToBottom(chatRoomRef) {
+        chatRoomRef.scroll({ top: (chatRoomRef.scrollHeight - 100), behavior: 'smooth' })
+        console.log(chatRoomRef.scrollHeight )
+        console.log(chatRoomRef.scrollHeight - 100)
+      }
+
     return (<>
-        <section className="chat-room">
+        <section className="chat-room" ref={chatRoomRef}>
             {msgs.map((msg, idx) => (<div key={idx} className={`${loggedInUser?.fullname === msg.by.fullname ? 'outgoing-msg' : 'incoming-msg'}`}>
                 <div className="msg-full">
                     <div className="msg-avatar">
                         <img src={msg.by.imgUrl} alt={'avatar'} className="mini-user-img" />
                     </div>
-                    <div className="msg-name flex justify-between">
-                        <span>{msg.by.fullname}</span>{msg.createdAt && <span className="msg-name-date">{utilService.formattedDate(msg.createdAt)}</span>}
+                    <div className="msg-content">
+                        <div className="msg-name flex justify-between">
+                            <span>{msg.by.fullname}</span>{msg.createdAt && <span className="msg-name-date">{utilService.formattedDate(msg.createdAt)}</span>}
+                        </div>
+                        <div className="msg-txt">{msg?.txt}</div>
                     </div>
-                    <div className="msg-txt">{msg?.txt}</div>
                 </div>
             </div>))}
 
             {typingUser && <p>{typingUser} is typing...</p>}
 
-                    </section>
-            <div className='chat-input'>
+        </section>
+        <div className='chat-input'>
+            <div className="chat-form">
                 <form onSubmit={sendMsg} className="chat-input-form flex">
                     <input
                         type="text" value={msg.txt} onChange={handleFormChange}
@@ -83,8 +96,9 @@ export function ChatRoom({ order, loggedInUser }) {
                                 fill='currentcolor'></path>
                         </svg>
                     </button>
-                   </form>
+                </form>
             </div>
-            </>
+        </div>
+    </>
     )
 }
