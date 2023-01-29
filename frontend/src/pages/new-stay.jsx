@@ -74,13 +74,26 @@ export function NewStay() {
     setLocation({ lat, lng })
   }
 
-  function getStayAmenities() {
-    //supposed to be on service - but Karam is working on service now.
+  // function getStayAmenities() {
+  //   //supposed to be on service - but Karam is working on service now.
 
-    const amenities = stayService.getAmenitiesList()
-    return amenities
+  //   const amenities = stayService.getAmenitiesList()
+  //   return amenities
+  // }
+
+  // step 5
+
+  const style = {
+    padding: '13px 23px',
+    width: '100%',
+    backgroundColor: '#FFFFFF',
+    borderColor: 'hsl(0, 0%, 87%)',
+    borderRadius: '8px',
+    borderWidth: '1px',
+    borderStyle: 'solid',
+    color: 'hsl(0, 0%, 44%)',
+    fontSize: '16px',
   }
-
   function handleChange({ target }) {
     let { value, name: field, type } = target
     value = type === 'number' ? +value : value
@@ -232,8 +245,57 @@ export function NewStay() {
 
       {stepNum === 4 && (
         <div className='new-stay-form step-5'>
-          <h1>Confirm your address</h1>
-          <div className='container'></div>
+          <h1>Make your place stand out</h1>
+          <div className='container'>
+            <Formik
+              initialValues={{
+                name: 'Amazing apartments',
+                price: '200',
+              }}
+              validationSchema={SignupSchema}>
+              {({ errors, touched }) => (
+                <Form className='edit-form' onSubmit={onAddStay}>
+                  <h2>Title</h2>
+                  <Field
+                    style={style}
+                    name='name'
+                    id='name'
+                    value={stayToEdit.name}
+                    onChange={handleChange}
+                    placeholder='Title'
+                  />
+                  {errors.name && touched.name ? (
+                    <span>{errors.name}</span>
+                  ) : null}
+                  <Field
+                    style={style}
+                    name='summary'
+                    id='summary'
+                    value={stayToEdit.summary}
+                    onChange={handleChange}
+                    placeholder='Description'
+                  />
+                  {errors.summary && touched.summary ? (
+                    <span>{errors.summary}</span>
+                  ) : null}
+                  <h2>Stay price:</h2>
+                  <Field
+                    style={style}
+                    name='price'
+                    id='price'
+                    value={stayToEdit.price}
+                    onChange={handleChange}
+                    placeholder='Price'
+                  />
+                  {errors.price && touched.price ? (
+                    <div>{errors.price}</div>
+                  ) : null}
+
+                  {/* <button>Save Stay</button> */}
+                </Form>
+              )}
+            </Formik>
+          </div>
         </div>
       )}
 
