@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router'
 
 import { UserDetails } from './pages/user-details'
 import { HomePage } from './pages/home-page.jsx'
-import { ChatApp } from './pages/chat-app.jsx'
+import { MessagesPage } from './pages/messages-page.jsx'
 import { StayIndex } from './pages/stay-index.jsx'
 import { StayDetails } from './pages/stay-details.jsx'
 import { Hosting } from './pages/hosting.jsx'
@@ -32,7 +32,7 @@ export function RootCmp() {
           <Route element={<OrderPage />} path='/hosting/order' />
           <Route element={<DashboardPage />} path='/hosting/dashboard' />
         </Route>
-        <Route element={<ChatApp />} path='/user/inbox' />
+        <Route element={<MessagesPage />} path='/user/inbox' />
         <Route element={<UserDetails />} path='user/:id' />
       </Routes>
     </main>

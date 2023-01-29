@@ -29,6 +29,9 @@ function setupSocketAPI(http) {
             // emits only to sockets in the same room
             gIo.to(socket.myTopic).emit('chat-add-msg', msg)
         })
+        socket.on('set-user-is-typing', username => {
+            socket.broadcast.to(socket.myTopic).emit('user-is-typing', username)
+        })
         socket.on('user-watch', userId => {
             logger.info(`user-watch from socket [id: ${socket.id}], on user ${userId}`)
             socket.join('watching:' + userId)
