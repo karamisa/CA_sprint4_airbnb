@@ -1,10 +1,10 @@
 import { useRef, useEffect } from 'react'
 
-export function AutoComplete() {
+export function AutoComplete({ handleClick }) {
   const autoCompleteRef = useRef()
   const inputRef = useRef()
   const options = {
-    componentRestrictions: {},
+    componentRestrictions: { country: [] },
     fields: ['address_components', 'geometry', 'icon', 'name'],
     types: ['establishment'],
   }
@@ -16,14 +16,20 @@ export function AutoComplete() {
 
     autoCompleteRef.current.addListener('place_changed', async function () {
       const place = await autoCompleteRef.current.getPlace()
-      console.log({ place })
+      const lat = place.geometry.location.lat()
+      const lng = place.geometry.location.lng()
+      const loc = { lat, lng }
+
+      // console.log('loc', loc)
+      handleClick(loc)
     })
   }, [])
 
   return (
-    <div>
-      <label>enter address :</label>
-      <input ref={inputRef} />
-    </div>
+    <input
+      placeholder='Enter address '
+      className='locationInput'
+      ref={inputRef}
+    />
   )
 }

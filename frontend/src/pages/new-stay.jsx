@@ -14,6 +14,8 @@ import { BtnCard } from '../cmps/ui/buttons/btn-card.jsx'
 import { BtnCardLg } from '../cmps/ui/buttons/btn-card-lg.jsx'
 import { AutoComplete } from '../cmps/auto-complete.jsx'
 import { mapService } from '../services/map.service.js'
+import { AiFillHome } from 'react-icons/ai'
+import GoogleMapReact from 'google-map-react'
 
 // import video from 'https://stream.media.muscache.com/zFaydEaihX6LP01x8TSCl76WHblb01Z01RrFELxyCXoNek.mp4?v_q=high'
 
@@ -42,6 +44,34 @@ export function NewStay() {
   const [selectedType, setSelectedType] = useState(null)
   function onSelectType(type) {
     setSelectedType(type)
+  }
+
+  //step 4
+  const [location, setLocation] = useState({})
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocation({
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        })
+      },
+      (error) => {
+        console.log(error)
+      }
+    )
+  }, [])
+
+  const zoom = 11
+
+  const Popper = () => (
+    <div className='map-popper'>
+      <AiFillHome />
+      <div className='popper-wedge'></div>
+    </div>
+  )
+  const handleClick = ({ lat, lng }) => {
+    setLocation({ lat, lng })
   }
 
   function getStayAmenities() {
@@ -178,7 +208,32 @@ export function NewStay() {
       {stepNum === 3 && (
         <div className='new-stay-form step-4'>
           <h1>Where's your place located?</h1>
-          <AutoComplete />
+          <AutoComplete handleClick={handleClick} />
+
+          <div style={{ height: '480px', width: '480px' }}>
+            <GoogleMapReact
+              onClick={handleClick}
+              yesIWantToUseGoogleMapApiInternals
+              bootstrapURLKeys={{
+                key: 'AIzaSyBiiIc69TQVyevWG707rsniMhcnFEgSok8',
+              }}
+              defaultCenter={location}
+              center={location}
+              defaultZoom={zoom}>
+              <Popper
+                lat={location.lat}
+                lng={location.lng}
+                onClick={() => {}}
+              />
+            </GoogleMapReact>
+          </div>
+        </div>
+      )}
+
+      {stepNum === 4 && (
+        <div className='new-stay-form step-5'>
+          <h1>Confirm your address</h1>
+          <div className='container'></div>
         </div>
       )}
 

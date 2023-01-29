@@ -1,8 +1,6 @@
 import classes from './progress-bar.module.css'
 
-export function ProgressBar(props) {
-  const { currStep, numSteps } = props
-
+export function ProgressBar({ currStep, numSteps, ...props }) {
   const style = {
     gridTemplateColumns: `repeat(${numSteps}, 1fr)`,
   }

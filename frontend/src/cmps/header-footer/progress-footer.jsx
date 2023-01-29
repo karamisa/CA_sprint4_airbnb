@@ -5,7 +5,7 @@ import { ProgressBar } from '../ui/progress-bar/progress-bar'
 export function ProgressFooter({ currStep, setStepNum, ...props }) {
   return (
     <div className='progress-footer'>
-      <ProgressBar currStep={currStep} numSteps={5} />
+      <ProgressBar currStep={currStep} numSteps={6} />
       <div className='nav  main-layout full'>
         <BtnLink
           onClick={() => {
@@ -21,7 +21,7 @@ export function ProgressFooter({ currStep, setStepNum, ...props }) {
           onClick={() => {
             setStepNum((prev) => {
               prev++
-              console.log('prev:', prev)
+              // console.log('prev:', prev)
               return Math.min(prev, 4)
             })
           }}>
