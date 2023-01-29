@@ -5,6 +5,7 @@
     grid-template-rows: 20px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
+    cursor: pointer;
 }
 
 .name {
