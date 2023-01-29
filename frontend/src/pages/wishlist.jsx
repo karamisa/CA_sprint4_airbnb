@@ -22,6 +22,10 @@ export function WishList() {
     loadStays({ likedByUserId: user._id })
   }, [])
 
+  function backToList(){
+    loadStays()    
+    navigate(-1)
+  }
 
   return (
 
@@ -42,7 +46,8 @@ export function WishList() {
             src={arrowLeftImg}
             className='arrow-img'
             alt='arrowLeftImg'
-            onClick={() => navigate(-1)}
+            // onClick={() => navigate(-1)}
+            onClick={() => backToList()}
           />
         </div>
         <div>{<h2>Wishlist</h2>}</div>
