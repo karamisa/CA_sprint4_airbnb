@@ -29,4 +29,10 @@
     }
   }
 
+
+  .footer-names{
+    @include for-mobile-layout {
+      display: none;
+    }
+  }
 }
