@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-
+//MAEKE using intersection observer convenian in react
 export default function useOnScreen(ref, rootMargin = "0px" ) {
   const [isVisible, setIsVisible] = useState(true)
 

@@ -5,6 +5,7 @@ import guest from '../assets/img/guest.svg'
 import useClickOutside from '../customHooks/useClickOutside'
 import { useModal } from '../customHooks/useModal'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
+import { stayService } from '../services/stay.service'
 import { logout } from '../store/user.actions'
 import { LoginSignup } from './login-signup'
 import { NavHamburger } from './ui/nav-hamburger'
@@ -24,7 +25,8 @@ export function NavMenu() {
   }
 
   function onAddStay() {
-    navigate('/stay/edit')
+    navigate('/new-stay')
+    // stayService.addDemoStay()
   }
 
   const [navbarOpen, setNavbarOpen] = useState(false)
@@ -66,8 +68,8 @@ export function NavMenu() {
           ) : (
             <div className='menu-links'>
               <Link to='/trip'>Trips</Link>
-              <Link to='/wishlist'>My Wish List</Link>
-              <Link to='/user/inbox'>Messages (coming soon)</Link>
+              <Link to='/wishlist'>Wishlist</Link>
+              <Link to='/user/inbox'>Messages (beta)</Link>
               {user.isOwner && (
                 <Link to='/hosting/order'>View Orders (host)</Link>
               )}

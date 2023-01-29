@@ -23,7 +23,7 @@ export function Inbox() {
     const groupedOrders = orders.reduce((acc, order) => {
       const key = (order.hostId === loggedInUser._id) ? order.buyer._id : order.hostId
       if (!acc[key]) {
-        acc[key] = { msgs:[], orders: [] }
+        acc[key] = { msgs: [], orders: [] }
       }
       acc[key].orders.push(order)
       acc[key].msgs.push(...order.msgs)
@@ -116,8 +116,21 @@ export function Inbox() {
         <div className='inbox-column-header '>
           <h2>From Name</h2>
         </div>
-       {!!contact && <div className='chat-msgs'>
-          {contact.msgs.map((msg, idx) => (<li key={idx}>{msg.by.fullname}: {msg.txt}</li>))}
+        {!!contact && <div className='chat-msgs'>
+          {/* {contact.msgs.map((msg, idx) => (<li key={idx}>{msg.by.fullname}: {msg.txt}</li>))} */}
+          {contact.msgs.map((msg, idx) => (<div key={idx}>
+            <div className="msg-full">
+              <div className="msg-avatar">
+                <img src={msg.by.imgUrl} alt={'avatar'} className="mini-user-img" />
+              </div>
+              <div className="msg-name">
+                <div>{msg.by.fullname}</div>
+                {/* <div>{msg?.createdAt}</div> */}
+                </div>
+              <div className="msg-txt">{msg?.txt}</div>
+            </div>
+          </div>))}
+
         </div>}
         <div className='chat-input'>
           <form onSubmit={sendMsg}>
@@ -141,7 +154,9 @@ export function Inbox() {
                 <p>Check out: {new Date(order.endDate).toLocaleDateString()}</p>
                 <p>Price: {order.totalPrice}</p>
               </div>
-            )}})}
+            )
+          }
+        })}
 
       </div>
     </section>

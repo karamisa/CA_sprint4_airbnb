@@ -182,7 +182,8 @@ export function StayDetails() {
             <h1>Where you'll be</h1>
             <StayMap stay={stay} />
             <h3 className="stay-location-name">{stay.loc.country}, {stay.loc.city}</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde iusto ratione modi, reiciendis cupiditate, ex quisquam quo doloribus non pariatur adipisci consequuntur sed hic, ipsam fugit numquam nisi accusamus suscipit.</p>
+            <p>Lexington, Kentucky is the second-largest city in Kentucky next to Louisville, and is located in the heart of the Bluegrass region. Lexington is known as the "Horse Capital of the World," since it is home to the Kentucky Horse Park, Keeneland race course and the Red Mile race course.
+</p>
           </div>
               <div className='stay-about-host'>
                 <BtnSquare className='rev-btn contact host'>contact host</BtnSquare>

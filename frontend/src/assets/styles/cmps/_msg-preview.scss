@@ -42,3 +42,40 @@
       -webkit-box-orient: vertical;
     }
   }
+
+  .msg-full {
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+      "avatar name"
+      "avatar msg";
+    column-gap: 10px;
+    // height: 150px;
+    margin-bottom: 20px;
+    cursor: pointer;
+
+
+
+
+
+    .msg-avatar {
+      grid-area: avatar;
+      align-self: flex-start;
+      img{
+        border: 1px solid $clr-border;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .msg-name {
+      grid-area: name;
+      font-family: cereal-book;
+      
+    }
+
+    .msg-txt {
+      grid-area: msg;
+    }
+  }

@@ -9,6 +9,7 @@ import { GuestSelect } from "./guest-select.jsx"
 import { SearchFormNav } from "./search-form-nav.jsx"
 
 import { utilService } from "../../services/util.service"
+import { loadStays } from '../../store/stay/stay.action'
 
 export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSelectedTab }) {
     const navigate = useNavigate()
@@ -52,7 +53,9 @@ export function SearchForm({ staySearchParams, handleToggle, selectedTab, setSel
         }
         const searchParams = utilService.objectToSearchParams(searchObject)
         navigate(`/stay?${searchParams}`)
+        loadStays(searchObject)
         handleToggle()
+
     }
 
     const checkInSubHeading = (fields.checkIn) ? `${utilService.formattedDate(fields.checkIn)}` : 'Add dates'

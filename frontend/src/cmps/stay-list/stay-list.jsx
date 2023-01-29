@@ -28,7 +28,7 @@ export function StayList({ stays }) {
               key={stay._id}
               onClick={() => handleClick(stay._id)}
               className='stay-list-item'>
-              <StayPreview stay={stay} openModal={openModal} />
+              <StayPreview stay={stay} openModal={openModal}/>
             </li>
           )
         })}

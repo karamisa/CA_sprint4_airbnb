@@ -26,6 +26,12 @@ async function addOrder(req, res) {
         var order = req.body
         // if (order.hostId !== loggedinUser._id){
             order.buyerId = loggedinUser._id
+            order.msgs = [{
+                by: loggedinUser,
+                txt: 'I would like to book your stay',
+            }
+            ]
+
         // }
         order = await orderService.add(order)
 

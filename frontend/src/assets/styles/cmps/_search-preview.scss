@@ -22,6 +22,10 @@
     cursor: pointer;
     transition: transform 250ms ease, opacity 200ms ease 100ms,visibility 0ms 200ms;
 
+    white-space: nowrap;
+
+
+
     &:has(.start-your-search){
         min-width: 300px;
     }

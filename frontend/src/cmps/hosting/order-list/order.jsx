@@ -1,4 +1,5 @@
 // import { useOrderStatus } from '../../../customHooks/useOrderStatus'
+import { orderService } from '../../../services/order.service'
 import { updateOrder } from '../../../store/order.action'
 import { BtnSquare } from '../../ui/buttons/btn-square'
 import { GuestCard } from '../../ui/cards/guest-card'
@@ -11,6 +12,8 @@ export function Order({ order }) {
 
   function onUpdateOrderStatus(status){
     updateOrder({...order, status})
+    orderService.addOrderMsg(order._id, {txt: `Your order has been ${status}`, by: 'host' })
+    
   }
 
   if (!order) return

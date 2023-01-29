@@ -5,12 +5,12 @@
         opacity: 1;
         visibility: visible;
         transition: transform 250ms ease, opacity 200ms ease 100ms, visibility 0ms 200ms;
-        @media (min-width: $grid-break-point-3) and (max-width: $grid-break-point-4) {
-            min-width: 850px; 
-         position: fixed; 
-         left: 150px;
-        right: 150px;
-        }
+        // @media (min-width: $grid-break-point-3) and (max-width: $grid-break-point-4) {
+        //     min-width: 850px; 
+        //  position: fixed; 
+        //  left: 150px;
+        // right: 150px;
+        // }
     }
 
     .screen-blur {

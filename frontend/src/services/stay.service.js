@@ -8,17 +8,20 @@ export const stayService = {
     getEmptyStay,
     getAmenitiesList,
     addStayLike,
-    removeStayLike
+    removeStayLike,
+    addDemoStay,
 }
+
+window.us=stayService
 
 async function query(filterBy) {
     //can you not put the filterBy in the body?
-    var queryStr = (!filterBy) ? '' : `?txt=${filterBy.txt || ''}&likedByUserId=${filterBy.likedByUserId || ''}`
-    return await httpService.get(`stay${queryStr}` )
+    var queryStr = (!filterBy) ? '' : `?location=${filterBy.location || ''}&likedByUserId=${filterBy.likedByUserId || ''}`
+    return await httpService.get(`stay${queryStr}`)
 }
 
 async function getById(stayId) {
-    const stay= await httpService.get(`stay/${stayId}`)
+    const stay = await httpService.get(`stay/${stayId}`)
     return stay
 }
 
@@ -40,6 +43,107 @@ async function addStayLike(stayId) {
 
 async function removeStayLike(stayId) {
     return await httpService.delete(`stay/${stayId}/like`)
+}
+
+async function addDemoStay() {
+    const stay = {
+        name: 'Karam house',
+        type: 'Entire home/apt',
+        imgUrls: [],
+        price: '82',
+        summary: 'my lovely home in kentucky',
+        capacity: 8,
+        amenities: [
+            'Air conditioning',
+            'Balcony',
+            'Beachfront',
+            'Bed linens',
+            'Blender',
+            'Board Games',
+            'Body soap',
+            'Building staff',
+            'Carbon monoxide detector',
+            'City skyline view',
+            'Cleaning products',
+            'Coffee maker',
+            'Cooking basics',
+            'Crib',
+            'Dining table',
+            'Dishes and silverware',
+            'Dishwasher',
+            'Doorman',
+            'Dryer',
+            'Elevator',
+            'Essentials',
+            'Ethernet connection',
+            'Extra pillows and blankets',
+            'Fire extinguisher',
+            'Fire pit',
+        ],
+        host: {
+            _id: '63d62b81c0c8ec5374e792e2',
+            fullname: 'Karam Isa',
+            imgUrl: 'https://res.cloudinary.com/dcwibf9o5/image/upload/v1674980219/urc6qtltxigniiymlblg.jpg'
+        },
+        reviews: [
+            {
+                id: 'nsL4nL',
+                txt: "We spent a great week at Patty and Peter's place. The place was exactly as shown in the pictures, very comfortable, nice view, with all amenities. The resort is great with several pools, a long beach, many restaurants, and of course a lot of great activities all around.",
+                rate: {
+                    cleanliness: 4.9,
+                    communication: 4.7,
+                    'check-in': 4.8,
+                    accuracy: 4.7,
+                    location: 4.6,
+                    value: 4.8,
+                },
+                by: {
+                    _id: '622f3404e36c59e6164fb4af',
+                    fullname: 'Samy',
+                    imgUrl:
+                        'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/56.jpg',
+                },
+            },
+            {
+                id: 'H1g9Cu',
+                txt: 'This place was perfect for my family. We had plenty of room to spread out and the service could not have been any better',
+                rate: {
+                    cleanliness: 4.9,
+                    communication: 4.7,
+                    'check-in': 4.8,
+                    accuracy: 4.7,
+                    location: 4.6,
+                    value: 4.8,
+                },
+                by: {
+                    _id: '622f3405e36c59e6164fb87b',
+                    fullname: 'Breanne',
+                    imgUrl:
+                        'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/female/74.jpg',
+                },
+            },
+            {
+                id: 'Wa8uuP',
+                txt: 'We love Westin Kaanapalli',
+                rate: {
+                    cleanliness: 4.6,
+                    communication: 4.5,
+                    'check-in': 4.9,
+                    accuracy: 4.9,
+                    location: 4.8,
+                    value: 4.5,
+                },
+                by: {
+                    _id: '622f3405e36c59e6164fb713',
+                    fullname: 'Kimberly',
+                    imgUrl:
+                        'https://res.cloudinary.com/dgzyxjapv/image/upload/v1670246635/stayby/avatars/male/4.jpg',
+                },
+            },
+        ],
+        likedByUsers: []
+    }
+    return await httpService.post(`stay`, stay)
 }
 
 
