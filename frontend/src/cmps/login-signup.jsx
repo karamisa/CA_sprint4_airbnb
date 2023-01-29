@@ -56,7 +56,8 @@ export function LoginSignup({ closeModal }) {
     if (ev) ev.preventDefault()
     if (!credentials.username || !credentials.password || !credentials.fullname)
       return
-    onSignup(credentials)
+      if (!credentials.imgUrl) {credentials.imgUrl='https://robohash.org/mat.png?size=50x50&set=set1'}
+    signup(credentials)
     clearState()
   }
 

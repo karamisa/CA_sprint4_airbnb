@@ -1,7 +1,7 @@
+import { TableLoader } from '../ui/table-loader'
 import { Trip } from './trip'
 
-export function TripList({ orders }) {
-  if (!orders) return <div></div>
+export function TripList({ orders, isLoading }) {
   return (
     <div>
       <table>
@@ -16,7 +16,8 @@ export function TripList({ orders }) {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+        {isLoading && <TableLoader />}
+        {!isLoading && orders.map((order) => (
             <tr key={order._id}>
               <Trip order={order} />
             </tr>

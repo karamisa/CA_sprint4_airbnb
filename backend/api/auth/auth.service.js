@@ -27,7 +27,7 @@ async function login(username, password) {
 }
    
 
-async function signup({username, password, fullname, imgUrl}) {
+async function signup({username, password, fullname, imgUrl= "https://robohash.org/vitaequovelit.png?size=50x50&set=set1"}) {
     const saltRounds = 10
 
     logger.debug(`auth.service - signup with username: ${username}, fullname: ${fullname}`)

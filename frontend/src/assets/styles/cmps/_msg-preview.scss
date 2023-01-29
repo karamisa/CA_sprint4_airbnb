@@ -1,0 +1,44 @@
+.msg-preview {
+    display: grid;
+    padding: 2rem 1rem;
+    grid-template-columns: 60px auto;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+      "avatar name"
+      "avatar msg";
+    column-gap: 10px;
+    height: 150px;
+    cursor: pointer;
+    border-bottom: 1px solid $clr-border;
+    &:hover {
+      background-color:$clr-hover-bg;
+    }
+
+
+
+
+    .msg-avatar {
+      grid-area: avatar;
+      align-self: center;
+      img{
+        border: 1px solid $clr-border;
+        height: 100%;
+        width: 100%;
+      }
+    }
+
+    .msg-name {
+      grid-area: name;
+      font-family: cereal-book;
+      
+    }
+
+    .msg-txt {
+      grid-area: msg;
+      overflow: hidden; 
+      text-overflow: ellipsis; 
+      display: -webkit-box; 
+      -webkit-line-clamp: 2; 
+      -webkit-box-orient: vertical;
+    }
+  }

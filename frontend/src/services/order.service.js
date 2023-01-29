@@ -11,9 +11,9 @@ export const orderService = {
     removeOrderMsg
 }
 
-async function query(filterBy = { hostId: '', buyerId: '', stayId: '' }) {
+async function query(filterBy = { stayId: '' }) {
     //should maybe be in body?
-    var queryStr = (!filterBy) ? '' : `?hostId=${filterBy.hostId || ''}&buyerId=${filterBy.buyerId || ''}&stayId=${filterBy.stayId || ''}`
+    var queryStr = (!filterBy) ? '' : `?stayId=${filterBy.stayId || ''}`
     return await httpService.get(`order${queryStr}`)
 }
 
