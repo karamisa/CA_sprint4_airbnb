@@ -47,7 +47,7 @@ export function NavMenu() {
     <>
       <Modal />
       <nav className='nav-menu' onClick={handleToggle} ref={elNav}>
-        {(notifications.length>0) && <div className='notificaiton-badge'>{notifications.length}</div>}
+        {(notifications.length>0) && <div className='notification-badge'>{notifications.length}</div>}
         <div className='menu-btn'>
           <NavHamburger />
           <div className='menu-avatar'>
@@ -72,7 +72,7 @@ export function NavMenu() {
             <div className='menu-links'>
               <Link to='/trip'>Trips</Link>
               <Link to='/wishlist'>Wishlist</Link>
-              <Link to='/user/inbox'>Messages (beta)</Link>
+              <Link to='/user/inbox'>Messages</Link>
               {user.isOwner && (
                 <Link to='/hosting/order'>View Orders (host)</Link>
               )}
