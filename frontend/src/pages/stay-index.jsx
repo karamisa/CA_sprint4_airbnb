@@ -11,13 +11,13 @@ import { loadStays } from '../store/stay/stay.action'
 export function StayIndex() {
   const [searchParams, setSearchParams] = useSearchParams()
   const stays = useSelector((storeState) => storeState.stayModule.stays)
-  const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
+  const isLoading = useSelector(
+    (storeState) => storeState.systemModule.isLoading
+  )
 
-  //TODO: add more filters for params
   const filterBy = {
     category: searchParams.get('category'),
     location: searchParams.get('location'),
-    // TODO ? is this good to filter by dates?
     startDate: new Date().setDate(new Date().getDate() + 1),
     endDate: new Date().setDate(new Date().getDate() + 4),
   }
@@ -37,7 +37,7 @@ export function StayIndex() {
         handleChange={handleChange}
         currCategory={filterBy.category}
       />
-      {isLoading && <IndexLoader/>  }
+      {isLoading && <IndexLoader />}
       {!!stays && <StayList stays={stays} />}
       <AppFooter className='main-layout stay-index-footer fixed' />
     </section>
