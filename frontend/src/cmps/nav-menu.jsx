@@ -5,7 +5,6 @@ import guest from '../assets/img/guest.svg'
 import useClickOutside from '../customHooks/useClickOutside'
 import { useModal } from '../customHooks/useModal'
 import { showErrorMsg, showSuccessMsg } from '../services/event-bus.service'
-import { stayService } from '../services/stay.service'
 import { logout } from '../store/user.actions'
 import { LoginSignup } from './login-signup'
 import { NavHamburger } from './ui/nav-hamburger'
@@ -13,7 +12,9 @@ import { NavHamburger } from './ui/nav-hamburger'
 export function NavMenu() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const navigate = useNavigate()
-  const notifications = useSelector((storeState) => storeState.userModule.notifications)
+  const notifications = useSelector(
+    (storeState) => storeState.userModule.notifications
+  )
   console.log(notifications)
 
   async function onLogout() {
@@ -28,7 +29,6 @@ export function NavMenu() {
 
   function onAddStay() {
     navigate('/new-stay')
-    // stayService.addDemoStay()
   }
 
   const [navbarOpen, setNavbarOpen] = useState(false)
@@ -47,7 +47,9 @@ export function NavMenu() {
     <>
       <Modal />
       <nav className='nav-menu' onClick={handleToggle} ref={elNav}>
-        {(notifications.length>0) && <div className='notification-badge'>{notifications.length}</div>}
+        {notifications.length > 0 && (
+          <div className='notificaiton-badge'>{notifications.length}</div>
+        )}
         <div className='menu-btn'>
           <NavHamburger />
           <div className='menu-avatar'>
@@ -73,13 +75,15 @@ export function NavMenu() {
               <Link to='/trip'>Trips</Link>
               <Link to='/wishlist'>Wishlist</Link>
               <Link to='/user/inbox'>Messages</Link>
-              {user.isOwner && (
-                <Link to='/hosting/order'>View Orders (host)</Link>
-              )}
+              {user.isOwner && <Link to='/hosting/order'>View Orders</Link>}
               <button onClick={onAddStay}>
                 {user.isOwner ? 'Add Another Stay' : 'Become a host (Add stay)'}
               </button>
-              <button onClick={onLogout}>Log out</button>
+              <button
+                style={{ borderTop: `1px solid hsl(0, 0%, 87%)` }}
+                onClick={onLogout}>
+                Log out
+              </button>
             </div>
           ))}
       </nav>
