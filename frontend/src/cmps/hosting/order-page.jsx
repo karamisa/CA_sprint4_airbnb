@@ -5,8 +5,13 @@ import { loadOrders } from '../../store/order.action'
 
 export function OrderPage() {
   const user = useSelector((storeState) => storeState.userModule.user)
-  const orders = useSelector((storeState) => storeState.orderModule.orders).filter(order => order.hostId === user._id)
-  const isLoading = useSelector((storeState) => storeState.systemModule.isLoading)
+  const loggedinUser = useSelector((storeState) => storeState.userModule.user)
+  const orders = useSelector(
+    (storeState) => storeState.orderModule.orders
+  ).filter((order) => order.hostId === user._id)
+  const isLoading = useSelector(
+    (storeState) => storeState.systemModule.isLoading
+  )
 
   useEffect(() => {
     loadOrders({ userId: user._id })
@@ -15,7 +20,7 @@ export function OrderPage() {
   return (
     <div className='secondary-layout order-page'>
       <div className='hero'>
-        <h2>Welcome back</h2>
+        <h2>Welcome back, {loggedinUser.fullname}</h2>
       </div>
       <h3>Orders</h3>
       <OrderList orders={orders} isLoading={isLoading} />

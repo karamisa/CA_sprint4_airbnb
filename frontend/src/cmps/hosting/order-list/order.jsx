@@ -1,5 +1,3 @@
-// import { useOrderStatus } from '../../../customHooks/useOrderStatus'
-import { orderService } from '../../../services/order.service'
 import { utilService } from '../../../services/util.service'
 import { updateOrder } from '../../../store/order.action'
 import { BtnSquare } from '../../ui/buttons/btn-square'
@@ -81,10 +79,14 @@ export function Order({ order }) {
         {order.status === 'canceled' && redDot} {order.status}
       </td>
       <td className='action-btns'>
-        <BtnSquare onClick={() => onUpdateOrderStatus('approved')}>
+        <BtnSquare
+          className={order.status === 'pending' ? '' : 'disable'}
+          onClick={() => onUpdateOrderStatus('approved')}>
           Accept
         </BtnSquare>
-        <BtnSquare onClick={() => onUpdateOrderStatus('rejected')}>
+        <BtnSquare
+          className={order.status === 'pending' ? '' : 'disable'}
+          onClick={() => onUpdateOrderStatus('rejected')}>
           Reject
         </BtnSquare>
       </td>

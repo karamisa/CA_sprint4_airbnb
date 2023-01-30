@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppFooter } from '../cmps/header-footer/app-footer'
-import { AppHeader } from '../cmps/header-footer/app-header'
 import { Logo } from '../cmps/logo'
 import { NavMenu } from '../cmps/nav-menu'
 import { TripList } from '../cmps/trip-list/trip-list'
@@ -10,9 +9,9 @@ import { loadOrders } from '../store/order.action'
 
 export function TripPage() {
   const loggedinUser = useSelector((storeState) => storeState.userModule.user)
-  const orders = useSelector((storeState) => storeState.orderModule.orders)
-    // .filter((order) => order.buyer._id === loggedinUser._id)
-    .sort((a, b) => b.startDate - a.startDate)
+  const orders = useSelector(
+    (storeState) => storeState.orderModule.orders
+  ).sort((a, b) => b.startDate - a.startDate)
   const isLoading = useSelector(
     (storeState) => storeState.systemModule.isLoading
   )
@@ -26,7 +25,6 @@ export function TripPage() {
   if (!loggedinUser) navigate('/')
   return (
     <>
-      {/* <AppHeader className='main-layout' /> */}
       <header className='app-header main-layout flex'>
         <div className='header-logo-container'>
           <Logo />

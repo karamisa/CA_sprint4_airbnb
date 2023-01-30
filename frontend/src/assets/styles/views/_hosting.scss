@@ -13,7 +13,6 @@
 
   font-family: cereal-Bold;
   color: $clr-text-secondary;
-
   text-decoration: none;
 
   &.active {
@@ -79,7 +78,6 @@
 
     .order-status {
       color: $clr-text-secondary;
-      // font-style: italic;
       font-family: cereal-medium;
     }
 
@@ -93,11 +91,11 @@
     button {
       display: flex;
       flex: 1;
+      background-color: $clr-white;
     }
 
     button:first-child {
       color: #28a745;
-      background-color: transparent;
       background-image: none;
       border-color: #28a745;
 
@@ -106,11 +104,16 @@
         background-color: #28a745;
         border-color: #28a745;
       }
+
+      &.disable {
+        color: $clr-text-secondary;
+        border-color: $clr-text-secondary;
+        background-color: $clr-hover-bg;
+      }
     }
 
     button:last-child {
       color: #dc3545;
-      background-color: transparent;
       background-image: none;
       border-color: #dc3545;
 
@@ -118,6 +121,12 @@
         color: #fff;
         background-color: #dc3545;
         border-color: #dc3545;
+      }
+
+      &.disable {
+        color: $clr-text-secondary;
+        border-color: $clr-text-secondary;
+        background-color: $clr-hover-bg;
       }
     }
   }
