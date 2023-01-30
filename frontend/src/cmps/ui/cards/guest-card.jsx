@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router'
 import classes from './guest-card.module.css'
 
 export function GuestCard({ guest }) {
+  console.log('guest:', guest)
   const { fullname, imgUrl } = guest
   const navigate = useNavigate()
 

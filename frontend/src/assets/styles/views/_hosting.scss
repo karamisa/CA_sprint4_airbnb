@@ -67,7 +67,7 @@
 
     th:nth-child(2),
     td:nth-child(2) {
-      width: 100px;
+      width: 120px;
     }
     th:nth-child(4),
     td:nth-child(4) {
@@ -75,7 +75,11 @@
     }
     th:nth-child(5),
     td:nth-child(5) {
-      width: 140px;
+      width: 120px;
+    }
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: 264px;
     }
 
     .order-status {
@@ -83,12 +87,9 @@
       font-family: cereal-medium;
     }
 
-    .action-btns {
-      display: flex;
-      flex-grow: 1;
-      gap: 10px;
-      align-items: center;
-      height: 100%;
+    .action-btns > * {
+      display: inline-block;
+      margin-left: 15px;
     }
     button {
       display: flex;

@@ -7,8 +7,10 @@ export function StayCard({ stay }) {
   const {
     name,
     imgUrls,
-    loc: { city },
+    loc: { city, address },
   } = stay
+
+  const citySecond = address.split(',')[1]
   return (
     <div
       className={classes.stayCard}
@@ -20,7 +22,7 @@ export function StayCard({ stay }) {
       </div>
       <div className={classes.city}>
         <h4>
-          <span>{city}</span>
+          <span>{city || citySecond}</span>
         </h4>
       </div>
       <div className={`${classes.name} ${classes.ellipsis}`}>

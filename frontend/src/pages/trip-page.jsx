@@ -21,14 +21,14 @@ export function TripPage() {
 
   useEffect(() => {
     loadOrders({ userId: loggedinUser._id })
-    dispatch({type: REMOVE_NOTIFICATION, notificationType: 'order'})
+    dispatch({ type: REMOVE_NOTIFICATION, notificationType: 'order' })
   }, [loggedinUser])
 
   console.log('orders:', orders)
   if (!loggedinUser) navigate('/')
   return (
-    <>
-      <header className='app-header main-layout flex'>
+    <section>
+      <header className='app-header secondary-layout flex'>
         <div className='header-logo-container'>
           <Logo />
         </div>
@@ -47,6 +47,6 @@ export function TripPage() {
         </section>
       )}
       <AppFooter className='main-layout fixed' />
-    </>
+    </section>
   )
 }
