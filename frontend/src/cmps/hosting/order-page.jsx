@@ -1,11 +1,13 @@
 import { useEffect } from 'react'
 import { OrderList } from './order-list/order-list'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { loadOrders } from '../../store/order.action'
+import { REMOVE_NOTIFICATION } from '../../store/user.reducer'
 
 export function OrderPage() {
   const user = useSelector((storeState) => storeState.userModule.user)
   const loggedinUser = useSelector((storeState) => storeState.userModule.user)
+  const dispatch = useDispatch()
   const orders = useSelector(
     (storeState) => storeState.orderModule.orders
   ).filter((order) => order.hostId === user._id)
@@ -15,6 +17,7 @@ export function OrderPage() {
 
   useEffect(() => {
     loadOrders({ userId: user._id })
+    dispatch({type: REMOVE_NOTIFICATION, notificationType: 'order'})
   }, [])
 
   return (
