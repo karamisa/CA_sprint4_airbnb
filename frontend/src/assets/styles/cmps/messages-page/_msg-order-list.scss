@@ -2,9 +2,20 @@
     overflow-y: auto;
     width: 320px;
 
+    &::-webkit-scrollbar {
+        width: 0.3rem; /* width of the scrollbar */
+        background-color: $clr-border; /* background color of the scrollbar */
+      }
+      
+      &::-webkit-scrollbar-thumb {
+        border-radius: 10px; /* roundness of the scrollbar thumb */
+        background-color: $clr-brand; /* color of the scrollbar thumb */
+      }
+
+
     .border-buttom {
         margin-right: 1rem;
-        margin-left: 1rem;
+        // margin-left: 1rem;
     }
 
     //CHAT-ORDER-LIST
@@ -27,6 +38,7 @@
 
         &.active {
             background-color: $clr-hover-bg-dark;
+            padding-top:1rem;
         }
 
         .chat-order-avatar {
@@ -43,6 +55,7 @@
         .chat-order-details {
             grid-area: chat-order-name;
             flex-direction: column;
+            padding-top: 0.5rem;
 
             .chat-order-status {
                 font-size: 0.8rem;
@@ -70,7 +83,7 @@
 
             .chat-mini-details{
                 font-size: 0.8rem;
-
+                margin-top: em(6px, 16px);
                 .chat-mini-type{
                     font-size: 0.7rem;
                 }

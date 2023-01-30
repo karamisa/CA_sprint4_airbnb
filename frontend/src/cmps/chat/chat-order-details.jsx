@@ -8,7 +8,7 @@ export function ChatOrderDetails({ currOrder }) {
 
     return (
 
-        <div className="msg-order-details">
+        <div className="msg-order-details flex">
             <div className="order-img flex">
                 <img src={currOrder.stay.imgUrls[0]} alt="orderImg" />
             </div>
@@ -17,8 +17,10 @@ export function ChatOrderDetails({ currOrder }) {
                 <h3 className="chat-stay-type">{currOrder.stay.type}</h3>
             </section>
             <section className="details">
-                <div className="chat-stay-guests">
-                    <p><span className="details-title">Guests: </span><span>{currOrder.guests.adults} adults </span>
+                <div className="chat-stay-guests flex justify-between">
+                        <span className="details-title">Guests: </span>
+                    <p className="flex justify-between">
+                        <span>{currOrder.guests.adults} adults </span>
                         {currOrder.guests.children > 0 && <span>, {currOrder.guests.children} children</span>}
                         {currOrder.guests.infants > 0 && <span>, {currOrder.guests.infants} infants</span>}
                         {currOrder.guests.pets > 0 && <span>, {currOrder.guests.pets} pets</span>}

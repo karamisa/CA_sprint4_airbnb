@@ -1,6 +1,16 @@
+
+.currorder-details{
+  
+
+}
+
+
 .msg-order-details {
-    overflow: hidden;
-    width: 400px;
+    // overflow: hidden;
+    // width: 400px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-end;
 
     .order-img {
         // min-width: 124px;
@@ -8,7 +18,7 @@
         width: inherit;
         max-width: 360px;
         // min-height: 106px;
-        margin-top: 1.5rem;
+        // margin-top: 1.5rem;
         margin-bottom: 1.5rem;
         align-items: center;
         justify-content: center;
@@ -19,7 +29,7 @@
             object-fit: cover;
             border-radius: 0.5em;
             margin-right: 0.8rem;
-            margin-left: 3rem;
+            // margin-left: 3rem;
         }
     }
 
@@ -50,7 +60,7 @@
             margin-bottom: 0.5rem;
             align-items: center;
 
-            margin-right: 1rem;
+            // margin-right: 1rem;
         }
       
         .chat-stay-price{
@@ -58,7 +68,7 @@
             margin-top: 0.5rem;
             margin-bottom: 0.5rem;
             align-items: center;
-            margin-right: 1rem;
+            // margin-right: 1rem;
 
             .details-total{
                 font-family: "cereal-Bold";

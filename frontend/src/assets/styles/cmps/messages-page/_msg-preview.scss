@@ -8,8 +8,21 @@
 
 .chat-room {
   padding-left: 1.5rem;
+  padding-right: 1.5rem;
   overflow-y: scroll;
   flex-grow: 1;
+
+  &::-webkit-scrollbar {
+    width: 0.3rem; /* width of the scrollbar */
+    background-color: $clr-border; /* background color of the scrollbar */
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px; /* roundness of the scrollbar thumb */
+    background-color: $clr-brand; /* color of the scrollbar thumb */
+  }
+
+
 
   .outgoing-msg {
     .msg-content{
@@ -39,7 +52,7 @@
     grid-area: msg;
     }
     .msg-full {
-      grid-template-columns: auto 60px;
+      grid-template-columns: auto 50px;
       grid-template-areas:
         "content avatar"
         "content avatar";
@@ -55,7 +68,7 @@
 
   .msg-full {
     display: grid;
-    grid-template-columns: 60px auto;
+    grid-template-columns: 50px auto;
     grid-template-rows: 30px auto;
     grid-template-areas:
       "avatar content"
@@ -63,7 +76,7 @@
     column-gap: 8px;
     padding: 0.5rem 1rem;
     // height: 150px;
-    margin-top: 1rem;
+    // margin-top: 1rem;
     margin-bottom: 1rem;
     cursor: pointer;
 

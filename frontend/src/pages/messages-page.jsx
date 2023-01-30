@@ -46,11 +46,11 @@ export function MessagesPage() {
       </div>
 
       {/* MAIN 3 Columns {orderList - messages - orderDetails} */}
-      <div className="inbox-container">
+      <div className="inbox-container main-layout">
 
         {/* Column 1 - Orders List/Select */}
         <div className="inbox-column orders-list">
-          <div className="inbox-header">
+          <div className="inbox-header all-orders">
             <h2>All orders</h2>
           </div>
           {isLoading && <div>Loading...</div>}
@@ -77,7 +77,7 @@ export function MessagesPage() {
             <h2>Order Details</h2>
           </div>
           {currOrder &&
-            <div className="currOrder-details">
+            <div className="currorder-details">
               {isLoading && <div>Loading...</div>}
               {!isLoading && <>
 
