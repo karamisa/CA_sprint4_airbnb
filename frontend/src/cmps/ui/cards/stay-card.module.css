@@ -2,7 +2,7 @@
     width: 100%;
     display: grid;
     grid-template-columns: 50px auto;
-    grid-template-rows: 20px auto;
+    grid-template-rows: 30px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
     cursor: pointer;
@@ -21,12 +21,14 @@
 .city h4 {
     font-size: 14px;
     padding: 0;
+    padding-left: 5px;
 }
 
 .name {
     grid-area: text;
     font-size: 14px;
     align-self: flex-end;
+    padding-left: 5px;
 }
 
 .imgContainer {

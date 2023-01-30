@@ -1,8 +1,8 @@
 .hostCard {
     width: 100%;
     display: grid;
-    grid-template-columns: 36px auto;
-    grid-template-rows: 20px auto;
+    grid-template-columns: 50px auto;
+    grid-template-rows: 30px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
     cursor: pointer;
@@ -17,12 +17,14 @@
 .name h4 {
     font-size: 14px;
     padding: 0;
+    padding-left: 5px;
 }
 
 .text {
     grid-area: text;
     font-size: 14px;
     align-self: flex-end;
+    padding-left: 5px;
 }
 
 .imgContainer {
@@ -31,9 +33,9 @@
 }
 
 .imgContainer img {
-    height: 36px;
-    width: 36px;
-    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
 }
 
 .ellipsis {
