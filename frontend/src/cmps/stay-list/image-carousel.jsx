@@ -16,10 +16,7 @@ export function ImageCarousel({ imgs }) {
     slidesToScroll: 1,
     swipeToSlide: true,
     lazyLoad: true,
-    // prevArrow: <CustomPrevButton />,
-    // nextArrow: <CustomNextButton />
   }
-
 
   return (
     <div>
@@ -33,12 +30,3 @@ export function ImageCarousel({ imgs }) {
     </div>
   )
 }
-
-// function CustomPrevButton(props) {
-
-//     return <button onClick={props.onClick}>Previous</button>
-// }
-
-// function CustomNextButton(props) {
-//     return <button onClick={props.onClick}>Next</button>
-// }
