@@ -1,4 +1,5 @@
 import { utilService } from "../../services/util.service"
+import { BtnSquare } from "../ui/buttons/btn-square"
 
 export function ChatOrderDetails({ currOrder }) {
 
@@ -6,36 +7,60 @@ export function ChatOrderDetails({ currOrder }) {
     const checkOutDate = utilService.formattedDate(currOrder.startDate)
 
 
-    return (
+    const { stay, guests, } = currOrder
 
-        <div className="msg-order-details flex">
-            <div className="order-img flex">
-                <img src={currOrder.stay.imgUrls[0]} alt="orderImg" />
+    return (
+        <>
+            <div className="order-summary-card">
+                <div className="order-card-header">
+                    <img src={stay.imgUrls[0]} alt={stay.name} className="order-card-header-img" />
+                </div>
+                <div className="order-card-body">
+
+                    <div className="order-card-header-text">
+                        <h3 className="order-card-header-title">{stay.name}</h3>
+                        <p className="order-card-header-subtitle">Hosted by {stay.host.fullname}</p>
+                    </div>
+                    <div className="order-card-body-row" >
+                        <div className="order-card-body-col">
+                            <p className="order-card-body-row-title">Check-in:</p>
+                            <p className="order-card-body-row-value">{checkInDate}</p>
+                        </div>
+                        <div className="order-card-body-col">
+                            <p className="order-card-body-row-title">Check-out:</p>
+                            <p className="order-card-body-row-value">{checkOutDate}</p>
+                        </div>
+                    </div>
+                    <div className="order-card-body-row">
+                        <p className="order-card-body-row-title">Guests:</p>
+                        <p className="order-card-body-row-value">
+                            {guests.adults} adults
+                            {guests.children > 0 &&
+                                <span className="order-card-body-row-value">{guests.children} children</span>
+                            }
+                            {guests.infants > 0 &&
+                                <span className="order-card-body-row-value">{guests.infants} infants</span>
+                            }
+                            {guests.pets > 0 &&
+                                <span className="order-card-body-row-value">{guests.pets} pets
+                                </span>
+
+                            }
+                        </p>
+                    </div>
+                    <div className="order-card-body-row price-row">
+                        <p className="order-card-body-row-title">Total price:</p>
+                        <p className="order-card-body-row-value total-price">${currOrder.totalPrice.toFixed(2)}</p>
+                    </div>
+                </div>
             </div>
-            <section className="order-header">
-                <h3 className="chat-order-name">{currOrder.stay.name}</h3>
-                <h3 className="chat-stay-type">{currOrder.stay.type}</h3>
-            </section>
-            <section className="details">
-                <div className="chat-stay-guests flex justify-between">
-                        <span className="details-title">Guests: </span>
-                    <p className="flex justify-between">
-                        <span>{currOrder.guests.adults} adults </span>
-                        {currOrder.guests.children > 0 && <span>, {currOrder.guests.children} children</span>}
-                        {currOrder.guests.infants > 0 && <span>, {currOrder.guests.infants} infants</span>}
-                        {currOrder.guests.pets > 0 && <span>, {currOrder.guests.pets} pets</span>}
-                    </p>
-                </div>
-                <div className="chat-dates">
-                    <p className="chat-dates-details flex"><span className="details-title">Check in: </span><span>{checkInDate}</span></p>
-                    <p className="chat-dates-details flex"><span className="details-title">Check out: </span><span>{checkOutDate}</span></p>
-                </div>
-                <div className="chat-stay-price flex">
-                    <span className="details-title">Total price: </span><span className="details-total">${currOrder.totalPrice.toFixed(2)}</span>
-                </div>
-            </section>
-        </div>
+            <div className="order-summary-actions">
+                <BtnSquare>
+                    Edit Order
+                </BtnSquare>
+            </div>
+        </>
+
     )
 }
-
 

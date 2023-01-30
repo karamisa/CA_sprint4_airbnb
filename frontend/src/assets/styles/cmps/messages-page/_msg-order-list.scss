@@ -1,25 +1,19 @@
-.inbox-list {
-    overflow-y: auto;
-    width: 320px;
+.inbox-list-container{
+    flex: 1;
+    display: flex;
+    overflow: auto;
+.chat-order-list{
+    min-height: -webkit-min-content;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    width: 100%;
+}
+}
 
-    &::-webkit-scrollbar {
-        width: 0.3rem; /* width of the scrollbar */
-        background-color: $clr-border; /* background color of the scrollbar */
-      }
-      
-      &::-webkit-scrollbar-thumb {
-        border-radius: 10px; /* roundness of the scrollbar thumb */
-        background-color: $clr-brand; /* color of the scrollbar thumb */
-      }
 
-
-    .border-buttom {
-        margin-right: 1rem;
-        // margin-left: 1rem;
-    }
-
-    //CHAT-ORDER-LIST
-    .chat-order-preview {
+ //CHAT-ORDER-LIST
+.chat-order-preview {
         display: grid;
         padding: 0.5em 0rem;
         grid-template-columns: 60px auto;
@@ -29,26 +23,31 @@
             'chat-order-avatar chat-order-name';
         column-gap: 10px;
         height: 110px;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px solid $clr-border;
         cursor: pointer;
         // border-bottom: 1px solid $clr-border;
 
-        &:hover {
-            background-color: $clr-hover-bg;
+        &:hover, &.active {
+            box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+            z-index: 2;
+            cursor: pointer;
         }
 
         &.active {
-            background-color: $clr-hover-bg-dark;
-            padding-top:1rem;
+            border: 1px solid $clr-border-dark;
+            
         }
 
         .chat-order-avatar {
             grid-area: chat-order-avatar;
-            align-self: center;
+            align-self: flex-start;
+            padding-top: 8px;
 
             img {
                 border: 1px solid $clr-border;
-                height: 100%;
-                width: 100%;
+                height: 90%;
+                width: 90%;
             }
         }
 
@@ -68,6 +67,7 @@
 
             .chat-order-name {
                 font-family: cereal-Bold;
+                margin-bottom: 2px;
             }
 
             .chat-order-msg {
@@ -75,10 +75,29 @@
                 text-overflow: ellipsis;
                 color: $clr-text-secondary;
                 display: -webkit-box;
-                -webkit-line-clamp: 2;
+                -webkit-line-clamp: 1;
                 -webkit-box-orient: vertical;
                 line-height: 15px;
                 margin-bottom: 3px;
+                white-space: nowrap;
+                font-size: 12px;
+            }
+
+            .chat-show-status{
+                &.completed{
+                    color: #155724;
+                }
+
+                &.pending{
+                    color: #856404;
+                }
+
+                &.cancelled{
+                    color: #721c24;
+                } 
+                &.rejected{
+                    text-decoration: line-through;
+                }
             }
 
             .chat-mini-details{
@@ -98,4 +117,3 @@
 
 
 
-}

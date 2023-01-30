@@ -1,55 +1,30 @@
-.inbox-container {
-  .inbox-column.messages {
-    overflow: hidden;
-    min-width: $chat-msg-min-width;
-    flex-direction: column;
-  }
-}
-
-.chat-room {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  overflow-y: scroll;
-  flex-grow: 1;
-
-  &::-webkit-scrollbar {
-    width: 0.3rem; /* width of the scrollbar */
-    background-color: $clr-border; /* background color of the scrollbar */
-  }
-  
-  &::-webkit-scrollbar-thumb {
-    border-radius: 10px; /* roundness of the scrollbar thumb */
-    background-color: $clr-brand; /* color of the scrollbar thumb */
-  }
-
-
-
-  .outgoing-msg {
+ .outgoing-msg {
     .msg-content{
     border: 1px solid $clr-border;
-    // background-color: $clr-brand;
-    // color: $clr-white;
     border-radius: 0.6em;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     margin-right: 1rem;
     align-self: flex-end;
     grid-area: msg;
+    border-radius: 8px;
+    background-color: #fff;
+    display: inline-block;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    padding: 0.5rem 1rem;
 
   }
 }
 
   .incoming-msg {
     .msg-content{
-    // border: 1px solid $clr-brand;
-    background-color: $clr-bg;
-    // color: $clr-white;
-    border-radius: 0.6em;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
-    // margin-right: 1rem;
-    align-self: flex-end;
     grid-area: msg;
+    border-radius: 8px;
+    background-color: #fff;
+    display: inline-block;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
     }
     .msg-full {
       grid-template-columns: auto 50px;
@@ -78,18 +53,17 @@
     // height: 150px;
     // margin-top: 1rem;
     margin-bottom: 1rem;
-    cursor: pointer;
 
 
 
     .msg-avatar {
       grid-area: avatar;
-      align-self: flex-start;
+      align-self: center;
 
       img {
         border: 1px solid $clr-border;
-        height: 100%;
-        width: 100%;
+        height: 80%;
+        width: 80%;
       }
     }
 
@@ -118,41 +92,3 @@
       }
     }
   }
-}
-
-.chat-input{
-  margin-top: auto;
-.chat-form {
-  // position: absolute;
-  bottom: 10px;
-  min-width: $chat-msg-min-width;
-
-  .chat-input-form {
-    align-items: center;
-    justify-content: center;
-    justify-items: center;
-    padding-top: 1rem;
-
-    .chat-txt-input {
-      flex-grow: 0.8;
-      border-radius: 0.6em;
-      border: 1px solid $clr-border;
-      line-height: 1.75em;
-      font-size: 1.2rem;
-      color: $clr-text-secondary;
-      margin-right: 1rem;
-      padding-left: 0.8rem;
-    }
-
-    .send-btn {
-      color: $clr-brand;
-      cursor: pointer;
-      transform: rotate(90deg);
-      border: none;
-      width: unset;
-      margin-top: 1rem;
-
-    }
-  }
-}
-}

@@ -85,7 +85,6 @@ export function ChatRoom({ order, loggedInUser }) {
 
         </section>
         <div className='chat-input'>
-            <div className="chat-form">
                 <form onSubmit={sendMsg} className="chat-input-form flex">
                     <input
                         type="text" value={msg.txt} onChange={handleFormChange}
@@ -97,7 +96,6 @@ export function ChatRoom({ order, loggedInUser }) {
                         </svg>
                     </button>
                 </form>
-            </div>
         </div>
     </>
     )

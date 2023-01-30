@@ -47,11 +47,12 @@ export function MessagesPage() {
       </div>
 
       {/* MAIN 3 Columns {orderList - messages - orderDetails} */}
-      <div className='inbox-container main-layout'>
+      <div className='msg-main-container main-layout'>
+      <div className='inbox-container'>
         {/* Column 1 - Orders List/Select */}
         <div className='inbox-column orders-list'>
           <div className='inbox-header all-orders'>
-            <h2>All orders</h2>
+            <h2>All Messages</h2>
           </div>
           {isLoading && (
             <div className='inbox-list'>
@@ -61,7 +62,7 @@ export function MessagesPage() {
             </div>
           )}
           {!isLoading && (
-            <div className='inbox-list'>
+            <div className='inbox-list-container'>
               <ChatOrderList
                 orders={orders}
                 loggedInUser={loggedInUser}
@@ -74,17 +75,14 @@ export function MessagesPage() {
 
         {/* Column 2 - Messages */}
         <div className='inbox-column messages'>
-          <div className='inbox-header'>
-            <h2>Messages</h2>
-          </div>
-          {isLoading && (
-            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>
-              Loading...
-            </h1>
-          )}
+          <div className='chat-backdrop'>
+          {isLoading &&  <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
           {!isLoading && currOrder && (
+            <div className={'chat-container'}>
             <ChatRoom order={currOrder} loggedInUser={loggedInUser} />
+          </div>
           )}
+          </div>
         </div>
 
         {/* Column 3 - Order Details */}
@@ -103,6 +101,7 @@ export function MessagesPage() {
             </div>
           )}
         </div>
+      </div>
       </div>
     </section>
   )

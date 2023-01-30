@@ -30,7 +30,7 @@ export function ChatOrderPreview({ order, onSetCurrOrder, currOrder, loggedInUse
             </div>
             <div className="chat-order-details flex">
                 <div className="chat-order-status flex justify-between">
-                    <span className="chat-show-status">{order.status}</span>
+                    <span className={`chat-show-status ${order.status}`}>{order.status}</span>
                     {(order.msgs[order.msgs.length - 1]?.createdAt) &&<span className="chat-order-time">{hours}:{minutes}</span>}
                 </div>
 
@@ -45,3 +45,4 @@ export function ChatOrderPreview({ order, onSetCurrOrder, currOrder, loggedInUse
         </div>
     )
 }
+
