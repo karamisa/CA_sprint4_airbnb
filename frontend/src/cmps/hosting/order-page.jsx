@@ -16,7 +16,7 @@ export function OrderPage() {
   )
 
   useEffect(() => {
-    loadOrders({ userId: user._id })
+    loadOrders()
     dispatch({type: REMOVE_NOTIFICATION, notificationType: 'order'})
   }, [])
 

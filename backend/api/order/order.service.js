@@ -12,6 +12,7 @@ async function query(filterBy = {}) {
         const criteria = _buildCriteria(filterBy)
         const collection = await dbService.getCollection('order')
         // var orders = await collection.find(criteria).toArray()
+        console.log(loggedinUser._id, 'loggedinUser._id')
         var orders = await collection.aggregate([
             {
                 $match: {
@@ -49,6 +50,7 @@ async function query(filterBy = {}) {
                 $unwind: '$stay'
             }
         ]).toArray()
+        console.log(orders)
         orders = orders.map(order => {
             order.buyer = { _id: order.buyer._id, fullname: order.buyer.fullname, imgUrl: order.buyer.imgUrl }
             order.createdAt=order._id.getTimestamp()
@@ -167,7 +169,7 @@ async function getById(orderId) {
 
 function _buildCriteria(filterBy) {
     const criteria = {}
-    if (filterBy.stayId) criteria.stayId = filterBy.stayId
+    // if (filterBy.stayId) criteria.stayId = filterBy.stayId
     // if (filterBy.orderId) criteria._id = ObjectId(filterBy.orderId)
     return criteria
 }

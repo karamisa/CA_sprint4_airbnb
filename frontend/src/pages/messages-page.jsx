@@ -53,7 +53,9 @@ export function MessagesPage() {
           <div className='inbox-header'>
             <h2>All orders</h2>
           </div>
-          {isLoading && <div>Loading...</div>}
+          {isLoading && <div className='inbox-list'>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>
+          </div>}
           {!isLoading && (
             <div className='inbox-list'>
               <ChatOrderList
@@ -71,7 +73,7 @@ export function MessagesPage() {
           <div className='inbox-header'>
             <h2>Messages</h2>
           </div>
-          {isLoading && <div>Loading...</div>}
+          {isLoading &&  <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
           {!isLoading && currOrder && (
             <ChatRoom order={currOrder} loggedInUser={loggedInUser} />
           )}
