@@ -1,8 +1,8 @@
 .guestCard {
     width: 100%;
     display: grid;
-    grid-template-columns: 50px auto;
-    grid-template-rows: 30px auto;
+    grid-template-columns: 55px auto;
+    grid-template-rows: 25px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
     cursor: pointer;
@@ -23,8 +23,9 @@
 .text {
     padding-left: 5px;
     grid-area: text;
-    font-size: 14px;
+    font-size: 13px;
     align-self: flex-end;
+    padding-bottom: 12px;
 }
 
 .imgContainer {

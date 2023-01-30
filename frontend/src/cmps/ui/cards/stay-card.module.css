@@ -1,8 +1,8 @@
 .stayCard {
     width: 100%;
     display: grid;
-    grid-template-columns: 50px auto;
-    grid-template-rows: 30px auto;
+    grid-template-columns: 64px auto;
+    grid-template-rows: 35px auto;
     grid-template-areas: 'img name' 'img text';
     line-height: 1.1;
     cursor: pointer;
@@ -37,8 +37,8 @@
 }
 
 .imgContainer img {
-    height: 50px;
-    width: 50px;
+    height: 64px;
+    width: 64px;
     border-radius: 5px;
 }
 
@@ -49,4 +49,5 @@
     /* keeps the text in a single line */
     overflow: hidden;
     /* keeps the element from overflowing its parent */
+    padding-bottom: 3px;
 }
