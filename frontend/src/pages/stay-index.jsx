@@ -38,6 +38,7 @@ export function StayIndex() {
         currCategory={filterBy.category}
       />
       {isLoading && <IndexLoader />}
+      {filterBy.location && <h4 className='main-layout'>Showing results for {filterBy.location}</h4>}
       {!!stays && <StayList stays={stays} />}
       <AppFooter className='main-layout stay-index-footer fixed' />
     </section>
