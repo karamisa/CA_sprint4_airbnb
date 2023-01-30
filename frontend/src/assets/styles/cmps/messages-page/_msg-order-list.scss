@@ -10,14 +10,14 @@
     //CHAT-ORDER-LIST
     .chat-order-preview {
         display: grid;
-        padding: 2rem 1rem;
+        padding: 0.5em 0rem;
         grid-template-columns: 60px auto;
         grid-template-rows: 30px auto;
         grid-template-areas:
             'chat-order-avatar chat-order-name'
             'chat-order-avatar chat-order-name';
         column-gap: 10px;
-        height: 150px;
+        height: 110px;
         cursor: pointer;
         // border-bottom: 1px solid $clr-border;
 
@@ -46,6 +46,7 @@
 
             .chat-order-status {
                 font-size: 0.8rem;
+                text-transform: capitalize;
 
                 .chat-order-time{
                     font-size: 0.7rem;
@@ -59,9 +60,12 @@
             .chat-order-msg {
                 overflow: hidden;
                 text-overflow: ellipsis;
+                color: $clr-text-secondary;
                 display: -webkit-box;
                 -webkit-line-clamp: 2;
                 -webkit-box-orient: vertical;
+                line-height: 15px;
+                margin-bottom: 3px;
             }
 
             .chat-mini-details{
