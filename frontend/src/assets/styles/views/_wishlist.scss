@@ -27,7 +27,11 @@
       cursor: pointer;
     }
   }
-
 }
 
-// @include for-max-narrow-layout {}
+@include for-max-narrow-layout {
+  .wishlist-title {
+    padding-top: 30px;
+    padding-bottom: 0;
+  }
+}

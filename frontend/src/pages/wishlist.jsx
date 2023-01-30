@@ -1,12 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-
-import { AppFooter } from '../cmps/header-footer/app-footer.jsx'
 import { WishlistList } from '../cmps/wishlist-list.jsx'
 import arrowLeftImg from '../assets/img/arrow-left.svg'
 
 import { loadStays, onLikeStayOptimistic } from '../store/stay/stay.action.js'
-import { showErrorMsg } from '../services/event-bus.service.js'
 import { Logo } from '../cmps/logo.jsx'
 import { NavMenu } from '../cmps/nav-menu.jsx'
 import { IndexLoader } from '../cmps/stay-list/index-loader.jsx'

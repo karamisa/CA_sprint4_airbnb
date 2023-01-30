@@ -1,4 +1,3 @@
-// import { useOrderStatus } from '../../customHooks/useOrderStatus'
 import { BtnSquare } from '../ui/buttons/btn-square'
 import { HostCard } from '../ui/cards/host-card'
 import { StayCard } from '../ui/cards/stay-card'

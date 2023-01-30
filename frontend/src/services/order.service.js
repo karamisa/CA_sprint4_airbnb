@@ -11,6 +11,8 @@ export const orderService = {
     removeOrderMsg
 }
 
+window.us = orderService
+
 async function query(filterBy = { stayId: '' }) {
     //should maybe be in body?
     var queryStr = (!filterBy) ? '' : `?stayId=${filterBy.stayId || ''}`

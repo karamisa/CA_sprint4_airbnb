@@ -42,10 +42,12 @@
       text-transform: uppercase;
       font-family: cereal-Bold;
       color: $clr-text-secondary;
+      padding-inline: 0.5em;
+      padding-block: 0.8em;
     }
 
     td {
-      padding-inline: 0.3em;
+      padding-inline: 0.5em;
       padding-block: 0.2em;
     }
     tr:nth-child(odd) {

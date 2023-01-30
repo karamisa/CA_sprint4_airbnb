@@ -10,10 +10,7 @@
 
   &.main-layout {
     @include for-mobile-layout {
-      // margin: 0;
-      // padding: 0;
       .stay-list-item {
-        // padding: 1.5rem;
         transform: translate(-10px, 10px);
       }
     }
@@ -49,7 +46,6 @@
 }
 
 .slider-btns {
-
   .slider_navIconRight__jsyAf {
     top: calc(50% - 27px) !important;
     right: -4px !important;
@@ -65,6 +61,6 @@
     z-index: 5;
     font-size: 3rem;
     top: 73%;
-    right: 38%;
+    right: 43%;
   }
 }

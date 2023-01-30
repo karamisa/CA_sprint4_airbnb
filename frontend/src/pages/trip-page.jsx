@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { AppFooter } from '../cmps/header-footer/app-footer'
 import { Logo } from '../cmps/logo'
 import { NavMenu } from '../cmps/nav-menu'
 import { TripList } from '../cmps/trip-list/trip-list'
 import { loadOrders } from '../store/order.action'
+import { REMOVE_NOTIFICATION } from '../store/user.reducer'
 
 export function TripPage() {
   const loggedinUser = useSelector((storeState) => storeState.userModule.user)
@@ -15,10 +16,12 @@ export function TripPage() {
   const isLoading = useSelector(
     (storeState) => storeState.systemModule.isLoading
   )
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   useEffect(() => {
     loadOrders({ userId: loggedinUser._id })
+    dispatch({type: REMOVE_NOTIFICATION, notificationType: 'order'})
   }, [loggedinUser])
 
   console.log('orders:', orders)

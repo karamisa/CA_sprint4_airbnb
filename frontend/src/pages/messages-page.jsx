@@ -7,31 +7,32 @@ import { Logo } from '../cmps/logo'
 import { NavMenu } from '../cmps/nav-menu'
 import { loadOrders } from '../store/order.action'
 
-
 export function MessagesPage() {
-  const orders = useSelector(storeState => storeState.orderModule.orders)
-  const isLoading = useSelector(storeState => storeState.systemModule.isLoading)
-  const loggedInUser = useSelector(storeState => storeState.userModule.user)
+  const orders = useSelector((storeState) => storeState.orderModule.orders)
+  const isLoading = useSelector(
+    (storeState) => storeState.systemModule.isLoading
+  )
+  const loggedInUser = useSelector((storeState) => storeState.userModule.user)
   const [currOrder, setCurrOrder] = useState(null)
-  const notifications = useSelector(storeState => storeState.userModule.notifications)
-  const dispatch=useDispatch()
+  const notifications = useSelector(
+    (storeState) => storeState.userModule.notifications
+  )
+  const dispatch = useDispatch()
   console.log(notifications)
 
   useEffect(() => {
     loadOrders()
-    dispatch({type: 'REMOVE_NOTIFICATIONS' , notificationType: 'msg'})
+    dispatch({ type: 'REMOVE_NOTIFICATIONS', notificationType: 'msg' })
   }, [])
 
   function onSetCurrOrder(orderId) {
-    const orderToSet = orders.find(order => order._id === orderId)
+    const orderToSet = orders.find((order) => order._id === orderId)
     setCurrOrder(orderToSet)
     console.log('currOrder', currOrder)
   }
 
-  // if (isLoading) return <div>Loading...</div>
   return (
     <section className='messages-page'>
-
       {/* HEADER */}
       <div className='header-container'>
         <header className='app-header main-layout flex'>
@@ -46,45 +47,53 @@ export function MessagesPage() {
       </div>
 
       {/* MAIN 3 Columns {orderList - messages - orderDetails} */}
-      <div className="inbox-container main-layout">
-
+      <div className='inbox-container main-layout'>
         {/* Column 1 - Orders List/Select */}
-        <div className="inbox-column orders-list">
-          <div className="inbox-header all-orders">
+        <div className='inbox-column orders-list'>
+          <div className='inbox-header all-orders'>
             <h2>All orders</h2>
           </div>
-          {isLoading && <div>Loading...</div>}
-          {!isLoading &&
-            <div className="inbox-list">
-              <ChatOrderList orders={orders} loggedInUser={loggedInUser} onSetCurrOrder={onSetCurrOrder} currOrder={currOrder} />
+          {isLoading && <div className='inbox-list'>
+            <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>
+          </div>}
+          {!isLoading && (
+            <div className='inbox-list'>
+              <ChatOrderList
+                orders={orders}
+                loggedInUser={loggedInUser}
+                onSetCurrOrder={onSetCurrOrder}
+                currOrder={currOrder}
+              />
             </div>
-          }
+          )}
         </div>
 
         {/* Column 2 - Messages */}
-        <div className="inbox-column messages">
-          <div className="inbox-header">
+        <div className='inbox-column messages'>
+          <div className='inbox-header'>
             <h2>Messages</h2>
           </div>
-          {isLoading && <div>Loading...</div>}
-          {!isLoading && currOrder && <ChatRoom order={currOrder} loggedInUser={loggedInUser}/>}
+          {isLoading &&  <h1 style={{ textAlign: 'center', marginTop: '20px' }}>Loading...</h1>}
+          {!isLoading && currOrder && (
+            <ChatRoom order={currOrder} loggedInUser={loggedInUser} />
+          )}
         </div>
 
-
         {/* Column 3 - Order Details */}
-        <div className="inbox-column order-details">
-          <div className="inbox-header">
+        <div className='inbox-column order-details'>
+          <div className='inbox-header'>
             <h2>Order Details</h2>
           </div>
           {currOrder &&
             <div className="currorder-details">
               {isLoading && <div>Loading...</div>}
-              {!isLoading && <>
-
-              <ChatOrderDetails currOrder={currOrder} />
-
-              </>}
-            </div>}
+              {!isLoading && (
+                <>
+                  <ChatOrderDetails currOrder={currOrder} />
+                </>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

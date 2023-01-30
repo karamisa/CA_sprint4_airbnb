@@ -17,7 +17,7 @@ export function OrderList({ orders, isLoading }) {
         </thead>
         <tbody>
         {isLoading && <TableLoader />}
-         {!isLoading && orders.map((order) => (
+         {!isLoading && orders.reverse().map((order) => (
             <tr key={order._id}>
               <Order order={order} />
             </tr>

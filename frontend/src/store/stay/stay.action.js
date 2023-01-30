@@ -8,19 +8,16 @@ import {
   SET_STAYS,
   TOGGLE_LIKE_STAY,
   UNDO_TOGGLE_LIKE_STAY,
-  UPDATE_STAYS
+  UPDATE_STAYS,
 } from './stay.reducer'
 
 import { LOADING_DONE, LOADING_START } from '../system.reducer'
 //  Load stays
-export async function loadStays(filterBy={},sortBy={}) {
-  store.dispatch({ type: LOADING_START})
+export async function loadStays(filterBy = {}, sortBy = {}) {
+  store.dispatch({ type: LOADING_START })
   try {
     try {
-      const stays = await stayService
-        .query(filterBy, sortBy)
-      // console.log('in stay action got from server', stays)
-      // we get object with total pages and stay array
+      const stays = await stayService.query(filterBy, sortBy)
       store.dispatch({ type: SET_STAYS, stays: stays })
     } catch (err) {
       console.log('Had issues loading stays: ', err)
@@ -35,8 +32,7 @@ export async function loadStays(filterBy={},sortBy={}) {
 export async function saveStay(stay) {
   const type = stay._id ? UPDATE_STAYS : SAVE_STAYS
   try {
-    const savedStay = await stayService
-      .save(stay)
+    const savedStay = await stayService.save(stay)
     store.dispatch({ type, stay: savedStay })
     return savedStay
   } catch (err) {
@@ -48,8 +44,7 @@ export async function saveStay(stay) {
 // Delete stay
 export async function removeStay(stayId) {
   try {
-    await stayService
-      .remove(stayId)
+    await stayService.remove(stayId)
     store.dispatch({ type: REMOVE_STAYS, stayId })
   } catch (err) {
     console.log('Cannot delete stay: ', err)
@@ -57,24 +52,24 @@ export async function removeStay(stayId) {
   }
 }
 
-
-// Demo for Optimistic Mutation 
+// Demo for Optimistic Mutation
 // (IOW - Assuming the server call will work, so updating the UI first)
 export async function onLikeStayOptimistic(stayId) {
   const user = userService.getLoggedinUser()
-  store.dispatch({ type: TOGGLE_LIKE_STAY, stayId, user})
+  store.dispatch({ type: TOGGLE_LIKE_STAY, stayId, user })
   try {
     const stay = await stayService.getById(stayId)
-    const likedByUser = stay.likedByUsers.filter(miniUser => miniUser._id === user._id)
+    const likedByUser = stay.likedByUsers.filter(
+      (miniUser) => miniUser._id === user._id
+    )
 
-    if(likedByUser.length) {
-      stay.likedByUsers.filter(miniUser => miniUser._id !== user._id)
+    if (likedByUser.length) {
+      stay.likedByUsers.filter((miniUser) => miniUser._id !== user._id)
       await stayService.removeStayLike(stayId)
     } else {
       stay.likedByUsers.push(user)
       await stayService.addStayLike(stayId)
-
-    } 
+    }
   } catch (err) {
     console.log('Cannot update stay', err)
     store.dispatch({
@@ -82,5 +77,3 @@ export async function onLikeStayOptimistic(stayId) {
     })
   }
 }
-
-

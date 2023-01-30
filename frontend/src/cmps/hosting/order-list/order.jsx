@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { utilService } from '../../../services/util.service'
 import { updateOrder } from '../../../store/order.action'
 import { BtnSquare } from '../../ui/buttons/btn-square'
@@ -36,9 +37,13 @@ const yellowDot = (
 )
 
 export function Order({ order }) {
+  const [orderToEdit, setOrderToEdit] = useState(order)
   function onUpdateOrderStatus(status) {
+    setOrderToEdit(prevOrder=> ({ ...prevOrder, status }))
     updateOrder({ ...order, status })
   }
+
+  
 
   const startDate = new Date(order.startDate)
   const endDate = new Date(order.endDate)
@@ -73,19 +78,19 @@ export function Order({ order }) {
         {utilService.formatCurrency(order.stay.price * days)}
       </td>
       <td className='order-status'>
-        {order.status === 'pending' && yellowDot}
-        {order.status === 'approved' && greenDot}
-        {order.status === 'rejected' && redDot}
-        {order.status === 'canceled' && redDot} {order.status}
+        {orderToEdit.status === 'pending' && yellowDot}
+        {orderToEdit.status === 'approved' && greenDot}
+        {orderToEdit.status === 'rejected' && redDot}
+        {orderToEdit.status === 'canceled' && redDot} {orderToEdit.status}
       </td>
       <td className='action-btns'>
         <BtnSquare
-          className={order.status === 'pending' ? '' : 'disable'}
+          className={orderToEdit.status === 'pending' ? '' : 'disable'}
           onClick={() => onUpdateOrderStatus('approved')}>
           Accept
         </BtnSquare>
         <BtnSquare
-          className={order.status === 'pending' ? '' : 'disable'}
+          className={orderToEdit.status === 'pending' ? '' : 'disable'}
           onClick={() => onUpdateOrderStatus('rejected')}>
           Reject
         </BtnSquare>

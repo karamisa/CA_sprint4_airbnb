@@ -3,11 +3,10 @@ import { useModal } from '../customHooks/useModal'
 import { utilService } from '../services/util.service'
 import { StayPreview } from './stay-list/stay-preview'
 
-export function WishlistList({ stays, onRemoveLike }) {
+export function WishlistList({ stays }) {
   const navigate = useNavigate()
   const currLocation = useLocation()
   const { openModal, Modal } = useModal()
-  
 
   const handleClick = (stayId) => {
     const searchStr = utilService.setAnyBlankParamsWithDefaults(
@@ -19,7 +18,7 @@ export function WishlistList({ stays, onRemoveLike }) {
   if (!stays) return <div></div>
   return (
     <>
-          <div className='details-modal'>
+      <div className='details-modal'>
         {' '}
         <Modal />
       </div>

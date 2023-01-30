@@ -125,25 +125,26 @@ export function Slider({ children }) {
     })
   }
 
- const Pagination = ( data, currPage ) => {
-  //  return null
-  if(!data.length) return 
-  return (
-    page&& <div className="slider-dots">
-      {data.map((item, index) => (
-        <span
-          key={index}
-          style={{ color: currPage === index ? 'white' : '#ffffffb3' }}
-        >
-          {'•'}
-          {/* {'🟠'} */}
-        </span>
-      ))}
-    </div>
-  )
-}
-
-
+  const Pagination = (data, currPage) => {
+    if (!data.length) return
+    return (
+      page && (
+        <div className='slider-dots flex align-center'>
+          {data.map((item, index) => (
+            <span
+              key={index}
+              style={
+                currPage === index
+                  ? { color: 'white' }
+                  : { color: '#ffffffb3', fontSize: '2.7rem' }
+              }>
+              {'•'}
+            </span>
+          ))}
+        </div>
+      )
+    )
+  }
 
   return (
     <div className={`${classes.carousel} slider-btns`}>
@@ -163,16 +164,7 @@ export function Slider({ children }) {
         {RightNavIcon}
       </span>
 
-      {/* {page[currPage]&& (
-      <div className="curr-img-indication flex">
-            {page[currPage].key.map((k, idx) => {
-                const dotClr = (page[currPage].key === k) ? "white" : "rgba(255, 255, 255,0.7)"
-                return <div key={k + idx} style={{ color: dotClr }}>.</div>
-            })}
-       </div>)} */}
-
-{Pagination(page, currPage)}
-
+      {Pagination(page, currPage)}
 
       <div className={classes.carouselWindow}>
         {/* items */}

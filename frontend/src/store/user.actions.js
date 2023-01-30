@@ -1,6 +1,5 @@
 import { userService } from '../services/user.service.js'
 import { store } from '../store/store.js'
-
 import { showErrorMsg } from '../services/event-bus.service.js'
 import { LOADING_DONE, LOADING_START } from './system.reducer.js'
 import {
@@ -11,15 +10,13 @@ import {
   CLEAR_NOTIFICATIONS,
 } from './user.reducer.js'
 
-
-
 export async function loadUsers() {
   try {
     store.dispatch({ type: LOADING_START })
     const users = await userService.getUsers()
     store.dispatch({ type: SET_USERS, users })
   } catch (err) {
-    console.log('UserActions: err in loadUsers', err)
+    console.log('UserActions: error in loadUsers', err)
   } finally {
     store.dispatch({ type: LOADING_DONE })
   }
@@ -30,7 +27,7 @@ export async function removeUser(userId) {
     await userService.remove(userId)
     store.dispatch({ type: REMOVE_USER, userId })
   } catch (err) {
-    console.log('UserActions: err in removeUser', err)
+    console.log('UserActions: error in removeUser', err)
   }
 }
 
@@ -86,7 +83,7 @@ export async function logout() {
       user: null,
     })
     store.dispatch({
-      type: CLEAR_NOTIFICATIONS
+      type: CLEAR_NOTIFICATIONS,
     })
   } catch (err) {
     console.log('Cannot logout', err)
