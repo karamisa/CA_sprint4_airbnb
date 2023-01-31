@@ -72,7 +72,7 @@ export function ChatRoom({ order, loggedInUser }) {
                 <>
                     {(msg.createdAt && (idx % 3 === 0)) && <div className="msg-date">{utilService.formattedDate(msg.createdAt)}</div>}
 
-                    <div key={idx} className={`${loggedInUser?.fullname === msg.by.fullname ? 'msg-full outgoing-msg' : 'msg-full incoming-msg'}`}>
+                    <div key={idx} className={`${loggedInUser?.fullname === msg.by.fullname ? 'msg-full border-buttom outgoing-msg' : 'msg-full border-buttom incoming-msg'}`}>
 
                         <div className="msg-avatar">
                             <img src={msg.by.imgUrl} alt={'avatar'} className="mini-user-img" />

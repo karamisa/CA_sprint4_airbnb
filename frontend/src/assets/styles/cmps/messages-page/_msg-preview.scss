@@ -81,7 +81,7 @@
     column-gap: 10px;
     background: white;
     margin: 10px 20px;
-    box-shadow: 2px 2px 8px rgb(0 0 0 / 10%);
+    // box-shadow: 2px 2px 8px rgb(0 0 0 / 10%);
     border-radius: 12px;
     padding-bottom: 26px;
   }
@@ -89,23 +89,20 @@
 
   &.incoming-msg {
     display: grid;
-    grid-template-columns: auto 50px;
+    grid-template-columns: 50px auto;
     grid-template-rows: auto 30px auto;
     grid-template-areas:
       "msg-date msg-date"
-      "name avatar"
-      "content avatar";
+      "avatar name "
+      "avatar content";
     padding: 10px 12px;
     column-gap: 10px;
-    background: white;
+    // background: $clr-bg;
     margin: 10px 20px;
-    box-shadow: 2px 2px 8px rgb(0 0 0 / 10%);
+    // box-shadow: 2px 2px 8px rgb(0 0 0 / 10%);
     border-radius: 12px;
     padding-bottom: 26px;
 
-    .msg-name {
-      justify-content: flex-end;
-    }
   }
 
 
