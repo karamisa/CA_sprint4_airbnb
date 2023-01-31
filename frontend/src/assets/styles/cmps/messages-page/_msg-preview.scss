@@ -1,5 +1,5 @@
- .outgoing-msg {
-    .msg-content{
+.outgoing-msg {
+  .msg-content {
     border: 1px solid $clr-border;
     border-radius: 0.6em;
     padding: 0.5rem 1rem;
@@ -10,85 +10,86 @@
     border-radius: 8px;
     background-color: #fff;
     display: inline-block;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
     padding: 0.5rem 1rem;
 
   }
 }
 
-  .incoming-msg {
-    .msg-content{
+.incoming-msg {
+  .msg-content {
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     grid-area: msg;
     border-radius: 8px;
     background-color: #fff;
     display: inline-block;
-    box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
-    }
-    .msg-full {
-      grid-template-columns: auto 50px;
-      grid-template-areas:
-        "content avatar"
-        "content avatar";
-    }
-
-      .msg-avatar{
-        // margin-right: 1rem;
-      }
-
-
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
   }
-
 
   .msg-full {
-    display: grid;
-    grid-template-columns: 50px auto;
-    grid-template-rows: 30px auto;
+    grid-template-columns: auto 50px;
     grid-template-areas:
-      "avatar content"
-      "avatar content";
-    column-gap: 8px;
-    padding: 0.5rem 1rem;
-    // height: 150px;
-    // margin-top: 1rem;
-    margin-bottom: 1rem;
+      "content avatar"
+      "content avatar";
+  }
+
+  .msg-avatar {
+    // margin-right: 1rem;
+  }
+
+
+}
+
+
+.msg-full {
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-template-rows: 30px auto;
+  grid-template-areas:
+    "avatar content"
+    "avatar content";
+  column-gap: 8px;
+  padding: 0.5rem 1rem;
+  // height: 150px;
+  // margin-top: 1rem;
+  margin-bottom: 1rem;
 
 
 
-    .msg-avatar {
-      grid-area: avatar;
-      align-self: center;
+  .msg-avatar {
+    grid-area: avatar;
+    align-self: center;
 
-      img {
-        border: 1px solid $clr-border;
-        height: 80%;
-        width: 80%;
-      }
-    }
-
-    .msg-content {
-      grid-area: content;
-      display: grid;
-      grid-template-columns: auto;
-      grid-template-rows: 30px auto;
-      grid-template-areas:
-        "name"
-        "msg";
-
-      .msg-name {
-        grid-area: name;
-        font-family: cereal-Bold;
-
-
-        .msg-name-date {
-          font-size: 0.8rem;
-          color: $clr-text-secondary;
-        }
-      }
-
-      .msg-txt {
-        grid-area: msg;
-      }
+    img {
+      border: 1px solid $clr-border;
+      height: 80%;
+      width: 80%;
     }
   }
+
+  .msg-content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: 30px auto;
+    grid-template-areas:
+      "name"
+      "msg";
+
+    .msg-name {
+      grid-area: name;
+      font-family: cereal-Bold;
+
+
+      .msg-name-date {
+        font-size: 0.8rem;
+        color: $clr-text-secondary;
+      }
+    }
+
+    .msg-txt {
+      grid-area: msg;
+    }
+  }
+}
