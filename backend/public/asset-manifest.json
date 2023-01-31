@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.f7052267.css",
-    "main.js": "/static/js/main.5cde0c83.js",
+    "main.css": "/static/css/main.6f187e4d.css",
+    "main.js": "/static/js/main.9bf47db0.js",
     "static/media/AirbnbCerealBook.ttf": "/static/media/AirbnbCerealBook.3109661d59081af59380.ttf",
     "static/media/AirbnbCerealMedium.ttf": "/static/media/AirbnbCerealMedium.60c1c9216baaa7ef12ea.ttf",
     "static/media/AirbnbCerealBold.ttf": "/static/media/AirbnbCerealBold.b1e52d12c62118a1e39a.ttf",
@@ -94,11 +94,11 @@
     "static/media/arrow-left.svg": "/static/media/arrow-left.d664207e6cb6f6e705242998b48d6c11.svg",
     "static/media/bed-linens.svg": "/static/media/bed-linens.6d11d0826cbe91cb3426c5bbb77a785d.svg",
     "static/media/long-term-stays-allowed.svg": "/static/media/long-term-stays-allowed.02f05d6faed4b416ac9dde7d493f64ae.svg",
-    "main.f7052267.css.map": "/static/css/main.f7052267.css.map",
-    "main.5cde0c83.js.map": "/static/js/main.5cde0c83.js.map"
+    "main.6f187e4d.css.map": "/static/css/main.6f187e4d.css.map",
+    "main.9bf47db0.js.map": "/static/js/main.9bf47db0.js.map"
   },
   "entrypoints": [
-    "static/css/main.f7052267.css",
-    "static/js/main.5cde0c83.js"
+    "static/css/main.6f187e4d.css",
+    "static/js/main.9bf47db0.js"
   ]
 }

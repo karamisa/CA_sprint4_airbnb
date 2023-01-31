@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { BtnNavRounded } from '../cmps/ui/buttons/btn-nav-rounded'
 
@@ -6,6 +6,9 @@ import { BtnNavRounded } from '../cmps/ui/buttons/btn-nav-rounded'
 export function HomePage() {
 
     const navigate = useNavigate()
+    // useEffect(()=>{
+    //     navigate('/stay')
+    // })
 
 
     function onGoToList() {

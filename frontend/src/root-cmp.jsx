@@ -2,7 +2,7 @@ import React from 'react'
 import { Routes, Route } from 'react-router'
 
 import { UserDetails } from './pages/user-details'
-import { HomePage } from './pages/home-page.jsx'
+// import { HomePage } from './pages/home-page.jsx'
 import { MessagesPage } from './pages/messages-page.jsx'
 import { StayIndex } from './pages/stay-index.jsx'
 import { StayDetails } from './pages/stay-details.jsx'
@@ -21,7 +21,7 @@ export function RootCmp() {
     <main>
       <UserMsg />
       <Routes>
-        <Route element={<HomePage />} path='/' />
+        <Route element={<StayIndex />} path='/' />
         {/* TODO for development, remove on production */}
         <Route element={<UI />} path='/ui' />
         <Route element={<StayIndex />} path='/stay' />
