@@ -12,7 +12,6 @@
   }
 }
 
-
 //CHAT-ORDER-LIST
 .chat-order-preview {
   display: grid;
@@ -30,14 +29,15 @@
 
   &:hover,
   &.active {
-    box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0, 0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
+    // box-shadow: inset 1px 0 0 #dadce0, inset -1px 0 0 #dadce0,
+    //   0 1px 2px 0 rgb(60 64 67 / 30%), 0 1px 3px 1px rgb(60 64 67 / 15%);
     z-index: 2;
     cursor: pointer;
   }
 
   &.active {
-    border: 1px solid $clr-border-dark;
-
+    // border: 1px solid $clr-border-dark;
+    background-color: $clr-hover-bg;
   }
 
   .chat-order-avatar {
@@ -68,14 +68,15 @@
 
     .chat-order-name {
       font-family: cereal-Bold;
-      margin-bottom: 2px;
+      font-size: 14;
+      color: $clr-text-secondary;
+      margin-bottom: 4px;
     }
 
-    .chat-place-name{
+    .chat-place-name {
       grid-area: chat-place-name;
       font-size: 0.8rem;
       margin-top: 0.5rem;
-      
     }
 
     .chat-order-msg {
@@ -86,9 +87,9 @@
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       line-height: 15px;
-      margin-bottom: 3px;
+      // margin-bottom: 3px;
       white-space: nowrap;
-      font-size: 12px;
+      font-size: 14px;
     }
 
     .chat-show-status {
