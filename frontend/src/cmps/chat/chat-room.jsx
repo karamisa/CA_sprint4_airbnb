@@ -67,16 +67,23 @@ export function ChatRoom({ order, loggedInUser }) {
 
     return (<>
         <section className="chat-room" ref={chatRoomRef}>
-            {msgs.map((msg, idx) => (<div key={idx} className={`${loggedInUser?.fullname === msg.by.fullname ? 'msg-full outgoing-msg' : 'incoming-msg'}`}>
-                {msg.createdAt && <div className="msg-date">{utilService.formattedDate(msg.createdAt)}</div>}
-                <div className="msg-avatar">
-                    <img src={msg.by.imgUrl} alt={'avatar'} className="mini-user-img" />
-                </div>
-                <div className="msg-name flex justify-between">
-                    <span>{msg.by.fullname} </span>
-                </div>
-                <div className="msg-txt">{msg?.txt}</div>
-            </div>))}
+
+            {msgs.map((msg, idx) => (
+                <>
+                    {(msg.createdAt && (idx % 3 === 0)) && <div className="msg-date">{utilService.formattedDate(msg.createdAt)}</div>}
+
+                    <div key={idx} className={`${loggedInUser?.fullname === msg.by.fullname ? 'msg-full outgoing-msg' : 'msg-full incoming-msg'}`}>
+
+                        <div className="msg-avatar">
+                            <img src={msg.by.imgUrl} alt={'avatar'} className="mini-user-img" />
+                        </div>
+
+                        <div className="msg-name flex justify-between">
+                            {msg.by.fullname}
+                        </div>
+                        <div className="msg-txt">{msg?.txt}</div>
+                    </div>
+                </>))}
 
             {typingUser && <p>{typingUser} is typing...</p>}
 

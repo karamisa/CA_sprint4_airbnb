@@ -36,13 +36,13 @@ export function ChatOrderDetails({ currOrder }) {
                         <p className="order-card-body-row-value">
                             {guests.adults} adults
                             {guests.children > 0 &&
-                                <span className="order-card-body-row-value">{guests.children} children</span>
+                                <span className="order-card-body-row-value">,{guests.children} children</span>
                             }
                             {guests.infants > 0 &&
-                                <span className="order-card-body-row-value">{guests.infants} infants</span>
+                                <span className="order-card-body-row-value">,{guests.infants} infants</span>
                             }
                             {guests.pets > 0 &&
-                                <span className="order-card-body-row-value">{guests.pets} pets
+                                <span className="order-card-body-row-value">,{guests.pets} pets
                                 </span>
 
                             }
@@ -50,7 +50,7 @@ export function ChatOrderDetails({ currOrder }) {
                     </div>
                     <div className="order-card-body-row price-row">
                         <p className="order-card-body-row-title">Total price:</p>
-                        <p className="order-card-body-row-value total-price">${currOrder.totalPrice.toFixed(2)}</p>
+                        <p className="order-card-body-row-value total-price">${currOrder.totalPrice.toLocaleString()}</p>
                     </div>
                 </div>
             </div>

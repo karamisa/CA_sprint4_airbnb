@@ -107,7 +107,8 @@
   .chat-backdrop {
     width: 100%;
     height: 100%;
-    background-color: #f9f9f9;
+    // background-color: #f9f9f9;
+    background-color: $clr-white;
     // background-color:  rgb(255 56 93 / 5%);
     box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.1);
     overflow: hidden;
@@ -118,6 +119,10 @@
     flex-direction: column;
     height: 100%;
     overflow: hidden;
+  }
+
+  .currorder-details{
+    margin-left: 20px;
   }
 }
 
