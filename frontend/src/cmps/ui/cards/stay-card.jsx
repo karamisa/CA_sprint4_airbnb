@@ -10,6 +10,9 @@ export function StayCard({ stay }) {
     loc: { city, address },
   } = stay
 
+  console.log(address, 'addresss')
+  console.log(city, 'city')
+
   const citySecond = address.split(',')[1]
   return (
     <div
@@ -22,7 +25,7 @@ export function StayCard({ stay }) {
       </div>
       <div className={classes.city}>
         <h4>
-          <span>{city || citySecond}</span>
+          <span>{city || address || citySecond}</span>
         </h4>
       </div>
       <div className={`${classes.name} ${classes.ellipsis}`}>
