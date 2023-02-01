@@ -1,4 +1,4 @@
-const API_KEY = 'AIzaSyDtEZPZQVhbBbBXB3F9H93wLdqeTBr9dF0'
+const API_KEY = ''
 export const mapService = {
   connectGoogleApi,
 }
