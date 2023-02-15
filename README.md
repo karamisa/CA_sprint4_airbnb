@@ -1,5 +1,7 @@
 # CA_sprint4_airbnb
 
+https://akebnb-rental-service.onrender.com/stay
+
 Final Sprint (4) where we used what we learned in the past 3 months to create a dummy Airbnb pixel perfect site.
 
 A little over three months after writing our first console.log('hello world'), We took on the challenge of building an Airbnb clone in 10 days. To do so we used the diversity of skills we learned and developed over the course. The tools we used included:
